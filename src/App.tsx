@@ -1,5 +1,6 @@
 import './App.css'
 import PlayerList from "./components/PlayerList.tsx";
+import TeamsList from "./components/TeamsList.tsx";
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       </div>
       <h2>Players</h2>
       <PlayerList />
+      <h2>Teams</h2>
+      <TeamsList />
     </>
   )
 }
