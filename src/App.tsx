@@ -1,4 +1,5 @@
 import './App.css'
+import PlayerList from "./components/PlayerList.tsx";
 
 function App() {
   return (
@@ -9,6 +10,8 @@ function App() {
           built using React
         </p>
       </div>
+      <h2>Players</h2>
+      <PlayerList />
     </>
   )
 }
