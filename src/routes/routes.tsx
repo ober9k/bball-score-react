@@ -1,7 +1,7 @@
 import { createRootRoute, createRoute, createRouter } from "@tanstack/react-router";
-import App from "../App.tsx";
 import RootLayout from "../layouts/DefaultLayout.tsx";
 import Games from "../pages/Games.tsx";
+import Home from "../pages/Home.tsx";
 import Players from "../pages/Players.tsx";
 import Teams from "../pages/Teams.tsx";
 import { Paths } from "./paths.ts";
@@ -13,7 +13,7 @@ export const rootRoute = createRootRoute({
 const homeRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: Paths.Home,
-  component: App,
+  component: Home,
 });
 
 const gamesRoute = createRoute({
