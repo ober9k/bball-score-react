@@ -5,7 +5,6 @@ import Navigation from "../components/layout/Navigation.tsx";
 export default function RootLayout() {
   return (
     <>
-      <h1>bball-score</h1>
       <Navigation />
       <Outlet/>
       <TanStackRouterDevtools/>
