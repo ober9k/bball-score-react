@@ -1,9 +1,11 @@
-import { mockPlayers } from "../data/Players.ts";
+import type { Player } from "../types/Player.ts";
 import { mapBasePosition } from "../utilities/PlayerUtils.ts";
 
-export default function PlayersList() {
-  const players = mockPlayers;
+type PlayerListProps = {
+  players: Array<Player>,
+}
 
+export default function PlayersList({ players }: PlayerListProps) {
   return (
     <div>
       <ul>

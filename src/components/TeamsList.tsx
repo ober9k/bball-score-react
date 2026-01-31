@@ -1,10 +1,11 @@
-import { mockTeams } from "../data/Teams.ts";
+import type { Team } from "../types/Team.ts";
 
-export default function TeamsList() {
-  const teams = mockTeams;
+type TeamsListProps = {
+  teams: Array<Team>,
+}
 
+export default function TeamsList({ teams }: TeamsListProps) {
   return (
-
     <div>
       <ul>
         {teams.map((teams) => (

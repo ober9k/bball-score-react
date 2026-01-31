@@ -1,15 +1,19 @@
-import { mockGames } from "../data/Games.ts";
+import { getRouteApi } from "@tanstack/react-router";
 import { findTeamById } from "../data/Teams.ts";
+import { Paths } from "../routes/paths.ts";
+import type { Game } from "../types/Game.ts";
 import type { TeamLog } from "../types/game/TeamLog.ts";
 import BoxScoreTable from "./stats/BoxScoreTable.tsx";
+
+type GamesListProps = {
+  games: Array<Game>,
+}
 
 function getTeamName(teamLog: TeamLog): string {
   return findTeamById(teamLog.teamId).name;
 }
 
-export default function GamesList() {
-  const games = mockGames;
-
+export default function GamesList({ games }: GamesListProps) {
   return (
     <div>
       <ul>
