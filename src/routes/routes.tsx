@@ -4,6 +4,7 @@ import RootLayout from "../layouts/DefaultLayout.tsx";
 import Games from "../pages/Games.tsx";
 import Players from "../pages/Players.tsx";
 import Teams from "../pages/Teams.tsx";
+import { Paths } from "./paths.ts";
 
 export const rootRoute = createRootRoute({
   component: RootLayout,
@@ -11,25 +12,25 @@ export const rootRoute = createRootRoute({
 
 const homeRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/',
+  path: Paths.Home,
   component: App,
 });
 
 const gamesRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/games',
+  path: Paths.Games,
   component: Games,
 });
 
 const playersRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/players',
+  path: Paths.Players,
   component: Players,
 });
 
 const teamsRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/teams',
+  path: Paths.Teams,
   component: Teams,
 });
 
