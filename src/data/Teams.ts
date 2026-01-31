@@ -10,3 +10,11 @@ export const mockTeams: Array<Team> = [
     name: "Blacktown Bogans",
   },
 ];
+
+/**
+ * TEMP: expectation that you select a valid team
+ * @param teamId
+ */
+export function findTeamById(teamId: number): Team {
+  return mockTeams.find(({ id }) => id === teamId)!;
+}

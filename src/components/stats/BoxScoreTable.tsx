@@ -1,7 +1,6 @@
-import { mockPlayers } from "../../data/Players.ts";
+import { findPlayerById } from "../../data/Players.ts";
 import type { PlayerLog } from "../../types/game/PlayerLog.ts";
 import type { TeamLog } from "../../types/game/TeamLog.ts";
-import type { Team } from "../../types/Team.ts";
 
 type BoxScoreTableProps = {
   teamLog: TeamLog,
@@ -11,14 +10,6 @@ type Totals = {
   points: number,
   rebounds: number,
   assists: number,
-}
-
-/**
- * TEMP
- * @param playerId
- */
-function getPlayerById(playerId: number): Team {
-  return mockPlayers.find(({ id }) => id === playerId)!;
 }
 
 /**
@@ -56,7 +47,7 @@ export default function BoxScoreTable({ teamLog }: BoxScoreTableProps) {
         <tbody>
         {teamLog.playerLogs.map((playerLog) => (
         <tr>
-          <td>{getPlayerById(playerLog.playerId).name}</td>
+          <td>{findPlayerById(playerLog.playerId).name}</td>
           <td>{playerLog.points}</td>
           <td>{playerLog.rebounds}</td>
           <td>{playerLog.assists}</td>

@@ -1,14 +1,10 @@
 import { mockGames } from "../data/Games.ts";
-import { mockTeams } from "../data/Teams.ts";
-import type { Team } from "../types/Team.ts";
+import { findTeamById } from "../data/Teams.ts";
+import type { TeamLog } from "../types/game/TeamLog.ts";
 import BoxScoreTable from "./stats/BoxScoreTable.tsx";
 
-/**
- * TEMP
- * @param teamId
- */
-function getTeamById(teamId: number): Team {
-  return mockTeams.find(({ id }) => id === teamId)!;
+function getTeamName(teamLog: TeamLog): string {
+  return findTeamById(teamLog.teamId).name;
 }
 
 export default function GameList() {
@@ -21,9 +17,9 @@ export default function GameList() {
           <li key={game.id}>
             <p>
               <strong>
-                {getTeamById(game.teamLogs[0].teamId).name}
+                {getTeamName(game.teamLogs[0])}
               </strong> vs. <strong>
-                {getTeamById(game.teamLogs[1].teamId).name}
+                {getTeamName(game.teamLogs[1])}
               </strong>
             </p>
             <p>
@@ -31,7 +27,7 @@ export default function GameList() {
             </p>
             {game.teamLogs.map((teamLog) => (
               <>
-                <h3>{getTeamById(teamLog.teamId).name}</h3>
+                <h3>{getTeamName(teamLog)}</h3>
                 <BoxScoreTable teamLog={teamLog} />
               </>
             ))}

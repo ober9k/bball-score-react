@@ -67,3 +67,11 @@ export const mockGames: Array<Game> = [
     ],
   },
 ];
+
+/**
+ * TEMP: expectation that you select a valid game
+ * @param gameId
+ */
+export function findGameById(gameId: number): Game {
+  return mockGames.find(({ id }) => id === gameId)!;
+}

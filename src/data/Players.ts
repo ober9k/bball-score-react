@@ -63,3 +63,11 @@ export const mockPlayers: Array<Player> = [
     number: 33,
   },
 ];
+
+/**
+ * TEMP: expectation that you select a valid player
+ * @param playerId
+ */
+export function findPlayerById(playerId: number): Player {
+  return mockPlayers.find(({ id }) => id === playerId)!;
+}
