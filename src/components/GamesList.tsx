@@ -26,10 +26,10 @@ export default function GamesList() {
               {game.date.toLocaleDateString()}
             </p>
             {game.teamLogs.map((teamLog) => (
-              <>
+              <div key={teamLog.id}>
                 <h3>{getTeamName(teamLog)}</h3>
                 <BoxScoreTable teamLog={teamLog} />
-              </>
+              </div>
             ))}
           </li>
         ))}

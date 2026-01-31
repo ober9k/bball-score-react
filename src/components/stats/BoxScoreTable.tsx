@@ -46,7 +46,7 @@ export default function BoxScoreTable({ teamLog }: BoxScoreTableProps) {
         </thead>
         <tbody>
         {teamLog.playerLogs.map((playerLog) => (
-        <tr>
+        <tr key={playerLog.id}>
           <td>{findPlayerById(playerLog.playerId).name}</td>
           <td>{playerLog.points}</td>
           <td>{playerLog.rebounds}</td>
