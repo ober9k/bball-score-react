@@ -1,7 +1,7 @@
 import { mockPlayers } from "../data/Players.ts";
 import { mapBasePosition } from "../utilities/PlayerUtils.ts";
 
-export default function PlayerList() {
+export default function PlayersList() {
   const players = mockPlayers;
 
   return (

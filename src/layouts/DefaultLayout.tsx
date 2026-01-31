@@ -5,15 +5,16 @@ export default function RootLayout() {
   return (
     <>
       <h1>bball-score</h1>
-      <div>
-        <p>
-          built using React
-        </p>
-      </div>
       <div className="p-2 flex gap-2">
         <Link to="/" className="[&.active]:font-bold">
           Home
-        </Link>{' '}
+        </Link>
+        <Link to="/games" className="[&.active]:font-bold">
+          Games
+        </Link>
+        <Link to="/players" className="[&.active]:font-bold">
+          Players
+        </Link>
         <Link to="/teams" className="[&.active]:font-bold">
           Teams
         </Link>

@@ -7,7 +7,7 @@ function getTeamName(teamLog: TeamLog): string {
   return findTeamById(teamLog.teamId).name;
 }
 
-export default function GameList() {
+export default function GamesList() {
   const games = mockGames;
 
   return (
