@@ -6,12 +6,6 @@ import TeamsList from "./components/TeamsList.tsx";
 function App() {
   return (
     <>
-      <h1>bball-score</h1>
-      <div>
-        <p>
-          built using React
-        </p>
-      </div>
       <h2>Game</h2>
       <GameList />
       <h2>Players</h2>
