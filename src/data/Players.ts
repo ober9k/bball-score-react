@@ -9,7 +9,7 @@ export const mockPlayers: Array<Player> = [
     number: 21,
   },
   {
-    id: 1,
+    id: 12,
     name: "Myron Gaines",
     position: Position.ShootingGuard,
     number: 11,
