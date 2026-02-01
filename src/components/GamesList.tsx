@@ -1,6 +1,4 @@
-import { getRouteApi } from "@tanstack/react-router";
 import { findTeamById } from "../data/Teams.ts";
-import { Paths } from "../routes/paths.ts";
 import type { Game } from "../types/Game.ts";
 import type { TeamLog } from "../types/game/TeamLog.ts";
 import BoxScoreTable from "./stats/BoxScoreTable.tsx";
