@@ -46,7 +46,7 @@ export default function BoxScore({ teamLog }: BoxScoreProps) {
 
   return (
     <>
-      <div className={"p-2"}>
+      <div className={"boxscore p-2"}>
         <table className={"w-full"}>
           <thead>
           <tr>
