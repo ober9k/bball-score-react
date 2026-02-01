@@ -4,7 +4,7 @@ import type { PlayerLog } from "../../types/game/PlayerLog.ts";
 import type { TeamLog } from "../../types/game/TeamLog.ts";
 import type { Team } from "../../types/Team.ts";
 
-type BoxScoreTableProps = {
+type BoxScoreProps = {
   teamLog: TeamLog,
 }
 
@@ -41,7 +41,7 @@ function getTeamStyle(team: Team): { color: string, backgroundColor: string } {
   }
 }
 
-export default function BoxScoreTable({ teamLog }: BoxScoreTableProps) {
+export default function BoxScore({ teamLog }: BoxScoreProps) {
   const team = findTeamById(teamLog.teamId);
 
   return (

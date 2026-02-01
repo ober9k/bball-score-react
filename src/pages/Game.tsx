@@ -1,5 +1,5 @@
 import { getRouteApi } from "@tanstack/react-router";
-import BoxScoreTable from "../components/stats/BoxScoreTable.tsx";
+import BoxScore from "../components/stats/BoxScore.tsx";
 import { Paths } from "../routes/paths.ts";
 
 export default function Game() {
@@ -11,7 +11,7 @@ export default function Game() {
       <h2>Game</h2>
       {game.teamLogs.map((teamLog) => (
         <div key={teamLog.id}>
-          <BoxScoreTable teamLog={teamLog} />
+          <BoxScore teamLog={teamLog} />
         </div>
       ))}
     </>

@@ -1,7 +1,7 @@
 import { findTeamById } from "../data/Teams.ts";
 import type { Game } from "../types/Game.ts";
 import type { TeamLog } from "../types/game/TeamLog.ts";
-import BoxScoreTable from "./stats/BoxScoreTable.tsx";
+import BoxScore from "./stats/BoxScore.tsx";
 
 type GamesListProps = {
   games: Array<Game>,
@@ -29,7 +29,7 @@ export default function GamesList({ games }: GamesListProps) {
             </p>
             {game.teamLogs.map((teamLog) => (
               <div key={teamLog.id}>
-                <BoxScoreTable teamLog={teamLog} />
+                <BoxScore teamLog={teamLog} />
               </div>
             ))}
           </li>
