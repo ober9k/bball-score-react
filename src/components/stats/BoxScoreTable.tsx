@@ -1,6 +1,8 @@
 import { findPlayerById } from "../../data/Players.ts";
+import { findTeamById } from "../../data/Teams.ts";
 import type { PlayerLog } from "../../types/game/PlayerLog.ts";
 import type { TeamLog } from "../../types/game/TeamLog.ts";
+import type { Team } from "../../types/Team.ts";
 
 type BoxScoreTableProps = {
   teamLog: TeamLog,
@@ -32,37 +34,53 @@ function getTotals(playerLogs: Array<PlayerLog>): Totals {
   }, totals)
 }
 
+function getTeamStyle(team: Team): { color: string, backgroundColor: string } {
+  return {
+    color: team.teamStyle.textColor,
+    backgroundColor: team.teamStyle.bgColor,
+  }
+}
+
 export default function BoxScoreTable({ teamLog }: BoxScoreTableProps) {
+  const team = findTeamById(teamLog.teamId);
+
   return (
     <>
-      <table className={"w-full"}>
-        <thead>
-        <tr>
-          <th>&nbsp;</th>
-          <th>PTS</th>
-          <th>REB</th>
-          <th>AST</th>
-        </tr>
-        </thead>
-        <tbody>
-        {teamLog.playerLogs.map((playerLog) => (
-        <tr key={playerLog.id}>
-          <td>{findPlayerById(playerLog.playerId).name}</td>
-          <td>{playerLog.points}</td>
-          <td>{playerLog.rebounds}</td>
-          <td>{playerLog.assists}</td>
-        </tr>
-        ))}
-        </tbody>
-        <tfoot>
-        <tr>
-          <th>&nbsp;</th>
-          <th>{getTotals(teamLog.playerLogs).points}</th>
-          <th>{getTotals(teamLog.playerLogs).rebounds}</th>
-          <th>{getTotals(teamLog.playerLogs).assists}</th>
-        </tr>
-        </tfoot>
-      </table>
+      <div className={"p-2"}>
+        <table className={"w-full"}>
+          <thead>
+          <tr>
+            <th colSpan={4} className={"text-left px-2 py-1 font-medium"} style={getTeamStyle(team)}>
+              {team.name} <span className={"font-normal"}>(0-0-0)</span>
+            </th>
+          </tr>
+          <tr>
+            <th className={"p-1 text-left text-sm"}>&nbsp;</th>
+            <th className={"w-20 p-1 text-sm"}>PTS</th>
+            <th className={"w-20 p-1 text-sm"}>REB</th>
+            <th className={"w-20 p-1 text-sm"}>AST</th>
+          </tr>
+          </thead>
+          <tbody>
+          {teamLog.playerLogs.map((playerLog) => (
+          <tr key={playerLog.id}>
+            <td className={"p-1 text-left text-sm"}>{findPlayerById(playerLog.playerId).name}</td>
+            <td className={"p-1 text-sm"}>{playerLog.points}</td>
+            <td className={"p-1 text-sm"}>{playerLog.rebounds}</td>
+            <td className={"p-1 text-sm"}>{playerLog.assists}</td>
+          </tr>
+          ))}
+          </tbody>
+          <tfoot>
+          <tr>
+            <th className={"p-1 text-left text-sm"}>&nbsp;</th>
+            <th className={"p-1 text-sm"}>{getTotals(teamLog.playerLogs).points}</th>
+            <th className={"p-1 text-sm"}>{getTotals(teamLog.playerLogs).rebounds}</th>
+            <th className={"p-1 text-sm"}>{getTotals(teamLog.playerLogs).assists}</th>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
     </>
   );
 }

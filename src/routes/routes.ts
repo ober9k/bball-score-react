@@ -1,10 +1,11 @@
 import { createRootRoute, createRoute, createRouter } from "@tanstack/react-router";
 import RootLayout from "../layouts/DefaultLayout.tsx";
+import Game from "../pages/Game.tsx";
 import Games from "../pages/Games.tsx";
 import Home from "../pages/Home.tsx";
 import Players from "../pages/Players.tsx";
 import Teams from "../pages/Teams.tsx";
-import { gamesLoader, playersLoader, teamsLoader } from "./loaders.ts";
+import { gameLoader, gamesLoader, playersLoader, teamsLoader } from "./loaders.ts";
 import { Paths } from "./paths.ts";
 
 export const rootRoute = createRootRoute({
@@ -25,6 +26,13 @@ const gamesRoute = createRoute({
   loader: gamesLoader,
 });
 
+const gameRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: Paths.Game,
+  component: Game,
+  loader: gameLoader,
+});
+
 const playersRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: Paths.Players,
@@ -39,7 +47,7 @@ const teamsRoute = createRoute({
   loader: teamsLoader,
 });
 
-const routeTree = rootRoute.addChildren([homeRoute, gamesRoute, playersRoute, teamsRoute]);
+const routeTree = rootRoute.addChildren([homeRoute, gamesRoute, gameRoute, playersRoute, teamsRoute]);
 
 export const router = createRouter({ routeTree });
 
