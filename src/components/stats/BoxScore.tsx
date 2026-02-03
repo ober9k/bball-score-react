@@ -3,8 +3,8 @@ import { findTeamById } from "../../data/teams.ts";
 import type { PlayerLog } from "../../types/game/PlayerLog.ts";
 import type { TeamLog } from "../../types/game/TeamLog.ts";
 import type { Totals } from "../../types/stats/Totals.ts";
-import type { Team } from "../../types/Team.ts";
 import PlayerLink from "../links/PlayerLink.tsx";
+import TeamsRow from "./row/TeamsRow.tsx";
 import TitlesRow from "./row/TitlesRow.tsx";
 import TotalsRow from "./row/TotalsRow.tsx";
 
@@ -32,13 +32,6 @@ function getTotals(playerLogs: Array<PlayerLog>): Totals {
   }, totals)
 }
 
-function getTeamStyle(team: Team): { color: string, backgroundColor: string } {
-  return {
-    color: team.teamStyle.textColor,
-    backgroundColor: team.teamStyle.bgColor,
-  }
-}
-
 export default function BoxScore({ teamLog }: BoxScoreProps) {
   const team = findTeamById(teamLog.teamId);
 
@@ -48,9 +41,9 @@ export default function BoxScore({ teamLog }: BoxScoreProps) {
         <table className={"w-full"}>
           <thead>
           <tr>
-            <th colSpan={4} className={"text-left px-2 py-1 font-medium"} style={getTeamStyle(team)}>
-              {team.name} <span className={"font-normal"}>(0-0-0)</span>
-            </th>
+            <TeamsRow team={team}>
+              {team.name} (0-0-0)
+            </TeamsRow>
           </tr>
           <tr>
             <TitlesRow />
