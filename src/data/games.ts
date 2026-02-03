@@ -1,5 +1,8 @@
 import type { Game } from "../types/Game.ts";
 import type { PlayerLog } from "../types/game/PlayerLog.ts";
+import type { TeamLog } from "../types/game/TeamLog.ts";
+import { findPlayerById } from "./players.ts";
+import { findTeamById } from "./teams.ts";
 
 let playerLogId = 1;
 
@@ -99,6 +102,37 @@ export const mockGames: Array<Game> = [
     ],
   },
 ];
+
+/**
+ * Populated referenced teams within the logs.
+ * (this would normally be done on the API)
+ */
+function populateTeamLogs(teamLogs: Array<TeamLog>) {
+  teamLogs.forEach((teamLog) => {
+    teamLog.team = findTeamById(teamLog.teamId);
+  });
+}
+
+/**
+ * Populated referenced players within the logs.
+ * (this would normally be done on the API)
+ */
+function populatePlayerLogs(playerLogs: Array<PlayerLog>) {
+  playerLogs.forEach((playerLog) => {
+    playerLog.player = findPlayerById(playerLog.playerId);
+  });
+}
+
+/**
+ * Apply the populate log functions.
+ */
+mockGames.forEach((game) => {
+  populateTeamLogs(game.teamLogs);
+
+  game.teamLogs.forEach((teamLog) => {
+    populatePlayerLogs(teamLog.playerLogs);
+  });
+});
 
 /**
  * TEMP: expectation that you select a valid game
