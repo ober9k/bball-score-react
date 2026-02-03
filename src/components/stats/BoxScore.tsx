@@ -1,8 +1,7 @@
 import { findPlayerById } from "../../data/players.ts";
 import { findTeamById } from "../../data/teams.ts";
-import type { PlayerLog } from "../../types/game/PlayerLog.ts";
 import type { TeamLog } from "../../types/game/TeamLog.ts";
-import type { Totals } from "../../types/stats/Totals.ts";
+import { getTotals } from "../../utilities/StatsUtils.ts";
 import PlayerLink from "../links/PlayerLink.tsx";
 import TeamsRow from "./row/TeamsRow.tsx";
 import TitlesRow from "./row/TitlesRow.tsx";
@@ -10,26 +9,6 @@ import TotalsRow from "./row/TotalsRow.tsx";
 
 type BoxScoreProps = {
   teamLog: TeamLog,
-}
-
-/**
- * TEMP: NOT EFFICIENT
- * @param playerLogs
- */
-function getTotals(playerLogs: Array<PlayerLog>): Totals {
-  const totals = {
-    points: 0,
-    rebounds: 0,
-    assists: 0,
-  };
-
-  return playerLogs.reduce((acc: Totals, cur) => {
-    acc.points += cur.points;
-    acc.rebounds += cur.rebounds;
-    acc.assists += cur.assists;
-
-    return acc;
-  }, totals)
 }
 
 export default function BoxScore({ teamLog }: BoxScoreProps) {
