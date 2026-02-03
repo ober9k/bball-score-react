@@ -1,6 +1,6 @@
-import { findGameById, mockGames } from "../data/Games.ts";
-import { mockPlayers } from "../data/Players.ts";
-import { mockTeams } from "../data/Teams.ts";
+import { findGameById, mockGames } from "../data/games.ts";
+import { mockPlayers } from "../data/players.ts";
+import { mockTeams } from "../data/teams.ts";
 
 export function gamesLoader() {
   return {

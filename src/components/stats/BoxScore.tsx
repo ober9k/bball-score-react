@@ -1,5 +1,5 @@
-import { findPlayerById } from "../../data/Players.ts";
-import { findTeamById } from "../../data/Teams.ts";
+import { findPlayerById } from "../../data/players.ts";
+import { findTeamById } from "../../data/teams.ts";
 import type { PlayerLog } from "../../types/game/PlayerLog.ts";
 import type { TeamLog } from "../../types/game/TeamLog.ts";
 import type { Team } from "../../types/Team.ts";

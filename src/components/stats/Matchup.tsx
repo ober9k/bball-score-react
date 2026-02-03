@@ -1,4 +1,4 @@
-import { findTeamById } from "../../data/Teams.ts";
+import { findTeamById } from "../../data/teams.ts";
 import type { Game } from "../../types/Game.ts";
 import type { TeamLog } from "../../types/game/TeamLog.ts";
 import TeamLink from "../links/TeamLink.tsx";
