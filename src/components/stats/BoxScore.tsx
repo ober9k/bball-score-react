@@ -2,17 +2,13 @@ import { findPlayerById } from "../../data/players.ts";
 import { findTeamById } from "../../data/teams.ts";
 import type { PlayerLog } from "../../types/game/PlayerLog.ts";
 import type { TeamLog } from "../../types/game/TeamLog.ts";
+import type { Totals } from "../../types/stats/Totals.ts";
 import type { Team } from "../../types/Team.ts";
 import PlayerLink from "../links/PlayerLink.tsx";
+import TotalsRow from "./row/TotalsRow.tsx";
 
 type BoxScoreProps = {
   teamLog: TeamLog,
-}
-
-type Totals = {
-  points: number,
-  rebounds: number,
-  assists: number,
 }
 
 /**
@@ -47,7 +43,7 @@ export default function BoxScore({ teamLog }: BoxScoreProps) {
 
   return (
     <>
-      <div className={"boxscore p-2"}>
+      <div className={"box-score p-2"}>
         <table className={"w-full"}>
           <thead>
           <tr>
@@ -64,22 +60,16 @@ export default function BoxScore({ teamLog }: BoxScoreProps) {
           </thead>
           <tbody>
           {teamLog.playerLogs.map((playerLog) => (
-          <tr key={playerLog.id}>
-            <td className={"p-1 text-left text-sm"}>
-              <PlayerLink player={findPlayerById(playerLog.playerId)} />
-            </td>
-            <td className={"p-1 text-sm"}>{playerLog.points}</td>
-            <td className={"p-1 text-sm"}>{playerLog.rebounds}</td>
-            <td className={"p-1 text-sm"}>{playerLog.assists}</td>
-          </tr>
+            <tr key={playerLog.id}>
+              <TotalsRow totals={playerLog}>
+                <PlayerLink player={findPlayerById(playerLog.playerId)} />
+              </TotalsRow>
+            </tr>
           ))}
           </tbody>
           <tfoot>
           <tr>
-            <th className={"p-1 text-left text-sm"}>&nbsp;</th>
-            <th className={"p-1 text-sm"}>{getTotals(teamLog.playerLogs).points}</th>
-            <th className={"p-1 text-sm"}>{getTotals(teamLog.playerLogs).rebounds}</th>
-            <th className={"p-1 text-sm"}>{getTotals(teamLog.playerLogs).assists}</th>
+            <TotalsRow totals={getTotals(teamLog.playerLogs)} headings={true} />
           </tr>
           </tfoot>
         </table>
