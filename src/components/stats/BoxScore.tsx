@@ -5,6 +5,7 @@ import type { TeamLog } from "../../types/game/TeamLog.ts";
 import type { Totals } from "../../types/stats/Totals.ts";
 import type { Team } from "../../types/Team.ts";
 import PlayerLink from "../links/PlayerLink.tsx";
+import TitlesRow from "./row/TitlesRow.tsx";
 import TotalsRow from "./row/TotalsRow.tsx";
 
 type BoxScoreProps = {
@@ -52,10 +53,7 @@ export default function BoxScore({ teamLog }: BoxScoreProps) {
             </th>
           </tr>
           <tr>
-            <th className={"p-1 text-left text-sm"}>&nbsp;</th>
-            <th className={"w-20 p-1 text-sm"}>PTS</th>
-            <th className={"w-20 p-1 text-sm"}>REB</th>
-            <th className={"w-20 p-1 text-sm"}>AST</th>
+            <TitlesRow />
           </tr>
           </thead>
           <tbody>
