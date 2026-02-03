@@ -5,5 +5,5 @@ export const Paths = {
   Players: '/players',
   Player:  '/games/$playerId',
   Teams:   '/teams',
-  Team:    '/games/$teamId',
+  Team:    '/teams/$teamId',
 }
