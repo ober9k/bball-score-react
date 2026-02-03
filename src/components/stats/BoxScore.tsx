@@ -1,10 +1,9 @@
-import { Link } from "@tanstack/react-router";
 import { findPlayerById } from "../../data/Players.ts";
 import { findTeamById } from "../../data/Teams.ts";
-import { Paths } from "../../routes/paths.ts";
 import type { PlayerLog } from "../../types/game/PlayerLog.ts";
 import type { TeamLog } from "../../types/game/TeamLog.ts";
 import type { Team } from "../../types/Team.ts";
+import PlayerLink from "../links/PlayerLink.tsx";
 
 type BoxScoreProps = {
   teamLog: TeamLog,
@@ -67,9 +66,7 @@ export default function BoxScore({ teamLog }: BoxScoreProps) {
           {teamLog.playerLogs.map((playerLog) => (
           <tr key={playerLog.id}>
             <td className={"p-1 text-left text-sm"}>
-              <Link to={Paths.Player} params={{ playerId: playerLog.playerId }}>
-                {findPlayerById(playerLog.playerId).name}
-              </Link>
+              <PlayerLink player={findPlayerById(playerLog.playerId)} />
             </td>
             <td className={"p-1 text-sm"}>{playerLog.points}</td>
             <td className={"p-1 text-sm"}>{playerLog.rebounds}</td>

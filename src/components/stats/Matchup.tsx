@@ -1,8 +1,7 @@
-import { Link } from "@tanstack/react-router";
 import { findTeamById } from "../../data/Teams.ts";
-import { Paths } from "../../routes/paths.ts";
 import type { Game } from "../../types/Game.ts";
 import type { TeamLog } from "../../types/game/TeamLog.ts";
+import TeamLink from "../links/TeamLink.tsx";
 
 type TeamScoreProps = {
   teamLog: TeamLog,
@@ -18,9 +17,9 @@ function TeamScore({ teamLog }: TeamScoreProps) {
   return (
     <>
       <p>
-        <Link to={Paths.Team} params={{ teamId: team.id }}>
-          <strong>{team.name}</strong>
-        </Link>
+        <strong>
+          <TeamLink team={team} />
+        </strong>
       </p>
       <p>
         <span className={"text-xl"}>({teamLog.teamScore})</span>
