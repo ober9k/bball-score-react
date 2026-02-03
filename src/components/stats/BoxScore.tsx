@@ -1,5 +1,3 @@
-import { findPlayerById } from "../../data/players.ts";
-import { findTeamById } from "../../data/teams.ts";
 import type { TeamLog } from "../../types/game/TeamLog.ts";
 import { getTotals } from "../../utilities/StatsUtils.ts";
 import PlayerLink from "../links/PlayerLink.tsx";
@@ -12,16 +10,15 @@ type BoxScoreProps = {
 }
 
 export default function BoxScore({ teamLog }: BoxScoreProps) {
-  const team = findTeamById(teamLog.teamId);
-
   return (
     <>
       <div className={"box-score p-2"}>
         <table className={"w-full"}>
           <thead>
           <tr>
-            <TeamsRow team={team}>
-              {team.name} (0-0-0)
+            {/* `teamLog.team` will always be set */}
+            <TeamsRow team={teamLog.team!}>
+              {teamLog.team!.name} (0-0-0)
             </TeamsRow>
           </tr>
           <tr>
@@ -32,7 +29,8 @@ export default function BoxScore({ teamLog }: BoxScoreProps) {
           {teamLog.playerLogs.map((playerLog) => (
             <tr key={playerLog.id}>
               <TotalsRow totals={playerLog}>
-                <PlayerLink player={findPlayerById(playerLog.playerId)} />
+                {/* `playerLog.player` will always be set */}
+                <PlayerLink player={playerLog.player!} />
               </TotalsRow>
             </tr>
           ))}
