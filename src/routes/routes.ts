@@ -1,4 +1,4 @@
-import { createRootRoute, createRoute, createRouter } from "@tanstack/react-router";
+import { createRootRoute, createRoute } from "@tanstack/react-router";
 import RootLayout from "../layouts/DefaultLayout.tsx";
 import Game from "../pages/Game.tsx";
 import Games from "../pages/Games.tsx";
@@ -47,8 +47,10 @@ const teamsRoute = createRoute({
   loader: teamsLoader,
 });
 
-const routeTree = rootRoute.addChildren([homeRoute, gamesRoute, gameRoute, playersRoute, teamsRoute]);
-
-export const router = createRouter({ routeTree });
-
-
+export const routeTree = rootRoute.addChildren([
+  homeRoute,
+  gamesRoute,
+  gameRoute,
+  playersRoute,
+  teamsRoute,
+]);
