@@ -3,7 +3,7 @@ export const Paths = {
   Games:   '/games',
   Game:    '/games/$gameId',
   Players: '/players',
-  Player:  '/games/$playerId',
+  Player:  '/players/$playerId',
   Teams:   '/teams',
   Team:    '/teams/$teamId',
 }
