@@ -3,9 +3,10 @@ import RootLayout from "../layouts/DefaultLayout.tsx";
 import Game from "../pages/Game.tsx";
 import Games from "../pages/Games.tsx";
 import Home from "../pages/Home.tsx";
+import Player from "../pages/Player.tsx";
 import Players from "../pages/Players.tsx";
 import Teams from "../pages/Teams.tsx";
-import { gameLoader, gamesLoader, playersLoader, teamsLoader } from "./loaders.ts";
+import { gameLoader, gamesLoader, playerLoader, playersLoader, teamsLoader } from "./loaders.ts";
 import { Paths } from "./paths.ts";
 
 export const rootRoute = createRootRoute({
@@ -40,6 +41,13 @@ const playersRoute = createRoute({
   loader: playersLoader,
 });
 
+const playerRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: Paths.Player,
+  component: Player,
+  loader: playerLoader,
+});
+
 const teamsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: Paths.Teams,
@@ -52,5 +60,6 @@ export const routeTree = rootRoute.addChildren([
   gamesRoute,
   gameRoute,
   playersRoute,
+  playerRoute,
   teamsRoute,
 ]);
