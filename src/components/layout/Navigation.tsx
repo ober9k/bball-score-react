@@ -6,6 +6,7 @@ const links: Array<{ id: number, title: string, to: string }> = [
   { id: linkId++, title: "Home", to: Paths.Home, },
   { id: linkId++, title: "Games", to: Paths.Games, },
   { id: linkId++, title: "Players", to: Paths.Players, },
+  { id: linkId++, title: "Standings", to: Paths.Standings, },
   { id: linkId++, title: "Teams", to: Paths.Teams, },
 ];
 
