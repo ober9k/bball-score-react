@@ -1,6 +1,6 @@
 import { findGameById, mockGames } from "../data/games.ts";
 import { findPlayerById, mockPlayers } from "../data/players.ts";
-import { mockTeams } from "../data/teams.ts";
+import { findTeamById, mockTeams } from "../data/teams.ts";
 
 export function gamesLoader() {
   return {
@@ -63,5 +63,23 @@ export function playerLoader({ params }) {
 export function teamsLoader() {
   return {
     teams: mockTeams, /* temporary handling which will later ping an API */
+  };
+}
+
+export function teamLoader({ params }) {
+  const teamId = parseInt(params["teamId"]);
+
+  if (isNaN(teamId)) {
+    throw Error("Invalid `teamId` provided.");
+  }
+
+  const team = findTeamById(teamId);
+
+  if (team === undefined) {
+    throw Error("Unable to find game with `teamId` provided.");
+  }
+
+  return {
+    team: team,
   };
 }

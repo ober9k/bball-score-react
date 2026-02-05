@@ -5,8 +5,9 @@ import Games from "../pages/Games.tsx";
 import Home from "../pages/Home.tsx";
 import Player from "../pages/Player.tsx";
 import Players from "../pages/Players.tsx";
+import Team from "../pages/Team.tsx";
 import Teams from "../pages/Teams.tsx";
-import { gameLoader, gamesLoader, playerLoader, playersLoader, teamsLoader } from "./loaders.ts";
+import { gameLoader, gamesLoader, playerLoader, playersLoader, teamLoader, teamsLoader } from "./loaders.ts";
 import { Paths } from "./paths.ts";
 
 export const rootRoute = createRootRoute({
@@ -55,6 +56,13 @@ const teamsRoute = createRoute({
   loader: teamsLoader,
 });
 
+const teamRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: Paths.Team,
+  component: Team,
+  loader: teamLoader,
+});
+
 export const routeTree = rootRoute.addChildren([
   homeRoute,
   gamesRoute,
@@ -62,4 +70,5 @@ export const routeTree = rootRoute.addChildren([
   playersRoute,
   playerRoute,
   teamsRoute,
+  teamRoute,
 ]);
