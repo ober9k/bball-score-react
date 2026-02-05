@@ -8,7 +8,7 @@ import Players from "../pages/Players.tsx";
 import Standings from "../pages/Standings.tsx";
 import Team from "../pages/Team.tsx";
 import Teams from "../pages/Teams.tsx";
-import { gameLoader, gamesLoader, playerLoader, playersLoader, teamLoader, teamsLoader } from "./loaders.ts";
+import { gameLoader, gamesLoader, playerLoader, playersLoader, standingsLoader, teamLoader, teamsLoader } from "./loaders.ts";
 import { Paths } from "./paths.ts";
 
 export const rootRoute = createRootRoute({
@@ -54,6 +54,7 @@ const standingsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: Paths.Standings,
   component: Standings,
+  loader: standingsLoader,
 });
 
 const teamsRoute = createRoute({

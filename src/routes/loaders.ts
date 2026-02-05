@@ -1,6 +1,10 @@
 import { findGameById, mockGames } from "../data/games.ts";
 import { findPlayerById, mockPlayers } from "../data/players.ts";
 import { findTeamById, mockTeams } from "../data/teams.ts";
+import type { StandingsRow } from "../types/row/StandingsRow.ts";
+import type { Standings } from "../types/Standings.ts";
+import type { Team } from "../types/Team.ts";
+import { getAwayTeamLog, getHomeTeamLog } from "../utilities/GameUtils.ts";
 
 export function gamesLoader() {
   return {
@@ -58,6 +62,76 @@ export function playerLoader({ params }) {
     playerGames: [],
     team: team,
   };
+}
+
+export function standingsLoader() {
+  const games = mockGames;
+  const standings: Standings = {
+    standingsRows: [],
+  };
+
+  let standingsRowId = 1;
+
+  function getRow(team: Team): StandingsRow | undefined {
+    return standings.standingsRows.find((standingsRow) => standingsRow.teamId === team.id);
+  }
+
+  function hasRow(team: Team): boolean {
+    return getRow(team) !== undefined;
+  }
+
+  function createForTeam(team: Team): StandingsRow {
+    return {
+      id: standingsRowId++,
+      teamId: team.id,
+      team: team,
+      wins: 0,
+      losses: 0,
+      draws: 0,
+      byes: 0,
+      pointsFor: 0,
+      pointsAgainst: 0,
+    };
+  }
+
+  games.forEach((game) => {
+    const awayTeamLog = getAwayTeamLog(game);
+    const homeTeamLog = getHomeTeamLog(game);
+
+    // todo: refactor to something nicer
+    if (!hasRow(awayTeamLog.team!)) {
+      standings.standingsRows.push(
+        createForTeam(awayTeamLog.team!)
+      );
+    }
+
+    // todo: refactor to something nicer
+    const awayTeamRow = getRow(awayTeamLog.team!)!;
+    awayTeamRow.wins += (awayTeamLog.teamScore > homeTeamLog.teamScore) ? 1 : 0;
+    awayTeamRow.losses += (awayTeamLog.teamScore < homeTeamLog.teamScore) ? 1 : 0;
+    awayTeamRow.draws += (awayTeamLog.teamScore === homeTeamLog.teamScore) ? 1 : 0;
+    awayTeamRow.pointsFor += awayTeamLog.teamScore;
+    awayTeamRow.pointsAgainst += homeTeamLog.teamScore;
+
+    // todo: refactor to something nicer
+    if (!hasRow(homeTeamLog.team!)) {
+      standings.standingsRows.push(
+        createForTeam(homeTeamLog.team!)
+      );
+    }
+
+    // todo: refactor to something nicer
+    const homeTeamRow = getRow(homeTeamLog.team!)!;
+    homeTeamRow.wins += (homeTeamLog.teamScore > awayTeamLog.teamScore) ? 1 : 0;
+    homeTeamRow.losses += (homeTeamLog.teamScore < awayTeamLog.teamScore) ? 1 : 0;
+    homeTeamRow.draws += (homeTeamLog.teamScore === awayTeamLog.teamScore) ? 1 : 0;
+    homeTeamRow.pointsFor += homeTeamLog.teamScore;
+    homeTeamRow.pointsAgainst += awayTeamLog.teamScore;
+  });
+
+  return {
+    standings,
+  }
 }
 
 export function teamsLoader() {
