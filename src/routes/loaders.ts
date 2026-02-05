@@ -1,6 +1,7 @@
 import { findGameById, mockGames } from "../data/games.ts";
 import { findPlayerById, mockPlayers } from "../data/players.ts";
 import { findTeamById, mockTeams } from "../data/teams.ts";
+import type { TeamLog } from "../types/game/TeamLog.ts";
 import type { StandingsRow } from "../types/row/StandingsRow.ts";
 import type { Standings } from "../types/Standings.ts";
 import type { Team } from "../types/Team.ts";
@@ -94,39 +95,30 @@ export function standingsLoader() {
     };
   }
 
+  function updateForTeam(teamLogA: TeamLog, teamLogB: TeamLog): void {
+    // todo: refactor to something nicer
+    if (!hasRow(teamLogA.team!)) {
+      standings.standingsRows.push(
+        createForTeam(teamLogA.team!)
+      );
+    }
+
+    // todo: refactor to something nicer
+    const teamRow = getRow(teamLogA.team!)!;
+    teamRow.wins += (teamLogA.teamScore > teamLogB.teamScore) ? 1 : 0;
+    teamRow.losses += (teamLogA.teamScore < teamLogB.teamScore) ? 1 : 0;
+    teamRow.draws += (teamLogA.teamScore === teamLogB.teamScore) ? 1 : 0;
+    teamRow.pointsFor += teamLogA.teamScore;
+    teamRow.pointsAgainst += teamLogB.teamScore;
+  }
+
   games.forEach((game) => {
     const awayTeamLog = getAwayTeamLog(game);
     const homeTeamLog = getHomeTeamLog(game);
 
     // todo: refactor to something nicer
-    if (!hasRow(awayTeamLog.team!)) {
-      standings.standingsRows.push(
-        createForTeam(awayTeamLog.team!)
-      );
-    }
-
-    // todo: refactor to something nicer
-    const awayTeamRow = getRow(awayTeamLog.team!)!;
-    awayTeamRow.wins += (awayTeamLog.teamScore > homeTeamLog.teamScore) ? 1 : 0;
-    awayTeamRow.losses += (awayTeamLog.teamScore < homeTeamLog.teamScore) ? 1 : 0;
-    awayTeamRow.draws += (awayTeamLog.teamScore === homeTeamLog.teamScore) ? 1 : 0;
-    awayTeamRow.pointsFor += awayTeamLog.teamScore;
-    awayTeamRow.pointsAgainst += homeTeamLog.teamScore;
-
-    // todo: refactor to something nicer
-    if (!hasRow(homeTeamLog.team!)) {
-      standings.standingsRows.push(
-        createForTeam(homeTeamLog.team!)
-      );
-    }
-
-    // todo: refactor to something nicer
-    const homeTeamRow = getRow(homeTeamLog.team!)!;
-    homeTeamRow.wins += (homeTeamLog.teamScore > awayTeamLog.teamScore) ? 1 : 0;
-    homeTeamRow.losses += (homeTeamLog.teamScore < awayTeamLog.teamScore) ? 1 : 0;
-    homeTeamRow.draws += (homeTeamLog.teamScore === awayTeamLog.teamScore) ? 1 : 0;
-    homeTeamRow.pointsFor += homeTeamLog.teamScore;
-    homeTeamRow.pointsAgainst += awayTeamLog.teamScore;
+    updateForTeam(awayTeamLog, homeTeamLog);
+    updateForTeam(homeTeamLog, awayTeamLog);
   });
 
   return {
