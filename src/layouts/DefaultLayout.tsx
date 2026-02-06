@@ -17,7 +17,7 @@ export default function RootLayout() {
         <Header>
           {value.title}
         </Header>
-        <div className="mx-auto bg-white shadow-sm max-w-2xl mt-8 p-4 rounded-lg">
+        <div className="mx-auto bg-white shadow-sm max-w-2xl mt-8 p-6 rounded-lg">
           <Outlet/>
         </div>
         <Footer />
