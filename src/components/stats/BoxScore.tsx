@@ -1,4 +1,5 @@
 import type { TeamLog } from "../../types/game/TeamLog.ts";
+import { mapBasePosition } from "../../utilities/PlayerUtils.ts";
 import { getTotals } from "../../utilities/StatsUtils.ts";
 import PlayerLink from "../links/PlayerLink.tsx";
 import TeamsRow from "./row/TeamsRow.tsx";
@@ -21,13 +22,13 @@ export default function BoxScore({ teamLog }: BoxScoreProps) {
               {teamLog.team!.name} (0-0-0)
             </TeamsRow>
           </tr>
-          <tr>
-            <TitlesRow />
+          <tr className="bg-gray-200 border-b border-gray-300">
+            <TitlesRow/>
           </tr>
           </thead>
           <tbody>
           {teamLog.playerLogs.map((playerLog) => (
-            <tr key={playerLog.id}>
+            <tr key={playerLog.id} className="even:bg-gray-100">
               <TotalsRow totals={playerLog}>
                 {/* `playerLog.player` will always be set */}
                 <PlayerLink player={playerLog.player!} />
@@ -36,8 +37,10 @@ export default function BoxScore({ teamLog }: BoxScoreProps) {
           ))}
           </tbody>
           <tfoot>
-          <tr>
-            <TotalsRow totals={getTotals(teamLog.playerLogs)} headings={true} />
+          <tr className="border-t border-gray-300">
+            <TotalsRow totals={getTotals(teamLog.playerLogs)} headings={true}>
+              Totals
+            </TotalsRow>
           </tr>
           </tfoot>
         </table>

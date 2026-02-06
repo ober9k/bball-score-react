@@ -18,7 +18,7 @@ export default function TeamsRow(props: TeamsRowProps) {
 
   return (
     <>
-      <th colSpan={4} className={"text-left px-2 py-1 font-medium"} style={getTeamStyle(team)}>
+      <th colSpan={4} className={"text-left px-4 py-2 font-medium"} style={getTeamStyle(team)}>
         {props.children}
       </th>
     </>

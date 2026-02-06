@@ -18,17 +18,17 @@ export default function AveragesRow(props: AveragesRowProps) {
     <>
       {headings ? (
         <>
-          <th className={"px-2 py-1 text-left text-sm"}>{props.children}</th>
-          <th className={"p-1 text-sm"}>{format(averages.points)}</th>
-          <th className={"p-1 text-sm"}>{format(averages.rebounds)}</th>
-          <th className={"p-1 text-sm"}>{format(averages.assists)}</th>
+          <th className={"px-4 py-2 text-left text-sm"}>{props.children}</th>
+          <th className={"p-2 text-sm"}>{format(averages.points)}</th>
+          <th className={"p-2 text-sm"}>{format(averages.rebounds)}</th>
+          <th className={"p-2 text-sm"}>{format(averages.assists)}</th>
         </>
       ) : (
         <>
-          <td className={"px-2 py-1 p-1 text-left text-sm"}>{props.children}</td>
-          <td className={"p-1 text-sm"}>{format(averages.points)}</td>
-          <td className={"p-1 text-sm"}>{format(averages.rebounds)}</td>
-          <td className={"p-1 text-sm"}>{format(averages.assists)}</td>
+          <td className={"px-4 py-2 text-left text-sm"}>{props.children}</td>
+          <td className={"p-2 text-sm"}>{format(averages.points)}</td>
+          <td className={"p-2 text-sm"}>{format(averages.rebounds)}</td>
+          <td className={"p-2 text-sm"}>{format(averages.assists)}</td>
         </>
       )}
     </>
