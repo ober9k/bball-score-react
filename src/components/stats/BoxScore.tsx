@@ -32,8 +32,8 @@ export default function BoxScore({ teamLog }: BoxScoreProps) {
               <TotalsRow totals={playerLog}>
                 {/* `playerLog.player` will always be set */}
                 <PlayerLink player={playerLog.player!} />&nbsp;
-                <small>
-                  ({mapBasePosition(playerLog.player!.position)})
+                <small className="text-gray-400">
+                  {mapBasePosition(playerLog.player!.position)} #{playerLog.player!.number}
                 </small>
               </TotalsRow>
             </tr>
