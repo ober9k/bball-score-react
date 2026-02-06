@@ -1,10 +1,13 @@
 import { getRouteApi } from "@tanstack/react-router";
+import usePageContext from "../components/hooks/usePageContext.ts";
 import TeamLink from "../components/links/TeamLink.tsx";
 import { Paths } from "../routes/paths.ts";
 
 export default function Standings() {
   const { standings } = getRouteApi(Paths.Standings).useLoaderData();
   const { standingsRows } = standings;
+  const { setTitle } = usePageContext();
+  setTitle("Standings");
 
   return (
     <>

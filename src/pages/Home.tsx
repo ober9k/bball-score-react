@@ -1,7 +1,11 @@
+import usePageContext from "../components/hooks/usePageContext.ts";
+
 export default function Home() {
+  const { setTitle } = usePageContext();
+  setTitle("Home");
+
   return (
     <>
-      <h2>Home</h2>
       <p>
         built using React
       </p>
