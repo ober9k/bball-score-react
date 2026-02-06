@@ -11,31 +11,30 @@ export default function Standings() {
 
   return (
     <>
-      <h2>Standings</h2>
-      <table>
+      <table className="w-full">
         <thead>
-        <tr>
-          <th className={"px-2 py-1 text-left text-sm"}>&nbsp;</th>
-          <th className={"p-1 text-sm w-16"}>W</th>
-          <th className={"p-1 text-sm w-16"}>L</th>
-          <th className={"p-1 text-sm w-16"}>D</th>
-          <th className={"p-1 text-sm w-16"}>B</th>
-          <th className={"p-1 text-sm w-16"}>PF</th>
-          <th className={"p-1 text-sm w-16"}>PA</th>
+        <tr className="bg-gray-200 border-b border-gray-300">
+          <th className={"px-4 py-2 text-left text-sm"}>&nbsp;</th>
+          <th className={"p-2 text-sm w-16"}>W</th>
+          <th className={"p-2 text-sm w-16"}>L</th>
+          <th className={"p-2 text-sm w-16"}>D</th>
+          <th className={"p-2 text-sm w-16"}>B</th>
+          <th className={"p-2 text-sm w-16"}>PF</th>
+          <th className={"p-2 text-sm w-16"}>PA</th>
         </tr>
         </thead>
         <tbody>
         {standingsRows.map((standingsRow) => (
-          <tr key={standingsRow.id}>
-            <td className={"px-2 py-1 text-left text-sm"}>
-              <TeamLink team={standingsRow.team} />
+          <tr key={standingsRow.id} className="even:bg-gray-100">
+            <td className={"px-4 py-2 text-left text-sm"}>
+              <TeamLink team={standingsRow.team}/>
             </td>
-            <td className={"p-1 text-sm"}>{standingsRow.wins}</td>
-            <td className={"p-1 text-sm"}>{standingsRow.losses}</td>
-            <td className={"p-1 text-sm"}>{standingsRow.draws}</td>
-            <td className={"p-1 text-sm"}>{standingsRow.byes}</td>
-            <td className={"p-1 text-sm"}>{standingsRow.pointsFor}</td>
-            <td className={"p-1 text-sm"}>{standingsRow.pointsAgainst}</td>
+            <td className={"p-2 text-sm"}>{standingsRow.wins}</td>
+            <td className={"p-2 text-sm"}>{standingsRow.losses}</td>
+            <td className={"p-2 text-sm"}>{standingsRow.draws}</td>
+            <td className={"p-2 text-sm"}>{standingsRow.byes}</td>
+            <td className={"p-2 text-sm"}>{standingsRow.pointsFor}</td>
+            <td className={"p-2 text-sm"}>{standingsRow.pointsAgainst}</td>
           </tr>
         ))}
         </tbody>
