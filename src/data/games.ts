@@ -6,8 +6,8 @@ import { findTeamById } from "./teams.ts";
 
 let playerLogId = 1;
 
-function mockPlayer(playerId: number, played: boolean, points: number, rebounds: number, assists: number) {
-  return { id: playerLogId++, playerId, played, points, rebounds, assists } as PlayerLog;
+function mockPlayer(playerId: number, played: boolean, points: number, rebounds: number, assists: number, steals: number, blocks: number, turnovers: number, personalFouls: number) {
+  return { id: playerLogId++, playerId, played, points, rebounds, assists, steals, blocks, turnovers, personalFouls } as PlayerLog;
 }
 
 export const mockGames: Array<Game> = [
@@ -20,11 +20,11 @@ export const mockGames: Array<Game> = [
         teamId: 10,
         teamScore: 55,
         playerLogs: [
-          mockPlayer(11, true, 15,  7,  3),
-          mockPlayer(12, true, 11,  6,  2),
-          mockPlayer(13, true,  8, 13,  5),
-          mockPlayer(14, true,  5,  3,  2),
-          mockPlayer(15, true, 16,  9,  5),
+          mockPlayer(11, true, 15,  7,  3, 1, 0, 2, 0),
+          mockPlayer(12, true, 11,  6,  2, 4, 1, 1, 3),
+          mockPlayer(13, true,  8, 13,  5, 2, 2, 0, 0),
+          mockPlayer(14, true,  5,  3,  2, 1, 0, 3, 2),
+          mockPlayer(15, true, 16,  9,  5, 3, 0, 2, 2),
         ],
       },
       {
@@ -32,11 +32,11 @@ export const mockGames: Array<Game> = [
         teamId: 11,
         teamScore: 53,
         playerLogs: [
-          mockPlayer(21, true, 16,  8,  4),
-          mockPlayer(22, true, 11,  7,  1),
-          mockPlayer(23, true,  7,  2,  3),
-          mockPlayer(24, true, 13,  5,  3),
-          mockPlayer(25, true,  6, 11,  4),
+          mockPlayer(21, true, 16,  8,  4, 2, 0, 0, 4),
+          mockPlayer(22, true, 11,  7,  1, 2, 2, 2, 0),
+          mockPlayer(23, true,  7,  2,  3, 1, 1, 4, 1),
+          mockPlayer(24, true, 13,  5,  3, 1, 2, 2, 1),
+          mockPlayer(25, true,  6, 11,  4, 0, 0, 1, 3),
         ],
       },
     ],
@@ -50,11 +50,11 @@ export const mockGames: Array<Game> = [
         teamId: 11,
         teamScore: 83,
         playerLogs: [
-          mockPlayer(21, true, 15,  8,  9),
-          mockPlayer(22, true, 14,  9,  1),
-          mockPlayer(23, true,  7, 11,  5),
-          mockPlayer(24, true, 41,  5,  5),
-          mockPlayer(25, true,  6,  6,  4),
+          mockPlayer(21, true, 15,  8,  9, 2, 1, 1, 3),
+          mockPlayer(22, true, 14,  9,  1, 0, 2, 3, 0),
+          mockPlayer(23, true,  7, 11,  5, 4, 0, 0, 2),
+          mockPlayer(24, true, 41,  5,  5, 3, 2, 1, 2),
+          mockPlayer(25, true,  6,  6,  4, 0, 5, 2, 2),
         ],
       },
       {
@@ -62,11 +62,11 @@ export const mockGames: Array<Game> = [
         teamId: 10,
         teamScore: 67,
         playerLogs: [
-          mockPlayer(11, true,  9,  5,  1),
-          mockPlayer(12, true, 15,  9,  4),
-          mockPlayer(13, true, 11, 10, 11),
-          mockPlayer(14, true,  7,  9,  1),
-          mockPlayer(15, true, 25,  5,  0),
+          mockPlayer(11, true,  9,  5,  1, 2, 0, 2, 0),
+          mockPlayer(12, true, 15,  9,  4, 2, 2, 2, 2),
+          mockPlayer(13, true, 11, 10, 11, 5, 5, 1, 3),
+          mockPlayer(14, true,  7,  9,  1, 1, 0, 1, 2),
+          mockPlayer(15, true, 25,  5,  0, 0, 1, 0, 0),
         ],
       },
     ],
@@ -80,11 +80,11 @@ export const mockGames: Array<Game> = [
         teamId: 10,
         teamScore: 61,
         playerLogs: [
-          mockPlayer(11, true, 17,  3,  2),
-          mockPlayer(12, true,  6,  5,  5),
-          mockPlayer(13, true,  8, 16,  2),
-          mockPlayer(14, true,  9,  3,  2),
-          mockPlayer(15, true, 21,  8,  4),
+          mockPlayer(11, true, 17,  3,  2, 0, 2, 0, 2),
+          mockPlayer(12, true,  6,  5,  5, 0, 2, 2, 0),
+          mockPlayer(13, true,  8, 16,  2, 0, 1, 1, 3),
+          mockPlayer(14, true,  9,  3,  2, 0, 1, 2, 1),
+          mockPlayer(15, true, 21,  8,  4, 0, 0, 0, 1),
         ],
       },
       {
@@ -92,11 +92,11 @@ export const mockGames: Array<Game> = [
         teamId: 11,
         teamScore: 49,
         playerLogs: [
-          mockPlayer(21, true, 12,  8,  4),
-          mockPlayer(22, true, 15,  7,  0),
-          mockPlayer(23, true,  6,  2,  5),
-          mockPlayer(24, true,  9,  5,  2),
-          mockPlayer(25, true,  7, 10,  3),
+          mockPlayer(21, true, 12,  8,  4, 2, 0, 2, 1),
+          mockPlayer(22, true, 15,  7,  0, 1, 0, 0, 0),
+          mockPlayer(23, true,  6,  2,  5, 3, 3, 3, 4),
+          mockPlayer(24, true,  9,  5,  2, 1, 1, 2, 2),
+          mockPlayer(25, true,  7, 10,  3, 1, 1, 0, 1),
         ],
       },
     ],
