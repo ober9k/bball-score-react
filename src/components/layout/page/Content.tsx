@@ -6,7 +6,7 @@ type ContentProps = {
 
 export default function Content(props: ContentProps) {
   return (
-    <article className="mx-auto bg-white shadow-sm max-w-2xl mt-8 p-6 rounded-lg">
+    <article className="mx-auto bg-white shadow-sm max-w-2xl mt-8 p-6 sm:rounded-lg">
       {props.children}
     </article>
   );
