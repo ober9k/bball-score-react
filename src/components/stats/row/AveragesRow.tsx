@@ -18,7 +18,7 @@ export default function AveragesRow(props: AveragesRowProps) {
     <>
       {headings ? (
         <>
-          <th className={"px-4 py-2 text-left text-sm"}>{props.children}</th>
+          <th className={"px-4 py-2 text-left text-sm border-r-1 border-gray-200"}>{props.children}</th>
           <th className={"p-2 text-sm"}>{format(averages.points)}</th>
           <th className={"p-2 text-sm"}>{format(averages.rebounds)}</th>
           <th className={"p-2 text-sm"}>{format(averages.assists)}</th>
@@ -29,7 +29,7 @@ export default function AveragesRow(props: AveragesRowProps) {
         </>
       ) : (
         <>
-          <td className={"px-4 py-2 text-left text-sm"}>{props.children}</td>
+          <td className={"px-4 py-2 text-left text-sm border-r-1 border-gray-200"}>{props.children}</td>
           <td className={"p-2 text-sm"}>{format(averages.points)}</td>
           <td className={"p-2 text-sm"}>{format(averages.rebounds)}</td>
           <td className={"p-2 text-sm"}>{format(averages.assists)}</td>

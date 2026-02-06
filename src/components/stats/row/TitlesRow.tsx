@@ -7,7 +7,7 @@ type TitlesRowProps = {
 export default function TitlesRow(props: TitlesRowProps) {
   return (
     <>
-      <th className={"px-4 py-2 text-left text-sm"}>{props.children}</th>
+      <th className={"px-4 py-2 text-left text-sm border-r-1 border-gray-300"}>{props.children}</th>
       <th className={"p-2 text-sm w-12"}>PTS</th>
       <th className={"p-2 text-sm w-12"}>REB</th>
       <th className={"p-2 text-sm w-12"}>AST</th>

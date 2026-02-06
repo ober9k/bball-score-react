@@ -14,7 +14,7 @@ export default function TotalsRow(props: TotalsRowProps) {
     <>
       {headings ? (
         <>
-          <th className={"px-4 py-2 text-left text-sm"}>{props.children}</th>
+          <th className={"px-4 py-2 text-left text-sm border-r-1 border-gray-200"}>{props.children}</th>
           <th className={"p-2 text-sm"}>{totals.points}</th>
           <th className={"p-2 text-sm"}>{totals.rebounds}</th>
           <th className={"p-2 text-sm"}>{totals.assists}</th>
@@ -25,7 +25,7 @@ export default function TotalsRow(props: TotalsRowProps) {
         </>
       ) : (
         <>
-          <td className={"px-4 py-2 text-left text-sm"}>{props.children}</td>
+          <td className={"px-4 py-2 text-left text-sm border-r-1 border-gray-200"}>{props.children}</td>
           <td className={"p-2 text-sm"}>{totals.points}</td>
           <td className={"p-2 text-sm"}>{totals.rebounds}</td>
           <td className={"p-2 text-sm"}>{totals.assists}</td>
