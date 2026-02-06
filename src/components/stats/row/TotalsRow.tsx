@@ -18,6 +18,10 @@ export default function TotalsRow(props: TotalsRowProps) {
           <th className={"p-2 text-sm"}>{totals.points}</th>
           <th className={"p-2 text-sm"}>{totals.rebounds}</th>
           <th className={"p-2 text-sm"}>{totals.assists}</th>
+          <th className={"p-2 text-sm"}>{totals.steals}</th>
+          <th className={"p-2 text-sm"}>{totals.blocks}</th>
+          <th className={"p-2 text-sm"}>{totals.personalFouls}</th>
+          <th className={"p-2 text-sm"}>{totals.turnovers}</th>
         </>
       ) : (
         <>
@@ -25,6 +29,10 @@ export default function TotalsRow(props: TotalsRowProps) {
           <td className={"p-2 text-sm"}>{totals.points}</td>
           <td className={"p-2 text-sm"}>{totals.rebounds}</td>
           <td className={"p-2 text-sm"}>{totals.assists}</td>
+          <td className={"p-2 text-sm"}>{totals.steals}</td>
+          <td className={"p-2 text-sm"}>{totals.blocks}</td>
+          <td className={"p-2 text-sm"}>{totals.personalFouls}</td>
+          <td className={"p-2 text-sm"}>{totals.turnovers}</td>
         </>
       )}
     </>
