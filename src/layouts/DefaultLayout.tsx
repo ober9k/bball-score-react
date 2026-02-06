@@ -16,7 +16,9 @@ export default function RootLayout() {
         <Header>
           {value.title}
         </Header>
-        <Outlet/>
+        <div className="mx-auto bg-white shadow-sm max-w-2xl mt-8 p-4 rounded-lg">
+          <Outlet/>
+        </div>
       </PageContext>
       <TanStackRouterDevtools/>
     </>

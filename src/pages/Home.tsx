@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <p>
-        built using React
+        Just experimenting with React and messing with some statistics.
       </p>
     </>
   )
