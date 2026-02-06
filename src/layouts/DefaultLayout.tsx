@@ -1,6 +1,7 @@
 import { Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { useState } from "react";
+import Footer from "../components/layout/Footer.tsx";
 import Header from "../components/layout/Header.tsx";
 import Navigation from "../components/layout/Navigation.tsx";
 import { PageContext } from "../contexts/PageContext.ts";
@@ -19,6 +20,7 @@ export default function RootLayout() {
         <div className="mx-auto bg-white shadow-sm max-w-2xl mt-8 p-4 rounded-lg">
           <Outlet/>
         </div>
+        <Footer />
       </PageContext>
       <TanStackRouterDevtools/>
     </>
