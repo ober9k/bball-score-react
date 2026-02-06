@@ -1,14 +1,17 @@
-import usePageContext from "../components/hooks/usePageContext.ts";
+import Content from "../components/layout/page/Content.tsx";
+import Header from "../components/layout/page/Header.tsx";
 
 export default function Home() {
-  const { setTitle } = usePageContext();
-  setTitle("Home");
-
   return (
     <>
-      <p>
-        Just experimenting with React and messing with some statistics.
-      </p>
+      <Header>
+        Home
+      </Header>
+      <Content>
+        <p>
+          Just experimenting with React and messing with some statistics.
+        </p>
+      </Content>
     </>
   )
 }

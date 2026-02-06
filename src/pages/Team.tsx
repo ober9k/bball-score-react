@@ -1,18 +1,20 @@
 import { getRouteApi } from "@tanstack/react-router";
-import usePageContext from "../components/hooks/usePageContext.ts";
+import Content from "../components/layout/page/Content.tsx";
+import Header from "../components/layout/page/Header.tsx";
 import { Paths } from "../routes/paths.ts";
 
 export default function Team() {
   const { team } = getRouteApi(Paths.Team).useLoaderData();
-  const { setTitle } = usePageContext();
-  setTitle("Team");
-
   return (
     <>
-      <h2>Team</h2>
-      <p>
-        Team: <strong>{team.name}</strong><br/>
-      </p>
+      <Header>
+        Team
+      </Header>
+      <Content>
+        <p>
+          Team: <strong>{team.name}</strong>
+        </p>
+      </Content>
     </>
   )
 }

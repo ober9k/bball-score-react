@@ -1,17 +1,20 @@
 import { getRouteApi } from "@tanstack/react-router";
-import usePageContext from "../components/hooks/usePageContext.ts";
+import Content from "../components/layout/page/Content.tsx";
+import Header from "../components/layout/page/Header.tsx";
 import PlayersList from "../components/PlayersList.tsx";
 import { Paths } from "../routes/paths.ts";
 
 export default function Players() {
   const { players } = getRouteApi(Paths.Players).useLoaderData();
-  const { setTitle } = usePageContext();
-  setTitle("Players");
 
   return (
     <>
-      <h2>Players</h2>
-      <PlayersList players={players} />
+      <Header>
+        Players
+      </Header>
+      <Content>
+        <PlayersList players={players} />
+      </Content>
     </>
   )
 }
