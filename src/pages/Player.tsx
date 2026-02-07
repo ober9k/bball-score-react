@@ -17,7 +17,7 @@ export default function Player() {
           Player: <strong>{player.name}</strong><br/>
           Team: <strong>{team.name}</strong><br/>
         </p>
-        <div className={"game-log p-2"}>
+        <div className={"game-log py-2"}>
           <table className={"w-full"}>
             <thead>
             <tr>

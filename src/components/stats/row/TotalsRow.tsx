@@ -18,10 +18,10 @@ export default function TotalsRow(props: TotalsRowProps) {
           <th className={"p-2 text-sm"}>{totals.points}</th>
           <th className={"p-2 text-sm"}>{totals.rebounds}</th>
           <th className={"p-2 text-sm"}>{totals.assists}</th>
-          <th className={"p-2 text-sm"}>{totals.steals}</th>
-          <th className={"p-2 text-sm"}>{totals.blocks}</th>
-          <th className={"p-2 text-sm"}>{totals.turnovers}</th>
-          <th className={"p-2 text-sm"}>{totals.personalFouls}</th>
+          <th className={"p-2 text-sm hidden sm:table-cell"}>{totals.steals}</th>
+          <th className={"p-2 text-sm hidden sm:table-cell"}>{totals.blocks}</th>
+          <th className={"p-2 text-sm hidden sm:table-cell"}>{totals.turnovers}</th>
+          <th className={"p-2 text-sm hidden sm:table-cell"}>{totals.personalFouls}</th>
         </>
       ) : (
         <>
@@ -29,10 +29,10 @@ export default function TotalsRow(props: TotalsRowProps) {
           <td className={"p-2 text-sm"}>{totals.points}</td>
           <td className={"p-2 text-sm"}>{totals.rebounds}</td>
           <td className={"p-2 text-sm"}>{totals.assists}</td>
-          <td className={"p-2 text-sm"}>{totals.steals}</td>
-          <td className={"p-2 text-sm"}>{totals.blocks}</td>
-          <td className={"p-2 text-sm"}>{totals.turnovers}</td>
-          <td className={"p-2 text-sm"}>{totals.personalFouls}</td>
+          <td className={"p-2 text-sm hidden sm:table-cell"}>{totals.steals}</td>
+          <td className={"p-2 text-sm hidden sm:table-cell"}>{totals.blocks}</td>
+          <td className={"p-2 text-sm hidden sm:table-cell"}>{totals.turnovers}</td>
+          <td className={"p-2 text-sm hidden sm:table-cell"}>{totals.personalFouls}</td>
         </>
       )}
     </>

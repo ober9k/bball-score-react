@@ -11,10 +11,10 @@ export default function TitlesRow(props: TitlesRowProps) {
       <th className={"p-2 text-sm w-12"}>PTS</th>
       <th className={"p-2 text-sm w-12"}>REB</th>
       <th className={"p-2 text-sm w-12"}>AST</th>
-      <th className={"p-2 text-sm w-12"}>STL</th>
-      <th className={"p-2 text-sm w-12"}>BLK</th>
-      <th className={"p-2 text-sm w-12"}>TOS</th>
-      <th className={"p-2 text-sm w-12"}>PFS</th>
+      <th className={"p-2 text-sm w-12 hidden sm:table-cell"}>STL</th>
+      <th className={"p-2 text-sm w-12 hidden sm:table-cell"}>BLK</th>
+      <th className={"p-2 text-sm w-12 hidden sm:table-cell"}>TOS</th>
+      <th className={"p-2 text-sm w-12 hidden sm:table-cell"}>PFS</th>
     </>
   )
 }

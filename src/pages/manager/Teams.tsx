@@ -26,7 +26,7 @@ export default function Teams() {
         Manage Teams
       </Header>
       <Content>
-        <div className={"box-score p-2"}>
+        <div className={"box-score py-2"}>
           <table className={"w-full"}>
             <thead>
             <tr className="bg-gray-200 border-b border-gray-300">

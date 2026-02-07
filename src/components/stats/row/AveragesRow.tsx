@@ -22,10 +22,10 @@ export default function AveragesRow(props: AveragesRowProps) {
           <th className={"p-2 text-sm"}>{format(averages.points)}</th>
           <th className={"p-2 text-sm"}>{format(averages.rebounds)}</th>
           <th className={"p-2 text-sm"}>{format(averages.assists)}</th>
-          <th className={"p-2 text-sm"}>{format(averages.steals)}</th>
-          <th className={"p-2 text-sm"}>{format(averages.blocks)}</th>
-          <th className={"p-2 text-sm"}>{format(averages.turnovers)}</th>
-          <th className={"p-2 text-sm"}>{format(averages.personalFouls)}</th>
+          <th className={"p-2 text-sm hidden sm:table-cell"}>{format(averages.steals)}</th>
+          <th className={"p-2 text-sm hidden sm:table-cell"}>{format(averages.blocks)}</th>
+          <th className={"p-2 text-sm hidden sm:table-cell"}>{format(averages.turnovers)}</th>
+          <th className={"p-2 text-sm hidden sm:table-cell"}>{format(averages.personalFouls)}</th>
         </>
       ) : (
         <>
@@ -33,10 +33,10 @@ export default function AveragesRow(props: AveragesRowProps) {
           <td className={"p-2 text-sm"}>{format(averages.points)}</td>
           <td className={"p-2 text-sm"}>{format(averages.rebounds)}</td>
           <td className={"p-2 text-sm"}>{format(averages.assists)}</td>
-          <td className={"p-2 text-sm"}>{format(averages.steals)}</td>
-          <td className={"p-2 text-sm"}>{format(averages.blocks)}</td>
-          <td className={"p-2 text-sm"}>{format(averages.turnovers)}</td>
-          <td className={"p-2 text-sm"}>{format(averages.personalFouls)}</td>
+          <td className={"p-2 text-sm hidden sm:table-cell"}>{format(averages.steals)}</td>
+          <td className={"p-2 text-sm hidden sm:table-cell"}>{format(averages.blocks)}</td>
+          <td className={"p-2 text-sm hidden sm:table-cell"}>{format(averages.turnovers)}</td>
+          <td className={"p-2 text-sm hidden sm:table-cell"}>{format(averages.personalFouls)}</td>
         </>
       )}
     </>

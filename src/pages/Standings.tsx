@@ -18,12 +18,12 @@ export default function Standings() {
           <thead>
           <tr className="bg-gray-200 border-b border-gray-300">
             <th className={"px-4 py-2 text-left text-sm"}>&nbsp;</th>
-            <th className={"p-2 text-sm w-16"}>W</th>
-            <th className={"p-2 text-sm w-16"}>L</th>
-            <th className={"p-2 text-sm w-16"}>D</th>
-            <th className={"p-2 text-sm w-16"}>B</th>
-            <th className={"p-2 text-sm w-16"}>PF</th>
-            <th className={"p-2 text-sm w-16"}>PA</th>
+            <th className={"p-2 text-sm w-12"}>W</th>
+            <th className={"p-2 text-sm w-12"}>L</th>
+            <th className={"p-2 text-sm w-12"}>D</th>
+            <th className={"p-2 text-sm w-12"}>B</th>
+            <th className={"p-2 text-sm w-12 hidden sm:table-cell"}>PF</th>
+            <th className={"p-2 text-sm w-12 hidden sm:table-cell"}>PA</th>
           </tr>
           </thead>
           <tbody>
@@ -36,8 +36,8 @@ export default function Standings() {
               <td className={"p-2 text-sm"}>{standingsRow.losses}</td>
               <td className={"p-2 text-sm"}>{standingsRow.draws}</td>
               <td className={"p-2 text-sm"}>{standingsRow.byes}</td>
-              <td className={"p-2 text-sm"}>{standingsRow.pointsFor}</td>
-              <td className={"p-2 text-sm"}>{standingsRow.pointsAgainst}</td>
+              <td className={"p-2 text-sm hidden sm:table-cell"}>{standingsRow.pointsFor}</td>
+              <td className={"p-2 text-sm hidden sm:table-cell"}>{standingsRow.pointsAgainst}</td>
             </tr>
           ))}
           </tbody>
