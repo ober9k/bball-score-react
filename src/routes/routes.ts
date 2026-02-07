@@ -10,6 +10,7 @@ import Statistics from "../pages/Statistics.tsx";
 import Team from "../pages/Team.tsx";
 import Teams from "../pages/Teams.tsx";
 import { gameLoader, gamesLoader, playerLoader, playersLoader, standingsLoader, teamLoader, teamsLoader } from "./loaders.ts";
+import { managerRoutes } from "./manager/routes.ts";
 import { Paths } from "./paths.ts";
 
 export const rootRoute = createRootRoute({
@@ -88,4 +89,5 @@ export const routeTree = rootRoute.addChildren([
   statisticsRoute,
   teamsRoute,
   teamRoute,
+  ...managerRoutes,
 ]);
