@@ -1,4 +1,4 @@
-import { findGameById, mockGames } from "../data/games.ts";
+import { findGameById, findPlayerGameLogs, mockGames } from "../data/games.ts";
 import { findPlayerById, mockPlayers } from "../data/players.ts";
 import { findTeamById, mockTeams } from "../data/teams.ts";
 import type { TeamLog } from "../types/game/TeamLog.ts";
@@ -62,6 +62,7 @@ export function playerLoader({ params }) {
     player: player,
     playerGames: [],
     team: team,
+    gameLogs: findPlayerGameLogs(playerId),
   };
 }
 

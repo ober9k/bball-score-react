@@ -1,4 +1,5 @@
 import type { Game } from "../types/Game.ts";
+import type { PlayerLog } from "../types/game/PlayerLog.ts";
 import type { TeamLog } from "../types/game/TeamLog.ts";
 import type { Team } from "../types/Team.ts";
 
@@ -16,4 +17,8 @@ export function getHomeTeamLog(game: Game): TeamLog {
 
 export function getHomeTeam(game: Game): Team {
   return getHomeTeamLog(game).team;
+}
+
+export function filterPlayerLogByPlayerId(playerLogs: Array<PlayerLog>, playerId: number): Array<PlayerLog> {
+  return playerLogs.filter((playerLog) => playerLog.playerId === playerId);
 }

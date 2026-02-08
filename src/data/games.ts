@@ -1,6 +1,9 @@
 import type { Game } from "../types/Game.ts";
 import type { PlayerLog } from "../types/game/PlayerLog.ts";
 import type { TeamLog } from "../types/game/TeamLog.ts";
+import type { Totals } from "../types/stats/Totals.ts";
+import type { Team } from "../types/Team.ts";
+import { filterPlayerLogByPlayerId, getAwayTeamLog, getHomeTeamLog } from "../utilities/GameUtils.ts";
 import { findPlayerById } from "./players.ts";
 import { findTeamById } from "./teams.ts";
 
@@ -157,6 +160,72 @@ export function findPlayerGames(playerId: number): Array<Game> {
           playerLogs: teamLog.playerLogs.filter(({ playerId: id }) => id === playerId ),
         };
       })
+    };
+  });
+}
+
+/* simplified structure for the purpose of rendering */
+export type GameLog = {
+  id: number,
+  date: Date,
+  atHome: boolean,
+  ownTeam: Team,
+  ownScore: number,
+  opposingTeam: Team,
+  opposingScore: number,
+  totals: Totals,
+}
+
+/**
+ * Return a game log of the specific player's results.
+ * TODO: optimize logic with eventual API handling
+ * @param playerId
+ */
+export function findPlayerGameLogs(playerId: number): Array<GameLog> {
+  return mockGames.map((game) => {
+    const awayTeamLog = getAwayTeamLog(game);
+    const homeTeamLog = getHomeTeamLog(game);
+
+    const awayPlayerLogs = filterPlayerLogByPlayerId(awayTeamLog.playerLogs, playerId);
+    const homePlayerLogs = filterPlayerLogByPlayerId(homeTeamLog.playerLogs, playerId);
+
+    /* ref: no rows, so player is in home team */
+    const atHome = (homePlayerLogs.length === 1);
+
+    const ownTeam = !atHome
+      ? awayTeamLog.team!  /* always expected, todo: fix source */
+      : homeTeamLog.team!; /* always expected, todo: fix source */
+    const ownScore = !atHome
+      ? awayTeamLog.teamScore
+      : homeTeamLog.teamScore;
+
+    const opposingTeam = atHome
+      ? awayTeamLog.team!  /* always expected, todo: fix source */
+      : homeTeamLog.team!; /* always expected, todo: fix source */
+    const opposingScore = atHome
+      ? awayTeamLog.teamScore
+      : homeTeamLog.teamScore;
+
+    const playerLog = [...awayPlayerLogs, ...homePlayerLogs].pop()!
+
+    /* todo: optimize */
+    return {
+      id: game.id,
+      date: game.date,
+      atHome: atHome,
+      ownTeam: ownTeam,
+      ownScore: ownScore,
+      opposingTeam: opposingTeam,
+      opposingScore: opposingScore,
+      totals: {
+        points: playerLog.points,
+        rebounds: playerLog.rebounds,
+        assists: playerLog.assists,
+        steals: playerLog.steals,
+        blocks: playerLog.blocks,
+        personalFouls: playerLog.personalFouls,
+        turnovers: playerLog.turnovers,
+      }
     };
   });
 }
