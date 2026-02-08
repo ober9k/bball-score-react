@@ -1,8 +1,9 @@
 import { getRouteApi } from "@tanstack/react-router";
 import Content from "../components/layout/page/Content.tsx";
 import Header from "../components/layout/page/Header.tsx";
+import AveragesTable from "../components/stats/AveragesTable.tsx";
 import GameLogTable from "../components/stats/GameLogTable.tsx";
-import TeamsRow from "../components/stats/row/TeamsRow.tsx";
+import TotalsTable from "../components/stats/TotalsTable.tsx";
 import type { GameLog } from "../data/games.ts";
 import { Paths } from "../routes/paths.ts";
 import type { Team } from "../types/Team.ts";
@@ -27,42 +28,8 @@ export default function Player() {
           Team: <strong>{team.name}</strong><br/>
         </p>
         <GameLogTable team={team} gameLogs={gameLogs} />
-        <div className={"averages py-2"}>
-          <table className={"w-full"}>
-            <thead>
-            <tr>
-              <TeamsRow team={team}>
-                Averages
-              </TeamsRow>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td colSpan={4} className={"totals p-2"}>
-                &ndash; TBD &ndash;
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className={"totals py-2"}>
-          <table className={"w-full"}>
-            <thead>
-            <tr>
-              <TeamsRow team={team}>
-                Totals
-              </TeamsRow>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td colSpan={4} className={"totals p-2"}>
-                &ndash; TBD &ndash;
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
+        <AveragesTable team={team} gameLogs={gameLogs} />
+        <TotalsTable team={team} gameLogs={gameLogs} />
       </Content>
     </>
   )
