@@ -28,14 +28,14 @@ export default function Player() {
             </thead>
             <tbody>
             <tr>
-              <td colSpan={4}>
+              <td colSpan={4} className={"totals p-2"}>
                 &ndash; TBD &ndash;
               </td>
             </tr>
             </tbody>
           </table>
         </div>
-        <div className={"averages p-2"}>
+        <div className={"averages py-2"}>
           <table className={"w-full"}>
             <thead>
             <tr>
@@ -46,14 +46,14 @@ export default function Player() {
             </thead>
             <tbody>
             <tr>
-              <td colSpan={4}>
+              <td colSpan={4} className={"totals p-2"}>
                 &ndash; TBD &ndash;
               </td>
             </tr>
             </tbody>
           </table>
         </div>
-        <div className={"totals p-2"}>
+        <div className={"totals py-2"}>
           <table className={"w-full"}>
             <thead>
             <tr>
@@ -64,7 +64,7 @@ export default function Player() {
             </thead>
             <tbody>
             <tr>
-              <td colSpan={4}>
+              <td colSpan={4} className={"totals p-2"}>
                 &ndash; TBD &ndash;
               </td>
             </tr>
