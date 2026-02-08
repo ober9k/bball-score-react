@@ -9,13 +9,23 @@ type PlayerListProps = {
 export default function PlayersList({ players }: PlayerListProps) {
   return (
     <div>
-      <ul>
+      <div className="grid grid-cols-3 gap-4">
         {players.map((player) => (
-          <li key={player.id}>
-            #{player.number} &ndash; <strong><PlayerLink player={player} /></strong> <small>({mapBasePosition(player.position)})</small>
-          </li>
+          <div key={player.id} className="border border-gray-200 rounded-sm">
+            <div className="relative min-h-24 bg-gray-300">
+              <div className="absolute right-0">
+                <img src="/images/player.png" alt={player.name} height={96} width={96} className={"mx-1"} />
+              </div>
+              <div className="absolute p-2">
+                <strong className="font-medium text-lg"><PlayerLink player={player}/></strong>
+              </div>
+            </div>
+            <div className="p-1">
+              #{player.number} &ndash; {mapBasePosition(player.position)}
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
