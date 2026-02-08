@@ -115,10 +115,10 @@ export default function UpdateTeam() {
             <Input htmlName={FormKeys.TeamStyle.TextColor} defaultValue={state.teamStyle.textColor.toString()} />
           </FormGroup>
           <FormGroup>
-            <button type={"reset"} className={"border"} className={"m-1 px-3 py-1 bg-gray-200 text-gray-600 text-bold rounded-sm"}>
+            <button type={"reset"} className={"border m-1 px-3 py-1 bg-gray-200 text-gray-600 text-bold rounded-sm"}>
               Reset
             </button>
-            <button type={"submit"} className={"border"} className={"m-1 px-3 py-1 bg-gray-600 text-gray-200 text-bold rounded-sm"}>
+            <button type={"submit"} className={"border m-1 px-3 py-1 bg-gray-600 text-gray-200 text-bold rounded-sm"}>
               {isPending ? "Submitting..." : "Submit"}
             </button>
           </FormGroup>
