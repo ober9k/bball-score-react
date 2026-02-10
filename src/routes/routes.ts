@@ -9,7 +9,7 @@ import Standings from "../pages/Standings.tsx";
 import Statistics from "../pages/Statistics.tsx";
 import Team from "../pages/Team.tsx";
 import Teams from "../pages/Teams.tsx";
-import { gameLoader, gamesLoader, playerLoader, playersLoader, standingsLoader, teamLoader, teamsLoader } from "./loaders.ts";
+import { gameLoader, gamesLoader, homeLoader, playerLoader, playersLoader, standingsLoader, teamLoader, teamsLoader } from "./loaders.ts";
 import { managerRoutes } from "./manager/routes.ts";
 import { Paths } from "./paths.ts";
 
@@ -21,7 +21,7 @@ const homeRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: Paths.Home,
   component: Home,
-  loader: () => [],
+  loader: homeLoader,
 });
 
 const gamesRoute = createRoute({
