@@ -1,6 +1,6 @@
-import express, { type Request, type Response } from "express";
 import cors from "cors";
-import { sleep } from "./utils/sleep";
+import express from "express";
+import homeRoutes from "./routes/homeRoutes";
 import playerRoutes from "./routes/playerRoutes";
 import teamRoutes from "./routes/teamRoutes";
 
@@ -10,13 +10,7 @@ app.use(cors({
   origin: ["http://localhost:5173"] // todo: update to env
 }));
 
-app.get("/api", async (req: Request, res: Response) => {
-  await sleep(1000);
-  res.json({
-    home: "helloWorld",
-  });
-});
-
+app.use(homeRoutes);
 app.use(playerRoutes);
 app.use(teamRoutes);
 
