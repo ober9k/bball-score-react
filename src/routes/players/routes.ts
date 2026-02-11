@@ -4,7 +4,7 @@ import ViewPage from "../../pages/players/ViewPage.tsx";
 import { defaultOptions } from "../defaultOptions.ts";
 import { playerLoader, playersLoader } from "../loaders.ts";
 import { Paths } from "../paths.ts";
-import { rootRoute } from "../routes.ts";
+import { rootRoute } from "../rootRoute.ts";
 
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,

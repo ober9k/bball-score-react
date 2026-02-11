@@ -3,7 +3,7 @@ import IndexPage from "../../pages/manager/teams/IndexPage.tsx";
 import UpdatePage from "../../pages/manager/teams/UpdatePage.tsx";
 import { teamLoader, teamsLoader } from "../loaders.ts";
 import { Paths } from "../paths.ts";
-import { rootRoute } from "../routes.ts";
+import { rootRoute } from "../rootRoute.ts";
 
 const teamsRoute = createRoute({
   getParentRoute: () => rootRoute,

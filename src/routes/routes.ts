@@ -1,5 +1,4 @@
-import { createRootRoute, createRoute } from "@tanstack/react-router";
-import RootLayout from "../layouts/DefaultLayout.tsx";
+import { createRoute } from "@tanstack/react-router";
 import HomePage from "../pages/HomePage.tsx";
 import StandingsPage from "../pages/StandingsPage.tsx";
 import StatisticsPage from "../pages/StatisticsPage.tsx";
@@ -9,11 +8,8 @@ import { homeLoader, standingsLoader } from "./loaders.ts";
 import { managerRoutes } from "./manager/routes.ts";
 import { Paths } from "./paths.ts";
 import { playersRoutes } from "./players/routes.ts";
+import { rootRoute } from "./rootRoute.ts";
 import { teamsRoutes } from "./teams/routes.ts";
-
-export const rootRoute = createRootRoute({
-  component: RootLayout,
-});
 
 const homeRoute = createRoute({
   getParentRoute: () => rootRoute,

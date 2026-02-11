@@ -3,7 +3,7 @@ import IndexPage from "../../pages/games/IndexPage.tsx";
 import ViewPage from "../../pages/games/ViewPage.tsx";
 import { gameLoader, gamesLoader } from "../loaders.ts";
 import { Paths } from "../paths.ts";
-import { rootRoute } from "../routes.ts";
+import { rootRoute } from "../rootRoute.ts";
 
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,

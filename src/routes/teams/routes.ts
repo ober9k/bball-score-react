@@ -4,7 +4,7 @@ import ViewPage from "../../pages/teams/ViewPage.tsx";
 import { defaultOptions } from "../defaultOptions.ts";
 import { teamLoader, teamsLoader } from "../loaders.ts";
 import { Paths } from "../paths.ts";
-import { rootRoute } from "../routes.ts";
+import { rootRoute } from "../rootRoute.ts";
 
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
