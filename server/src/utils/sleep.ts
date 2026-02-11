@@ -3,7 +3,7 @@
  * @param ms milliseconds
  * @returns {Promise<unknown>}
  */
-exports.sleep = (ms) => {
+export function sleep(ms: number) {
     return new Promise((resolve) => {
         setTimeout(resolve, ms);
     });
