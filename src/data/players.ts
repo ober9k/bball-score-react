@@ -71,3 +71,7 @@ export const mockPlayers: Array<Player> = [
 export function findPlayerById(playerId: number): Player {
   return mockPlayers.find(({ id }) => id === playerId)!;
 }
+
+export function tempFindPlayerById(playerId: number): Player {
+  return mockPlayers.find(({ id }) => id === playerId);
+}
