@@ -43,3 +43,28 @@ export async function getTeamPlayers(req: Request, res: Response) {
     teamPlayers: findPlayersByTeamId(teamId)
   });
 }
+
+export async function updateTeam(req: Request, res: Response) {
+  const teamData = req.body;
+  delete teamData.id; /* to be stripped later */
+
+  const teamId = +req.params.teamId;
+  const team = tempFindTeamById(teamId);
+
+  if (team === undefined) {
+    res.status(404).json("Unable to find team with `teamId` provided.");
+    return;
+  }
+
+  // TODO: tidy up the update handling
+  team.name = teamData.name;
+  team.teamStyle = {
+    bgColor: teamData.teamStyle.bgColor,
+    textColor: teamData.teamStyle.textColor,
+  };
+
+  res.status(200).json({
+    team,
+    message: "Team with `teamId` provided successfully updated.",
+  });
+}
