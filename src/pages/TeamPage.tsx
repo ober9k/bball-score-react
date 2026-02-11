@@ -3,7 +3,7 @@ import Content from "../components/layout/page/Content.tsx";
 import Header from "../components/layout/page/Header.tsx";
 import { Paths } from "../routes/paths.ts";
 
-export default function Team() {
+export default function TeamPage() {
   const { team } = getRouteApi(Paths.Team).useLoaderData();
   return (
     <>

@@ -4,7 +4,7 @@ import Header from "../components/layout/page/Header.tsx";
 import TeamsList from "../components/TeamsList.tsx";
 import { Paths } from "../routes/paths.ts";
 
-export default function Teams() {
+export default function TeamsPage() {
   const { teams } = getRouteApi(Paths.Teams).useLoaderData();
 
   return (

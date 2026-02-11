@@ -1,15 +1,15 @@
 import { createRootRoute, createRoute } from "@tanstack/react-router";
 import RootLayout from "../layouts/DefaultLayout.tsx";
-import Game from "../pages/Game.tsx";
-import Games from "../pages/Games.tsx";
-import Home from "../pages/Home.tsx";
+import GamePage from "../pages/GamePage.tsx";
+import GamesPage from "../pages/GamesPage.tsx";
+import HomePage from "../pages/HomePage.tsx";
 import LoadingPage from "../pages/other/LoadingPage.tsx";
-import Player from "../pages/Player.tsx";
-import Players from "../pages/Players.tsx";
-import Standings from "../pages/Standings.tsx";
-import Statistics from "../pages/Statistics.tsx";
-import Team from "../pages/Team.tsx";
-import Teams from "../pages/Teams.tsx";
+import PlayerPage from "../pages/PlayerPage.tsx";
+import PlayersPage from "../pages/PlayersPage.tsx";
+import StandingsPage from "../pages/StandingsPage.tsx";
+import StatisticsPage from "../pages/StatisticsPage.tsx";
+import TeamPage from "../pages/TeamPage.tsx";
+import TeamsPage from "../pages/TeamsPage.tsx";
 import { gameLoader, gamesLoader, homeLoader, playerLoader, playersLoader, standingsLoader, teamLoader, teamsLoader } from "./loaders.ts";
 import { managerRoutes } from "./manager/routes.ts";
 import { Paths } from "./paths.ts";
@@ -26,7 +26,7 @@ export const rootRoute = createRootRoute({
 const homeRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: Paths.Home,
-  component: Home,
+  component: HomePage,
   loader: homeLoader,
   ...defaultOptions,
 });
@@ -34,21 +34,21 @@ const homeRoute = createRoute({
 const gamesRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: Paths.Games,
-  component: Games,
+  component: GamesPage,
   loader: gamesLoader,
 });
 
 const gameRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: Paths.Game,
-  component: Game,
+  component: GamePage,
   loader: gameLoader,
 });
 
 const playersRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: Paths.Players,
-  component: Players,
+  component: PlayersPage,
   loader: playersLoader,
   ...defaultOptions,
 });
@@ -56,7 +56,7 @@ const playersRoute = createRoute({
 const playerRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: Paths.Player,
-  component: Player,
+  component: PlayerPage,
   loader: playerLoader,
   ...defaultOptions,
 });
@@ -64,20 +64,20 @@ const playerRoute = createRoute({
 const standingsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: Paths.Standings,
-  component: Standings,
+  component: StandingsPage,
   loader: standingsLoader,
 });
 
 const statisticsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: Paths.Statistics,
-  component: Statistics,
+  component: StatisticsPage,
 });
 
 const teamsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: Paths.Teams,
-  component: Teams,
+  component: TeamsPage,
   loader: teamsLoader,
   ...defaultOptions,
 });
@@ -85,7 +85,7 @@ const teamsRoute = createRoute({
 const teamRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: Paths.Team,
-  component: Team,
+  component: TeamPage,
   loader: teamLoader,
   ...defaultOptions,
 });

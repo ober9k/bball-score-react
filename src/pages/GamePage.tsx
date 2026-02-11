@@ -5,7 +5,7 @@ import BoxScore from "../components/stats/BoxScore.tsx";
 import Matchup from "../components/stats/Matchup.tsx";
 import { Paths } from "../routes/paths.ts";
 
-export default function Game() {
+export default function GamePage() {
   const { game } = getRouteApi(Paths.Game).useLoaderData();
 
   return (

@@ -14,7 +14,7 @@ type PlayerLoaderData = {
   gameLogs: Array<GameLog>,
 }
 
-export default function Player() {
+export default function PlayerPage() {
   const { player, team, gameLogs }: PlayerLoaderData = getRouteApi(Paths.Player).useLoaderData();
 
   return (

@@ -4,7 +4,7 @@ import Header from "../components/layout/page/Header.tsx";
 import TeamLink from "../components/links/TeamLink.tsx";
 import { Paths } from "../routes/paths.ts";
 
-export default function Standings() {
+export default function StandingsPage() {
   const { standings } = getRouteApi(Paths.Standings).useLoaderData();
   const { standingsRows } = standings;
 

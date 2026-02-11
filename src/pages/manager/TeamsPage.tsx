@@ -17,7 +17,7 @@ export function ActionLink({ children, to, params = {} }: ActionLinkProps) {
   );
 }
 
-export default function Teams() {
+export default function TeamsPage() {
   const { teams } = getRouteApi(Paths.Manager.Teams).useLoaderData();
 
   return (

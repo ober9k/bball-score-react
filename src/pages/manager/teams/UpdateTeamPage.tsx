@@ -55,7 +55,7 @@ function Input(props: InputProps) {
   )
 }
 
-export default function UpdateTeam() {
+export default function UpdateTeamPage() {
   const {team} = getRouteApi(Paths.Manager.UpdateTeam).useLoaderData();
 
   const initialState: TeamData = {
