@@ -1,11 +1,11 @@
 import { getRouteApi } from "@tanstack/react-router";
-import Content from "../components/layout/page/Content.tsx";
-import Header from "../components/layout/page/Header.tsx";
-import BoxScore from "../components/stats/BoxScore.tsx";
-import Matchup from "../components/stats/Matchup.tsx";
-import { Paths } from "../routes/paths.ts";
+import Content from "../../components/layout/page/Content.tsx";
+import Header from "../../components/layout/page/Header.tsx";
+import BoxScore from "../../components/stats/BoxScore.tsx";
+import Matchup from "../../components/stats/Matchup.tsx";
+import { Paths } from "../../routes/paths.ts";
 
-export default function GamePage() {
+export default function ViewPage() {
   const { game } = getRouteApi(Paths.Game).useLoaderData();
 
   return (

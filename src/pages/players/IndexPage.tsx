@@ -1,10 +1,10 @@
 import { getRouteApi } from "@tanstack/react-router";
-import Content from "../components/layout/page/Content.tsx";
-import Header from "../components/layout/page/Header.tsx";
-import PlayersList from "../components/PlayersList.tsx";
-import { Paths } from "../routes/paths.ts";
+import Content from "../../components/layout/page/Content.tsx";
+import Header from "../../components/layout/page/Header.tsx";
+import PlayersList from "../../components/PlayersList.tsx";
+import { Paths } from "../../routes/paths.ts";
 
-export default function PlayersPage() {
+export default function IndexPage() {
   const { players } = getRouteApi(Paths.Players).useLoaderData();
 
   return (

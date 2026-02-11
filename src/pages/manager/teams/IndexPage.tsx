@@ -1,8 +1,8 @@
 import { getRouteApi, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import Content from "../../components/layout/page/Content.tsx";
-import Header from "../../components/layout/page/Header.tsx";
-import { Paths } from "../../routes/paths.ts";
+import Content from "../../../components/layout/page/Content.tsx";
+import Header from "../../../components/layout/page/Header.tsx";
+import { Paths } from "../../../routes/paths.ts";
 
 type ActionLinkProps = {
   children: ReactNode,
@@ -17,7 +17,7 @@ export function ActionLink({ children, to, params = {} }: ActionLinkProps) {
   );
 }
 
-export default function TeamsPage() {
+export default function IndexPage() {
   const { teams } = getRouteApi(Paths.Manager.Teams).useLoaderData();
 
   return (

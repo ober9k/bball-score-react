@@ -1,12 +1,12 @@
 import { getRouteApi } from "@tanstack/react-router";
-import Content from "../components/layout/page/Content.tsx";
-import Header from "../components/layout/page/Header.tsx";
-import AveragesTable from "../components/stats/AveragesTable.tsx";
-import GameLogTable from "../components/stats/GameLogTable.tsx";
-import TotalsTable from "../components/stats/TotalsTable.tsx";
-import type { GameLog } from "../data/games.ts";
-import { Paths } from "../routes/paths.ts";
-import type { Team } from "../types/Team.ts";
+import Content from "../../components/layout/page/Content.tsx";
+import Header from "../../components/layout/page/Header.tsx";
+import AveragesTable from "../../components/stats/AveragesTable.tsx";
+import GameLogTable from "../../components/stats/GameLogTable.tsx";
+import TotalsTable from "../../components/stats/TotalsTable.tsx";
+import type { GameLog } from "../../data/games.ts";
+import { Paths } from "../../routes/paths.ts";
+import type { Team } from "../../types/Team.ts";
 
 type PlayerLoaderData = {
   player: any, /* naming conflict */
@@ -14,7 +14,7 @@ type PlayerLoaderData = {
   gameLogs: Array<GameLog>,
 }
 
-export default function PlayerPage() {
+export default function ViewPage() {
   const { player, team, gameLogs }: PlayerLoaderData = getRouteApi(Paths.Player).useLoaderData();
 
   return (
