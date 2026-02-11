@@ -1,7 +1,6 @@
-import { homeQueryOptions, playersQueryOptions, teamsQueryOptions } from "../api/queryOptions.ts";
+import { buildTeamQueryOptions, homeQueryOptions, playersQueryOptions, teamsQueryOptions } from "../api/queryOptions.ts";
 import { findGameById, findPlayerGameLogs, mockGames } from "../data/games.ts";
-import { findPlayerById, mockPlayers } from "../data/players.ts";
-import { findTeamById, mockTeams } from "../data/teams.ts";
+import { findPlayerById } from "../data/players.ts";
 import type { TeamLog } from "../types/game/TeamLog.ts";
 import type { StandingsRow } from "../types/row/StandingsRow.ts";
 import type { Standings } from "../types/Standings.ts";
@@ -135,20 +134,7 @@ export function teamsLoader({ context: queryClient }) {
   return queryClient.queryClient.ensureQueryData(teamsQueryOptions);
 }
 
-export function teamLoader({ params }) {
-  const teamId = parseInt(params["teamId"]);
-
-  if (isNaN(teamId)) {
-    throw Error("Invalid `teamId` provided.");
-  }
-
-  const team = findTeamById(teamId);
-
-  if (team === undefined) {
-    throw Error("Unable to find game with `teamId` provided.");
-  }
-
-  return {
-    team: team,
-  };
+export async function teamLoader({ context: queryClient, params }) {
+  const teamId = +params["teamId"];
+  return queryClient.queryClient.ensureQueryData(buildTeamQueryOptions(teamId));
 }

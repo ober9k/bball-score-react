@@ -86,6 +86,7 @@ const teamRoute = createRoute({
   path: Paths.Team,
   component: Team,
   loader: teamLoader,
+  ...defaultOptions,
 });
 
 export const routeTree = rootRoute.addChildren([

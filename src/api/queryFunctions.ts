@@ -33,3 +33,11 @@ export function teamsQueryFn() {
     .get<Array<string>>(buildApiPath("teams"))
     .then(res => res.data);
 }
+
+export function teamQueryFn({ queryKey }) {
+  const [ , teamId ] = queryKey;
+
+  return axios
+    .get<Array<string>>(buildApiPath("teams", teamId))
+    .then(res => res.data);
+}
