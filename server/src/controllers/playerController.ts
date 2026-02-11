@@ -35,7 +35,7 @@ export async function getPlayerTeam(req: Request, res: Response) {
   const player   = tempFindPlayerById(playerId);
 
   if (player === undefined) {
-    res.status(404).json("Unable to find team with `playerId` provided.");
+    res.status(404).json("Unable to find player with `playerId` provided.");
     return;
   }
 
