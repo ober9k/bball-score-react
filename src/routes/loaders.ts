@@ -1,4 +1,4 @@
-import { buildPlayerQueryOptions, buildTeamQueryOptions, homeQueryOptions, playersQueryOptions, teamsQueryOptions } from "../api/queryOptions.ts";
+import { buildPlayerQueryOptions, buildPlayerTeamQueryOptions, buildTeamQueryOptions, homeQueryOptions, playersQueryOptions, teamsQueryOptions } from "../api/queryOptions.ts";
 import { findGameById, findPlayerGameLogs, mockGames } from "../data/games.ts";
 import type { TeamLog } from "../types/game/TeamLog.ts";
 import type { StandingsRow } from "../types/row/StandingsRow.ts";
@@ -42,9 +42,8 @@ export function playersLoader({ context: queryClient }) {
 export async function playerLoader({ context: queryClient, params }) {
   const playerId = +params["playerId"];
 
-  const tempGame = mockGames[0];
   const { player } = await queryClient.queryClient.ensureQueryData(buildPlayerQueryOptions(playerId));
-  const { team } = tempGame.teamLogs.filter((teamLog) => teamLog.playerLogs.filter((playerLog) => playerLog.playerId === playerId).length > 0).pop();
+  const { team } = await queryClient.queryClient.ensureQueryData(buildPlayerTeamQueryOptions(playerId));
   const gameLogs = findPlayerGameLogs(playerId);
 
   return {

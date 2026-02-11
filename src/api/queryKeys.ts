@@ -3,6 +3,7 @@ const QueryKeys = {
   Home: "home",
   Players: "players",
   Player: "player",
+  PlayerTeam: "playerTeam",
   Teams: "teams",
   Team: "team",
 }

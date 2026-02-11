@@ -1,4 +1,4 @@
-import { homeQueryFn, playerQueryFn, playersQueryFn, teamQueryFn, teamsQueryFn } from "./queryFunctions.ts";
+import { homeQueryFn, playerQueryFn, playersQueryFn, playerTeamQueryFn, teamQueryFn, teamsQueryFn } from "./queryFunctions.ts";
 import QueryKeys from "./queryKeys.ts";
 
 export const homeQueryOptions = {
@@ -15,6 +15,13 @@ export function buildPlayerQueryOptions(playerId: number) {
   return {
     queryKey: [QueryKeys.Player, playerId],
     queryFn: playerQueryFn,
+  }
+}
+
+export function buildPlayerTeamQueryOptions(playerId: number) {
+  return {
+    queryKey: [QueryKeys.PlayerTeam, playerId],
+    queryFn: playerTeamQueryFn,
   }
 }
 
