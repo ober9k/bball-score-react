@@ -1,5 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { homeQueryOptions } from "../api/queryOptions.ts";
 import { findGameById, findPlayerGameLogs, mockGames } from "../data/games.ts";
 import { findPlayerById, mockPlayers } from "../data/players.ts";
 import { findTeamById, mockTeams } from "../data/teams.ts";
@@ -9,19 +8,9 @@ import type { Standings } from "../types/Standings.ts";
 import type { Team } from "../types/Team.ts";
 import { getAwayTeamLog, getHomeTeamLog } from "../utilities/GameUtils.ts";
 
-/* todo: temp file */
-function homeQueryFn() {
-  return axios
-    .get<Array<string>>("http://localhost:8080/api")
-    .then(res => res.data);
-}
-
 export function homeLoader({ context: queryClient }) {
   /* todo: OOOOPSSS, messed up passing this through */
-  return queryClient.queryClient.ensureQueryData({
-    queryKey: ['helloWorld'],
-    queryFn: homeQueryFn,
-  });
+  return queryClient.queryClient.ensureQueryData(homeQueryOptions);
 }
 
 export function gamesLoader() {
