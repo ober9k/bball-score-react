@@ -27,6 +27,6 @@ export function findTeamById(teamId: number): Team {
   return mockTeams.find(({ id }) => id === teamId)!;
 }
 
-export function tempFindTeamById(teamId: number): Team {
+export function tempFindTeamById(teamId: number): Team | undefined {
   return mockTeams.find(({ id }) => id === teamId);
 }
