@@ -5,16 +5,16 @@ import { mockPlayers } from "./players.ts";
 import { tempFindTeamById } from "./teams.ts";
 
 export const mockTeamPlayers: Array<TeamPlayer> = [
-  { teamId: 11, playerId: 11 },
-  { teamId: 11, playerId: 12 },
-  { teamId: 11, playerId: 13 },
-  { teamId: 11, playerId: 14 },
-  { teamId: 11, playerId: 15 },
-  { teamId: 12, playerId: 21 },
-  { teamId: 12, playerId: 22 },
-  { teamId: 12, playerId: 23 },
-  { teamId: 12, playerId: 24 },
-  { teamId: 12, playerId: 25 },
+  { teamId: 10, playerId: 11 },
+  { teamId: 10, playerId: 12 },
+  { teamId: 10, playerId: 13 },
+  { teamId: 10, playerId: 14 },
+  { teamId: 10, playerId: 15 },
+  { teamId: 11, playerId: 21 },
+  { teamId: 11, playerId: 22 },
+  { teamId: 11, playerId: 23 },
+  { teamId: 11, playerId: 24 },
+  { teamId: 11, playerId: 25 },
 ];
 
 export function findPlayersByTeamId(teamId: number): Array<Player> {
