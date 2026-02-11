@@ -1,7 +1,7 @@
 import { type Request, type Response } from "express";
 import { findPlayersByTeamId } from "../../../src/data/teamPlayers";
 import { mockTeams, tempFindTeamById } from "../../../src/data/teams";
-import { sleep } from "../utils/sleep";
+import { sleep } from "@utils/sleep";
 
 export async function getTeams(req: Request, res: Response) {
   await sleep(1000);

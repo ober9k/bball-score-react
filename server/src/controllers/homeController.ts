@@ -1,5 +1,5 @@
 import { type Request, type Response } from "express";
-import { sleep } from "../utils/sleep";
+import { sleep } from "@utils/sleep";
 
 export async function getHome(req: Request, res: Response) {
   await sleep(1000);

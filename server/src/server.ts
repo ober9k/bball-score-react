@@ -1,8 +1,8 @@
 import cors from "cors";
 import express from "express";
-import homeRoutes from "./routes/homeRoutes";
-import playerRoutes from "./routes/playerRoutes";
-import teamRoutes from "./routes/teamRoutes";
+import homeRoutes from "@routes/homeRoutes";
+import playerRoutes from "@routes/playerRoutes";
+import teamRoutes from "@routes/teamRoutes";
 
 const app = express();
 

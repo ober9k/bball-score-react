@@ -1,5 +1,5 @@
 import express from "express";
-import { getPlayer, getPlayers, getPlayerTeam } from "../controllers/playerController";
+import { getPlayer, getPlayers, getPlayerTeam } from "@controllers/playerController";
 
 export default express.Router()
   .get("/api/players", getPlayers)
