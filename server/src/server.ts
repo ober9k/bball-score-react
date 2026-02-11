@@ -10,6 +10,8 @@ app.use(cors({
   origin: ["http://localhost:5173"] // todo: update to env
 }));
 
+app.use(express.json());
+
 app.use(homeRoutes);
 app.use(playerRoutes);
 app.use(teamRoutes);
