@@ -58,6 +58,7 @@ const playerRoute = createRoute({
   path: Paths.Player,
   component: Player,
   loader: playerLoader,
+  ...defaultOptions,
 });
 
 const standingsRoute = createRoute({

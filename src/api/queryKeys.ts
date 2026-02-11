@@ -2,6 +2,7 @@
 const QueryKeys = {
   Home: "home",
   Players: "players",
+  Player: "player",
   Teams: "teams",
   Team: "team",
 }

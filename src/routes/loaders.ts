@@ -1,6 +1,5 @@
-import { buildTeamQueryOptions, homeQueryOptions, playersQueryOptions, teamsQueryOptions } from "../api/queryOptions.ts";
+import { buildPlayerQueryOptions, buildTeamQueryOptions, homeQueryOptions, playersQueryOptions, teamsQueryOptions } from "../api/queryOptions.ts";
 import { findGameById, findPlayerGameLogs, mockGames } from "../data/games.ts";
-import { findPlayerById } from "../data/players.ts";
 import type { TeamLog } from "../types/game/TeamLog.ts";
 import type { StandingsRow } from "../types/row/StandingsRow.ts";
 import type { Standings } from "../types/Standings.ts";
@@ -40,32 +39,18 @@ export function playersLoader({ context: queryClient }) {
   return queryClient.queryClient.ensureQueryData(playersQueryOptions);
 }
 
-export function playerLoader({ params }) {
-  const playerId = parseInt(params["playerId"]);
+export async function playerLoader({ context: queryClient, params }) {
+  const playerId = +params["playerId"];
 
-  if (isNaN(playerId)) {
-    throw Error("Invalid `playerId` provided.");
-  }
-
-  const player = findPlayerById(playerId);
-
-  if (player === undefined) {
-    throw Error("Unable to find game with `playerId` provided.");
-  }
-
-  /* temporary: just search some game logs for a `teamId` */
   const tempGame = mockGames[0];
+  const { player } = await queryClient.queryClient.ensureQueryData(buildPlayerQueryOptions(playerId));
   const { team } = tempGame.teamLogs.filter((teamLog) => teamLog.playerLogs.filter((playerLog) => playerLog.playerId === playerId).length > 0).pop();
-
-  if (team === undefined) {
-    throw Error("Unable to find team with `playerId` provided.");
-  }
+  const gameLogs = findPlayerGameLogs(playerId);
 
   return {
-    player: player,
-    playerGames: [],
-    team: team,
-    gameLogs: findPlayerGameLogs(playerId),
+    player,
+    team, /* TODO: handle data request properly */
+    gameLogs, /* TODO: handle data request properly */
   };
 }
 
