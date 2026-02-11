@@ -21,3 +21,15 @@ export function homeQueryFn() {
     .get<Array<string>>(buildApiPath("home"))
     .then(res => res.data);
 }
+
+export function playersQueryFn() {
+  return axios
+    .get<Array<string>>(buildApiPath("players"))
+    .then(res => res.data);
+}
+
+export function teamsQueryFn() {
+  return axios
+    .get<Array<string>>(buildApiPath("teams"))
+    .then(res => res.data);
+}

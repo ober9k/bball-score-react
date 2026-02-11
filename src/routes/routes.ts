@@ -3,6 +3,7 @@ import RootLayout from "../layouts/DefaultLayout.tsx";
 import Game from "../pages/Game.tsx";
 import Games from "../pages/Games.tsx";
 import Home from "../pages/Home.tsx";
+import LoadingPage from "../pages/other/LoadingPage.tsx";
 import Player from "../pages/Player.tsx";
 import Players from "../pages/Players.tsx";
 import Standings from "../pages/Standings.tsx";
@@ -13,6 +14,11 @@ import { gameLoader, gamesLoader, homeLoader, playerLoader, playersLoader, stand
 import { managerRoutes } from "./manager/routes.ts";
 import { Paths } from "./paths.ts";
 
+const defaultOptions = {
+  pendingMs: 100, /* let the loader show (almost) straight away */
+  pendingComponent: LoadingPage,
+};
+
 export const rootRoute = createRootRoute({
   component: RootLayout,
 });
@@ -22,6 +28,7 @@ const homeRoute = createRoute({
   path: Paths.Home,
   component: Home,
   loader: homeLoader,
+  ...defaultOptions,
 });
 
 const gamesRoute = createRoute({
@@ -43,6 +50,7 @@ const playersRoute = createRoute({
   path: Paths.Players,
   component: Players,
   loader: playersLoader,
+  ...defaultOptions,
 });
 
 const playerRoute = createRoute({
@@ -70,6 +78,7 @@ const teamsRoute = createRoute({
   path: Paths.Teams,
   component: Teams,
   loader: teamsLoader,
+  ...defaultOptions,
 });
 
 const teamRoute = createRoute({

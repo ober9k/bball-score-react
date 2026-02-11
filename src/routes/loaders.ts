@@ -1,4 +1,4 @@
-import { homeQueryOptions } from "../api/queryOptions.ts";
+import { homeQueryOptions, playersQueryOptions, teamsQueryOptions } from "../api/queryOptions.ts";
 import { findGameById, findPlayerGameLogs, mockGames } from "../data/games.ts";
 import { findPlayerById, mockPlayers } from "../data/players.ts";
 import { findTeamById, mockTeams } from "../data/teams.ts";
@@ -37,10 +37,8 @@ export function gameLoader({ params }) {
   };
 }
 
-export function playersLoader() {
-  return {
-    players: mockPlayers, /* temporary handling which will later ping an API */
-  };
+export function playersLoader({ context: queryClient }) {
+  return queryClient.queryClient.ensureQueryData(playersQueryOptions);
 }
 
 export function playerLoader({ params }) {
@@ -133,10 +131,8 @@ export function standingsLoader() {
   }
 }
 
-export function teamsLoader() {
-  return {
-    teams: mockTeams, /* temporary handling which will later ping an API */
-  };
+export function teamsLoader({ context: queryClient }) {
+  return queryClient.queryClient.ensureQueryData(teamsQueryOptions);
 }
 
 export function teamLoader({ params }) {
