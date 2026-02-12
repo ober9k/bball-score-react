@@ -1,15 +1,11 @@
+import type { Standings } from "@types/standings";
+import type { StandingsLog } from "@types/standingsLog";
 import { sleep } from "@utils/sleep";
 import type { Request, Response } from "express";
 import { mockGames } from "../../../src/data/games";
 import type { TeamLog } from "../../../src/types/game/TeamLog";
-import type { StandingsRow } from "../../../src/types/row/StandingsRow";
 import type { Team } from "../../../src/types/Team";
 import { getAwayTeamLog, getHomeTeamLog } from "../../../src/utilities/GameUtils";
-
-type StandingsLog = StandingsRow;
-type Standings = {
-  standingsLogs: Array<StandingsLog>,
-}
 
 function getStandingsLogs(): Array<StandingsLog> {
   const games = mockGames;
@@ -17,7 +13,7 @@ function getStandingsLogs(): Array<StandingsLog> {
 
   let standingsRowId = 1;
 
-  function getRow(team: Team): StandingsRow | undefined {
+  function getRow(team: Team): StandingsLog | undefined {
     return standingsLogs.find((standingsLog) => standingsLog.teamId === team.id);
   }
 
@@ -25,7 +21,7 @@ function getStandingsLogs(): Array<StandingsLog> {
     return getRow(team) !== undefined;
   }
 
-  function createForTeam(team: Team): StandingsRow {
+  function createForTeam(team: Team): StandingsLog {
     return {
       id: standingsRowId++,
       teamId: team.id,
@@ -71,10 +67,12 @@ function getStandingsLogs(): Array<StandingsLog> {
 export async function getStandings(req: Request, res: Response) {
   await sleep(1000);
 
+  const standings: Standings = {
+    standingsLogs: getStandingsLogs(),
+  }
+
   res.status(200).json({
     /* referencing mock data for now */
-    standings: {
-      standingsLogs: getStandingsLogs(),
-    } as Standings,
+    standings
   });
 }
