@@ -1,8 +1,10 @@
+import { useMutation } from "@tanstack/react-query";
 import { getRouteApi } from "@tanstack/react-router";
 import { ReactNode, useActionState } from "react";
+import { teamMutationFn } from "../../../api/mutationFunctions.ts";
 import Content from "../../../components/layout/page/Content.tsx";
 import Header from "../../../components/layout/page/Header.tsx";
-import { type TeamData, updateTeam } from "../../../data/actions.ts";
+import { type TeamData } from "../../../data/actions.ts";
 import { Paths } from "../../../routes/paths.ts";
 
 const FormKeys = {
@@ -67,6 +69,10 @@ export default function UpdatePage() {
     }
   };
 
+  const mutation = useMutation({
+    mutationFn: teamMutationFn,
+  });
+
   const [ state, formAction, isPending ] = useActionState(async (prevState: TeamData, formData: FormData) => {
 
     const getValue = (key: string): string => {
@@ -82,7 +88,7 @@ export default function UpdatePage() {
       }
     };
 
-    await updateTeam(teamData);
+    mutation.mutate(teamData);
 
     return {
       ...teamData
