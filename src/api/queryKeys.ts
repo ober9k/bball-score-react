@@ -4,6 +4,7 @@ const QueryKeys = {
   Players: "players",
   Player: "player",
   PlayerTeam: "playerTeam",
+  Standings: "standings",
   Teams: "teams",
   Team: "team",
 }

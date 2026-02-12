@@ -1,4 +1,4 @@
-import { buildPlayerQueryOptions, buildPlayerTeamQueryOptions, buildTeamQueryOptions, homeQueryOptions, playersQueryOptions, teamsQueryOptions } from "../api/queryOptions.ts";
+import { buildPlayerQueryOptions, buildPlayerTeamQueryOptions, buildTeamQueryOptions, homeQueryOptions, playersQueryOptions, standingsQueryOptions, teamsQueryOptions } from "../api/queryOptions.ts";
 import { findGameById, findPlayerGameLogs, mockGames } from "../data/games.ts";
 import type { TeamLog } from "../types/game/TeamLog.ts";
 import type { StandingsRow } from "../types/row/StandingsRow.ts";
@@ -53,65 +53,8 @@ export async function playerLoader({ context: queryClient, params }) {
   };
 }
 
-export function standingsLoader() {
-  const games = mockGames;
-  const standings: Standings = {
-    standingsRows: [],
-  };
-
-  let standingsRowId = 1;
-
-  function getRow(team: Team): StandingsRow | undefined {
-    return standings.standingsRows.find((standingsRow) => standingsRow.teamId === team.id);
-  }
-
-  function hasRow(team: Team): boolean {
-    return getRow(team) !== undefined;
-  }
-
-  function createForTeam(team: Team): StandingsRow {
-    return {
-      id: standingsRowId++,
-      teamId: team.id,
-      team: team,
-      wins: 0,
-      losses: 0,
-      draws: 0,
-      byes: 0,
-      pointsFor: 0,
-      pointsAgainst: 0,
-    };
-  }
-
-  function updateForTeam(teamLogA: TeamLog, teamLogB: TeamLog): void {
-    // todo: refactor to something nicer
-    if (!hasRow(teamLogA.team!)) {
-      standings.standingsRows.push(
-        createForTeam(teamLogA.team!)
-      );
-    }
-
-    // todo: refactor to something nicer
-    const teamRow = getRow(teamLogA.team!)!;
-    teamRow.wins += (teamLogA.teamScore > teamLogB.teamScore) ? 1 : 0;
-    teamRow.losses += (teamLogA.teamScore < teamLogB.teamScore) ? 1 : 0;
-    teamRow.draws += (teamLogA.teamScore === teamLogB.teamScore) ? 1 : 0;
-    teamRow.pointsFor += teamLogA.teamScore;
-    teamRow.pointsAgainst += teamLogB.teamScore;
-  }
-
-  games.forEach((game) => {
-    const awayTeamLog = getAwayTeamLog(game);
-    const homeTeamLog = getHomeTeamLog(game);
-
-    // todo: refactor to something nicer
-    updateForTeam(awayTeamLog, homeTeamLog);
-    updateForTeam(homeTeamLog, awayTeamLog);
-  });
-
-  return {
-    standings,
-  }
+export function standingsLoader({ context: queryClient }) {
+  return queryClient.queryClient.ensureQueryData(standingsQueryOptions);
 }
 
 export function teamsLoader({ context: queryClient }) {

@@ -44,6 +44,12 @@ export function playerTeamQueryFn({ queryKey }) {
     .then(res => res.data);
 }
 
+export function standingsQueryFn() {
+  return axios
+    .get<Array<string>>(buildApiPath("standings"))
+    .then(res => res.data);
+}
+
 export function teamsQueryFn() {
   return axios
     .get<Array<string>>(buildApiPath("teams"))

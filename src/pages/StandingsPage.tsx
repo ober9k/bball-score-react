@@ -6,7 +6,7 @@ import { Paths } from "../routes/paths.ts";
 
 export default function StandingsPage() {
   const { standings } = getRouteApi(Paths.Standings).useLoaderData();
-  const { standingsRows } = standings;
+  const { standingsLogs } = standings;
 
   return (
     <>
@@ -27,17 +27,17 @@ export default function StandingsPage() {
           </tr>
           </thead>
           <tbody>
-          {standingsRows.map((standingsRow) => (
-            <tr key={standingsRow.id} className="even:bg-gray-100">
+          {standingsLogs.map((standingsLog) => (
+            <tr key={standingsLog.id} className="even:bg-gray-100">
               <td className={"px-4 py-2 text-left text-sm"}>
-                <TeamLink team={standingsRow.team}/>
+                <TeamLink team={standingsLog.team}/>
               </td>
-              <td className={"p-2 text-sm"}>{standingsRow.wins}</td>
-              <td className={"p-2 text-sm"}>{standingsRow.losses}</td>
-              <td className={"p-2 text-sm"}>{standingsRow.draws}</td>
-              <td className={"p-2 text-sm"}>{standingsRow.byes}</td>
-              <td className={"p-2 text-sm hidden sm:table-cell"}>{standingsRow.pointsFor}</td>
-              <td className={"p-2 text-sm hidden sm:table-cell"}>{standingsRow.pointsAgainst}</td>
+              <td className={"p-2 text-sm"}>{standingsLog.wins}</td>
+              <td className={"p-2 text-sm"}>{standingsLog.losses}</td>
+              <td className={"p-2 text-sm"}>{standingsLog.draws}</td>
+              <td className={"p-2 text-sm"}>{standingsLog.byes}</td>
+              <td className={"p-2 text-sm hidden sm:table-cell"}>{standingsLog.pointsFor}</td>
+              <td className={"p-2 text-sm hidden sm:table-cell"}>{standingsLog.pointsAgainst}</td>
             </tr>
           ))}
           </tbody>
