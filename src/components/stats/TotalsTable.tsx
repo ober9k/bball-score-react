@@ -1,6 +1,7 @@
 import type { GameLog } from "../../data/games.ts";
 import type { Team } from "../../types/Team.ts";
 import { getTotals } from "../../utilities/StatsUtils.ts";
+import TeamLink from "../links/TeamLink.tsx";
 import TeamsRow from "./row/TeamsRow.tsx";
 import TitlesRow from "./row/TitlesRow.tsx";
 import TotalsRow from "./row/TotalsRow.tsx";
@@ -30,7 +31,7 @@ export default function TotalsTable({ team, gameLogs }: TotalsTableProps) {
           <tbody>
           <tr>
             <TotalsRow totals={totals}>
-              {team.name}
+              <TeamLink team={team} />
             </TotalsRow>
           </tr>
           </tbody>

@@ -1,6 +1,7 @@
 import type { GameLog } from "../../data/games.ts";
 import type { Team } from "../../types/Team.ts";
 import { getAverages } from "../../utilities/StatsUtils.ts";
+import TeamLink from "../links/TeamLink.tsx";
 import AveragesRow from "./row/AveragesRow.tsx";
 import TeamsRow from "./row/TeamsRow.tsx";
 import TitlesRow from "./row/TitlesRow.tsx";
@@ -30,7 +31,7 @@ export default function AveragesTable({ team, gameLogs }: AveragesTableProps) {
           <tbody>
           <tr>
             <AveragesRow averages={averages}>
-              {team.name}
+              <TeamLink team={team} />
             </AveragesRow>
           </tr>
           </tbody>
