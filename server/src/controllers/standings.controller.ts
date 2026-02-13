@@ -1,4 +1,3 @@
-import type { Standings } from "@types/standings";
 import type { StandingsLog } from "@types/standings-log";
 import type { Team } from "@types/team";
 import { sleep } from "@utils/sleep";
