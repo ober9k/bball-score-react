@@ -1,8 +1,8 @@
 import { isHttpException } from "@models/http-exception.model";
 import type HttpException from "@models/http-exception.model";
-import homeRoutes from "@routes/homeRoutes";
+import homeRoutes from "@routes/home.routes";
 import playerRoutes from "@routes/player.routes";
-import standingsRoutes from "@routes/standingsRoutes";
+import standingsRoutes from "@routes/standings.routes";
 import teamRoutes from "@routes/team.routes";
 import cors from "cors";
 import express, { type NextFunction, type Request, type Response } from "express";

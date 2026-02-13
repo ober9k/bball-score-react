@@ -1,4 +1,4 @@
-import { getStandings } from "@controllers/standingsController";
+import { getStandings } from "@controllers/standings.controller";
 import express from "express";
 
 export default express.Router()

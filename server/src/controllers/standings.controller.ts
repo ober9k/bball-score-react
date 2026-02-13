@@ -1,10 +1,10 @@
-import type { Standings } from "@types/Standings";
-import type { StandingsLog } from "@types/StandingsLog";
+import type { Standings } from "@types/standings";
+import type { StandingsLog } from "@types/standings-log";
+import type { Team } from "@types/team";
 import { sleep } from "@utils/sleep";
 import type { Request, Response } from "express";
 import { mockGames } from "../../../src/data/games";
 import type { TeamLog } from "../../../src/types/game/TeamLog";
-import type { Team } from "../../../src/types/Team";
 import { getAwayTeamLog, getHomeTeamLog } from "../../../src/utilities/GameUtils";
 
 function getStandingsLogs(): Array<StandingsLog> {

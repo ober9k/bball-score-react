@@ -1,5 +1,5 @@
 import type { Player } from "@types/player";
-import type { Team } from "@types/Team";
+import type { Team } from "@types/team";
 import type { TeamData } from "../../../src/data/actions";
 import { mockPlayers } from "../../../src/data/players";
 import { mockTeamPlayers } from "../../../src/data/teamPlayers";
