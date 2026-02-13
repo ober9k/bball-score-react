@@ -1,10 +1,5 @@
-import { buildPlayerQueryOptions, buildPlayerTeamQueryOptions, buildTeamQueryOptions, homeQueryOptions, playersQueryOptions, standingsQueryOptions, teamsQueryOptions } from "../api/queryOptions.ts";
+import { buildPlayerQueryOptions, buildTeamQueryOptions, homeQueryOptions, playersQueryOptions, standingsQueryOptions, teamsQueryOptions } from "../api/queryOptions.ts";
 import { findGameById, findPlayerGameLogs, mockGames } from "../data/games.ts";
-import type { TeamLog } from "../types/game/TeamLog.ts";
-import type { StandingsRow } from "../types/row/StandingsRow.ts";
-import type { Standings } from "../types/Standings.ts";
-import type { Team } from "../types/Team.ts";
-import { getAwayTeamLog, getHomeTeamLog } from "../utilities/GameUtils.ts";
 
 export function homeLoader({ context: queryClient }) {
   /* todo: OOOOPSSS, messed up passing this through */
@@ -42,13 +37,12 @@ export function playersLoader({ context: queryClient }) {
 export async function playerLoader({ context: queryClient, params }) {
   const playerId = +params["playerId"];
 
-  const { player } = await queryClient.queryClient.ensureQueryData(buildPlayerQueryOptions(playerId));
-  const { team } = await queryClient.queryClient.ensureQueryData(buildPlayerTeamQueryOptions(playerId));
+  const { player, team } = await queryClient.queryClient.ensureQueryData(buildPlayerQueryOptions(playerId));
   const gameLogs = findPlayerGameLogs(playerId);
 
   return {
     player,
-    team, /* TODO: handle data request properly */
+    team,
     gameLogs, /* TODO: handle data request properly */
   };
 }

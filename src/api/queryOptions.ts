@@ -18,13 +18,6 @@ export function buildPlayerQueryOptions(playerId: number) {
   }
 }
 
-export function buildPlayerTeamQueryOptions(playerId: number) {
-  return {
-    queryKey: [QueryKeys.PlayerTeam, playerId],
-    queryFn: playerTeamQueryFn,
-  }
-}
-
 export const standingsQueryOptions = {
   queryKey: [QueryKeys.Standings],
   queryFn: standingsQueryFn,
