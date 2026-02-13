@@ -67,12 +67,7 @@ function getStandingsLogs(): Array<StandingsLog> {
 export async function getStandings(req: Request, res: Response) {
   await sleep(1000);
 
-  const standings: Standings = {
-    standingsLogs: getStandingsLogs(),
-  }
-
   res.status(200).json({
-    /* referencing mock data for now */
-    standings
+    standingsLogs: getStandingsLogs(),
   });
 }

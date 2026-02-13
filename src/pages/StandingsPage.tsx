@@ -3,10 +3,14 @@ import Content from "../components/layout/page/Content.tsx";
 import Header from "../components/layout/page/Header.tsx";
 import TeamLink from "../components/links/TeamLink.tsx";
 import { Paths } from "../routes/paths.ts";
+import type { StandingsLog } from "../types/StandingsLog.ts";
+
+type StandingsLoadingData = {
+  standingsLogs: Array<StandingsLog>,
+}
 
 export default function StandingsPage() {
-  const { standings } = getRouteApi(Paths.Standings).useLoaderData();
-  const { standingsLogs } = standings;
+  const { standingsLogs } = getRouteApi(Paths.Standings).useLoaderData() as StandingsLoadingData;
 
   return (
     <>
