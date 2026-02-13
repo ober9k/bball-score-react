@@ -29,7 +29,7 @@ export default function StatisticsPage() {
         Statistics
       </Header>
       <Content>
-        <div className={"game-log py-2"}>
+        <div className={"statistics py-2"}>
           <table className={"w-full"}>
             <thead>
             <tr className="bg-gray-200 border-b border-gray-300">
@@ -38,7 +38,7 @@ export default function StatisticsPage() {
             </thead>
             <tbody>
             {statisticsLogs.map((statisticsLog) => (
-              <tr key={statisticsLog.id}>
+              <tr key={statisticsLog.id} className="even:bg-gray-100">
                 <AveragesRow averages={statisticsLog}>
                   <PlayerLink player={statisticsLog.player}/>
                 </AveragesRow>
