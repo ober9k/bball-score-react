@@ -6,7 +6,7 @@ export async function getPlayers(req: Request, res: Response) {
   await sleep(1000);
 
   res.status(200).json({
-     players: findAll,
+    players: findAll(),
   });
 }
 

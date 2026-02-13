@@ -6,7 +6,7 @@ import { type Request, type Response } from "express";
 export async function getTeams(req: Request, res: Response) {
   await sleep(1000);
   res.status(200).json({
-    teams: findAll,
+    teams: findAll(),
   });
 }
 
