@@ -1,8 +1,9 @@
-import { isHttpException } from "@models/http-exception.model";
 import type HttpException from "@models/http-exception.model";
+import { isHttpException } from "@models/http-exception.model";
 import homeRoutes from "@routes/home.routes";
 import playerRoutes from "@routes/player.routes";
 import standingsRoutes from "@routes/standings.routes";
+import statisticsRoutes from "@routes/statistics.routes";
 import teamRoutes from "@routes/team.routes";
 import cors from "cors";
 import express, { type NextFunction, type Request, type Response } from "express";
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(homeRoutes);
 app.use(playerRoutes);
 app.use(standingsRoutes);
+app.use(statisticsRoutes);
 app.use(teamRoutes);
 
 app.use((
