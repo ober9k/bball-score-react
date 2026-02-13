@@ -1,5 +1,5 @@
 import express from "express";
-import { getTeam, getTeamPlayers, getTeams, updateTeam } from "@controllers/teamController";
+import { getTeam, getTeamPlayers, getTeams, updateTeam } from "@controllers/team.controller";
 
 export default express.Router()
   .get("/api/teams", getTeams)

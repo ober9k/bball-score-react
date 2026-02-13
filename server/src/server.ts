@@ -3,7 +3,7 @@ import type HttpException from "@models/http-exception.model";
 import homeRoutes from "@routes/homeRoutes";
 import playerRoutes from "@routes/playerRoutes";
 import standingsRoutes from "@routes/standingsRoutes";
-import teamRoutes from "@routes/teamRoutes";
+import teamRoutes from "@routes/team.routes";
 import cors from "cors";
 import express, { type NextFunction, type Request, type Response } from "express";
 

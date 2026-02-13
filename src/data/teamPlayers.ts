@@ -17,14 +17,6 @@ export const mockTeamPlayers: Array<TeamPlayer> = [
   { teamId: 11, playerId: 25 },
 ];
 
-export function findPlayersByTeamId(teamId: number): Array<Player> {
-  const teamPlayerIds = mockTeamPlayers
-    .filter((teamPlayer) => teamPlayer.teamId === teamId)
-    .map((teamPlayer) => teamPlayer.playerId);
-
-  return mockPlayers.filter((player) => teamPlayerIds.includes(player.id));
-}
-
 export function findTeamByPlayerId(playerId: number): Team | undefined {
   const teamId = mockTeamPlayers
     .filter((teamPlayer) => teamPlayer.playerId === playerId)
