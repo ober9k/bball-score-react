@@ -50,6 +50,12 @@ export function standingsQueryFn() {
     .then(res => res.data);
 }
 
+export function statisticsQueryFn() {
+  return axios
+    .get<Array<string>>(buildApiPath("statistics"))
+    .then(res => res.data);
+}
+
 export function teamsQueryFn() {
   return axios
     .get<Array<string>>(buildApiPath("teams"))

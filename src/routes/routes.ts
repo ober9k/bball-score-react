@@ -4,7 +4,7 @@ import StandingsPage from "../pages/StandingsPage.tsx";
 import StatisticsPage from "../pages/StatisticsPage.tsx";
 import { defaultOptions } from "./defaultOptions.ts";
 import { gamesRoutes } from "./games/routes.ts";
-import { homeLoader, standingsLoader } from "./loaders.ts";
+import { homeLoader, standingsLoader, statisticsLoader } from "./loaders.ts";
 import { managerRoutes } from "./manager/routes.ts";
 import { Paths } from "./paths.ts";
 import { playersRoutes } from "./players/routes.ts";
@@ -24,12 +24,15 @@ const standingsRoute = createRoute({
   path: Paths.Standings,
   component: StandingsPage,
   loader: standingsLoader,
+  ...defaultOptions,
 });
 
 const statisticsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: Paths.Statistics,
   component: StatisticsPage,
+  loader: statisticsLoader,
+  ...defaultOptions,
 });
 
 export const routeTree = rootRoute.addChildren([
