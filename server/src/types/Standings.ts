@@ -1,4 +1,4 @@
-import type { StandingsLog } from "@types/standingsLog";
+import type { StandingsLog } from "@types/StandingsLog";
 
 /**
  * This is shared with /client as well.

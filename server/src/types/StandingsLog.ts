@@ -1,4 +1,4 @@
-import type { Team } from "@types/team";
+import type { Team } from "@types/Team";
 
 /**
  * This is shared with /client as well.

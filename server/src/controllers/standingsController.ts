@@ -1,5 +1,5 @@
-import type { Standings } from "@types/standings";
-import type { StandingsLog } from "@types/standingsLog";
+import type { Standings } from "@types/Standings";
+import type { StandingsLog } from "@types/StandingsLog";
 import { sleep } from "@utils/sleep";
 import type { Request, Response } from "express";
 import { mockGames } from "../../../src/data/games";
