@@ -16,12 +16,3 @@ export const mockTeamPlayers: Array<TeamPlayer> = [
   { teamId: 11, playerId: 24 },
   { teamId: 11, playerId: 25 },
 ];
-
-export function findTeamByPlayerId(playerId: number): Team | undefined {
-  const teamId = mockTeamPlayers
-    .filter((teamPlayer) => teamPlayer.playerId === playerId)
-    .map((teamPlayer) => teamPlayer.teamId)
-    .pop();
-
-  return tempFindTeamById(teamId);
-}
