@@ -24,7 +24,7 @@ export const standingsQueryOptions = {
 };
 
 export const statisticsQueryOptions = {
-  queryKey: [QueryKeys.Standings],
+  queryKey: [QueryKeys.Statistics],
   queryFn: statisticsQueryFn,
 };
 
