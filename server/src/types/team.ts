@@ -6,5 +6,6 @@ import type { TeamStyle } from "@types/team-style";
 export type Team = {
   id: number,
   name: string,
+  shortName: string,
   teamStyle: TeamStyle,
 }
