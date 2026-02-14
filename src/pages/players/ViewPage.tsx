@@ -8,14 +8,14 @@ import type { GameLog } from "../../data/games.ts";
 import { Paths } from "../../routes/paths.ts";
 import type { Team } from "../../types/Team.ts";
 
-type PlayerLoaderData = {
+type LoaderData = {
   player: any, /* naming conflict */
   team: Team,
   gameLogs: Array<GameLog>,
 }
 
 export default function ViewPage() {
-  const { player, team, gameLogs }: PlayerLoaderData = getRouteApi(Paths.Player).useLoaderData();
+  const { player, team, gameLogs }: LoaderData = getRouteApi(Paths.Player).useLoaderData();
 
   return (
     <>
