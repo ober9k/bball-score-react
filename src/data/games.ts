@@ -31,7 +31,7 @@ function mockPlayer(playerId: number, player: Player, played: boolean, points: n
   return { id: playerLogId++, playerId, player, played, points, rebounds, assists, steals, blocks, turnovers, personalFouls } as PlayerLog;
 }
 
-const mockPlayerLogs = [
+const mockAwayPlayerLogs = [
   /* week 1 */
   [ playerLogId++, gameIds.W1, 11, 1664,  4, 12,  0,  2,  0,  0,  5,  1,  3,  1,  0,  4,  2 ],
   [ playerLogId++, gameIds.W1, 12, 1667,  2, 10,  1,  8,  0,  1,  1,  2,  1,  0,  0,  1,  2 ],
@@ -155,6 +155,19 @@ const mockPlayerLogs = [
   [ playerLogId++, gameIds.W12, 20, 1430,  3,  7,  1,  1,  0,  2,  2,  2,  0,  2,  0,  1,  3 ],
 ];
 
+const mockHomePlayerLogs = [
+  /* week 12 */
+  [ playerLogId++,  gameIds.W12, 21, 2098,  0,  2,  0,  1,  3,  6,  2,  7,  1,  0,  0,  0,  1 ],
+  [ playerLogId++,  gameIds.W12, 22,  288,  0,  1,  0,  0,  0,  0,  0,  0,  4,  0,  0,  0,  0 ],
+  [ playerLogId++,  gameIds.W12, 23, 1359,  0,  1,  0,  0,  0,  0,  0,  5,  2,  1,  0,  3,  2 ],
+  [ playerLogId++,  gameIds.W12, 24,  607,  1,  4,  0,  1,  0,  0,  0,  0,  0,  1,  0,  0,  1 ],
+  [ playerLogId++,  gameIds.W12, 25, 1010,  2,  4,  0,  0,  1,  1,  0,  5,  0,  1,  0,  0,  1 ],
+  [ playerLogId++,  gameIds.W12, 26,  600,  1,  2,  0,  0,  0,  0,  0,  3,  0,  0,  0,  0,  1 ],
+  [ playerLogId++,  gameIds.W12, 27, 2105,  6, 12,  6, 12,  2,  2,  0,  2,  3,  1,  0,  4,  4 ],
+  [ playerLogId++,  gameIds.W12, 28, 1800,  4,  9,  0,  0,  1,  2,  1,  2,  1,  0,  0,  0,  2 ],
+  [ playerLogId++,  gameIds.W12, 29, 2133,  3,  9,  0,  2,  8, 10 , 1,  8,  3,  0,  0,  1,  1 ],
+];
+
 
 
 const parseRawPlayerLog = (rawPlayerLog: any) => {
@@ -209,8 +222,15 @@ const parseRawPlayerLog = (rawPlayerLog: any) => {
 
 }
 
+const filterAwayGamePlayersByGameId = (id: number) => {
+  return mockAwayPlayerLogs.filter((playerLog) => {
+    const [ , gameId ] = playerLog;
+    return gameId === id;
+  });
+};
+
 const filterHomeGamePlayersByGameId = (id: number) => {
-  return mockPlayerLogs.filter((playerLog) => {
+  return mockHomePlayerLogs.filter((playerLog) => {
     const [ , gameId ] = playerLog;
     return gameId === id;
   });
@@ -227,7 +247,7 @@ export const mockGames: Array<Game> = [
       team: undefined,
       teamScore: 48,
       /*periodScores: [9, 14, 13, 12],*/
-      playerLogs: filterHomeGamePlayersByGameId(gameIds.W1).map(parseRawPlayerLog),
+      playerLogs: filterAwayGamePlayersByGameId(gameIds.W1).map(parseRawPlayerLog),
     }, {
       id: teamLogId++,
       teamId: 12,
@@ -247,7 +267,7 @@ export const mockGames: Array<Game> = [
       team: undefined,
       teamScore: 45,
       /*periodScores: [9, 16, 9, 11],*/
-      playerLogs: filterHomeGamePlayersByGameId(gameIds.W2).map(parseRawPlayerLog),
+      playerLogs: filterAwayGamePlayersByGameId(gameIds.W2).map(parseRawPlayerLog),
     }, {
       id: teamLogId++,
       teamId: 16,
@@ -267,7 +287,7 @@ export const mockGames: Array<Game> = [
       team: undefined,
       teamScore: 56,
       /*periodScores: [6, 23, 9, 18], // +1 to 1st*/
-      playerLogs: filterHomeGamePlayersByGameId(gameIds.W3).map(parseRawPlayerLog),
+      playerLogs: filterAwayGamePlayersByGameId(gameIds.W3).map(parseRawPlayerLog),
     }, {
       id: teamLogId++,
       teamId: 14,
@@ -287,7 +307,7 @@ export const mockGames: Array<Game> = [
       team: undefined,
       teamScore: 51,
       /*periodScores: [7, 12, 14, 18], // +3 = 51*/
-      playerLogs: filterHomeGamePlayersByGameId(gameIds.W4).map(parseRawPlayerLog),
+      playerLogs: filterAwayGamePlayersByGameId(gameIds.W4).map(parseRawPlayerLog),
     }, {
       id: teamLogId++,
       teamId: 17,
@@ -308,7 +328,7 @@ export const mockGames: Array<Game> = [
       team: undefined,
       teamScore: 44,
       /*periodScores: [0, 0, 0, 0],*/
-      playerLogs: filterHomeGamePlayersByGameId(gameIds.W6).map(parseRawPlayerLog),
+      playerLogs: filterAwayGamePlayersByGameId(gameIds.W6).map(parseRawPlayerLog),
     }, {
       id: teamLogId++,
       teamId: 13,
@@ -328,7 +348,7 @@ export const mockGames: Array<Game> = [
       team: undefined,
       teamScore: 50,
       /*periodScores: [0, 0, 0, 0],*/
-      playerLogs: filterHomeGamePlayersByGameId(gameIds.W7).map(parseRawPlayerLog),
+      playerLogs: filterAwayGamePlayersByGameId(gameIds.W7).map(parseRawPlayerLog),
     }, {
       id: teamLogId++,
       teamId: 12,
@@ -348,7 +368,7 @@ export const mockGames: Array<Game> = [
       team: undefined,
       teamScore: 55,
       /*periodScores: [0, 0, 0, 0],*/
-      playerLogs: filterHomeGamePlayersByGameId(gameIds.W8).map(parseRawPlayerLog),
+      playerLogs: filterAwayGamePlayersByGameId(gameIds.W8).map(parseRawPlayerLog),
     }, {
       id: teamLogId++,
       teamId: 15,
@@ -368,7 +388,7 @@ export const mockGames: Array<Game> = [
       team: undefined,
       teamScore: 52,
       /*periodScores: [12, 17, 12, 11],*/
-      playerLogs: filterHomeGamePlayersByGameId(gameIds.W9).map(parseRawPlayerLog),
+      playerLogs: filterAwayGamePlayersByGameId(gameIds.W9).map(parseRawPlayerLog),
     }, {
       id: teamLogId++,
       teamId: 16,
@@ -388,7 +408,7 @@ export const mockGames: Array<Game> = [
       team: undefined,
       teamScore: 71,
       /*periodScores: [0, 0, 0, 0],*/
-      playerLogs: filterHomeGamePlayersByGameId(gameIds.W10).map(parseRawPlayerLog),
+      playerLogs: filterAwayGamePlayersByGameId(gameIds.W10).map(parseRawPlayerLog),
     }, {
       id: teamLogId++,
       teamId: 14,
@@ -408,7 +428,7 @@ export const mockGames: Array<Game> = [
       team: undefined,
       teamScore: 51,
       /*periodScores: [0, 0, 0, 0],*/
-      playerLogs: filterHomeGamePlayersByGameId(gameIds.W11).map(parseRawPlayerLog),
+      playerLogs: filterAwayGamePlayersByGameId(gameIds.W11).map(parseRawPlayerLog),
     }, {
       id: teamLogId++,
       teamId: 13,
@@ -428,14 +448,14 @@ export const mockGames: Array<Game> = [
       team: undefined,
       teamScore: 47,
       /*periodScores: [19, 5, 6, 17],*/
-      playerLogs: filterHomeGamePlayersByGameId(gameIds.W12).map(parseRawPlayerLog),
+      playerLogs: filterAwayGamePlayersByGameId(gameIds.W12).map(parseRawPlayerLog),
     }, {
       id: teamLogId++,
       teamId: 17,
       team: undefined,
       teamScore: 55,
       /*periodScores: [12, 18, 10, 15],*/
-      playerLogs: [],
+      playerLogs: filterHomeGamePlayersByGameId(gameIds.W12).map(parseRawPlayerLog),
     }],
   },
 ];
