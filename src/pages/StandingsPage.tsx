@@ -27,12 +27,12 @@ export default function StandingsPage() {
             <thead>
             <tr className="bg-gray-200 border-b border-gray-300">
               <th className={"px-4 py-2 text-left text-sm"}>&nbsp;</th>
-              <th className={"p-2 text-sm w-12"}>W</th>
-              <th className={"p-2 text-sm w-12"}>L</th>
-              <th className={"p-2 text-sm w-12"}>D</th>
-              <th className={"p-2 text-sm w-12"}>B</th>
-              <th className={"p-2 text-sm w-12 hidden sm:table-cell"}>PF</th>
-              <th className={"p-2 text-sm w-12 hidden sm:table-cell"}>PA</th>
+              <th className={"p-2 text-sm text-center w-12"}>W</th>
+              <th className={"p-2 text-sm text-center w-12"}>L</th>
+              <th className={"p-2 text-sm text-center w-12"}>D</th>
+              <th className={"p-2 text-sm text-center w-12"}>B</th>
+              <th className={"p-2 text-sm text-center w-12 hidden sm:table-cell"}>PF</th>
+              <th className={"p-2 text-sm text-center w-12 hidden sm:table-cell"}>PA</th>
             </tr>
             </thead>
             <tbody>
@@ -41,12 +41,12 @@ export default function StandingsPage() {
                 <td className={"px-4 py-2 text-left text-sm"}>
                   <TeamLink team={standingsLog.team}/>
                 </td>
-                <td className={"p-2 text-sm"}>{standingsLog.wins}</td>
-                <td className={"p-2 text-sm"}>{standingsLog.losses}</td>
-                <td className={"p-2 text-sm"}>{standingsLog.draws}</td>
-                <td className={"p-2 text-sm"}>{standingsLog.byes}</td>
-                <td className={"p-2 text-sm hidden sm:table-cell"}>{standingsLog.pointsFor}</td>
-                <td className={"p-2 text-sm hidden sm:table-cell"}>{standingsLog.pointsAgainst}</td>
+                <td className={"p-2 text-sm text-center"}>{standingsLog.wins}</td>
+                <td className={"p-2 text-sm text-center"}>{standingsLog.losses}</td>
+                <td className={"p-2 text-sm text-center"}>{standingsLog.draws}</td>
+                <td className={"p-2 text-sm text-center"}>{standingsLog.byes}</td>
+                <td className={"p-2 text-sm text-center hidden sm:table-cell"}>{standingsLog.pointsFor}</td>
+                <td className={"p-2 text-sm text-center hidden sm:table-cell"}>{standingsLog.pointsAgainst}</td>
               </tr>
             ))}
             </tbody>

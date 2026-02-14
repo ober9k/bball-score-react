@@ -16,12 +16,12 @@ function TeamScore({ teamLog }: TeamScoreProps) {
 
   return (
     <>
-      <p>
+      <p className="text-center">
         <strong>
           <TeamLink team={team} />
         </strong>
       </p>
-      <p>
+      <p className="text-center">
         <span className={"text-xl"}>({teamLog.teamScore})</span>
       </p>
     </>
@@ -45,7 +45,7 @@ export default function Matchup({game}: MatchupProps) {
             <TeamScore teamLog={awayTeam} />
           </li>
         </ul>
-        <p>
+        <p className="text-center">
           {game.date.toLocaleDateString()}
         </p>
       </div>

@@ -19,24 +19,24 @@ export default function AveragesRow(props: AveragesRowProps) {
       {headings ? (
         <>
           <th className={"px-4 py-2 text-left text-sm border-r-1 border-gray-200"}>{props.children}</th>
-          <th className={"p-2 text-sm"}>{format(averages.points)}</th>
-          <th className={"p-2 text-sm"}>{format(averages.rebounds)}</th>
-          <th className={"p-2 text-sm"}>{format(averages.assists)}</th>
-          <th className={"p-2 text-sm hidden sm:table-cell"}>{format(averages.steals)}</th>
-          <th className={"p-2 text-sm hidden sm:table-cell"}>{format(averages.blocks)}</th>
-          <th className={"p-2 text-sm hidden sm:table-cell"}>{format(averages.turnovers)}</th>
-          <th className={"p-2 text-sm hidden sm:table-cell"}>{format(averages.personalFouls)}</th>
+          <th className={"p-2 text-sm text-center"}>{format(averages.points)}</th>
+          <th className={"p-2 text-sm text-center"}>{format(averages.rebounds)}</th>
+          <th className={"p-2 text-sm text-center"}>{format(averages.assists)}</th>
+          <th className={"p-2 text-sm text-center hidden sm:table-cell"}>{format(averages.steals)}</th>
+          <th className={"p-2 text-sm text-center hidden sm:table-cell"}>{format(averages.blocks)}</th>
+          <th className={"p-2 text-sm text-center hidden sm:table-cell"}>{format(averages.turnovers)}</th>
+          <th className={"p-2 text-sm text-center hidden sm:table-cell"}>{format(averages.personalFouls)}</th>
         </>
       ) : (
         <>
           <td className={"px-4 py-2 text-left text-sm border-r-1 border-gray-200"}>{props.children}</td>
-          <td className={"p-2 text-sm"}>{format(averages.points)}</td>
-          <td className={"p-2 text-sm"}>{format(averages.rebounds)}</td>
-          <td className={"p-2 text-sm"}>{format(averages.assists)}</td>
-          <td className={"p-2 text-sm hidden sm:table-cell"}>{format(averages.steals)}</td>
-          <td className={"p-2 text-sm hidden sm:table-cell"}>{format(averages.blocks)}</td>
-          <td className={"p-2 text-sm hidden sm:table-cell"}>{format(averages.turnovers)}</td>
-          <td className={"p-2 text-sm hidden sm:table-cell"}>{format(averages.personalFouls)}</td>
+          <td className={"p-2 text-sm text-center"}>{format(averages.points)}</td>
+          <td className={"p-2 text-sm text-center"}>{format(averages.rebounds)}</td>
+          <td className={"p-2 text-sm text-center"}>{format(averages.assists)}</td>
+          <td className={"p-2 text-sm text-center hidden sm:table-cell"}>{format(averages.steals)}</td>
+          <td className={"p-2 text-sm text-center hidden sm:table-cell"}>{format(averages.blocks)}</td>
+          <td className={"p-2 text-sm text-center hidden sm:table-cell"}>{format(averages.turnovers)}</td>
+          <td className={"p-2 text-sm text-center hidden sm:table-cell"}>{format(averages.personalFouls)}</td>
         </>
       )}
     </>
