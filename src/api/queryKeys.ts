@@ -7,6 +7,7 @@ const QueryKeys = {
   Statistics: "statistics",
   Teams: "teams",
   Team: "team",
+  TeamPlayers: "teamPlayers",
 }
 
 export default QueryKeys;

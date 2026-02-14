@@ -1,4 +1,13 @@
-import { buildPlayerQueryOptions, buildTeamQueryOptions, homeQueryOptions, playersQueryOptions, standingsQueryOptions, statisticsQueryOptions, teamsQueryOptions } from "../api/queryOptions.ts";
+import {
+  buildPlayerQueryOptions,
+  buildTeamPlayersQueryOptions,
+  buildTeamQueryOptions,
+  homeQueryOptions,
+  playersQueryOptions,
+  standingsQueryOptions,
+  statisticsQueryOptions,
+  teamsQueryOptions
+} from "../api/queryOptions.ts";
 import { findGameById, findPlayerGameLogs, mockGames } from "../data/games.ts";
 
 export function homeLoader({ context: queryClient }) {
@@ -61,5 +70,12 @@ export function teamsLoader({ context: queryClient }) {
 
 export async function teamLoader({ context: queryClient, params }) {
   const teamId = +params["teamId"];
-  return queryClient.queryClient.ensureQueryData(buildTeamQueryOptions(teamId));
+
+  const { team } = await queryClient.queryClient.ensureQueryData(buildTeamQueryOptions(teamId));
+  const { teamPlayers } = await queryClient.queryClient.ensureQueryData(buildTeamPlayersQueryOptions(teamId));
+
+  return {
+    team,
+    teamPlayers,
+  };
 }

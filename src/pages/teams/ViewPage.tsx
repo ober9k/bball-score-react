@@ -1,10 +1,20 @@
 import { getRouteApi } from "@tanstack/react-router";
 import Content from "../../components/layout/page/Content.tsx";
 import Header from "../../components/layout/page/Header.tsx";
+import SubHeading from "../../components/layout/page/SubHeading.tsx";
+import PlayersList from "../../components/PlayersList.tsx";
 import { Paths } from "../../routes/paths.ts";
+import type { Player } from "../../types/Player.ts";
+import type { Team } from "../../types/Team.ts";
+
+type LoaderData = {
+  team: Team,
+  teamPlayers: Array<Player>,
+}
 
 export default function ViewPage() {
-  const { team } = getRouteApi(Paths.Team).useLoaderData();
+  const { team, teamPlayers: players }: LoaderData = getRouteApi(Paths.Team).useLoaderData();
+
   return (
     <>
       <Header>
@@ -14,6 +24,10 @@ export default function ViewPage() {
         <p>
           Team: <strong>{team.name}</strong>
         </p>
+        <SubHeading>
+          Current Season
+        </SubHeading>
+        <PlayersList players={players} />
       </Content>
     </>
   )
