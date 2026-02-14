@@ -26,7 +26,7 @@ export default function StandingsPage() {
           <table className="w-full">
             <thead>
             <tr className="bg-gray-200 border-b border-gray-300">
-              <th className={"px-4 py-2 text-left text-sm"}>&nbsp;</th>
+              <th className={"px-4 py-2 text-left text-sm border-r-1 border-gray-300"}>&nbsp;</th>
               <th className={"p-2 text-sm text-center w-12"}>W</th>
               <th className={"p-2 text-sm text-center w-12"}>L</th>
               <th className={"p-2 text-sm text-center w-12"}>D</th>
@@ -38,7 +38,7 @@ export default function StandingsPage() {
             <tbody>
             {standingsLogs.map((standingsLog) => (
               <tr key={standingsLog.id} className="even:bg-gray-100">
-                <td className={"px-4 py-2 text-left text-sm"}>
+                <td className={"px-4 py-2 text-left text-sm border-r-1 border-gray-200"}>
                   <TeamLink team={standingsLog.team}/>
                 </td>
                 <td className={"p-2 text-sm text-center"}>{standingsLog.wins}</td>
