@@ -5,4 +5,5 @@ export type Player = {
   name: string,
   position: PositionType,
   number: number,
+  height: string,
 }
