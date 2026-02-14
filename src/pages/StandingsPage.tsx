@@ -1,6 +1,7 @@
 import { getRouteApi } from "@tanstack/react-router";
 import Content from "../components/layout/page/Content.tsx";
 import Header from "../components/layout/page/Header.tsx";
+import SubHeading from "../components/layout/page/SubHeading.tsx";
 import TeamLink from "../components/links/TeamLink.tsx";
 import { Paths } from "../routes/paths.ts";
 import type { StandingsLog } from "../types/StandingsLog.ts";
@@ -18,6 +19,9 @@ export default function StandingsPage() {
         Standings
       </Header>
       <Content>
+        <SubHeading>
+          Current Season
+        </SubHeading>
         <div className={"standings-log py-2"}>
           <table className="w-full">
             <thead>

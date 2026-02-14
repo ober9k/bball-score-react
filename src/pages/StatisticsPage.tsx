@@ -2,6 +2,7 @@ import { getRouteApi } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import Content from "../components/layout/page/Content.tsx";
 import Header from "../components/layout/page/Header.tsx";
+import SubHeading from "../components/layout/page/SubHeading.tsx";
 import PlayerLink from "../components/links/PlayerLink.tsx";
 import AveragesRow from "../components/stats/row/AveragesRow.tsx";
 import TitlesRow from "../components/stats/row/TitlesRow.tsx";
@@ -37,6 +38,9 @@ export default function StatisticsPage() {
         Statistics
       </Header>
       <Content>
+        <SubHeading>
+          Current Season
+        </SubHeading>
         <div className={"statistics py-2"}>
           <table className={"w-full"}>
             <thead>
