@@ -1,5 +1,5 @@
 import type { Game } from "../types/Game.ts";
-import BoxScore from "./stats/BoxScore.tsx";
+import BoxScoreTable from "./stats/BoxScoreTable.tsx";
 import Matchup from "./stats/Matchup.tsx";
 
 type GamesListProps = {
@@ -15,7 +15,7 @@ export default function GamesList({ games }: GamesListProps) {
             <Matchup game={game} />
             {game.teamLogs.map((teamLog) => (
               <div key={teamLog.id}>
-                <BoxScore teamLog={teamLog} />
+                <BoxScoreTable teamLog={teamLog} />
               </div>
             ))}
           </li>

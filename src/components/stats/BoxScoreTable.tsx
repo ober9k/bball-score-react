@@ -10,7 +10,7 @@ type BoxScoreProps = {
   teamLog: TeamLog,
 }
 
-export default function BoxScore({ teamLog }: BoxScoreProps) {
+export default function BoxScoreTable({ teamLog }: BoxScoreProps) {
   return (
     <>
       <div className={"box-score py-2"}>
