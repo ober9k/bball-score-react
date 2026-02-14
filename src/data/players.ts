@@ -2,66 +2,27 @@ import type { Player } from "../types/Player.ts";
 import { Position } from "../types/Position.ts";
 
 export const mockPlayers: Array<Player> = [
-  {
-    id: 11,
-    name: "Alfonso Mccormick",
-    position: Position.PointGuard,
-    number: 21,
-  },
-  {
-    id: 12,
-    name: "Myron Gaines",
-    position: Position.ShootingGuard,
-    number: 11,
-  },
-  {
-    id: 13,
-    name: "Genaro Acosta",
-    position: Position.SmallForward,
-    number: 17,
-  },
-  {
-    id: 14,
-    name: "Zackary Fernandez",
-    position: Position.PowerForward,
-    number: 36,
-  },
-  {
-    id: 15,
-    name: "Leonardo Irwin",
-    position: Position.Center,
-    number: 12,
-  },
-  {
-    id: 21,
-    name: "Andres Wolfe",
-    position: Position.PointGuard,
-    number: 24,
-  },
-  {
-    id: 22,
-    name: "Kevin Chapman",
-    position: Position.ShootingGuard,
-    number: 41,
-  },
-  {
-    id: 23,
-    name: "Alexis Mendoza",
-    position: Position.SmallForward,
-    number: 15,
-  },
-  {
-    id: 24,
-    name: "Joaquin Bernal",
-    position: Position.PowerForward,
-    number: 18,
-  },
-  {
-    id: 25,
-    name: "Elliott Ryder",
-    position: Position.Center,
-    number: 33,
-  },
+  // SayLess 2.0
+  { id: 11, name: "J.J. Baltan",   number: 16,  position: Position.PointGuard,    height: `5'6"` },
+  { id: 12, name: "A. Cuenca",     number: 9,   position: Position.PowerForward,  height: `5'7"` },
+  { id: 13, name: "A.J. Dimailig", number: 23,  position: Position.PowerForward,  height: `5'9"` },
+  { id: 14, name: "D. Hardaker",   number: 2,   position: Position.SmallForward,  height: `5'8"` },
+  { id: 15, name: "K. Joven",      number: 11,  position: Position.PointGuard,    height: `5'7"` },
+  { id: 16, name: "K. Joven",      number: 26,  position: Position.SmallForward,  height: `5'8"` },
+  { id: 17, name: "K. Joven",      number: 14,  position: Position.ShootingGuard, height: `5'8"` },
+  { id: 18, name: "A. Martinez",   number: 1,   position: Position.Center,        height: `6'1"` },
+  { id: 19, name: "T.J. Rivera",   number: 0,   position: Position.PowerForward,  height: `5'9"` },
+  { id: 20, name: "C. Sheridan",   number: 91,  position: Position.Center,        height: `6'3"` },
+  // InvestorKit
+  { id: 21, name: "Player #7",     number: 7,   position: Position.Center,        height: `5'11"` },
+  { id: 22, name: "Player #8",     number: 8,   position: Position.PointGuard,    height: `5'7"` },
+  { id: 23, name: "Player #9",     number: 9,   position: Position.SmallForward,  height: `5'11"` },
+  { id: 24, name: "Player #11",    number: 11,  position: Position.ShootingGuard, height: `5'8"` },
+  { id: 25, name: "Player #12",    number: 12,  position: Position.Center,        height: `6'0"` },
+  { id: 26, name: "Player #22",    number: 22,  position: Position.SmallForward,  height: `5'8"` },
+  { id: 27, name: "Player #55",    number: 55,  position: Position.ShootingGuard, height: `5'9"` },
+  { id: 28, name: "Player #68",    number: 68,  position: Position.PointGuard,    height: `5'7"` },
+  { id: 29, name: "Player #100",   number: 100, position: Position.PowerForward,  height: `5'10"` },
 ];
 
 /**
@@ -70,8 +31,4 @@ export const mockPlayers: Array<Player> = [
  */
 export function findPlayerById(playerId: number): Player {
   return mockPlayers.find(({ id }) => id === playerId)!;
-}
-
-export function tempFindPlayerById(playerId: number): Player | undefined {
-  return mockPlayers.find(({ id }) => id === playerId);
 }
