@@ -122,6 +122,6 @@ export async function getTeamStatistics(req: Request, res: Response) {
 
   res.status(200).json({
     team: findByTeamId(teamId),
-    statisticsLogs: getStatisticsLogs(teamId),
+    teamStatistics: getStatisticsLogs(teamId),
   });
 }

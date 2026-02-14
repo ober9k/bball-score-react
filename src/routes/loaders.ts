@@ -1,7 +1,7 @@
 import {
   buildPlayerQueryOptions,
   buildTeamPlayersQueryOptions,
-  buildTeamQueryOptions,
+  buildTeamQueryOptions, buildTeamStatisticsQueryOptions,
   homeQueryOptions,
   playersQueryOptions,
   standingsQueryOptions,
@@ -73,9 +73,11 @@ export async function teamLoader({ context: queryClient, params }) {
 
   const { team } = await queryClient.queryClient.ensureQueryData(buildTeamQueryOptions(teamId));
   const { teamPlayers } = await queryClient.queryClient.ensureQueryData(buildTeamPlayersQueryOptions(teamId));
+  const { teamStatistics } = await queryClient.queryClient.ensureQueryData(buildTeamStatisticsQueryOptions(teamId));
 
   return {
     team,
     teamPlayers,
+    teamStatistics,
   };
 }
