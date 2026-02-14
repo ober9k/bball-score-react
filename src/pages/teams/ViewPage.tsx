@@ -25,7 +25,7 @@ export default function ViewPage() {
           Team: <strong>{team.name}</strong>
         </p>
         <SubHeading>
-          Current Season
+          Current Season Roster
         </SubHeading>
         <PlayersList players={players} />
       </Content>
