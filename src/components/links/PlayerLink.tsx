@@ -8,8 +8,11 @@ type PlayerLinkProps = {
 
 export default function PlayerLink({ player }: PlayerLinkProps) {
   return (
-    <Link to={Paths.Player} params={{ playerId: player.id }}>
-      {player.name}
+    <Link to={Paths.Player} params={{playerId: player.id}}>
+      {player.name}&nbsp;
+      <small className="text-gray-400">
+        #{player.number}
+      </small>
     </Link>
   );
 }
