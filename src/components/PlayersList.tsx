@@ -11,15 +11,15 @@ function NonEmptyPlayersList({ players }: PlayerListProps) {
     <div className="grid grid-cols-3 gap-4">
       {players.map((player) => (
         <div key={player.id} className="border border-gray-200 rounded-sm">
-          <div className="relative min-h-24 bg-gray-300">
+          <div className="relative min-h-20 bg-gray-300">
             <div className="absolute right-0">
-              <img src="/images/player.png" alt={player.name} height={96} width={96} className={"mx-1"}/>
+              <img src="/images/player.png" alt={player.name} height={72} width={72} className={"mx-1"}/>
             </div>
             <div className="absolute p-2">
               <strong className="font-medium text-lg"><PlayerLink player={player}/></strong>
             </div>
           </div>
-          <div className="p-1">
+          <div className="p-2">
             #{player.number} &ndash; {mapBasePosition(player.position)}
           </div>
         </div>
@@ -41,8 +41,11 @@ export default function PlayersList({ players }: PlayerListProps) {
 
   return (
     <div>
-      {hasPlayers && <NonEmptyPlayersList players={players} />}
-      {!hasPlayers && <EmptyPlayersList/>}
+      {hasPlayers ? (
+        <NonEmptyPlayersList players={players} />
+      ) : (
+        <EmptyPlayersList/>
+      )}
     </div>
   );
 }
