@@ -69,13 +69,15 @@ function getStatisticsLogs(teamId: number): Array<StatisticsLog> {
       playerId: player.id,
       player: player,
       played: 0,
-      points: 0,
-      rebounds: 0,
-      assists: 0,
-      steals: 0,
-      blocks: 0,
-      personalFouls: 0,
-      turnovers: 0,
+      totals: {
+        points: 0,
+        rebounds: 0,
+        assists: 0,
+        steals: 0,
+        blocks: 0,
+        personalFouls: 0,
+        turnovers: 0,
+      },
     };
   }
 
@@ -90,13 +92,13 @@ function getStatisticsLogs(teamId: number): Array<StatisticsLog> {
     // todo: refactor to something nicer
     const playerRow = getRow(playerLog.player!)!;
     playerRow.played += playerLog.played ? 1 : 0;
-    playerRow.points += playerLog.points;
-    playerRow.rebounds += playerLog.rebounds;
-    playerRow.assists += playerLog.assists;
-    playerRow.steals += playerLog.steals;
-    playerRow.blocks += playerLog.blocks;
-    playerRow.personalFouls += playerLog.personalFouls;
-    playerRow.turnovers += playerLog.turnovers;
+    playerRow.totals.points += playerLog.points;
+    playerRow.totals.rebounds += playerLog.rebounds;
+    playerRow.totals.assists += playerLog.assists;
+    playerRow.totals.steals += playerLog.steals;
+    playerRow.totals.blocks += playerLog.blocks;
+    playerRow.totals.personalFouls += playerLog.personalFouls;
+    playerRow.totals.turnovers += playerLog.turnovers;
   }
 
   playerLogs.forEach((playerLog) => {
@@ -104,13 +106,13 @@ function getStatisticsLogs(teamId: number): Array<StatisticsLog> {
   });
 
   statisticsLogs.forEach((statisticsLog) => {
-    statisticsLog.points /= statisticsLog.played;
-    statisticsLog.rebounds /= statisticsLog.played;
-    statisticsLog.assists /= statisticsLog.played;
-    statisticsLog.steals /= statisticsLog.played;
-    statisticsLog.blocks /= statisticsLog.played;
-    statisticsLog.personalFouls /= statisticsLog.played;
-    statisticsLog.turnovers /= statisticsLog.played;
+    statisticsLog.totals.points /= statisticsLog.played;
+    statisticsLog.totals.rebounds /= statisticsLog.played;
+    statisticsLog.totals.assists /= statisticsLog.played;
+    statisticsLog.totals.steals /= statisticsLog.played;
+    statisticsLog.totals.blocks /= statisticsLog.played;
+    statisticsLog.totals.personalFouls /= statisticsLog.played;
+    statisticsLog.totals.turnovers /= statisticsLog.played;
   });
 
   return statisticsLogs;

@@ -10,8 +10,8 @@ type StatisticsTableProps = {
 
 function sortStatisticsByKey(sort: string) {
   return (statisticsLogA, statisticsLogB) => {
-    const valueA = statisticsLogA[sort];
-    const valueB = statisticsLogB[sort];
+    const valueA = statisticsLogA.totals[sort];
+    const valueB = statisticsLogB.totals[sort];
 
     return (valueA === valueB) ? 0 : (valueA > valueB) ?  -1 : 1;
   };
@@ -37,7 +37,7 @@ export default function StatisticsTable({ statisticsLogs }: StatisticsTableProps
         <tbody>
         {sortedLogs.map((statisticsLog) => (
           <tr key={statisticsLog.id} className="even:bg-gray-100">
-            <AveragesRow averages={statisticsLog}>
+            <AveragesRow averages={statisticsLog.totals}>
               <PlayerLink player={statisticsLog.player}/>
             </AveragesRow>
           </tr>

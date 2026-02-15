@@ -1,15 +1,10 @@
 import type { Player } from "@types/player";
+import type { Totals } from "@types/stats/totals";
 
 export type StatisticsLog = {
   id: number,
   playerId: number,
   player: Player,
   played: number,
-  points: number,
-  rebounds: number,
-  assists: number,
-  steals: number,
-  blocks: number,
-  personalFouls: number,
-  turnovers: number,
+  totals: Totals,
 }
