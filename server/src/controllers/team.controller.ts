@@ -3,7 +3,7 @@ import type { TeamData } from "@types/data/team-data";
 import type { Player } from "@types/player";
 import type { StatisticsLog } from "@types/statistics-log";
 import { sleep } from "@utils/sleep";
-import { addFromPlayerLog, buildEmptyStatisticsLog, calculateAverages } from "@utils/statistics.utils";
+import { addFromPlayerLog, calculateAverages, prepareStatisticsLogs } from "@utils/statistics.utils";
 import { type Request, type Response } from "express";
 import { mockGames } from "../../../src/data/games";
 import type { PlayerLog } from "../../../src/types/game/PlayerLog";
@@ -52,33 +52,21 @@ function getStatisticsLogs(teamId: number): Array<StatisticsLog> {
     .map((teamLog) => [...teamLog.playerLogs])
     .flat();
 
-  /* TODO: fix duplication later */
-  const statisticsLogs: Array<StatisticsLog> = [];
+  /**
+   * Create initial dataset for statistics.
+   */
+  const statisticsLogs = prepareStatisticsLogs(playerLogs);
 
-  function getRow(player: Player): StatisticsLog | undefined {
+  function getRow(player: Player): StatisticsLog {
     return statisticsLogs.find((playerLog) => playerLog.playerId === player.id);
   }
 
-  function hasRow(player: Player): boolean {
-    return getRow(player) !== undefined;
-  }
-
   function updateForPlayer(playerLog: PlayerLog): void {
-    // TODO: refactor to something nicer
-    if (!hasRow(playerLog.player!)) {
-      statisticsLogs.push(
-        buildEmptyStatisticsLog(playerLog.player!)
-      );
-    }
-
-    // TODO: refactor to something nicer
-    // TODO: player will eventually always exist
-    addFromPlayerLog(getRow(playerLog.player!)!, playerLog);
+    addFromPlayerLog(getRow(playerLog.player!), playerLog);
   }
 
-  playerLogs.forEach((playerLog) => {
-    updateForPlayer(playerLog);
-  });
+  /* calculate individual stats for players */
+  playerLogs.forEach(updateForPlayer);
 
   /* potential separate flag/data for totals/averages */
   statisticsLogs.forEach(calculateAverages);

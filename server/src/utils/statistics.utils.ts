@@ -7,6 +7,27 @@ export function getTotalsKeys(totals: Totals): Array<string> {
   return Object.getOwnPropertyNames(totals);
 }
 
+/**
+ * Prepare a set of statistics logs for the distinct player list.
+ * @param playerLogs
+ */
+export function prepareStatisticsLogs(playerLogs: Array<PlayerLog>): Array<StatisticsLog> {
+  /**
+   * Filter to just a distinct set of players.
+   */
+  const distinctPlayers = playerLogs
+    .map(({ playerId, player }) => ({ playerId, player }))
+    .filter(({ playerId }, index, self) => {
+      return (index === self.findIndex(({ playerId: id }) => id === playerId));
+    });
+
+  /**
+   * Create initial dataset for statistics.
+   */
+  return distinctPlayers
+    .map(({ player }) => buildEmptyStatisticsLog(player!));
+}
+
 export function buildEmptyStatisticsLog(player: Player): StatisticsLog {
   return {
     id: player.id,
