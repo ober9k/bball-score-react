@@ -12,11 +12,11 @@ import type { Team } from "../../types/Team.ts";
 type LoaderData = {
   team: Team,
   teamPlayers: Array<Player>,
-  teamStatistics: Array<StatisticsLog>,
+  teamStatisticsLogs: Array<StatisticsLog>,
 }
 
 export default function ViewPage() {
-  const { team, teamPlayers: players, teamStatistics: statisticsLogs }: LoaderData = getRouteApi(Paths.Team).useLoaderData();
+  const { team, teamPlayers: players, teamStatisticsLogs: statisticsLogs }: LoaderData = getRouteApi(Paths.Team).useLoaderData();
 
   return (
     <>

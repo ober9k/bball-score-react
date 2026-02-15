@@ -67,3 +67,30 @@ export function calculateAverages(statisticsLog: StatisticsLog): void {
     statisticsLog.totals[key] /= statisticsLog.played;
   });
 }
+
+/**
+ * Calculate complete statistics for provided player logs.
+ * @param playerLogs
+ */
+export function calculateStatisticsFromPlayerLogs(playerLogs: Array<PlayerLog>): Array<StatisticsLog> {
+  /**
+   * Create initial dataset for statistics.
+   */
+  const statisticsLogs = prepareStatisticsLogs(playerLogs);
+
+  function getRow(player: Player): StatisticsLog {
+    return statisticsLogs.find((playerLog) => playerLog.playerId === player.id);
+  }
+
+  function updateForPlayer(playerLog: PlayerLog): void {
+    addFromPlayerLog(getRow(playerLog.player!), playerLog);
+  }
+
+  /* calculate individual stats for players */
+  playerLogs.forEach(updateForPlayer);
+
+  /* potential separate flag/data for totals/averages */
+  statisticsLogs.forEach(calculateAverages);
+
+  return statisticsLogs;
+}

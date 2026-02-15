@@ -1,6 +1,9 @@
 import type { TeamData } from "@types/data/team-data";
 import type { Player } from "@types/player";
+import type { StatisticsLog } from "@types/statistics-log";
 import type { Team } from "@types/team";
+import { calculateStatisticsFromPlayerLogs } from "@utils/statistics.utils";
+import { mockGames } from "../../../src/data/games";
 import { mockPlayers } from "../../../src/data/players";
 import { mockTeamPlayers } from "../../../src/data/teamPlayers";
 import { mockTeams } from "../../../src/data/teams";
@@ -52,4 +55,15 @@ export function findTeamPlayersById(teamId: number): Array<Player> {
     .map((teamPlayer) => teamPlayer.playerId);
 
   return mockPlayers.filter((player) => teamPlayerIds.includes(player.id));
+}
+
+export function findTeamStatisticsLogsById(teamId: number): Array<StatisticsLog> {
+  const playerLogs = mockGames
+    .map((game) => [...game.teamLogs])
+    .flat()
+    .filter((teamLog) => teamLog.teamId === teamId) /* fuck yeah */
+    .map((teamLog) => [...teamLog.playerLogs])
+    .flat();
+
+  return calculateStatisticsFromPlayerLogs(playerLogs);
 }
