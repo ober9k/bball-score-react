@@ -2,11 +2,11 @@ import type { Player } from "../types/Player.ts";
 import { mapBasePosition } from "../utilities/PlayerUtils.ts";
 import PlayerLink from "./links/PlayerLink.tsx";
 
-type PlayerListProps = {
+type PlayersListProps = {
   players: Array<Player>,
 }
 
-function NonEmptyPlayersList({ players }: PlayerListProps) {
+function NonEmptyPlayersList({ players }: PlayersListProps) {
   return (
     <div className="grid grid-cols-3 gap-4">
       {players.map((player) => (
@@ -36,7 +36,7 @@ function EmptyPlayersList() {
   )
 }
 
-export default function PlayersList({ players }: PlayerListProps) {
+export default function PlayersList({ players }: PlayersListProps) {
   const hasPlayers = !!players.length;
 
   return (
