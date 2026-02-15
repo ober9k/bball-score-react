@@ -3,6 +3,7 @@ import type { TeamData } from "@types/data/team-data";
 import type { Player } from "@types/player";
 import type { StatisticsLog } from "@types/statistics-log";
 import { sleep } from "@utils/sleep";
+import { addFromPlayerLog, buildEmptyStatisticsLog, calculateAverages } from "@utils/statistics.utils";
 import { type Request, type Response } from "express";
 import { mockGames } from "../../../src/data/games";
 import type { PlayerLog } from "../../../src/types/game/PlayerLog";
@@ -52,7 +53,6 @@ function getStatisticsLogs(teamId: number): Array<StatisticsLog> {
     .flat();
 
   /* TODO: fix duplication later */
-  let statisticsRow = 1;
   const statisticsLogs: Array<StatisticsLog> = [];
 
   function getRow(player: Player): StatisticsLog | undefined {
@@ -63,57 +63,25 @@ function getStatisticsLogs(teamId: number): Array<StatisticsLog> {
     return getRow(player) !== undefined;
   }
 
-  function createForPlayer(player: Player): StatisticsLog {
-    return {
-      id: statisticsRow++,
-      playerId: player.id,
-      player: player,
-      played: 0,
-      totals: {
-        points: 0,
-        rebounds: 0,
-        assists: 0,
-        steals: 0,
-        blocks: 0,
-        personalFouls: 0,
-        turnovers: 0,
-      },
-    };
-  }
-
   function updateForPlayer(playerLog: PlayerLog): void {
-    // todo: refactor to something nicer
+    // TODO: refactor to something nicer
     if (!hasRow(playerLog.player!)) {
       statisticsLogs.push(
-        createForPlayer(playerLog.player!)
+        buildEmptyStatisticsLog(playerLog.player!)
       );
     }
 
-    // todo: refactor to something nicer
-    const playerRow = getRow(playerLog.player!)!;
-    playerRow.played += playerLog.played ? 1 : 0;
-    playerRow.totals.points += playerLog.points;
-    playerRow.totals.rebounds += playerLog.rebounds;
-    playerRow.totals.assists += playerLog.assists;
-    playerRow.totals.steals += playerLog.steals;
-    playerRow.totals.blocks += playerLog.blocks;
-    playerRow.totals.personalFouls += playerLog.personalFouls;
-    playerRow.totals.turnovers += playerLog.turnovers;
+    // TODO: refactor to something nicer
+    // TODO: player will eventually always exist
+    addFromPlayerLog(getRow(playerLog.player!)!, playerLog);
   }
 
   playerLogs.forEach((playerLog) => {
     updateForPlayer(playerLog);
   });
 
-  statisticsLogs.forEach((statisticsLog) => {
-    statisticsLog.totals.points /= statisticsLog.played;
-    statisticsLog.totals.rebounds /= statisticsLog.played;
-    statisticsLog.totals.assists /= statisticsLog.played;
-    statisticsLog.totals.steals /= statisticsLog.played;
-    statisticsLog.totals.blocks /= statisticsLog.played;
-    statisticsLog.totals.personalFouls /= statisticsLog.played;
-    statisticsLog.totals.turnovers /= statisticsLog.played;
-  });
+  /* potential separate flag/data for totals/averages */
+  statisticsLogs.forEach(calculateAverages);
 
   return statisticsLogs;
 }
