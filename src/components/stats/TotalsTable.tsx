@@ -1,6 +1,6 @@
 import type { GameLog } from "../../data/games.ts";
 import type { Team } from "../../types/Team.ts";
-import { getTotals } from "../../utilities/StatsUtils.ts";
+import { getTotalsX } from "../../utilities/StatsUtils.ts";
 import TeamLink from "../links/TeamLink.tsx";
 import TeamsRow from "./row/TeamsRow.tsx";
 import TitlesRow from "./row/TitlesRow.tsx";
@@ -12,7 +12,7 @@ type TotalsTableProps = {
 }
 
 export default function TotalsTable({ team, gameLogs }: TotalsTableProps) {
-  const totals = getTotals(gameLogs.map(({ totals }) => totals));
+  const totals = getTotalsX(gameLogs.map(({ totals }) => totals));
 
   return (
     <>

@@ -1,7 +1,7 @@
 import type { Player } from "@types/player";
+import type { PlayerLog } from "@types/player-log";
 import type { StatisticsLog } from "@types/statistics-log";
 import type { Totals } from "@types/stats/totals";
-import type { PlayerLog } from "../../../src/types/game/PlayerLog";
 
 export function getTotalsKeys(totals: Totals): Array<string> {
   return Object.getOwnPropertyNames(totals);
@@ -54,7 +54,7 @@ export function addFromPlayerLog(statisticsLog: StatisticsLog, playerLog: Player
   statisticsLog.played += playerLog.played ? 1 : 0;
 
   getTotalsKeys(statisticsLog.totals).forEach((key) => {
-    statisticsLog.totals[key] += playerLog[key];
+    statisticsLog.totals[key] += playerLog.totals[key];
   });
 }
 
@@ -83,7 +83,7 @@ export function calculateStatisticsFromPlayerLogs(playerLogs: Array<PlayerLog>):
   }
 
   function updateForPlayer(playerLog: PlayerLog): void {
-    addFromPlayerLog(getRow(playerLog.player!), playerLog);
+    addFromPlayerLog(getRow(playerLog.player), playerLog);
   }
 
   /* calculate individual stats for players */

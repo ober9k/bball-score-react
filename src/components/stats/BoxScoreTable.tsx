@@ -29,7 +29,7 @@ export default function BoxScoreTable({ teamLog }: BoxScoreProps) {
           <tbody>
           {teamLog.playerLogs.map((playerLog) => (
             <tr key={playerLog.id} className="even:bg-gray-100">
-              <TotalsRow totals={playerLog}>
+              <TotalsRow totals={playerLog.totals}>
                 {/* `playerLog.player` will always be set */}
                 <PlayerLink player={playerLog.player!} />&nbsp;
                 <small className="text-gray-400">

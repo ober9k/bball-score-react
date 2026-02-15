@@ -1,6 +1,6 @@
 import type { GameLog } from "../../data/games.ts";
 import type { Team } from "../../types/Team.ts";
-import { getAverages } from "../../utilities/StatsUtils.ts";
+import { getAveragesX } from "../../utilities/StatsUtils.ts";
 import TeamLink from "../links/TeamLink.tsx";
 import AveragesRow from "./row/AveragesRow.tsx";
 import TeamsRow from "./row/TeamsRow.tsx";
@@ -34,7 +34,7 @@ type GameLogTableProps = {
 }
 
 export default function GameLogTable({ team, gameLogs }: GameLogTableProps) {
-  const averages = getAverages(gameLogs.map(({ totals }) => totals));
+  const averages = getAveragesX(gameLogs.map(({ totals }) => totals));
 
   return (
     <>

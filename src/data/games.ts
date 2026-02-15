@@ -28,7 +28,9 @@ const gameIds = {
 };
 
 function mockPlayer(playerId: number, player: Player, played: boolean, points: number, rebounds: number, assists: number, steals: number, blocks: number, turnovers: number, personalFouls: number) {
-  return { id: playerLogId++, playerId, player, played, points, rebounds, assists, steals, blocks, turnovers, personalFouls } as PlayerLog;
+  const totals = { points, rebounds, assists, steals, blocks, turnovers, personalFouls };
+
+  return { id: playerLogId++, playerId, player, played, totals } as PlayerLog;
 }
 
 const mockAwayPlayerLogs = [
@@ -571,15 +573,7 @@ export function findPlayerGameLogs(playerId: number): Array<GameLog> {
       ownScore: ownScore,
       opposingTeam: opposingTeam,
       opposingScore: opposingScore,
-      totals: {
-        points: playerLog.points,
-        rebounds: playerLog.rebounds,
-        assists: playerLog.assists,
-        steals: playerLog.steals,
-        blocks: playerLog.blocks,
-        personalFouls: playerLog.personalFouls,
-        turnovers: playerLog.turnovers,
-      }
+      totals: playerLog.totals,
     };
   });
 }
