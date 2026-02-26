@@ -8,7 +8,7 @@ export function getAwayTeamLog(game: Game): TeamLog {
 }
 
 export function getAwayTeam(game: Game): Team {
-  return getAwayTeamLog(game).team;
+  return getAwayTeamLog(game).team!; /* expected return value, TODO update type */
 }
 
 export function getHomeTeamLog(game: Game): TeamLog {
@@ -16,7 +16,7 @@ export function getHomeTeamLog(game: Game): TeamLog {
 }
 
 export function getHomeTeam(game: Game): Team {
-  return getHomeTeamLog(game).team;
+  return getHomeTeamLog(game).team!; /* expected return value, TODO update type */
 }
 
 export function filterPlayerLogByPlayerId(playerLogs: Array<PlayerLog>, playerId: number): Array<PlayerLog> {
