@@ -1,6 +1,6 @@
-import './App.css'
+import './app.css'
 
-function App() {
+export default function App() {
   return (
     <>
       <section id="center">
@@ -14,7 +14,5 @@ function App() {
         </div>
       </section>
     </>
-  )
+  );
 }
-
-export default App
