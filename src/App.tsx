@@ -4,9 +4,11 @@ function App() {
   return (
     <>
       <section id="center">
-        <div>
-          <h1>bball-score-react</h1>
-          <p>
+        <div className="p-8">
+          <h1 className="p-2 text-3xl font-medium">
+            bball-score-react
+          </h1>
+          <p className="p-2 text-sm">
             Hello World.
           </p>
         </div>
