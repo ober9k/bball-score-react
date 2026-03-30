@@ -7,6 +7,7 @@ import { createRoute } from "@tanstack/react-router";
 export type Route = {
   path: any,
   component: any,
+  loader?: any,
 };
 
 export const mapRoute = (route: Route) => {
@@ -14,5 +15,6 @@ export const mapRoute = (route: Route) => {
     getParentRoute: () => rootRoute,
     path: route.path,
     component: route.component,
+    loader: route.loader,
   });
 };

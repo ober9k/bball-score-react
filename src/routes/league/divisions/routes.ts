@@ -1,7 +1,21 @@
+import { buildDivisionQueryOptions, divisionsQueryOptions } from "@/apis/query-options";
 import DivisionPage from "@/pages/league/divisions/division-page";
 import DivisionsPage from "@/pages/league/divisions/divisions-page";
 import type { Route } from "@/routes/route";
 import { mapRoute } from "@/routes/route";
+
+async function divisionsLoader({ context }) {
+  return {
+    divisions: await context.queryClient.ensureQueryData(divisionsQueryOptions)
+  };
+}
+
+async function divisionLoader({ context, params }) {
+  const divisionId = +params["divisionId"];
+  return {
+    division: await context.queryClient.ensureQueryData(buildDivisionQueryOptions(divisionId))
+  };
+}
 
 const paths = {
   Divisions: "/league/divisions",
@@ -11,9 +25,11 @@ const paths = {
 const routes: Route[] = [{
   path: paths.Divisions,
   component: DivisionsPage,
+  loader: divisionsLoader,
 }, {
   path: paths.Division,
   component: DivisionPage,
+  loader: divisionLoader,
 }];
 
 export const divisionsPaths = paths;
