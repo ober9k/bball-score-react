@@ -13,6 +13,10 @@ export default function DefaultLayout() {
 
   const client = new QueryClient();
 
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
+
   return (
     <>
       <PageContext value={pageContext}>
