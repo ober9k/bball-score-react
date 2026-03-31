@@ -1,4 +1,5 @@
 import Navigation from "@/components/layout/navigation";
+import type { Link } from "@/components/layout/page/page-breadcrumbs.tsx";
 import PageHeader from "@/components/layout/page/page-header.tsx";
 import { PageContext } from "@/contexts/page-context.ts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -7,10 +8,20 @@ import { useEffect, useState } from "react";
 
 export default function DefaultLayout() {
   const [ title, setTitle ] = useState("");
-  const [ pageTitle, setPageTitle ] = useState("");
-  const [ pageSubTitle, setPageSubTitle ] = useState("");
-  const [ pageBreadcrumbs, setPageBreadcrumbs ] = useState([]);
-  const pageContext = { title, setTitle, pageTitle, setPageTitle, pageSubTitle, setPageSubTitle, pageBreadcrumbs, setPageBreadcrumbs };
+  const [ subTitle, setSubTitle ] = useState("");
+  const [ breadcrumbs, setBreadcrumbs ] = useState([]);
+
+  /**
+   * Utility function to wrap the above methods.
+   * TODO: relocate to somewhere more suitable
+   */
+  const setPageHeader = (title: string = "", subTitle: string = "", breadcrumbs: Link[] = []) => {
+    setTitle(title);
+    setSubTitle(subTitle);
+    setBreadcrumbs(breadcrumbs);
+  };
+
+  const pageContext = { setPageHeader, title, setTitle, subTitle, setSubTitle, breadcrumbs, setBreadcrumbs };
 
   const client = new QueryClient();
 
@@ -21,7 +32,7 @@ export default function DefaultLayout() {
   return (
     <>
       <PageContext value={pageContext}>
-        <Navigation/>
+        <Navigation />
         <PageHeader />
         <QueryClientProvider client={client}>
           <Outlet/>

@@ -3,24 +3,22 @@ import { useContext } from "react";
 
 export default function usePageContext() {
   const {
+    setPageHeader,
     title,
     setTitle,
-    pageTitle,
-    setPageTitle,
-    pageSubTitle,
-    setPageSubTitle,
-    pageBreadcrumbs,
-    setPageBreadcrumbs,
+    subTitle,
+    setSubTitle,
+    breadcrumbs,
+    setBreadcrumbs,
   } = useContext(PageContext);
 
   return {
+    setPageHeader,
     title,
     setTitle,
-    pageTitle,
-    setPageTitle,
-    pageSubTitle,
-    setPageSubTitle,
-    pageBreadcrumbs,
-    setPageBreadcrumbs,
+    subTitle,
+    setSubTitle,
+    breadcrumbs,
+    setBreadcrumbs,
   };
 }

@@ -10,14 +10,13 @@ type LoaderProps = {
 
 export default function DivisionPage() {
   const { division }: LoaderProps = getRouteApi(divisionsPaths.Division).useLoaderData();
-  const { setTitle, setPageBreadcrumbs } = usePageContext();
+  const { setPageHeader } = usePageContext();
 
   useEffect(() => {
-    setTitle(`${division.name}`);
-    setPageBreadcrumbs([
+    setPageHeader("Division", division.name, [
       { title: "League", to: leaguePaths.League },
       { title: "Divisions", to: divisionsPaths.Divisions },
-      { title: `${division.name}` },
+      { title: division.name },
     ]);
   }, []);
 

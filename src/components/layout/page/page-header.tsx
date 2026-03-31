@@ -3,22 +3,22 @@ import usePageContext from "@/hooks/use-page-context.ts";
 import * as styles from "@/components/layout/page/page-header.module.css";
 
 export default function PageHeader() {
-  const { pageTitle, pageSubTitle, pageBreadcrumbs } = usePageContext();
+  const { title, subTitle, breadcrumbs } = usePageContext();
 
   return (
     <header className={styles.header}>
       <div className={styles.heading}>
         <h1 className={styles.title}>
-          {pageTitle}
+          {title}
         </h1>
-        {pageSubTitle && (
+        {subTitle && (
           <h2 className={styles.subTitle}>
-            &ndash; {pageSubTitle}
+            &ndash; {subTitle}
           </h2>
         )}
       </div>
       <div className={styles.breadcrumbs}>
-        <PageBreadcrumbs links={pageBreadcrumbs} />
+        <PageBreadcrumbs breadcrumbs={breadcrumbs} />
       </div>
     </header>
   );

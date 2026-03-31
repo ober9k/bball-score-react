@@ -10,11 +10,10 @@ type LoaderProps = {
 
 export default function PlayersPage() {
   const { players }: LoaderProps = getRouteApi(playersPaths.Players).useLoaderData();
-  const { setTitle, setPageBreadcrumbs } = usePageContext();
+  const { setPageHeader } = usePageContext();
 
   useEffect(() => {
-    setTitle("Players");
-    setPageBreadcrumbs([
+    setPageHeader("Players", "", [
       { title: "League", to: leaguePaths.League },
       { title: "Players", to: playersPaths.Players },
     ]);
