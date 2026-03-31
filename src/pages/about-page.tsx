@@ -10,9 +10,6 @@ export default function AboutPage() {
 
   return (
     <>
-      <h1 className="p-2 text-xl font-medium">
-        About
-      </h1>
       <p className="p-2 text-sm">
         Hello World.
       </p>

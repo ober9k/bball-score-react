@@ -21,9 +21,6 @@ export default function DivisionsPage() {
 
   return (
     <>
-      <h1 className="p-2 text-xl font-medium">
-        League Divisions
-      </h1>
       <div className="p-2 text-sm flex flex-col gap-2">
         {divisions.map((division) => (
           <Link to={divisionsPaths.Division} params={{ divisionId: division.id }} key={division.id}>

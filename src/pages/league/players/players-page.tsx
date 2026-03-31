@@ -21,9 +21,6 @@ export default function PlayersPage() {
   
   return (
     <>
-      <h1 className="p-2 text-xl font-medium">
-        League Players
-      </h1>
       <div className="p-2 text-sm flex flex-col gap-2">
         {players.map((player) => (
           <Link to={playersPaths.Player} params={{ playerId: player.id }} key={player.id}>

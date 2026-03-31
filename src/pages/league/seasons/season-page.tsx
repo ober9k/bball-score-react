@@ -17,9 +17,6 @@ export default function SeasonPage() {
 
   return (
     <>
-      <h1 className="p-2 text-xl font-medium">
-        League Season
-      </h1>
       <p className="p-2 text-sm">
         <Link to={seasonsPaths.Seasons}>
           Goto: Seasons

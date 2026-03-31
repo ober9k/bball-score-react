@@ -17,9 +17,6 @@ export default function GamePage() {
 
   return (
     <>
-      <h1 className="p-2 text-xl font-medium">
-        League Game
-      </h1>
       <p className="p-2 text-sm">
         <Link to={gamesPaths.Games}>
           Goto: Games
