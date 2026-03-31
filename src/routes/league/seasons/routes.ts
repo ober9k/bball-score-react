@@ -5,7 +5,7 @@ import { mapRoute } from "@/routes/route";
 
 const paths = {
   Seasons: "/league/seasons",
-  Season:  "/league/season/$seasonId",
+  Season:  "/league/seasons/$seasonId",
 };
 
 const routes: Route[] = [{

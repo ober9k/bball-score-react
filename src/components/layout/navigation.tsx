@@ -23,11 +23,16 @@ const links: Link[] = [
 ];
 
 export default function Navigation() {
+
+  const isExact = (link: Link): boolean => {
+    return (link.to === leaguePaths.League);
+  };
+
   return (
     <>
       <nav className="flex gap-2 p-2">
         {links.map((link, index) => (
-          <Link key={index} to={link.to} activeOptions={{ exact: true }} className="[&.active]:underline">
+          <Link key={index} to={link.to} activeOptions={{ exact: isExact(link) }} className="[&.active]:underline">
             {link.title}
           </Link>
         ))}
