@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+.header {
+  @apply relative;
+  @apply bg-white shadow-sm;
+}
+
+.heading {
+  @apply mx-auto max-w-2xl;
+  @apply px-4 py-6;
+  @apply flex items-center gap-2;
+}
+
+.title {
+  @apply text-2xl text-gray-900 text-left;
+  @apply font-medium;
+}
+
+.subTitle {
+  @apply pt-1.5;
+  @apply text-gray-500 text-left;
+}
+
+.breadcrumbs {
+
+}

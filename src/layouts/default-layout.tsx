@@ -1,5 +1,6 @@
 import Breadcrumbs from "@/components/layout/breadcrumbs.tsx";
 import Navigation from "@/components/layout/navigation";
+import PageHeader from "@/components/layout/page/page-header.tsx";
 import { PageContext } from "@/contexts/page-context.ts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Outlet } from "@tanstack/react-router";
@@ -23,6 +24,7 @@ export default function DefaultLayout() {
       <PageContext value={pageContext}>
         <Navigation/>
         <Breadcrumbs links={pageBreadcrumbs} />
+        <PageHeader />
         <QueryClientProvider client={client}>
           <Outlet/>
         </QueryClientProvider>
