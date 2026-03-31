@@ -16,6 +16,7 @@ export const mapRoute = (route: Route) => {
     getParentRoute: () => rootRoute,
     path: route.path,
     component: route.component,
+    errorComponent: route.errorComponent,
     loader: route.loader,
   });
 };

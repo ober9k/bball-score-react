@@ -22,7 +22,7 @@ export async function divisionsQueryFn() {
 }
 
 export async function divisionQueryFn({ queryKey }) {
-  const [ , divisionId ] = queryKey;
+  const [ key, divisionId ] = queryKey;
   const { data } = await axios.get(buildApiPath("divisions", divisionId));
   return data;
 }
