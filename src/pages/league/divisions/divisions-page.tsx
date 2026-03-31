@@ -1,5 +1,8 @@
+import usePageContext from "@/hooks/use-page-context.ts";
 import { divisionsPaths } from "@/routes/league/divisions/routes.ts";
-import { getRouteApi, Link } from "@tanstack/react-router";
+import { leaguePaths } from "@/routes/league/routes.ts";
+import { getRouteApi } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 type LoaderProps = {
   divisions: { id: number, name: string }[], /* TBD for using types */
@@ -7,6 +10,15 @@ type LoaderProps = {
 
 export default function DivisionsPage() {
   const { divisions }: LoaderProps = getRouteApi(divisionsPaths.Divisions).useLoaderData();
+  const { setTitle, setPageBreadcrumbs } = usePageContext();
+
+  useEffect(() => {
+    setTitle("Divisions");
+    setPageBreadcrumbs([
+      { title: "League", to: leaguePaths.League },
+      { title: "Divisions", to: divisionsPaths.Divisions },
+    ]);
+  }, []);
 
   return (
     <>
