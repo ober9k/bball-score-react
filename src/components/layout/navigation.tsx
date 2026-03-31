@@ -20,6 +20,8 @@ const links: Link[] = [
   { title: "Games", to: gamesPaths.Games, },
   { title: "Players", to: playersPaths.Players, },
   { title: "Seasons", to: seasonsPaths.Seasons, },
+  { title: "Standings", to: leaguePaths.Standings, },
+  { title: "Statistics", to: leaguePaths.Statistics, },
   { title: "Teams", to: teamsPaths.Teams, },
 ];
 
