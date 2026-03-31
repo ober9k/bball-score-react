@@ -1,4 +1,4 @@
-import { divisionQueryFn, divisionsQueryFn } from "@/apis/query-functions";
+import { divisionQueryFn, divisionsQueryFn, playerQueryFn, playersQueryFn } from "@/apis/query-functions";
 import { queryKeys } from "@/apis/query-keys";
 
 export const divisionsQueryOptions = {
@@ -10,5 +10,17 @@ export function buildDivisionQueryOptions(divisionId: number) {
   return {
     queryKey: [queryKeys.Division, divisionId],
     queryFn: divisionQueryFn,
+  }
+}
+
+export const playersQueryOptions = {
+  queryKey: [queryKeys.Players],
+  queryFn: playersQueryFn,
+};
+
+export function buildPlayerQueryOptions(playerId: number) {
+  return {
+    queryKey: [queryKeys.Player, playerId],
+    queryFn: playerQueryFn,
   }
 }

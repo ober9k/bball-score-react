@@ -26,3 +26,14 @@ export async function divisionQueryFn({ queryKey }) {
   const { data } = await axios.get(buildApiPath("divisions", divisionId));
   return data;
 }
+
+export async function playersQueryFn() {
+  const { data } = await axios.get(buildApiPath("players"));
+  return data;
+}
+
+export async function playerQueryFn({ queryKey }) {
+  const [ key, playerId ] = queryKey;
+  const { data } = await axios.get(buildApiPath("players", playerId));
+  return data;
+}
