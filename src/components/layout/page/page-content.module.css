@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+.content {
+  @apply mx-auto max-w-2xl;
+  @apply mt-8 p-6 sm:rounded-lg;
+  @apply bg-white shadow-sm;
+}

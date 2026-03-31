@@ -1,5 +1,6 @@
 import Navigation from "@/components/layout/navigation";
 import type { Link } from "@/components/layout/page/page-breadcrumbs.tsx";
+import PageContent from "@/components/layout/page/page-content.tsx";
 import PageHeader from "@/components/layout/page/page-header.tsx";
 import { PageContext } from "@/contexts/page-context.ts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -32,10 +33,12 @@ export default function DefaultLayout() {
   return (
     <>
       <PageContext value={pageContext}>
-        <Navigation />
-        <PageHeader />
         <QueryClientProvider client={client}>
-          <Outlet/>
+          <Navigation />
+          <PageHeader />
+          <PageContent>
+            <Outlet/>
+          </PageContent>
         </QueryClientProvider>
       </PageContext>
     </>
