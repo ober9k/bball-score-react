@@ -1,7 +1,7 @@
 import usePageContext from "@/hooks/use-page-context.ts";
 import { playersPaths } from "@/routes/league/players/routes";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { getRouteApi } from "@tanstack/react-router";
+import { getRouteApi, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
 
 type LoaderProps = {
@@ -25,11 +25,13 @@ export default function PlayersPage() {
       <h1 className="p-2 text-xl font-medium">
         League Players
       </h1>
-      <p className="p-2 text-sm">
-        <Link to={playersPaths.Player} params={{ playerId: 1 }}>
-          Goto: Player 1
-        </Link>
-      </p>
+      <div className="p-2 text-sm flex flex-col gap-2">
+        {players.map((player) => (
+          <Link to={playersPaths.Player} params={{ playerId: player.id }} key={player.id}>
+            {player.name}
+          </Link>
+        ))}
+      </div>
     </>
   );
 }

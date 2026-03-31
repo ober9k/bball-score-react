@@ -26,15 +26,13 @@ export default function DivisionPage() {
       <h1 className="p-2 text-xl font-medium">
         League Division
       </h1>
-      <ul className="p-2 text-sm">
-        <li>
-          <Link to={divisionsPaths.Divisions}>
-            Goto: Divisions
-          </Link>
-        </li>
-      </ul>
       <p className="p-2 text-sm">
-        <strong>Name:</strong> {division.name}
+        <Link to={divisionsPaths.Divisions}>
+          Goto: Divisions
+        </Link>
+      </p>
+      <p className="p-2 text-sm flex flex-col gap-2">
+        {division.name}
       </p>
     </>
   );

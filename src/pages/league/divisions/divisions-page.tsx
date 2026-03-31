@@ -1,7 +1,7 @@
 import usePageContext from "@/hooks/use-page-context.ts";
 import { divisionsPaths } from "@/routes/league/divisions/routes.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { getRouteApi } from "@tanstack/react-router";
+import { getRouteApi, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
 
 type LoaderProps = {
@@ -25,15 +25,13 @@ export default function DivisionsPage() {
       <h1 className="p-2 text-xl font-medium">
         League Divisions
       </h1>
-      <ul className="p-2 text-sm">
-        {divisions.map((d) => (
-          <li key={d.id}>
-            <Link to={divisionsPaths.Division} params={{ divisionId: d.id }}>
-              &bull; Goto: {d.name}
-            </Link>
-          </li>
+      <div className="p-2 text-sm flex flex-col gap-2">
+        {divisions.map((division) => (
+          <Link to={divisionsPaths.Division} params={{ divisionId: division.id }} key={division.id}>
+            {division.name}
+          </Link>
         ))}
-      </ul>
+      </div>
     </>
   );
 }

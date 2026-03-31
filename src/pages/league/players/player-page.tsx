@@ -31,6 +31,9 @@ export default function PlayerPage() {
           Goto: Players
         </Link>
       </p>
+      <p className="p-2 text-sm">
+        {player.name} #{player.number}
+      </p>
     </>
   );
 }
