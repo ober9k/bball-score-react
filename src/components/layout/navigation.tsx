@@ -9,6 +9,7 @@ import { Link } from "@tanstack/react-router";
 type Link = {
   title: string,
   to: string,
+  params?: object,
 }
 
 const links: Link[] = [
