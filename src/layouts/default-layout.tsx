@@ -1,4 +1,3 @@
-import Breadcrumbs from "@/components/layout/breadcrumbs.tsx";
 import Navigation from "@/components/layout/navigation";
 import PageHeader from "@/components/layout/page/page-header.tsx";
 import { PageContext } from "@/contexts/page-context.ts";
@@ -23,7 +22,6 @@ export default function DefaultLayout() {
     <>
       <PageContext value={pageContext}>
         <Navigation/>
-        <Breadcrumbs links={pageBreadcrumbs} />
         <PageHeader />
         <QueryClientProvider client={client}>
           <Outlet/>

@@ -1,8 +1,9 @@
+import PageBreadcrumbs from "@/components/layout/page/page-breadcrumbs.tsx";
 import usePageContext from "@/hooks/use-page-context.ts";
 import * as styles from "@/components/layout/page/page-header.module.css";
 
 export default function PageHeader() {
-  const { pageTitle, pageSubTitle } = usePageContext();
+  const { pageTitle, pageSubTitle, pageBreadcrumbs } = usePageContext();
 
   return (
     <header className={styles.header}>
@@ -17,7 +18,7 @@ export default function PageHeader() {
         )}
       </div>
       <div className={styles.breadcrumbs}>
-
+        <PageBreadcrumbs links={pageBreadcrumbs} />
       </div>
     </header>
   );

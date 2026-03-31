@@ -1,4 +1,4 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbList, BreadcrumbSeparator } from "@/shared/components/ui/breadcrumb";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbList, BreadcrumbSeparator } from "@/shared/components/ui/breadcrumb.tsx";
 import { Fragment } from "react"
 
 export type Link = {
@@ -31,14 +31,14 @@ function BreadcrumbForPage({ link }: Link) {
   );
 }
 
-export default function Breadcrumbs({ links }: Props) {
+export default function PageBreadcrumbs({ links }: Props) {
   const isNotFirst = (index) => index !== 0;
   const forLink = (link) => !!link.to;
   const forPage = (link) => !link.to;
 
   return (
     <>
-      <Breadcrumb className="flex gap-2 p-2">
+      <Breadcrumb className="flex gap-2">
         <BreadcrumbList>
           {links.map((link, index) => (
             <Fragment key={index}>
