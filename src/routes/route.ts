@@ -1,12 +1,13 @@
 import { rootRoute } from "@/routes/route-tree.ts";
-import { createRoute } from "@tanstack/react-router";
+import { createRoute, type RouteComponent } from "@tanstack/react-router";
 
 /**
  * Proper type handling TBD.
  */
 export type Route = {
-  path: any,
-  component: any,
+  path: string,
+  component: RouteComponent,
+  errorComponent?: RouteComponent,
   loader?: any,
 };
 
