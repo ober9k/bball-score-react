@@ -8,8 +8,9 @@ import { useEffect, useState } from "react";
 export default function DefaultLayout() {
   const [ title, setTitle ] = useState("");
   const [ pageTitle, setPageTitle ] = useState("");
+  const [ pageSubTitle, setPageSubTitle ] = useState("");
   const [ pageBreadcrumbs, setPageBreadcrumbs ] = useState([]);
-  const pageContext = { title, setTitle, pageTitle, setPageTitle, pageBreadcrumbs, setPageBreadcrumbs };
+  const pageContext = { title, setTitle, pageTitle, setPageTitle, pageSubTitle, setPageSubTitle, pageBreadcrumbs, setPageBreadcrumbs };
 
   const client = new QueryClient();
 
