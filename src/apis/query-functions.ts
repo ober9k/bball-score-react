@@ -38,6 +38,17 @@ export async function playerQueryFn({ queryKey }) {
   return data;
 }
 
+export async function seasonsQueryFn() {
+  const { data } = await axios.get(buildApiPath("seasons"));
+  return data;
+}
+
+export async function seasonQueryFn({ queryKey }) {
+  const [ key, seasonId ] = queryKey;
+  const { data } = await axios.get(buildApiPath("seasons", seasonId));
+  return data;
+}
+
 export async function teamsQueryFn() {
   const { data } = await axios.get(buildApiPath("teams"));
   return data;

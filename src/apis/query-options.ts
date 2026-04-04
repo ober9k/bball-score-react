@@ -1,4 +1,4 @@
-import { divisionQueryFn, divisionsQueryFn, playerQueryFn, playersQueryFn, teamQueryFn, teamsQueryFn } from "@/apis/query-functions";
+import { divisionQueryFn, divisionsQueryFn, playerQueryFn, playersQueryFn, seasonQueryFn, seasonsQueryFn, teamQueryFn, teamsQueryFn } from "@/apis/query-functions";
 import { queryKeys } from "@/apis/query-keys";
 
 export const divisionsQueryOptions = {
@@ -10,6 +10,18 @@ export function buildDivisionQueryOptions(divisionId: number) {
   return {
     queryKey: [queryKeys.Division, divisionId],
     queryFn: divisionQueryFn,
+  }
+}
+
+export const seasonsQueryOptions = {
+  queryKey: [queryKeys.seasons],
+  queryFn: seasonsQueryFn,
+};
+
+export function buildSeasonQueryOptions(seasonId: number) {
+  return {
+    queryKey: [queryKeys.season, seasonId],
+    queryFn: seasonQueryFn,
   }
 }
 
