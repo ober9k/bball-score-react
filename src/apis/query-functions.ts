@@ -37,3 +37,14 @@ export async function playerQueryFn({ queryKey }) {
   const { data } = await axios.get(buildApiPath("players", playerId));
   return data;
 }
+
+export async function teamsQueryFn() {
+  const { data } = await axios.get(buildApiPath("teams"));
+  return data;
+}
+
+export async function teamQueryFn({ queryKey }) {
+  const [ key, teamId ] = queryKey;
+  const { data } = await axios.get(buildApiPath("teams", teamId));
+  return data;
+}
