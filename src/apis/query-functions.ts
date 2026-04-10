@@ -16,6 +16,18 @@ function buildApiPath(...parts: Array<string>): string {
   return url.toString();
 }
 
+/**
+ * Build standardised URL for API usage.
+ * @param parts
+ */
+export function buildUsersApiPath(...parts: Array<string>): string {
+  const url =  new URL(RootApiPath);
+  url.port = RootApiPort;
+  url.pathname = ["api", "v1", "users", ...parts].join("/");
+
+  return url.toString();
+}
+
 export async function divisionsQueryFn() {
   const { data } = await axios.get(buildApiPath("divisions"));
   return data;
@@ -57,5 +69,12 @@ export async function teamsQueryFn() {
 export async function teamQueryFn({ queryKey }) {
   const [ key, teamId ] = queryKey;
   const { data } = await axios.get(buildApiPath("teams", teamId));
+  return data;
+}
+
+export async function usersMeQueryFn() {
+  const { data } = await axios.get(buildUsersApiPath("me"), {
+    withCredentials: true,
+  });
   return data;
 }
