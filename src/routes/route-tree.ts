@@ -1,6 +1,7 @@
 import DefaultLayout from "@/layouts/default-layout";
 import AboutPage from "@/pages/about-page";
 import HomePage from "@/pages/home-page";
+import { authRoutes } from "@/routes/auth/routes.ts";
 import { divisionsRoutes } from "@/routes/league/divisions/routes";
 import { gamesRoutes } from "@/routes/league/games/routes";
 import { playersRoutes } from "@/routes/league/players/routes";
@@ -28,6 +29,7 @@ const aboutRoute = createRoute({
 export const routeTree = rootRoute.addChildren([
   homeRoute,
   aboutRoute,
+  ...authRoutes,
   ...leagueRoutes,
   ...divisionsRoutes,
   ...gamesRoutes,
