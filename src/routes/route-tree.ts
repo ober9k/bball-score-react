@@ -10,17 +10,27 @@ import { playersRoutes } from "@/routes/league/players/routes";
 import { leagueRoutes } from "@/routes/league/routes";
 import { seasonsRoutes } from "@/routes/league/seasons/routes";
 import { teamsRoutes } from "@/routes/league/teams/routes";
+import type { User } from "@/types/user.ts";
 import { createRootRoute, createRoute } from "@tanstack/react-router";
 import type { AxiosError } from "axios";
 
 async function usersMeLoader({ context }) {
   try {
+    const user = await context.queryClient.ensureQueryData(usersMeQueryOptions);
+
     return {
-      user: await context.queryClient.ensureQueryData(usersMeQueryOptions)
+      user: {
+        loggedIn: true,
+        ...user,
+      },
     };
   }
   catch (error: AxiosError) {
-    throw new Error(error.message);
+    return {
+      user: {
+        loggedIn: false,
+      },
+    }
   }
 }
 

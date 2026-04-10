@@ -3,10 +3,14 @@ import type { Link } from "@/components/layout/page/page-breadcrumbs.tsx";
 import PageContent from "@/components/layout/page/page-content.tsx";
 import PageHeader from "@/components/layout/page/page-header.tsx";
 import { PageContext } from "@/contexts/page-context.ts";
-import { Outlet } from "@tanstack/react-router";
+import { UserContext } from "@/contexts/user-context.ts";
+import { getRouteApi, Outlet, rootRouteId } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 export default function DefaultLayout() {
+  const { user } = getRouteApi(rootRouteId).useLoaderData();
+  const userContext = user;
+
   const [ title, setTitle ] = useState("");
   const [ subTitle, setSubTitle ] = useState("");
   const [ breadcrumbs, setBreadcrumbs ] = useState([]);
@@ -29,13 +33,15 @@ export default function DefaultLayout() {
 
   return (
     <>
-      <PageContext value={pageContext}>
-        <Navigation />
-        <PageHeader />
-        <PageContent>
-          <Outlet/>
-        </PageContent>
-      </PageContext>
+      <UserContext value={userContext}>
+        <PageContext value={pageContext}>
+          <Navigation />
+          <PageHeader />
+          <PageContent>
+            <Outlet/>
+          </PageContent>
+        </PageContext>
+      </UserContext>
     </>
   );
 }
