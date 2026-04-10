@@ -3,7 +3,6 @@ import type { Link } from "@/components/layout/page/page-breadcrumbs.tsx";
 import PageContent from "@/components/layout/page/page-content.tsx";
 import PageHeader from "@/components/layout/page/page-header.tsx";
 import { PageContext } from "@/contexts/page-context.ts";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Outlet } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
@@ -24,8 +23,6 @@ export default function DefaultLayout() {
 
   const pageContext = { setPageHeader, title, setTitle, subTitle, setSubTitle, breadcrumbs, setBreadcrumbs };
 
-  const client = new QueryClient();
-
   useEffect(() => {
     document.title = title;
   }, [title]);
@@ -33,13 +30,11 @@ export default function DefaultLayout() {
   return (
     <>
       <PageContext value={pageContext}>
-        <QueryClientProvider client={client}>
-          <Navigation />
-          <PageHeader />
-          <PageContent>
-            <Outlet/>
-          </PageContent>
-        </QueryClientProvider>
+        <Navigation />
+        <PageHeader />
+        <PageContent>
+          <Outlet/>
+        </PageContent>
       </PageContext>
     </>
   );

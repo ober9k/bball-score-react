@@ -1,6 +1,6 @@
 import "./app.css";
 import { routeTree } from "@/routes/route-tree.ts";
-import { QueryClient } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 
 const router = createRouter({
@@ -11,7 +11,11 @@ const router = createRouter({
 });
 
 export default function App() {
+  const client = new QueryClient();
+
   return (
-    <RouterProvider router={router} />
+    <QueryClientProvider client={client}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   );
 }
