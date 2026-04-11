@@ -8,6 +8,7 @@ export type Route = {
   path: string,
   component: RouteComponent,
   errorComponent?: RouteComponent,
+  notFoundComponent?: RouteComponent,
   loader?: any,
 };
 
@@ -17,6 +18,7 @@ export const mapRoute = (route: Route) => {
     path: route.path,
     component: route.component,
     errorComponent: route.errorComponent,
+    notFoundComponent: route.notFoundComponent,
     loader: route.loader,
   });
 };
