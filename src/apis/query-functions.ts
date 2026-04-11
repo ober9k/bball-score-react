@@ -12,7 +12,7 @@ const RootApiPort = "8080";
 function buildApiPath(...parts: Array<string>): string {
   const url =  new URL(RootApiPath);
   url.port = RootApiPort;
-  url.pathname = ["api", "v1", "league", "1", ...parts].join("/");
+  url.pathname = ["api", "v1", ...parts].join("/");
 
   return url.toString();
 }
@@ -21,7 +21,6 @@ function buildApiPath(...parts: Array<string>): string {
  * Build standardised URL for league API usage.
  * @param parts
  */
-export function buildUsersApiPath(...parts: Array<string>): string {
 export function buildLeagueApiPath(...parts: Array<string>): string {
   return buildApiPath("league", "1", ...parts);
 }
@@ -32,14 +31,6 @@ export function buildLeagueApiPath(...parts: Array<string>): string {
  */
 export function buildAuthApiPath(...parts: Array<string>): string {
   return buildApiPath("auth", ...parts);
-}
-
-/**
- * Build standardised URL for users API usage.
- * @param parts
- */
-export function buildUsersApiPath(...parts: Array<string>): string {
-  return buildApiPath("users", ...parts);
 }
 
 export async function divisionsQueryFn() {
@@ -87,8 +78,6 @@ export async function teamQueryFn({ queryKey }) {
 }
 
 export async function usersMeQueryFn() {
-  const { data } = await axios.get(buildUsersApiPath("me"), {
-    withCredentials: true,
-  });
+  const { data } = await axios.get(buildAuthApiPath("me"));
   return data;
 }
