@@ -2,6 +2,10 @@ import "./app.css";
 import { routeTree } from "@/routes/route-tree.ts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
+import axios from "axios";
+
+/* pass with all requests */
+axios.defaults.withCredentials = true;
 
 const router = createRouter({
   routeTree,
