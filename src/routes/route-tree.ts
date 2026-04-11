@@ -1,5 +1,4 @@
-import { usersMeQueryFn } from "@/apis/query-functions.ts";
-import { buildDivisionQueryOptions, usersMeQueryOptions } from "@/apis/query-options.ts";
+import { usersMeQueryOptions } from "@/apis/query-options.ts";
 import DefaultLayout from "@/layouts/default-layout";
 import AboutPage from "@/pages/about-page";
 import HomePage from "@/pages/home-page";
@@ -10,7 +9,6 @@ import { playersRoutes } from "@/routes/league/players/routes";
 import { leagueRoutes } from "@/routes/league/routes";
 import { seasonsRoutes } from "@/routes/league/seasons/routes";
 import { teamsRoutes } from "@/routes/league/teams/routes";
-import type { User } from "@/types/user.ts";
 import { createRootRoute, createRoute } from "@tanstack/react-router";
 import type { AxiosError } from "axios";
 

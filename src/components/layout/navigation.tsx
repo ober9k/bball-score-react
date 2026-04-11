@@ -31,14 +31,14 @@ const linkClasses = "[&.active]:underline [&.active]:font-bold rounded-md p-1 te
 const altLinkClasses = linkClasses + " " + "ml-auto";
 
 export default function Navigation() {
-  const userContext = useUserContext();
+  const { user } = useUserContext();
 
   const isExact = (link: Link): boolean => {
     return (link.to === leaguePaths.League);
   };
 
   const isLoggedIn = (): boolean => {
-    return (userContext.loggedIn);
+    return (user.loggedIn);
   };
 
   return (

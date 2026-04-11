@@ -8,8 +8,14 @@ import { getRouteApi, Outlet, rootRouteId } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 export default function DefaultLayout() {
-  const { user } = getRouteApi(rootRouteId).useLoaderData();
-  const userContext = user;
+  const { user: userData } = getRouteApi(rootRouteId).useLoaderData();
+  const [ user, setUser ] = useState(userData);
+  const userContext = { user, setUser };
+
+  /* this is experimental for now */
+  useEffect(() => {
+    setUser(userData);
+  }, [userData]);
 
   const [ title, setTitle ] = useState("");
   const [ subTitle, setSubTitle ] = useState("");

@@ -7,5 +7,6 @@ export const queryKeys = {
   season:    "season",
   teams:     "teams",
   team:      "team",
+  Logout:    "logout",
   UsersMe:   "usersMe",
 }

@@ -3,14 +3,17 @@ import { useContext } from "react";
 
 export default function useUserContext() {
   const {
-    loggedIn,
-    email,
-    role,
+    user,
+    setUser,
   } = useContext(UserContext);
 
+  const isLoggedIn = () => {
+    return user.loggedIn;
+  };
+
   return {
-    loggedIn,
-    email,
-    role,
+    user,
+    setUser,
+    isLoggedIn,
   };
 }

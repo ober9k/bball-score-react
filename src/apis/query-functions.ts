@@ -77,6 +77,11 @@ export async function teamQueryFn({ queryKey }) {
   return data;
 }
 
+export async function logoutQueryFn() {
+  const { data } = await axios.get(buildAuthApiPath("logout"));
+  return data;
+}
+
 export async function usersMeQueryFn() {
   const { data } = await axios.get(buildAuthApiPath("me"));
   return data;
