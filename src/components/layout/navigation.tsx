@@ -7,6 +7,7 @@ import { leaguePaths } from "@/routes/league/routes.ts";
 import { seasonsPaths } from "@/routes/league/seasons/routes.ts";
 import { teamsPaths } from "@/routes/league/teams/routes.ts";
 import { Link } from "@tanstack/react-router";
+import * as styles from "@/components/layout/navigation.module.css"
 
 type Link = {
   title: string,
@@ -15,8 +16,6 @@ type Link = {
 }
 
 const links: Link[] = [
-  { title: "Home", to: "/", },
-  { title: "About", to: "/about", },
   { title: "League", to: leaguePaths.League, },
   { title: "Divisions", to: divisionsPaths.Divisions, },
   { title: "Games", to: gamesPaths.Games, },
@@ -26,9 +25,6 @@ const links: Link[] = [
   { title: "Statistics", to: leaguePaths.Statistics, },
   { title: "Teams", to: teamsPaths.Teams, },
 ];
-
-const linkClasses = "[&.active]:underline [&.active]:font-bold rounded-md p-1 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white";
-const altLinkClasses = linkClasses + " " + "ml-auto";
 
 export default function Navigation() {
   const { user } = useUserContext();
@@ -43,18 +39,21 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="flex gap-2 p-2 bg-gray-800">
+      <nav className={styles.navigation}>
+        <Link className={styles.logoLink} to={"/"}>
+          🏀
+        </Link>
         {links.map((link, index) => (
-          <Link key={index} to={link.to} activeOptions={{ exact: isExact(link) }} className={linkClasses}>
+          <Link key={index} to={link.to} activeOptions={{ exact: isExact(link) }} activeProps={{ className: styles.active }} className={styles.link}>
             {link.title}
           </Link>
         ))}
         {(isLoggedIn()) ? (
-          <Link to={authPaths.Logout} className={altLinkClasses}>
+          <Link to={authPaths.Logout} className={`${styles.link} ${styles.logoutLink}`}>
             Logout
           </Link>
         ) : (
-          <Link to={authPaths.Login} className={altLinkClasses}>
+          <Link to={authPaths.Login} className={`${styles.link} ${styles.loginLink}`}>
             Login
           </Link>
         )}
