@@ -1,3 +1,5 @@
+import type { Game } from "@/types/game.ts";
+import type { TeamLog } from "@/types/game/team-log.ts";
 import axios from "axios";
 
 /* TODO: add to config/env file instead */
@@ -52,6 +54,33 @@ export async function playersQueryFn() {
 export async function playerQueryFn({ queryKey }) {
   const [ key, playerId ] = queryKey;
   const { data } = await axios.get(buildLeagueApiPath("players", playerId));
+  return data;
+}
+
+export async function gamesQueryFn() {
+  const { data: games } = await axios.get(buildLeagueApiPath("games"));
+
+  /**
+   * Minor restructuring until the API is tidied up more
+   */
+  return games.map((game: any) => ({
+    id:    game.id,
+    date:  game.date,
+    phase: game.phase,
+    round: game.round,
+    teamLogs: game.gameTeams.map((gameTeam: any) => ({
+      id:            gameTeam.id,
+      side:          gameTeam.side,
+      score:         gameTeam.score,
+      scoreByPeriod: gameTeam.scoreByPeriod,
+      team:          gameTeam.team,
+    } as TeamLog)),
+  } as Game));
+}
+
+export async function gameQueryFn({ queryKey }) {
+  const [ key, gameId ] = queryKey;
+  const { data } = await axios.get(buildLeagueApiPath("games", gameId));
   return data;
 }
 

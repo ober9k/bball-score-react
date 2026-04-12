@@ -1,4 +1,16 @@
-import { divisionQueryFn, divisionsQueryFn, usersMeQueryFn, playerQueryFn, playersQueryFn, seasonQueryFn, seasonsQueryFn, teamQueryFn, teamsQueryFn, logoutQueryFn } from "@/apis/query-functions";
+import {
+  divisionQueryFn,
+  divisionsQueryFn,
+  usersMeQueryFn,
+  playerQueryFn,
+  playersQueryFn,
+  seasonQueryFn,
+  seasonsQueryFn,
+  teamQueryFn,
+  teamsQueryFn,
+  logoutQueryFn,
+  gamesQueryFn, gameQueryFn
+} from "@/apis/query-functions";
 import { queryKeys } from "@/apis/query-keys";
 
 export const divisionsQueryOptions = {
@@ -34,6 +46,18 @@ export function buildPlayerQueryOptions(playerId: number) {
   return {
     queryKey: [queryKeys.Player, playerId],
     queryFn: playerQueryFn,
+  }
+}
+
+export const gamesQueryOptions = {
+  queryKey: [queryKeys.Games],
+  queryFn: gamesQueryFn,
+};
+
+export function buildGameQueryOptions(gameId: number) {
+  return {
+    queryKey: [queryKeys.Game, gameId],
+    queryFn: gameQueryFn,
   }
 }
 
