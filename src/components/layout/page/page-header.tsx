@@ -5,6 +5,8 @@ import * as styles from "@/components/layout/page/page-header.module.css";
 export default function PageHeader() {
   const { title, subTitle, breadcrumbs } = usePageContext();
 
+  const hasBreadcrumbs = () => breadcrumbs.length > 0;
+
   return (
     <header className={styles.header}>
       <div className={styles.heading}>
@@ -17,9 +19,11 @@ export default function PageHeader() {
           </h2>
         )}
       </div>
-      <div className={styles.breadcrumbs}>
-        <PageBreadcrumbs breadcrumbs={breadcrumbs} />
-      </div>
+      {(hasBreadcrumbs()) && (
+        <div className={styles.breadcrumbs}>
+          <PageBreadcrumbs breadcrumbs={breadcrumbs} />
+        </div>
+      )}
     </header>
   );
 }
