@@ -1,11 +1,13 @@
+import PlayerCard from "@/components/players/player-card.tsx";
 import usePageContext from "@/hooks/use-page-context.ts";
 import { playersPaths } from "@/routes/league/players/routes";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { getRouteApi, Link } from "@tanstack/react-router";
+import type { Player } from "@/types/player.ts";
+import { getRouteApi } from "@tanstack/react-router";
 import { useEffect } from "react";
 
 type LoaderProps = {
-  players: { id: number, name: string, number: string, position: string }[], /* TBD for using types */
+  players: Player[],
 }
 
 export default function PlayersPage() {
@@ -21,11 +23,9 @@ export default function PlayersPage() {
   
   return (
     <>
-      <div className="p-2 text-sm flex flex-col gap-2">
+      <div className="grid grid-cols-3 gap-4">
         {players.map((player) => (
-          <Link to={playersPaths.Player} params={{ playerId: player.id }} key={player.id}>
-            {player.name}
-          </Link>
+          <PlayerCard player={player} key={player.id} />
         ))}
       </div>
     </>
