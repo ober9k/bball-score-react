@@ -1,6 +1,7 @@
+import type { FieldState } from "@/components/forms/field.tsx";
+import Field from "@/components/forms/field.tsx";
 import { Button } from "@/shared/components/ui/button";
-import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel, FieldLegend, FieldSet } from "@/shared/components/ui/field";
-import { Input } from "@/shared/components/ui/input";
+import { Field as UiField, FieldDescription, FieldError, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
 import { Fragment } from "react";
 
 export type FormState = {
@@ -54,46 +55,6 @@ export function FormErrors({ formState }: FormErrorsProps) {
   );
 }
 
-type FormFieldErrorsProps = {
-  formState: FormState,
-  fieldKey: string,
-};
-
-/**
- * TBD: this (with props) can be relocated to somewhere more generic...
- */
-export function FormFieldErrors({ formState, fieldKey }: FormFieldErrorsProps) {
-  const { fieldErrors } = formState;
-
-  const hasErrors = (): boolean => {
-    return fieldErrors[fieldKey] && fieldErrors[fieldKey].length > 0;
-  };
-
-  const getErrors = (): string[] => {
-    return (hasErrors())
-      ? fieldErrors[fieldKey]
-      : [];
-  };
-
-  if (hasErrors()) {
-    return (
-      <Fragment>
-        <FieldError>
-          <ul>
-            {getErrors().map((error, index) => (
-              <li key={index}>{error}</li>
-            ))}
-          </ul>
-        </FieldError>
-      </Fragment>
-    );
-  }
-
-  return (
-    <Fragment/>
-  );
-}
-
 type LoginFormProps = {
   formAction: (payload: FormData) => void,
   formState: FormState,
@@ -104,8 +65,22 @@ type LoginFormProps = {
 export default function LoginForm({ formAction, formState, isPending, onCancel }: LoginFormProps) {
   const { fieldValues, fieldErrors } = formState;
 
-  const hasErrors = (field: string): boolean => {
-    return fieldErrors[field] && fieldErrors[field].length > 0;
+  const emailFieldState: FieldState = {
+    name:     "email",
+    type:     "email",
+    label:    "Email",
+    required: true,
+    value:    fieldValues.email.toString(),
+    errors:   fieldErrors.email || [],
+  };
+
+  const passwordFieldState: FieldState = {
+    name:     "password",
+    type:     "password",
+    label:    "Password",
+    required: true,
+    value:    fieldValues.password.toString(), /* this will be empty later with mock data removed */
+    errors:   fieldErrors.password || [],
   };
 
   return (
@@ -120,28 +95,16 @@ export default function LoginForm({ formAction, formState, isPending, onCancel }
           </FieldDescription>
           <FormErrors formState={formState}/>
           <FieldGroup>
-            <Field>
-              <FieldLabel htmlFor="email">
-                Email Address
-              </FieldLabel>
-              <Input type="email" id="email" name="email" defaultValue={fieldValues.email.toString()} noValidate aria-invalid={hasErrors("email")} />
-              <FormFieldErrors formState={formState} fieldKey={"email"} />
-            </Field>
-            <Field>
-              <FieldLabel htmlFor="email">
-                Password
-              </FieldLabel>
-              <Input type="password" id="password" name="password" defaultValue={fieldValues.password.toString()} noValidate aria-invalid={hasErrors("password")} />
-              <FormFieldErrors formState={formState} fieldKey={"password"} />
-            </Field>
-            <Field orientation="horizontal" className="flex justify-center">
+            <Field fieldState={emailFieldState} />
+            <Field fieldState={passwordFieldState} />
+            <UiField orientation="horizontal" className="flex justify-center">
               <Button type="reset" variant="secondary" onClick={() => onCancel()}>
                 Cancel
               </Button>
               <Button type="submit">
                 {isPending ? "Logging In..." : "Login"}
               </Button>
-            </Field>
+            </UiField>
           </FieldGroup>
         </FieldSet>
       </form>
