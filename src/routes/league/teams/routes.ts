@@ -34,7 +34,7 @@ const routes: Route[] = [{
   path: paths.Teams,
   component: TeamsPage,
   loader: teamsLoader,
-}, {
+},{
   path: paths.Team,
   component: TeamPage,
   errorComponent: NotFoundPage,

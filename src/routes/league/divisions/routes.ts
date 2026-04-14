@@ -28,7 +28,6 @@ export async function divisionLoader({ context, params }) {
 const paths = {
   Divisions: "/league/divisions",
   Division:  "/league/divisions/$divisionId",
-  DivisionUpdate:  "/league/divisions/$divisionId/update",
 };
 
 const routes: Route[] = [{
