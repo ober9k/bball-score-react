@@ -9,16 +9,6 @@ export async function loginMutationFn(loginData: LoginData) {
   return data;
 }
 
-export async function divisionMutationFn(divisionData: DivisionData) {
-  const { data } = await axios.put(buildLeagueApiPath("divisions", "1"), divisionData);
-  return data;
-}
-
-export async function teamMutationFn(teamData: TeamData) {
-  const { data } = await axios.put(buildLeagueApiPath("teams", "1"), teamData);
-  return data;
-}
-
 type PathKey = "seasons" | "divisions" | "teams" | "players";
 
 function buildBaseMutationFn(pathKey: PathKey, id?: number) {
