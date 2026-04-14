@@ -1,4 +1,4 @@
-import type { FormState } from "@/components/forms/season-form.tsx";
+import type { FormState } from "@/pages/manager/teams/forms/update-form.tsx";
 import { zTeam } from "@/schemas/team.ts";
 import type { TeamData } from "@/types/team.ts";
 import axios from "axios";
