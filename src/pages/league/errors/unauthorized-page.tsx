@@ -7,10 +7,11 @@ export default function UnauthorizedPage() {
   useEffect(() => {
     setPageHeader("Unauthorized");
   }, []);
+
   return (
     <>
       <p className="p-2 text-sm">
-        You cannot go here.
+        You do not have permission to view this page.
       </p>
     </>
   );
