@@ -1,4 +1,5 @@
-import useUserContext from "@/hooks/use-user-context.ts";
+import { useAuthContext } from "@/auth.tsx";
+import * as styles from "@/components/layout/navigation.module.css"
 import { authPaths } from "@/routes/auth/routes.ts";
 import { divisionsPaths } from "@/routes/league/divisions/routes.ts";
 import { gamesPaths } from "@/routes/league/games/routes.ts";
@@ -7,7 +8,6 @@ import { leaguePaths } from "@/routes/league/routes.ts";
 import { seasonsPaths } from "@/routes/league/seasons/routes.ts";
 import { teamsPaths } from "@/routes/league/teams/routes.ts";
 import { Link } from "@tanstack/react-router";
-import * as styles from "@/components/layout/navigation.module.css"
 
 type Link = {
   title: string,
@@ -27,14 +27,10 @@ const links: Link[] = [
 ];
 
 export default function Navigation() {
-  const { user } = useUserContext();
+  const { isAuthenticated } = useAuthContext();
 
   const isExact = (link: Link): boolean => {
     return (link.to === leaguePaths.League);
-  };
-
-  const isLoggedIn = (): boolean => {
-    return (user.loggedIn);
   };
 
   return (
@@ -48,7 +44,7 @@ export default function Navigation() {
             {link.title}
           </Link>
         ))}
-        {(isLoggedIn()) ? (
+        {(isAuthenticated()) ? (
           <Link to={authPaths.Logout} className={`${styles.link} ${styles.logoutLink}`}>
             Logout
           </Link>
