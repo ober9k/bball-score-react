@@ -1,8 +1,12 @@
 import NotFoundPage from "@/pages/league/errors/not-found-page.tsx";
 import UnauthorizedPage from "@/pages/league/errors/unauthorized-page.tsx";
+import { DivisionsCreatePage } from "@/pages/manager/divisions/create-page.tsx";
+import { DivisionsIndexPage } from "@/pages/manager/divisions/index-page.tsx";
+import { DivisionsUpdatePage } from "@/pages/manager/divisions/update-page.tsx";
 import { SeasonsCreatePage } from "@/pages/manager/seasons/create-page.tsx";
 import { SeasonsIndexPage } from "@/pages/manager/seasons/index-page.tsx";
 import { SeasonsUpdatePage } from "@/pages/manager/seasons/update-page.tsx";
+import { divisionLoader, divisionsLoader } from "@/routes/league/divisions/routes.ts";
 import { seasonLoader, seasonsLoader } from "@/routes/league/seasons/routes.ts";
 import { mapRoute } from "@/routes/route.ts";
 
@@ -11,6 +15,11 @@ const paths = {
     Index:  "/manager/seasons",
     Create: "/manager/seasons/create",
     Update: "/manager/seasons/$seasonId/update",
+  },
+  Divisions: {
+    Index:  "/manager/divisions",
+    Create: "/manager/divisions/create",
+    Update: "/manager/divisions/$divisionId/update",
   },
 };
 
@@ -43,6 +52,21 @@ const routes = [{
   component: SeasonsUpdatePage,
   notFoundComponent: NotFoundPage,
   loader: seasonLoader,
+  ...defaultOptions,
+},{
+  path: paths.Divisions.Index,
+  component: DivisionsIndexPage,
+  loader: divisionsLoader,
+  ...defaultOptions,
+},{
+  path: paths.Divisions.Create,
+  component: DivisionsCreatePage,
+  ...defaultOptions,
+},{
+  path: paths.Divisions.Update,
+  component: DivisionsUpdatePage,
+  notFoundComponent: NotFoundPage,
+  loader: divisionLoader,
   ...defaultOptions,
 }];
 

@@ -6,18 +6,18 @@ import type { Route } from "@/routes/route";
 import { mapRoute } from "@/routes/route";
 import type { AxiosError } from "axios";
 
-async function divisionsLoader({ context }) {
+export async function divisionsLoader({ context }) {
   return {
-    divisions: await context.queryClient.ensureQueryData(divisionsQueryOptions)
+    divisions: await context.queryClient.fetchQuery(divisionsQueryOptions)
   };
 }
 
-async function divisionLoader({ context, params }) {
+export async function divisionLoader({ context, params }) {
   const divisionId = +params["divisionId"];
 
   try {
     return {
-      division: await context.queryClient.ensureQueryData(buildDivisionQueryOptions(divisionId))
+      division: await context.queryClient.fetchQuery(buildDivisionQueryOptions(divisionId))
     };
   }
   catch (error: AxiosError) {
@@ -28,6 +28,7 @@ async function divisionLoader({ context, params }) {
 const paths = {
   Divisions: "/league/divisions",
   Division:  "/league/divisions/$divisionId",
+  DivisionUpdate:  "/league/divisions/$divisionId/update",
 };
 
 const routes: Route[] = [{
