@@ -1,4 +1,5 @@
 import "./app.css";
+import { AuthProvider, useAuthContext } from "@/auth.tsx";
 import { routeTree } from "@/routes/route-tree.ts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
@@ -14,12 +15,22 @@ const router = createRouter({
   },
 });
 
+function InnerApp() {
+  const authContext = useAuthContext();
+
+  return (
+    <RouterProvider router={router} context={{ authContext }} />
+  );
+}
+
 export default function App() {
   const client = new QueryClient();
 
   return (
     <QueryClientProvider client={client}>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <InnerApp />
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

@@ -1,4 +1,4 @@
-import { usersMeQueryOptions } from "@/apis/query-options.ts";
+import { authUserQueryOptions, usersMeQueryOptions } from "@/apis/query-options.ts";
 import DefaultLayout from "@/layouts/default-layout";
 import AboutPage from "@/pages/about-page";
 import HomePage from "@/pages/home-page";
@@ -9,8 +9,8 @@ import { playersRoutes } from "@/routes/league/players/routes";
 import { leagueRoutes } from "@/routes/league/routes";
 import { seasonsRoutes } from "@/routes/league/seasons/routes";
 import { teamsRoutes } from "@/routes/league/teams/routes";
-import { createRootRoute, createRoute } from "@tanstack/react-router";
 import { managerRoutes } from "@/routes/manager/routes.ts";
+import { createRootRoute, createRoute } from "@tanstack/react-router";
 import type { AxiosError } from "axios";
 
 async function usersMeLoader({ context }) {
@@ -33,8 +33,20 @@ async function usersMeLoader({ context }) {
   }
 }
 
+/**
+ * Handle an initial load for the user's authentication.
+ * This will work via ref to actively update the data.
+ * @param context
+ */
+const rootBeforeLoader = async ({ context }) => {
+  const { queryClient, authContext } = context;
+  const user = await queryClient.ensureQueryData(authUserQueryOptions);
+  authContext.userRef.current = { ...user }; /* use ref instead */
+}
+
 export const rootRoute = createRootRoute({
   component: DefaultLayout,
+  beforeLoad: rootBeforeLoader,
   loader: usersMeLoader,
 });
 
