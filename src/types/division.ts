@@ -1,22 +1,25 @@
 /* TODO: to be tidied up */
-export type Season = {
+export type Division = {
   id: number,
   name: string,
+  seasonId: number,
 }
 
 /* TODO: to be tidied up */
-export type SeasonData = {
+export type DivisionData = {
   name: string,
+  seasonId: number,
 }
 
 /* TODO: to be tidied up */
-export type SeasonDataWithId = {
+export type DivisionDataWithId = {
   id: number,
   name: string,
+  seasonId: number,
 }
 /* TODO: to be tidied up */
-export type SeasonDto = {
+export type DivisionDto = {
   id?: number,
   name: string,
+  seasonId: number,
 }
-
