@@ -2,17 +2,19 @@ import { buildSeasonQueryOptions, seasonsQueryOptions } from "@/apis/query-optio
 import NotFoundPage from "@/pages/league/errors/not-found-page.tsx";
 import SeasonPage from "@/pages/league/seasons/season-page";
 import SeasonsPage from "@/pages/league/seasons/seasons-page";
+import UpdatePage from "@/pages/league/seasons/update-page.tsx";
 import type { Route } from "@/routes/route";
 import { mapRoute } from "@/routes/route";
+import { notFound } from "@tanstack/react-router";
 import type { AxiosError } from "axios";
 
-async function seasonsLoader({ context }) {
+export async function seasonsLoader({ context }) {
   return {
     seasons: await context.queryClient.ensureQueryData(seasonsQueryOptions)
   };
 }
 
-async function seasonLoader({ context, params }) {
+export async function seasonLoader({ context, params }) {
   const seasonId = +params["seasonId"];
 
   try {
@@ -21,13 +23,14 @@ async function seasonLoader({ context, params }) {
     };
   }
   catch (error: AxiosError) {
-    throw new Error(error.message);
+    throw notFound();
   }
 }
 
 const paths = {
   Seasons: "/league/seasons",
   Season:  "/league/seasons/$seasonId",
+  SeasonUpdate:  "/league/seasons/$seasonId/update",
 };
 
 const routes: Route[] = [{
@@ -37,6 +40,11 @@ const routes: Route[] = [{
 }, {
   path: paths.Season,
   component: SeasonPage,
+  errorComponent: NotFoundPage,
+  loader: seasonLoader,
+}, {
+  path: paths.SeasonUpdate,
+  component: UpdatePage,
   errorComponent: NotFoundPage,
   loader: seasonLoader,
 }];
