@@ -8,7 +8,7 @@ export type TeamLog = {
   score: number,
   scoreByPeriod: number[],
   team: Team,
-  teamPlayers: TeamPlayer
+  teamPlayers: TeamPlayer[],
 }
 
 export type TeamPlayer = {

@@ -5,6 +5,7 @@ import { leaguePaths } from "@/routes/league/routes.ts";
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table.tsx";
 import type { Game } from "@/types/game.ts";
 import { getRouteApi, Link } from "@tanstack/react-router";
+import { Fragment } from "react";
 
 type LoaderProps = {
   game: Game, /* TBD for using types */
@@ -42,84 +43,64 @@ export default function GamePage() {
     }
   };
 
-  const { points: awayPoints, rebounds: awayRebounds, assists: awayAssists, steals: awaySteals, blocks: awayBlocks } = awayTeamPlayers.reduce(statsReducer, { ...initialAccumulator });
-  const { points: homePoints, rebounds: homeRebounds, assists: homeAssists, steals: homeSteals, blocks: homeBlocks } = homeTeamPlayers.reduce(statsReducer, { ...initialAccumulator });
 
   game.teamLogs = (game as any).gameTeams; /* temp */
+
+  const teamsLogs = game.teamLogs.map((teamLog) => ({
+    team: teamLog.team,
+    playerLogs: (teamLog as any).gameTeamPlayers.map((gtp) => ({
+      player:   gtp.player,
+      rebounds: gtp.rebounds,
+      assists:  gtp.assists,
+      steals:   gtp.steals,
+      blocks:   gtp.blocks,
+      points:   gtp.points,
+    })),
+    totals: (game.teamLogs[0] as any).gameTeamPlayers.reduce(statsReducer, { ...initialAccumulator })
+  }));
 
   return (
     <>
       <GameCard game={game} />
-      <h2 className="p-2 font-medium">Away Team Players</h2>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Player</TableHead>
-            <TableHead className="w-[40px] text-center">REB</TableHead>
-            <TableHead className="w-[40px] text-center">AST</TableHead>
-            <TableHead className="w-[40px] text-center">STL</TableHead>
-            <TableHead className="w-[40px] text-center">BLK</TableHead>
-            <TableHead className="w-[40px] text-center">PTS</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {awayTeamPlayers.map((atp, index) => (
-            <TableRow key={index}>
-              <TableCell className="font-medium">{atp.player.name}</TableCell>
-              <TableCell className="text-center">{atp.rebounds}</TableCell>
-              <TableCell className="text-center">{atp.assists}</TableCell>
-              <TableCell className="text-center">{atp.steals}</TableCell>
-              <TableCell className="text-center">{atp.blocks}</TableCell>
-              <TableCell className="text-center">{atp.points}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TableCell>Totals</TableCell>
-            <TableCell className="text-center">{awayRebounds}</TableCell>
-            <TableCell className="text-center">{awayAssists}</TableCell>
-            <TableCell className="text-center">{awaySteals}</TableCell>
-            <TableCell className="text-center">{awayBlocks}</TableCell>
-            <TableCell className="text-center">{awayPoints}</TableCell>
-          </TableRow>
-        </TableFooter>
-      </Table>
-      <h2 className="p-2 font-medium">Home Team Players</h2>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Player</TableHead>
-            <TableHead className="w-[40px] text-center">REB</TableHead>
-            <TableHead className="w-[40px] text-center">AST</TableHead>
-            <TableHead className="w-[40px] text-center">STL</TableHead>
-            <TableHead className="w-[40px] text-center">BLK</TableHead>
-            <TableHead className="w-[40px] text-center">PTS</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {homeTeamPlayers.map((atp, index) => (
-            <TableRow key={index}>
-              <TableCell className="font-medium">{atp.player.name}</TableCell>
-              <TableCell className="text-center">{atp.rebounds}</TableCell>
-              <TableCell className="text-center">{atp.assists}</TableCell>
-              <TableCell className="text-center">{atp.steals}</TableCell>
-              <TableCell className="text-center">{atp.blocks}</TableCell>
-              <TableCell className="text-center">{atp.points}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TableCell>Totals</TableCell>
-            <TableCell className="text-center">{homeRebounds}</TableCell>
-            <TableCell className="text-center">{homeAssists}</TableCell>
-            <TableCell className="text-center">{homeSteals}</TableCell>
-            <TableCell className="text-center">{homeBlocks}</TableCell>
-            <TableCell className="text-center">{homePoints}</TableCell>
-          </TableRow>
-        </TableFooter>
-      </Table>
+      {teamsLogs.map((teamLog, index) => (
+        <Fragment key={index}>
+          <h2 className="p-2 pt-4 font-medium">{teamLog.team.name}</h2>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Player</TableHead>
+                <TableHead className="w-[40px] text-center">REB</TableHead>
+                <TableHead className="w-[40px] text-center">AST</TableHead>
+                <TableHead className="w-[40px] text-center">STL</TableHead>
+                <TableHead className="w-[40px] text-center">BLK</TableHead>
+                <TableHead className="w-[40px] text-center">PTS</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {teamLog.playerLogs.map((pl, index) => (
+                <TableRow key={index}>
+                  <TableCell className="font-medium">{pl.player.name}</TableCell>
+                  <TableCell className="text-center">{pl.rebounds}</TableCell>
+                  <TableCell className="text-center">{pl.assists}</TableCell>
+                  <TableCell className="text-center">{pl.steals}</TableCell>
+                  <TableCell className="text-center">{pl.blocks}</TableCell>
+                  <TableCell className="text-center">{pl.points}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TableCell>Totals</TableCell>
+                <TableCell className="text-center">{teamLog.totals.rebounds}</TableCell>
+                <TableCell className="text-center">{teamLog.totals.assists}</TableCell>
+                <TableCell className="text-center">{teamLog.totals.steals}</TableCell>
+                <TableCell className="text-center">{teamLog.totals.blocks}</TableCell>
+                <TableCell className="text-center">{teamLog.totals.points}</TableCell>
+              </TableRow>
+            </TableFooter>
+          </Table>
+        </Fragment>
+      ))}
     </>
   );
 }
