@@ -17,13 +17,11 @@ type Link = {
 
 const links: Link[] = [
   { title: "League", to: leaguePaths.League, },
-  { title: "Divisions", to: divisionsPaths.Divisions, },
   { title: "Games", to: gamesPaths.Games, },
   { title: "Players", to: playersPaths.Players, },
-  { title: "Seasons", to: seasonsPaths.Seasons, },
+  { title: "Teams", to: teamsPaths.Teams, },
   { title: "Standings", to: leaguePaths.Standings, },
   { title: "Statistics", to: leaguePaths.Statistics, },
-  { title: "Teams", to: teamsPaths.Teams, },
 ];
 
 export default function Navigation() {
