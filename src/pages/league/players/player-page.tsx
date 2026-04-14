@@ -1,8 +1,7 @@
-import usePageContext from "@/hooks/use-page-context.ts";
+import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { playersPaths } from "@/routes/league/players/routes.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { getRouteApi, Link } from "@tanstack/react-router";
-import { useEffect } from "react";
 
 type LoaderProps = {
   player: { id: number, name: string, number: string, position: string }, /* TBD for using types */
@@ -10,15 +9,13 @@ type LoaderProps = {
 
 export default function PlayerPage() {
   const { player }: LoaderProps = getRouteApi(playersPaths.Player).useLoaderData();
-  const { setPageHeader } = usePageContext();
 
-  useEffect(() => {
-    setPageHeader("Player", player.name, [
-      { title: "League", to: leaguePaths.League },
-      { title: "Players", to: playersPaths.Players },
-      { title: player.name },
-    ]);
-  }, []);
+  useTitle("Player", player.name);
+  useBreadcrumbs([
+    { title: "League", to: leaguePaths.League },
+    { title: "Players", to: playersPaths.Players },
+    { title: player.name },
+  ]);
 
   return (
     <>

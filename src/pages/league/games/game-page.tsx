@@ -1,19 +1,22 @@
-import usePageContext from "@/hooks/use-page-context.ts";
+import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { gamesPaths } from "@/routes/league/games/routes.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { Link } from "@tanstack/react-router";
-import { useEffect } from "react";
+import type { Game } from "@/types/game.ts";
+import { getRouteApi, Link } from "@tanstack/react-router";
+
+type LoaderProps = {
+  game: Game, /* TBD for using types */
+}
 
 export default function GamePage() {
-  const { setPageHeader } = usePageContext();
+  const { game }: LoaderProps = getRouteApi(gamesPaths.Game).useLoaderData();
 
-  useEffect(() => {
-    setPageHeader("Game", "", [
-      { title: "League", to: leaguePaths.League },
-      { title: "Games", to: gamesPaths.Games },
-      { title: "Game" },
-    ]);
-  }, []);
+  useTitle("Game", `#${game.id}`); /* gameId for now */
+  useBreadcrumbs([
+    { title: "League", to: leaguePaths.League },
+    { title: "Games", to: gamesPaths.Games },
+    { title: "Game" },
+  ]);
 
   return (
     <>

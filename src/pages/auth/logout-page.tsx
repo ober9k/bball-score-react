@@ -1,13 +1,12 @@
 import { useAuthContext } from "@/auth.tsx";
-import usePageContext from "@/hooks/use-page-context.ts";
+import { useTitle } from "@/hooks/page.ts";
 import { useEffect } from "react";
 
 export default function LogoutPage() {
-  const { setPageHeader } = usePageContext();
   const { logout } = useAuthContext();
 
+  useTitle("Logout");
   useEffect(() => {
-    setPageHeader("Logout");
     logout();
   }, []);
 

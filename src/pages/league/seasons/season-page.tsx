@@ -1,24 +1,22 @@
-import usePageContext from "@/hooks/use-page-context.ts";
+import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { seasonsPaths } from "@/routes/league/seasons/routes.ts";
+import type { SeasonDataWithId } from "@/types/season.ts";
 import { getRouteApi, Link } from "@tanstack/react-router";
-import { useEffect } from "react";
 
 type LoaderProps = {
-  season: { id: number, name: string }, /* TBD for using types */
+  season: SeasonDataWithId, /* TBD for using types */
 }
 
 export default function SeasonPage() {
   const { season }: LoaderProps = getRouteApi(seasonsPaths.Season).useLoaderData();
-  const { setPageHeader } = usePageContext();
 
-  useEffect(() => {
-    setPageHeader("Season", "", [
-      { title: "League", to: leaguePaths.League },
-      { title: "Seasons", to: seasonsPaths.Seasons },
-      { title: "Season" },
-    ]);
-  }, []);
+  useTitle("Season", season.name)
+  useBreadcrumbs([
+    { title: "League", to: leaguePaths.League },
+    { title: "Seasons", to: seasonsPaths.Seasons },
+    { title: "Season" },
+  ]);
 
   return (
     <>
