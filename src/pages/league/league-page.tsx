@@ -38,7 +38,10 @@ export default function LeaguePage() {
   };
 
   const gotoPlayers = () => {
-    alert("TBD");
+    router.navigate({
+      to: managerPaths.Players.Index,
+      replace: true,
+    });
   };
 
   const gotoGames = () => {

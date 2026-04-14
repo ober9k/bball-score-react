@@ -19,7 +19,7 @@ export async function teamMutationFn(teamData: TeamData) {
   return data;
 }
 
-type PathKey = "seasons" | "divisions" | "teams";
+type PathKey = "seasons" | "divisions" | "teams" | "players";
 
 function buildBaseMutationFn(pathKey: PathKey, id?: number) {
   const apiUrl = (id && id > 0)
@@ -45,4 +45,8 @@ export function buildDivisionsMutationFn(id?: number) {
 
 export function buildTeamsMutationFn(id?: number) {
   return buildBaseMutationFn("teams", id);
+}
+
+export function buildPlayersMutationFn(id?: number) {
+  return buildBaseMutationFn("players", id);
 }

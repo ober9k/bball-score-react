@@ -29,4 +29,8 @@ export const getDivisionsQK = (id?: number): Array<string|number> => {
 
 export const getTeamsQK = (id?: number): Array<string|number> => {
   return getQK(queryKeys.Teams, id);
+}
+
+export const getPlayersQK = (id?: number): Array<string|number> => {
+  return getQK(queryKeys.Players, id);
 };

@@ -6,18 +6,18 @@ import type { Route } from "@/routes/route";
 import { mapRoute } from "@/routes/route";
 import type { AxiosError } from "axios";
 
-async function playersLoader({ context }) {
+export async function playersLoader({ context }) {
   return {
-    players: await context.queryClient.ensureQueryData(playersQueryOptions)
+    players: await context.queryClient.fetchQuery(playersQueryOptions)
   };
 }
 
-async function playerLoader({ context, params }) {
+export async function playerLoader({ context, params }) {
   const playerId = +params["playerId"];
 
   try {
     return {
-      player: await context.queryClient.ensureQueryData(buildPlayerQueryOptions(playerId))
+      player: await context.queryClient.fetchQuery(buildPlayerQueryOptions(playerId))
     };
   }
   catch (error: AxiosError) {

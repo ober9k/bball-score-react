@@ -13,7 +13,7 @@ import {
   teamsQueryFn,
   usersMeQueryFn
 } from "@/apis/query-functions";
-import { getDivisionsQK, getSeasonsQK, getTeamsQK, queryKeys } from "@/apis/query-keys";
+import { getDivisionsQK, getPlayersQK, getSeasonsQK, getTeamsQK, queryKeys } from "@/apis/query-keys";
 
 export const seasonsQueryOptions = {
   queryKey: getSeasonsQK(),
@@ -52,14 +52,14 @@ export function buildTeamQueryOptions(id: number) {
 }
 
 export const playersQueryOptions = {
-  queryKey: [queryKeys.Players],
-  queryFn: playersQueryFn,
+  queryKey: getPlayersQK(),
+  queryFn:  playersQueryFn,
 };
 
-export function buildPlayerQueryOptions(playerId: number) {
+export function buildPlayerQueryOptions(id: number) {
   return {
-    queryKey: [queryKeys.Player, playerId],
-    queryFn: playerQueryFn,
+    queryKey: getPlayersQK(id),
+    queryFn:  playerQueryFn,
   }
 }
 
