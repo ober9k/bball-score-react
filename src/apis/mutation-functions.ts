@@ -16,12 +16,12 @@ function buildBaseMutationFn(pathKey: PathKey, id?: number) {
     ? buildLeagueApiPath(pathKey, id.toString())
     : buildLeagueApiPath(pathKey);
 
-  return async function(seasonData) {
-    const { data } = (id && id > 0)
-      ? await axios.put(apiUrl, seasonData)
-      : await axios.post(apiUrl, seasonData);
+  return async function(data) { /* this can maybe use a generic */
+    const result = (id && id > 0)
+      ? await axios.put(apiUrl, data)
+      : await axios.post(apiUrl, data);
 
-    return data;
+    return result.data;
   }
 }
 
