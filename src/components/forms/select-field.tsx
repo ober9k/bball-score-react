@@ -1,7 +1,6 @@
 import FieldErrors from "@/components/forms/field/field-errors.tsx";
 import FieldLabel from "@/components/forms/field/field-label.tsx";
 import { Field as UiField, FieldDescription } from "@/shared/components/ui/field.tsx";
-import { Input } from "@/shared/components/ui/input.tsx";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/shared/components/ui/select.tsx";
 import { Fragment } from "react";
 
