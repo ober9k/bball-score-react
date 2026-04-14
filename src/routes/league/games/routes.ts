@@ -7,7 +7,7 @@ import type { AxiosError } from "axios";
 
 async function gamesLoader({ context }) {
   return {
-    games: await context.queryClient.ensureQueryData(gamesQueryOptions)
+    games: await context.queryClient.fetchQuery(gamesQueryOptions)
   };
 }
 
@@ -16,7 +16,7 @@ async function gameLoader({ context, params }) {
 
   try {
     return {
-      game: await context.queryClient.ensureQueryData(buildGameQueryOptions(gameId))
+      game: await context.queryClient.fetchQuery(buildGameQueryOptions(gameId))
     };
   }
   catch (error: AxiosError) {

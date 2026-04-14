@@ -57,8 +57,8 @@ export async function gamesQueryFn() {
 }
 
 export async function gameQueryFn({ queryKey }) {
-  const [ key, gameId ] = queryKey;
-  const { data } = await axios.get(buildLeagueApiPath("games", gameId));
+  const [ key, { id } ] = queryKey;
+  const { data } = await axios.get(buildLeagueApiPath("games", id));
   return data;
 }
 
