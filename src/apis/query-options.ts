@@ -1,29 +1,19 @@
 import {
+  authUserQueryFn,
   divisionQueryFn,
   divisionsQueryFn,
-  usersMeQueryFn,
+  gameQueryFn,
+  gamesQueryFn,
+  logoutQueryFn,
   playerQueryFn,
   playersQueryFn,
   seasonQueryFn,
   seasonsQueryFn,
   teamQueryFn,
   teamsQueryFn,
-  logoutQueryFn,
-  gamesQueryFn, gameQueryFn, authUserQueryFn
+  usersMeQueryFn
 } from "@/apis/query-functions";
-import { getSeasonsQK, queryKeys } from "@/apis/query-keys";
-
-export const divisionsQueryOptions = {
-  queryKey: [queryKeys.Divisions],
-  queryFn: divisionsQueryFn,
-};
-
-export function buildDivisionQueryOptions(divisionId: number) {
-  return {
-    queryKey: [queryKeys.Division, divisionId],
-    queryFn: divisionQueryFn,
-  }
-}
+import { getDivisionsQK, getSeasonsQK, getTeamsQK, queryKeys } from "@/apis/query-keys";
 
 export const seasonsQueryOptions = {
   queryKey: getSeasonsQK(),
@@ -34,6 +24,30 @@ export function buildSeasonQueryOptions(id: number) {
   return {
     queryKey: getSeasonsQK(id),
     queryFn:  seasonQueryFn,
+  }
+}
+
+export const divisionsQueryOptions = {
+  queryKey: getDivisionsQK(),
+  queryFn:  divisionsQueryFn,
+};
+
+export function buildDivisionQueryOptions(id: number) {
+  return {
+    queryKey: getDivisionsQK(id),
+    queryFn:  divisionQueryFn,
+  }
+}
+
+export const teamsQueryOptions = {
+  queryKey: getTeamsQK(),
+  queryFn:  teamsQueryFn,
+};
+
+export function buildTeamQueryOptions(id: number) {
+  return {
+    queryKey: getTeamsQK(id),
+    queryFn:  teamQueryFn,
   }
 }
 
@@ -58,18 +72,6 @@ export function buildGameQueryOptions(gameId: number) {
   return {
     queryKey: [queryKeys.Game, gameId],
     queryFn: gameQueryFn,
-  }
-}
-
-export const teamsQueryOptions = {
-  queryKey: [queryKeys.Teams],
-  queryFn: teamsQueryFn,
-};
-
-export function buildTeamQueryOptions(teamId: number) {
-  return {
-    queryKey: [queryKeys.team, teamId],
-    queryFn: teamQueryFn,
   }
 }
 

@@ -23,3 +23,10 @@ export const getSeasonsQK = (id?: number): Array<string|number> => {
   return getQK(queryKeys.Seasons, id);
 };
 
+export const getDivisionsQK = (id?: number): Array<string|number> => {
+  return getQK(queryKeys.Divisions, id);
+};
+
+export const getTeamsQK = (id?: number): Array<string|number> => {
+  return getQK(queryKeys.Teams, id);
+};

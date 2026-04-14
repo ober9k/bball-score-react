@@ -35,17 +35,6 @@ export function buildAuthApiPath(...parts: Array<string>): string {
   return buildApiPath("auth", ...parts);
 }
 
-export async function divisionsQueryFn() {
-  const { data } = await axios.get(buildLeagueApiPath("divisions"));
-  return data;
-}
-
-export async function divisionQueryFn({ queryKey }) {
-  const [ key, divisionId ] = queryKey;
-  const { data } = await axios.get(buildLeagueApiPath("divisions", divisionId));
-  return data;
-}
-
 export async function playersQueryFn() {
   const { data } = await axios.get(buildLeagueApiPath("players"));
   return data;
@@ -95,14 +84,25 @@ export async function seasonQueryFn({ queryKey }) {
   return data;
 }
 
+export async function divisionsQueryFn() {
+  const { data } = await axios.get(buildLeagueApiPath("divisions"));
+  return data;
+}
+
+export async function divisionQueryFn({ queryKey }) {
+  const [ , { id } ] = queryKey;
+  const { data } = await axios.get(buildLeagueApiPath("divisions", id));
+  return data;
+}
+
 export async function teamsQueryFn() {
   const { data } = await axios.get(buildLeagueApiPath("teams"));
   return data;
 }
 
 export async function teamQueryFn({ queryKey }) {
-  const [ key, teamId ] = queryKey;
-  const { data } = await axios.get(buildLeagueApiPath("teams", teamId));
+  const [ , { id } ] = queryKey;
+  const { data } = await axios.get(buildLeagueApiPath("teams", id));
   return data;
 }
 
