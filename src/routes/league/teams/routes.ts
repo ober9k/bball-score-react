@@ -6,18 +6,18 @@ import type { Route } from "@/routes/route";
 import { mapRoute } from "@/routes/route";
 import type { AxiosError } from "axios";
 
-async function teamsLoader({ context }) {
+export async function teamsLoader({ context }) {
   return {
-    teams: await context.queryClient.ensureQueryData(teamsQueryOptions)
+    teams: await context.queryClient.fetchQuery(teamsQueryOptions)
   };
 }
 
-async function teamLoader({ context, params }) {
+export async function teamLoader({ context, params }) {
   const teamId = +params["teamId"];
 
   try {
     return {
-      team: await context.queryClient.ensureQueryData(buildTeamQueryOptions(teamId))
+      team: await context.queryClient.fetchQuery(buildTeamQueryOptions(teamId))
     };
   }
   catch (error: AxiosError) {
