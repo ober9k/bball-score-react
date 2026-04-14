@@ -1,8 +1,8 @@
 import FormErrors from "@/components/forms/form-errors.tsx";
 import type { InputFieldState } from "@/components/forms/input-field.tsx";
 import InputField from "@/components/forms/input-field.tsx";
-import { Button } from "@/shared/components/ui/button";
-import { Field as UiField, FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
+import { Button } from "@/shared/components/ui/button.tsx";
+import { Field as UiField, FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field.tsx";
 import { Fragment } from "react";
 
 export type FormState = {
@@ -45,6 +45,8 @@ export default function LoginForm({ formAction, formState, isPending, onCancel }
     errors:   fieldErrors.password || [],
   };
 
+  const buttonLabels = ["Login", "Logging In..."];
+
   return (
     <Fragment>
       <form action={formAction}>
@@ -53,7 +55,7 @@ export default function LoginForm({ formAction, formState, isPending, onCancel }
             Welcome back!
           </FieldLegend>
           <FieldDescription>
-            Enter your email and password to continue.
+            Enter your email address and password to continue.
           </FieldDescription>
           <FormErrors errors={formErrors} />
           <FieldGroup>
@@ -64,7 +66,7 @@ export default function LoginForm({ formAction, formState, isPending, onCancel }
                 Cancel
               </Button>
               <Button type="submit">
-                {isPending ? "Logging In..." : "Login"}
+                {!isPending ? buttonLabels[0] : buttonLabels[1]}
               </Button>
             </UiField>
           </FieldGroup>

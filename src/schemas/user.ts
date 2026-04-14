@@ -8,7 +8,7 @@ const PasswordLabel = "Password";
 const PasswordMinLength = 1;
 const PasswordMaxLength = 16;
 
-export const zLogin = z.object({
+export const zUser = z.object({
   email: z
     .email(validEmailAddressMessage(EmailLabel)),
   password: z
