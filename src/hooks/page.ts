@@ -11,7 +11,7 @@ export function useTitle(
   useEffect(() => {
     setTitle(title);
     setSubTitle(subTitle);
-  }, [title, subTitle]);
+  }, []);
 }
 
 export function useBreadcrumbs(
@@ -21,5 +21,5 @@ export function useBreadcrumbs(
 
   useEffect(() => {
     setBreadcrumbs(breadcrumbs);
-  }, [breadcrumbs]);
+  }, []);
 }
