@@ -1,6 +1,8 @@
 import NotFoundPage from "@/pages/league/errors/not-found-page.tsx";
 import UnauthorizedPage from "@/pages/league/errors/unauthorized-page.tsx";
-import { SeasonsCreatePage, SeasonsIndexPage, SeasonsUpdatePage } from "@/pages/manager/seasons";
+import { SeasonsCreatePage } from "@/pages/manager/seasons/create-page.tsx";
+import { SeasonsIndexPage } from "@/pages/manager/seasons/index-page.tsx";
+import { SeasonsUpdatePage } from "@/pages/manager/seasons/update-page.tsx";
 import { seasonLoader, seasonsLoader } from "@/routes/league/seasons/routes.ts";
 import { mapRoute } from "@/routes/route.ts";
 

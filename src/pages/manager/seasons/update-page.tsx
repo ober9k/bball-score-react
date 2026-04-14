@@ -1,4 +1,4 @@
-import { buildSeasonMutationFn } from "@/apis/mutation-functions.ts";
+import { buildSeasonsMutationFn } from "@/apis/mutation-functions.ts";
 import type { FormState } from "@/components/forms/season-form.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { buildFormAction } from "@/pages/manager/seasons/forms/actions.tsx";
@@ -22,7 +22,7 @@ type LoaderProps = {
   season: SeasonDataWithId, /* temp */
 }
 
-export default function UpdatePage() {
+export function UpdatePage() {
   const { season }: LoaderProps = getRouteApi(managerPaths.Seasons.Update).useLoaderData();
   const router = useRouter();
 
@@ -36,7 +36,7 @@ export default function UpdatePage() {
   initialFormState.fieldValues.name = season.name;
 
   const mutation = useMutation({
-    mutationFn: buildSeasonMutationFn(season.id),
+    mutationFn: buildSeasonsMutationFn(season.id),
     onSuccess: async () => {
       router.navigate({
         to: managerPaths.Seasons.Index,
@@ -60,3 +60,5 @@ export default function UpdatePage() {
     </Fragment>
   );
 }
+
+export { UpdatePage as SeasonsUpdatePage };
