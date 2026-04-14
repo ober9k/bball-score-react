@@ -1,16 +1,10 @@
 export const queryKeys = {
-  Divisions: "divisions",
-  Division:  "division",
-  Games:     "games",
-  Game:      "game",
-  Players:   "players",
-  Player:    "player",
   Seasons:   "seasons",
-  season:    "season",
+  Divisions: "divisions",
   Teams:     "teams",
-  team:      "team",
+  Players:   "players",
+  Games:     "games",
   Logout:    "logout",
-  UsersMe:   "usersMe",
 }
 
 const getQK = (baseQK: string, id?: number): Array<string|number> => {
@@ -33,4 +27,8 @@ export const getTeamsQK = (id?: number): Array<string|number> => {
 
 export const getPlayersQK = (id?: number): Array<string|number> => {
   return getQK(queryKeys.Players, id);
+};
+
+export const getGamesQK = (id?: number): Array<string|number> => {
+  return getQK(queryKeys.Games, id);
 };

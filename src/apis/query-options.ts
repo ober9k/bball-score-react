@@ -1,5 +1,5 @@
-import { authUserQueryFn, buildDivisionsQueryFn, buildPlayersQueryFn, buildSeasonsQueryFn, buildTeamsQueryFn, gameQueryFn, gamesQueryFn, logoutQueryFn, usersMeQueryFn } from "@/apis/query-functions";
-import { getDivisionsQK, getPlayersQK, getSeasonsQK, getTeamsQK, queryKeys } from "@/apis/query-keys";
+import { authUserQueryFn, buildDivisionsQueryFn, buildPlayersQueryFn, buildSeasonsQueryFn, buildTeamsQueryFn, gameQueryFn, gamesQueryFn, logoutQueryFn } from "@/apis/query-functions";
+import { getDivisionsQK, getGamesQK, getPlayersQK, getSeasonsQK, getTeamsQK, queryKeys } from "@/apis/query-keys";
 
 export const seasonsQueryOptions = {
   queryKey: getSeasonsQK(),
@@ -50,25 +50,20 @@ export function buildPlayerQueryOptions(id: number) {
 }
 
 export const gamesQueryOptions = {
-  queryKey: [queryKeys.Games],
-  queryFn: gamesQueryFn,
+  queryKey: getGamesQK(),
+  queryFn:  gamesQueryFn,
 };
 
-export function buildGameQueryOptions(gameId: number) {
+export function buildGameQueryOptions(id: number) {
   return {
-    queryKey: [queryKeys.Game, gameId],
-    queryFn: gameQueryFn,
+    queryKey: getGamesQK(id),
+    queryFn:  gameQueryFn,
   }
 }
 
 export const logoutQueryOptions = {
   queryKey: [queryKeys.Logout],
   queryFn: logoutQueryFn,
-};
-
-export const usersMeQueryOptions = {
-  queryKey: [queryKeys.UsersMe],
-  queryFn: usersMeQueryFn,
 };
 
 export const authUserQueryOptions = {
