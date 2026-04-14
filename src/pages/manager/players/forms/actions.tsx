@@ -1,3 +1,4 @@
+import { onFieldError, onFormError, onSuccess, onUnexpectedError } from "@/lib/forms.ts";
 import type { FormState } from "@/pages/manager/players/forms/update-form.tsx";
 import { zPlayer } from "@/schemas/player.ts";
 import type { PlayerData } from "@/types/player.ts";
@@ -33,34 +34,16 @@ export const buildFormAction = (mutation) => {
     catch (error) {
       if (error instanceof z.ZodError) {
         const { fieldErrors } = z.flattenError(error);
-
-        return {
-          fieldValues,
-          fieldErrors,
-          formErrors: [],
-        };
+        return onFieldError(fieldValues, fieldErrors);
       }
       else if (axios.isAxiosError(error)) {
         const { formErrors } = error.response.data;
-
-        return {
-          fieldValues,
-          fieldErrors: {},
-          formErrors,
-        };
+        return onFormError(fieldValues, formErrors);
       }
 
-      return {
-        fieldValues,
-        fieldErrors: {},
-        formErrors: ["Unexpected error has occurred."],
-      };
+      return onUnexpectedError(fieldValues);
     }
 
-    return {
-      fieldValues,
-      fieldErrors: {},
-      formErrors: [],
-    };
+    return onSuccess(fieldValues);
   };
 }
