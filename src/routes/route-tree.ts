@@ -1,4 +1,4 @@
-import { authUserQueryOptions, usersMeQueryOptions } from "@/apis/query-options.ts";
+import { authUserQueryOptions } from "@/apis/query-options.ts";
 import DefaultLayout from "@/layouts/default-layout";
 import AboutPage from "@/pages/about-page";
 import HomePage from "@/pages/home-page";
@@ -11,27 +11,6 @@ import { seasonsRoutes } from "@/routes/league/seasons/routes";
 import { teamsRoutes } from "@/routes/league/teams/routes";
 import { managerRoutes } from "@/routes/manager/routes.ts";
 import { createRootRoute, createRoute } from "@tanstack/react-router";
-import type { AxiosError } from "axios";
-
-async function usersMeLoader({ context }) {
-  try {
-    const user = await context.queryClient.ensureQueryData(usersMeQueryOptions);
-
-    return {
-      user: {
-        loggedIn: true,
-        ...user,
-      },
-    };
-  }
-  catch (error: AxiosError) {
-    return {
-      user: {
-        loggedIn: false,
-      },
-    }
-  }
-}
 
 /**
  * Handle an initial load for the user's authentication.
@@ -47,7 +26,6 @@ const rootBeforeLoader = async ({ context }) => {
 export const rootRoute = createRootRoute({
   component: DefaultLayout,
   beforeLoad: rootBeforeLoader,
-  loader: usersMeLoader,
 });
 
 const homeRoute = createRoute({

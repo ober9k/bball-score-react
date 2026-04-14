@@ -30,7 +30,6 @@ export default function LoginPage() {
   const mutation = useMutation({
     mutationFn: loginMutationFn,
     onSuccess: () => {
-      router.invalidate();
       router.navigate({
         to: leaguePaths.League,
         replace: true,

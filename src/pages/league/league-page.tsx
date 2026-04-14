@@ -1,10 +1,10 @@
+import { useAuthContext } from "@/auth.tsx";
 import usePageContext from "@/hooks/use-page-context.ts";
-import useUserContext from "@/hooks/use-user-context.ts";
 import { useEffect } from "react";
 
 export default function LeaguePage() {
   const { setPageHeader } = usePageContext();
-  const { user, isLoggedIn } = useUserContext();
+  const { user, isAuthenticated } = useAuthContext();
 
   useEffect(() => {
     setPageHeader("League", "", [
@@ -18,7 +18,7 @@ export default function LeaguePage() {
         TBD.
       </p>
       <p className="p-2 text-sm">
-        User: {isLoggedIn() ? user.email : "Not logged in..."}
+        User: {isAuthenticated() ? user().email : "Not logged in..."}
       </p>
     </>
   );
