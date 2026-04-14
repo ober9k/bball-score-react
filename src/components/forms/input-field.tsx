@@ -1,6 +1,7 @@
+import FieldDescription from "@/components/forms/field/field-description.tsx";
 import FieldErrors from "@/components/forms/field/field-errors.tsx";
 import FieldLabel from "@/components/forms/field/field-label.tsx";
-import { Field as UiField, FieldDescription } from "@/shared/components/ui/field.tsx";
+import { Field as UiField } from "@/shared/components/ui/field.tsx";
 import { Input } from "@/shared/components/ui/input.tsx";
 import { Fragment } from "react";
 
