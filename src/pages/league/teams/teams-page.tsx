@@ -1,11 +1,13 @@
+import TeamCard from "@/components/teams/team-card.tsx";
 import usePageContext from "@/hooks/use-page-context.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { teamsPaths } from "@/routes/league/teams/routes.ts";
-import { getRouteApi, Link } from "@tanstack/react-router";
+import type { TeamDataWithId } from "@/types/team.ts";
+import { getRouteApi } from "@tanstack/react-router";
 import { useEffect } from "react";
 
 type LoaderProps = {
-  team: { id: number, name: string }[], /* TBD for using types */
+  team: TeamDataWithId[], /* TBD for using types */
 }
 
 export default function TeamsPage() {
@@ -21,11 +23,9 @@ export default function TeamsPage() {
   
   return (
     <>
-      <div className="p-2 text-sm flex flex-col gap-2">
+      <div className="text-sm flex flex-col gap-4">
         {teams.map((team) => (
-          <Link to={teamsPaths.Team} params={{teamId: team.id}} key={team.id}>
-            {team.name}
-          </Link>
+          <TeamCard team={team} key={team.id} />
         ))}
       </div>
     </>

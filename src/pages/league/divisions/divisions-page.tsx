@@ -1,11 +1,13 @@
+import DivisionCard from "@/components/divisions/division-card.tsx";
 import usePageContext from "@/hooks/use-page-context.ts";
 import { divisionsPaths } from "@/routes/league/divisions/routes.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { getRouteApi, Link } from "@tanstack/react-router";
+import type { DivisionDataWithId } from "@/types/division.ts";
+import { getRouteApi } from "@tanstack/react-router";
 import { useEffect } from "react";
 
 type LoaderProps = {
-  divisions: { id: number, name: string }[], /* TBD for using types */
+  divisions: DivisionDataWithId[], /* TBD for using types */
 }
 
 export default function DivisionsPage() {
@@ -21,11 +23,9 @@ export default function DivisionsPage() {
 
   return (
     <>
-      <div className="p-2 text-sm flex flex-col gap-2">
+      <div className="text-sm flex flex-col gap-4">
         {divisions.map((division) => (
-          <Link to={divisionsPaths.Division} params={{ divisionId: division.id }} key={division.id}>
-            {division.name}
-          </Link>
+          <DivisionCard division={division} key={division.id} />
         ))}
       </div>
     </>
