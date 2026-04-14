@@ -4,19 +4,18 @@ import { Field as UiField, FieldDescription } from "@/shared/components/ui/field
 import { Input } from "@/shared/components/ui/input.tsx";
 import { Fragment } from "react";
 
-export type FieldState = {
+export type InputFieldState = {
   name:         string,
   type:         "text" | "email" | "password",
   label:        string,
   required?:    boolean,
   description?: string,
   value:        string,
-  values:       { key: string, value: string }[],
   errors:       string[],
 }
 
 type Props = {
-  fieldState: FieldState,
+  fieldState: InputFieldState,
 }
 
 /**
@@ -24,7 +23,7 @@ type Props = {
  * Initial version.
  * @constructor
  */
-export default function Field({ fieldState }: Props) {
+export default function InputField({ fieldState }: Props) {
   const { name, type, label, required, description, value, errors } = fieldState;
 
   const hasErrors = (): boolean => {

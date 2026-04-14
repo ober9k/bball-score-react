@@ -1,5 +1,5 @@
-import type { FieldState } from "@/components/forms/field.tsx";
-import Field from "@/components/forms/field.tsx";
+import type { InputFieldState } from "@/components/forms/input-field.tsx";
+import InputField from "@/components/forms/input-field.tsx";
 import { Button } from "@/shared/components/ui/button";
 import { Field as UiField, FieldDescription, FieldError, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
 import { Fragment } from "react";
@@ -65,7 +65,7 @@ type LoginFormProps = {
 export default function LoginForm({ formAction, formState, isPending, onCancel }: LoginFormProps) {
   const { fieldValues, fieldErrors } = formState;
 
-  const emailFieldState: FieldState = {
+  const emailFieldState: InputFieldState = {
     name:     "email",
     type:     "email",
     label:    "Email",
@@ -74,7 +74,7 @@ export default function LoginForm({ formAction, formState, isPending, onCancel }
     errors:   fieldErrors.email || [],
   };
 
-  const passwordFieldState: FieldState = {
+  const passwordFieldState: InputFieldState = {
     name:     "password",
     type:     "password",
     label:    "Password",
@@ -95,8 +95,8 @@ export default function LoginForm({ formAction, formState, isPending, onCancel }
           </FieldDescription>
           <FormErrors formState={formState}/>
           <FieldGroup>
-            <Field fieldState={emailFieldState} />
-            <Field fieldState={passwordFieldState} />
+            <InputField fieldState={emailFieldState} />
+            <InputField fieldState={passwordFieldState} />
             <UiField orientation="horizontal" className="flex justify-center">
               <Button type="reset" variant="secondary" onClick={() => onCancel()}>
                 Cancel
