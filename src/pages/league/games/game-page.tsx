@@ -1,3 +1,4 @@
+import GameCard from "@/components/games/game-card.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { gamesPaths } from "@/routes/league/games/routes.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
@@ -44,13 +45,11 @@ export default function GamePage() {
   const { points: awayPoints, rebounds: awayRebounds, assists: awayAssists, steals: awaySteals, blocks: awayBlocks } = awayTeamPlayers.reduce(statsReducer, { ...initialAccumulator });
   const { points: homePoints, rebounds: homeRebounds, assists: homeAssists, steals: homeSteals, blocks: homeBlocks } = homeTeamPlayers.reduce(statsReducer, { ...initialAccumulator });
 
+  game.teamLogs = (game as any).gameTeams; /* temp */
+
   return (
     <>
-      <p className="p-2 text-sm">
-        <Link to={gamesPaths.Games}>
-          Goto: Games
-        </Link>
-      </p>
+      <GameCard game={game} />
       <h2 className="p-2 font-medium">Away Team Players</h2>
       <Table>
         <TableHeader>
