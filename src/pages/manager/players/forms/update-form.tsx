@@ -91,12 +91,6 @@ export default function UpdateForm({ formAction, formState, formMode, isPending,
     errors:   fieldErrors.height || [],
   };
 
-  const isCreate = () => formMode === "create";
-
-  const buttonLabels = (isCreate())
-    ? ["Create", "Creating..."]
-    : ["Update", "Updating..."];
-
   return (
     <Fragment>
       <form action={formAction}>
