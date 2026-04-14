@@ -3,6 +3,7 @@
  * This is applied to a map for convenience.
  */
 const phrases = {
+  /* player position stuff */
   "position.type.label.guard":         "Guard",
   "position.type.label.pointGuard":    "Point Guard",
   "position.type.label.shootingGuard": "Shooting Guard",
@@ -10,6 +11,13 @@ const phrases = {
   "position.type.label.smallForward":  "Small Forward",
   "position.type.label.powerForward":  "Power Forward",
   "position.type.label.center":        "Center",
+
+  /* buttons */
+  "button.create": "Create",
+  "button.create.inProgress": "Creating",
+  "button.update": "Update",
+  "button.update.inProgress": "Updating",
+  "button.cancel": "Cancel",
 };
 
 const phrasesMap = new Map<string, string>(Object.entries(phrases));
