@@ -1,8 +1,8 @@
+import FormButtons from "@/components/forms/form-buttons.tsx";
 import FormErrors from "@/components/forms/form-errors.tsx";
 import type { InputFieldState } from "@/components/forms/input-field.tsx";
 import InputField from "@/components/forms/input-field.tsx";
-import { Button } from "@/shared/components/ui/button";
-import { Field as UiField, FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
+import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
 import { Fragment } from "react";
 
 export type FormState = {
@@ -18,7 +18,7 @@ export type FormState = {
 type SeasonFormProps = {
   formAction: (payload: FormData) => void,
   formState: FormState,
-  formMode: "create" | "update"
+  formMode: "create" | "update", /* todo: make into type */
   isPending: boolean,
   onCancel: () => void,
 };
@@ -59,14 +59,7 @@ export default function UpdateForm({ formAction, formState, formMode, isPending,
             <InputField fieldState={nameFieldState} />
           </FieldSet>
           <FieldSet>
-            <UiField orientation="horizontal" className="flex justify-center">
-              <Button type="reset" variant="secondary" onClick={() => onCancel()}>
-                Cancel
-              </Button>
-              <Button type="submit">
-                {!isPending ? buttonLabels[0] : buttonLabels[1]}
-              </Button>
-            </UiField>
+            <FormButtons formMode={formMode} isPending={isPending} onCancel={onCancel} />
           </FieldSet>
         </FieldGroup>
       </form>
