@@ -1,4 +1,4 @@
-import { buildSeasonMutationFn } from "@/apis/mutation-functions.ts";
+import { buildSeasonsMutationFn } from "@/apis/mutation-functions.ts";
 import type { FormState } from "@/components/forms/season-form.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { buildFormAction } from "@/pages/manager/seasons/forms/actions.tsx";
@@ -17,7 +17,7 @@ const initialFormState: FormState = {
   formErrors:  [],
 };
 
-export default function CreatePage() {
+export function CreatePage() {
   const router = useRouter();
 
   useTitle("Create Season");
@@ -28,7 +28,7 @@ export default function CreatePage() {
   ]);
 
   const mutation = useMutation({
-    mutationFn: buildSeasonMutationFn(),
+    mutationFn: buildSeasonsMutationFn(),
     onSuccess: () => {
       router.navigate({
         to: managerPaths.Seasons.Index,
@@ -52,3 +52,5 @@ export default function CreatePage() {
     </Fragment>
   );
 }
+
+export { CreatePage as SeasonsCreatePage };

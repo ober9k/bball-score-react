@@ -16,8 +16,12 @@ export const buildFormAction = (mutation) => {
     };
 
     try {
-      zSeason.parse(fieldValues);
-      await mutation.mutateAsync<SeasonData>(fieldValues);
+      const data: SeasonData = {
+        name: fieldValues.name,
+      };
+
+      zSeason.parse(data);
+      await mutation.mutateAsync<SeasonData>(data);
     }
     catch (error) {
       if (error instanceof z.ZodError) {
