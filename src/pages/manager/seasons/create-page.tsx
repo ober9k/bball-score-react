@@ -1,18 +1,15 @@
-import usePageContext from "@/hooks/use-page-context.ts";
+import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { managerPaths } from "@/routes/manager/routes.ts";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 
 export default function CreatePage() {
-  const { setPageHeader } = usePageContext();
-
-  useEffect(() => {
-    setPageHeader("Create Season", "", [
-      { title: "Manager", to: leaguePaths.League },
-      { title: "Seasons", to: managerPaths.Seasons.Index },
-      { title: "Create Season" },
-    ]);
-  }, []);
+  useTitle("Create Season");
+  useBreadcrumbs([
+    { title: "Manager", to: leaguePaths.League },
+    { title: "Seasons", to: managerPaths.Seasons.Index },
+    { title: "Create Season" },
+  ]);
 
   return (
     <Fragment>

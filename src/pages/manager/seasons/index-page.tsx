@@ -1,9 +1,9 @@
-import usePageContext from "@/hooks/use-page-context.ts";
+import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { managerPaths } from "@/routes/manager/routes.ts";
 import type { SeasonDataWithId } from "@/types/season.ts";
 import { getRouteApi, Link } from "@tanstack/react-router";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 
 type LoaderProps = {
   seasons: SeasonDataWithId[], /* temp */
@@ -11,14 +11,12 @@ type LoaderProps = {
 
 export default function IndexPage() {
   const { seasons }: LoaderProps = getRouteApi(managerPaths.Seasons.Index).useLoaderData();
-  const { setPageHeader } = usePageContext();
 
-  useEffect(() => {
-    setPageHeader("Seasons", "", [
-      { title: "Manager", to: leaguePaths.League },
-      { title: "Seasons" },
-    ]);
-  }, []);
+  useTitle("Seasons");
+  useBreadcrumbs([
+    { title: "Manager", to: leaguePaths.League },
+    { title: "Seasons" },
+  ]);
 
   return (
     <Fragment>
