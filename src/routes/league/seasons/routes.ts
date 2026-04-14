@@ -10,7 +10,7 @@ import type { AxiosError } from "axios";
 
 export async function seasonsLoader({ context }) {
   return {
-    seasons: await context.queryClient.ensureQueryData(seasonsQueryOptions)
+    seasons: await context.queryClient.fetchQuery(seasonsQueryOptions)
   };
 }
 
@@ -19,7 +19,7 @@ export async function seasonLoader({ context, params }) {
 
   try {
     return {
-      season: await context.queryClient.ensureQueryData(buildSeasonQueryOptions(seasonId))
+      season: await context.queryClient.fetchQuery(buildSeasonQueryOptions(seasonId))
     };
   }
   catch (error: AxiosError) {

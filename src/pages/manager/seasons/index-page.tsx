@@ -20,7 +20,7 @@ export default function IndexPage() {
 
   return (
     <Fragment>
-      Index:<br />
+      Index: [<Link to={managerPaths.Seasons.Create}>Create</Link>]
       <ul>
         {seasons.map((season) => (
           <li key={season.id}>

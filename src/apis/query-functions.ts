@@ -90,8 +90,8 @@ export async function seasonsQueryFn() {
 }
 
 export async function seasonQueryFn({ queryKey }) {
-  const [ key, seasonId ] = queryKey;
-  const { data } = await axios.get(buildLeagueApiPath("seasons", seasonId));
+  const [ , { id } ] = queryKey;
+  const { data } = await axios.get(buildLeagueApiPath("seasons", id));
   return data;
 }
 
