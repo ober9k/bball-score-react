@@ -1,7 +1,8 @@
+import FormErrors from "@/components/forms/form-errors.tsx";
 import type { InputFieldState } from "@/components/forms/input-field.tsx";
 import InputField from "@/components/forms/input-field.tsx";
 import { Button } from "@/shared/components/ui/button";
-import { Field as UiField, FieldDescription, FieldError, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
+import { Field as UiField, FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
 import { Fragment } from "react";
 
 export type FormState = {
@@ -16,45 +17,6 @@ export type FormState = {
   },
 };
 
-type FormErrorsProps = {
-  formState: FormState,
-};
-
-/**
- * TBD: this (with props) can be relocated to somewhere more generic...
- */
-export function FormErrors({ formState }: FormErrorsProps) {
-  const { formErrors } = formState;
-
-  const hasErrors = (): boolean => {
-    return formErrors.length > 0;
-  };
-
-  const getErrors = (): string[] => {
-    return (hasErrors())
-      ? formErrors
-      : [];
-  };
-
-  if (hasErrors()) {
-    return (
-      <Fragment>
-        <FieldError>
-          <ul>
-            {getErrors().map((error, index) => (
-              <li key={index}>{error}</li>
-            ))}
-          </ul>
-        </FieldError>
-      </Fragment>
-    );
-  }
-
-  return (
-    <Fragment/>
-  );
-}
-
 type LoginFormProps = {
   formAction: (payload: FormData) => void,
   formState: FormState,
@@ -63,7 +25,7 @@ type LoginFormProps = {
 };
 
 export default function LoginForm({ formAction, formState, isPending, onCancel }: LoginFormProps) {
-  const { fieldValues, fieldErrors } = formState;
+  const { formErrors, fieldValues, fieldErrors } = formState;
 
   const emailFieldState: InputFieldState = {
     name:     "email",
@@ -93,7 +55,7 @@ export default function LoginForm({ formAction, formState, isPending, onCancel }
           <FieldDescription>
             Enter your email and password to continue.
           </FieldDescription>
-          <FormErrors formState={formState}/>
+          <FormErrors errors={formErrors} />
           <FieldGroup>
             <InputField fieldState={emailFieldState} />
             <InputField fieldState={passwordFieldState} />
