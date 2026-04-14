@@ -62,48 +62,33 @@ export async function gameQueryFn({ queryKey }) {
   return data;
 }
 
-export async function seasonsQueryFn() {
-  const { data } = await axios.get(buildLeagueApiPath("seasons"));
-  return data;
+type PathKey = "seasons" | "divisions" | "teams" | "players";
+
+function buildBaseQueryFn(pathKey: PathKey, id?: number) {
+  const apiUrl = (id && id > 0)
+    ? buildLeagueApiPath(pathKey, id.toString())
+    : buildLeagueApiPath(pathKey);
+
+  return async function() {
+    const { data } = await axios.get(apiUrl);
+    return data;
+  }
 }
 
-export async function seasonQueryFn({ queryKey }) {
-  const [ , { id } ] = queryKey;
-  const { data } = await axios.get(buildLeagueApiPath("seasons", id));
-  return data;
+export function buildSeasonsQueryFn(id?: number) {
+  return buildBaseQueryFn("seasons", id);
 }
 
-export async function divisionsQueryFn() {
-  const { data } = await axios.get(buildLeagueApiPath("divisions"));
-  return data;
+export function buildDivisionsQueryFn(id?: number) {
+  return buildBaseQueryFn("divisions", id);
 }
 
-export async function divisionQueryFn({ queryKey }) {
-  const [ , { id } ] = queryKey;
-  const { data } = await axios.get(buildLeagueApiPath("divisions", id));
-  return data;
+export function buildTeamsQueryFn(id?: number) {
+  return buildBaseQueryFn("teams", id);
 }
 
-export async function teamsQueryFn() {
-  const { data } = await axios.get(buildLeagueApiPath("teams"));
-  return data;
-}
-
-export async function teamQueryFn({ queryKey }) {
-  const [ , { id } ] = queryKey;
-  const { data } = await axios.get(buildLeagueApiPath("teams", id));
-  return data;
-}
-
-export async function playersQueryFn() {
-  const { data } = await axios.get(buildLeagueApiPath("players"));
-  return data;
-}
-
-export async function playerQueryFn({ queryKey }) {
-  const [ , { id } ] = queryKey;
-  const { data } = await axios.get(buildLeagueApiPath("players", id));
-  return data;
+export function buildPlayersQueryFn(id?: number) {
+  return buildBaseQueryFn("players", id);
 }
 
 export async function logoutQueryFn() {
