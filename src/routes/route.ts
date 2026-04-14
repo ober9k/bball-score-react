@@ -6,6 +6,7 @@ import { createRoute, type RouteComponent } from "@tanstack/react-router";
  */
 export type Route = {
   path: string,
+  beforeLoad?: any,
   component: RouteComponent,
   errorComponent?: RouteComponent,
   notFoundComponent?: RouteComponent,
@@ -16,6 +17,7 @@ export const mapRoute = (route: Route) => {
   return createRoute({
     getParentRoute: () => rootRoute,
     path: route.path,
+    beforeLoad: route.beforeLoad,
     component: route.component,
     errorComponent: route.errorComponent,
     notFoundComponent: route.notFoundComponent,

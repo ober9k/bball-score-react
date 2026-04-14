@@ -10,6 +10,7 @@ import { leagueRoutes } from "@/routes/league/routes";
 import { seasonsRoutes } from "@/routes/league/seasons/routes";
 import { teamsRoutes } from "@/routes/league/teams/routes";
 import { createRootRoute, createRoute } from "@tanstack/react-router";
+import { managerRoutes } from "@/routes/manager/routes.ts";
 import type { AxiosError } from "axios";
 
 async function usersMeLoader({ context }) {
@@ -54,6 +55,7 @@ export const routeTree = rootRoute.addChildren([
   aboutRoute,
   ...authRoutes,
   ...leagueRoutes,
+  ...managerRoutes,
   ...divisionsRoutes,
   ...gamesRoutes,
   ...playersRoutes,
