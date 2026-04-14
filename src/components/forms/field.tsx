@@ -1,4 +1,6 @@
-import { Field as UiField, FieldDescription as UiFieldDescription, FieldError, FieldLabel as UiFieldLabel } from "@/shared/components/ui/field.tsx";
+import FieldErrors from "@/components/forms/field/field-errors.tsx";
+import FieldLabel from "@/components/forms/field/field-label.tsx";
+import { Field as UiField, FieldDescription } from "@/shared/components/ui/field.tsx";
 import { Input } from "@/shared/components/ui/input.tsx";
 import { Fragment } from "react";
 
@@ -9,85 +11,11 @@ export type FieldState = {
   required?:    boolean,
   description?: string,
   value:        string,
+  values:       { key: string, value: string }[],
   errors:       string[],
 }
 
-type FieldLabelProps = {
-  field:     string,
-  label:     string,
-  required?: boolean,
-};
-
-export function FieldLabel({ field, label, required = false}: FieldLabelProps) {
-  return (
-    <Fragment>
-      <UiFieldLabel htmlFor={field}>
-        {label}
-        {required && (
-          <span className="-mx-1 text-red-500">*</span>
-        )}
-      </UiFieldLabel>
-    </Fragment>
-  );
-}
-
-type FieldErrorsProps = {
-  errors: string[],
-};
-
-/**
- * TBD: this (with props) can be relocated to somewhere more generic...
- */
-function FieldErrors({ errors }: FieldErrorsProps) {
-  const hasErrors = (): boolean => {
-    return errors.length > 0;
-  };
-
-  if (hasErrors()) {
-    return (
-      <Fragment>
-        <FieldError>
-          <ul>
-            {errors.map((error, index) => (
-              <li key={index}>{error}</li>
-            ))}
-          </ul>
-        </FieldError>
-      </Fragment>
-    );
-  }
-
-  return (
-    <Fragment />
-  );
-}
-
-type FieldDescriptionProps = {
-  description?: string,
-};
-
-function FieldDescription({ description }: FieldDescriptionProps) {
-  const hasDescription = (): boolean => {
-    return description !== undefined;
-  };
-
-  if (hasDescription()) {
-    return (
-      <Fragment>
-        <UiFieldDescription>
-          {description}
-        </UiFieldDescription>
-      </Fragment>
-    );
-  }
-
-  return (
-    <Fragment />
-  );
-
-}
-
-type FieldProps = {
+type Props = {
   fieldState: FieldState,
 }
 
@@ -96,7 +24,7 @@ type FieldProps = {
  * Initial version.
  * @constructor
  */
-export default function Field({ fieldState }: FieldProps) {
+export default function Field({ fieldState }: Props) {
   const { name, type, label, required, description, value, errors } = fieldState;
 
   const hasErrors = (): boolean => {
