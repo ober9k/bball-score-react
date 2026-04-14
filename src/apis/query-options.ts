@@ -62,7 +62,7 @@ export function buildGameQueryOptions(gameId: number) {
 }
 
 export const teamsQueryOptions = {
-  queryKey: [queryKeys.teams],
+  queryKey: [queryKeys.Teams],
   queryFn: teamsQueryFn,
 };
 

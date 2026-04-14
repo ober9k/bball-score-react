@@ -5,9 +5,9 @@ export const queryKeys = {
   Game:      "game",
   Players:   "players",
   Player:    "player",
-  seasons:   "seasons",
+  Seasons:   "seasons",
   season:    "season",
-  teams:     "teams",
+  Teams:     "teams",
   team:      "team",
   Logout:    "logout",
   UsersMe:   "usersMe",
@@ -20,6 +20,6 @@ const getQK = (baseQK: string, id?: number): Array<string|number> => {
 }
 
 export const getSeasonsQK = (id?: number): Array<string|number> => {
-  return getQK(queryKeys.seasons, id);
+  return getQK(queryKeys.Seasons, id);
 };
 
