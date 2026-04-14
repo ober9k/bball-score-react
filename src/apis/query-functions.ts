@@ -115,3 +115,13 @@ export async function usersMeQueryFn() {
   const { data } = await axios.get(buildAuthApiPath("me"));
   return data;
 }
+
+export async function authUserQueryFn() {
+  try {
+    const { data: user } = await axios.get(buildAuthApiPath("me"));
+    return user;
+  }
+  catch (error) {
+    return null;
+  }
+}

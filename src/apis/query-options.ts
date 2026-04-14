@@ -9,7 +9,7 @@ import {
   teamQueryFn,
   teamsQueryFn,
   logoutQueryFn,
-  gamesQueryFn, gameQueryFn
+  gamesQueryFn, gameQueryFn, authUserQueryFn
 } from "@/apis/query-functions";
 import { queryKeys } from "@/apis/query-keys";
 
@@ -81,4 +81,11 @@ export const logoutQueryOptions = {
 export const usersMeQueryOptions = {
   queryKey: [queryKeys.UsersMe],
   queryFn: usersMeQueryFn,
+};
+
+export const authUserQueryOptions = {
+  queryKey: ["authUser"],
+  queryFn: authUserQueryFn,
+  staleTime: 0,
+  gcTime: 0,
 };
