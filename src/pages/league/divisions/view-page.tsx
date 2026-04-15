@@ -1,13 +1,10 @@
+import type { DivisionLoaderProps } from "@/apis/loaders/types.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { getRouteApi, Link } from "@tanstack/react-router";
 
-type LoaderProps = {
-  division: { id: number, name: string }, /* TBD for using types */
-}
-
 export function ViewPage() {
-  const { division }: LoaderProps = getRouteApi(leaguePaths.Divisions.View).useLoaderData();
+  const { division }: DivisionLoaderProps = getRouteApi(leaguePaths.Divisions.View).useLoaderData();
 
   useTitle("Division", division.name);
   useBreadcrumbs([
@@ -18,11 +15,6 @@ export function ViewPage() {
 
   return (
     <>
-      <p className="p-2 text-sm">
-        <Link to={leaguePaths.Divisions.View}>
-          Goto: Divisions
-        </Link>
-      </p>
       <p className="p-2 text-sm flex flex-col gap-2">
         {division.name}
       </p>

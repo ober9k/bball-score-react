@@ -1,7 +1,7 @@
 import { onFieldError, onFormError, onSuccess, onUnexpectedError } from "@/lib/forms.ts";
 import type { FormState } from "@/pages/manager/divisions/forms/update-form.tsx";
 import { zDivision } from "@/schemas/division.ts";
-import type { DivisionData } from "@/types/division.ts";
+import type { UpdateDivisionDto } from "@/types/division.ts";
 import axios from "axios";
 import { z } from "zod";
 
@@ -13,18 +13,18 @@ export const buildFormAction = (mutation) => {
     }
 
     const fieldValues = {
-      name: getValue("name"),
+      name:     getValue("name"),
       seasonId: getValue("seasonId"),
     };
 
     try {
-      const data: DivisionData = {
-        name: fieldValues.name,
+      const data: UpdateDivisionDto = {
+        name:      fieldValues.name,
         seasonId: +fieldValues.seasonId,
       };
 
       zDivision.parse(data);
-      await mutation.mutateAsync<DivisionData>(data);
+      await mutation.mutateAsync<UpdateDivisionDto>(data);
     }
     catch (error) {
       if (error instanceof z.ZodError) {

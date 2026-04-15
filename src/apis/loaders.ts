@@ -1,6 +1,6 @@
 import { fetchAll, fetchAllWithConverter, fetchById, fetchByIdWithConverter } from "@/apis/api.ts";
-import { toSeason } from "@/apis/converters.ts";
-import type { SeasonLoaderProps, SeasonsLoaderProps } from "@/apis/loaders/types.ts";
+import { toDivision, toSeason } from "@/apis/converters.ts";
+import type { DivisionLoaderProps, DivisionsLoaderProps, SeasonLoaderProps, SeasonsLoaderProps } from "@/apis/loaders/types.ts";
 import {
   buildDivisionQueryOptions,
   buildGameQueryOptions,
@@ -13,6 +13,7 @@ import {
   seasonsQueryOptions,
   teamsQueryOptions
 } from "@/apis/query-options.ts";
+import type { Division } from "@/types/division.ts";
 import type { Season } from "@/types/season.ts";
 
 export async function seasonsLoader({ context }): SeasonsLoaderProps {
@@ -24,13 +25,13 @@ export async function seasonLoader({ context, params }): SeasonLoaderProps {
   return fetchByIdWithConverter<Season>(context.queryClient, buildSeasonQueryOptions(seasonId), toSeason);
 }
 
-export async function divisionsLoader({ context }) {
-  return fetchAll(context.queryClient, divisionsQueryOptions);
+export async function divisionsLoader({ context }): DivisionsLoaderProps {
+  return fetchAllWithConverter<Division>(context.queryClient, divisionsQueryOptions, toDivision);
 }
 
-export async function divisionLoader({ context, params }) {
+export async function divisionLoader({ context, params }): DivisionLoaderProps {
   const divisionId = +params["divisionId"];
-  return fetchById(context.queryClient, buildDivisionQueryOptions(divisionId));
+  return fetchByIdWithConverter<Division>(context.queryClient, buildDivisionQueryOptions(divisionId), toDivision);
 }
 
 export async function teamsLoader({ context }) {

@@ -6,7 +6,7 @@ import InputField from "@/components/forms/input-field.tsx";
 import type { SelectFieldState } from "@/components/forms/select-field.tsx";
 import SelectField from "@/components/forms/select-field.tsx";
 import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
-import type { DivisionDataWithId } from "@/types/division.ts";
+import type { Division } from "@/types/division.ts";
 import { useQuery } from "@tanstack/react-query";
 import { Fragment, useEffect, useState } from "react";
 
@@ -34,12 +34,12 @@ type DivisionFormProps = {
 
 export default function UpdateForm({ formAction, formState, formMode, isPending, onCancel }: DivisionFormProps) {
   const { formErrors, fieldValues, fieldErrors } = formState;
-  const [ divisions, setDivisions ] = useState<DivisionDataWithId[]>([]);
+  const [ divisions, setDivisions ] = useState<Division[]>([]);
   const { data } = useQuery(divisionsQueryOptions);
 
   useEffect(() => {
     if (data) {
-      setDivisions(data as DivisionDataWithId[]);
+      setDivisions(data as Division[]);
     }
   }, [data]);
 

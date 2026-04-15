@@ -1,7 +1,5 @@
 import { buildAuthApiPath, buildLeagueApiPath } from "@/apis/query-functions.ts";
-import type { DivisionData } from "@/types/division.ts";
 import type { LoginData } from "@/types/login.ts";
-import type { TeamData } from "@/types/team.ts";
 import axios from "axios";
 
 export async function loginMutationFn(loginData: LoginData) {

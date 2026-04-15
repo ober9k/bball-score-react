@@ -1,10 +1,10 @@
+import type { DivisionLoaderProps } from "@/apis/loaders/types.ts";
 import { buildDivisionsMutationFn } from "@/apis/mutation-functions.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { buildFormAction } from "@/pages/manager/divisions/forms/actions.tsx";
 import UpdateForm, { type FormState } from "@/pages/manager/divisions/forms/update-form.tsx";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { managerPaths } from "@/routes/manager/routes.ts";
-import type { DivisionDataWithId } from "@/types/division.ts";
 import { useMutation } from "@tanstack/react-query";
 import { getRouteApi, useRouter } from "@tanstack/react-router";
 import { Fragment, useActionState } from "react";
@@ -18,12 +18,8 @@ const initialFormState: FormState = {
   formErrors:  [],
 };
 
-type LoaderProps = {
-  division: DivisionDataWithId, /* temp */
-}
-
 export function UpdatePage() {
-  const { division }: LoaderProps = getRouteApi(managerPaths.Divisions.Update).useLoaderData();
+  const { division }: DivisionLoaderProps = getRouteApi(managerPaths.Divisions.Update).useLoaderData();
   const router = useRouter();
 
   useTitle("Update Division", division.name);

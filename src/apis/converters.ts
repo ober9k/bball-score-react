@@ -1,3 +1,4 @@
+import type { Division } from "@/types/division.ts";
 import type { Season } from "@/types/season.ts";
 
 export type DtoConverter<T> = (data: any) => T;
@@ -6,5 +7,13 @@ export function toSeason(season: any): Season {
   return {
     id:   season.id,
     name: season.name,
+  };
+}
+
+export function toDivision(division: any): Division {
+  return {
+    id:       division.id,
+    name:     division.name,
+    seasonId: division.seasonId,
   };
 }

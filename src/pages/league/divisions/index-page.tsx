@@ -1,20 +1,16 @@
+import type { DivisionsLoaderProps } from "@/apis/loaders/types.ts";
 import DivisionCard from "@/components/divisions/division-card.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import type { DivisionDataWithId } from "@/types/division.ts";
 import { getRouteApi } from "@tanstack/react-router";
 
-type LoaderProps = {
-  divisions: DivisionDataWithId[], /* TBD for using types */
-}
-
 export function IndexPage() {
-  const { divisions }: LoaderProps = getRouteApi(leaguePaths.Divisions.Index).useLoaderData();
+  const { divisions }: DivisionsLoaderProps = getRouteApi(leaguePaths.Divisions.Index).useLoaderData();
 
   useTitle("Divisions");
   useBreadcrumbs([
     { title: "League", to: leaguePaths.League.Index },
-    { title: "Divisions", to: leaguePaths.Divisions.Index },
+    { title: "Divisions" },
   ]);
 
   return (
