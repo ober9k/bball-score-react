@@ -54,7 +54,7 @@ export default function ViewPage() {
             </TableHeader>
             <TableBody>
               {teamLog.playerLogs.map((pl, index) => (
-                <TableRow key={index}>
+                <TableRow key={index} className="border-b-gray-200">
                   <TableCell className="font-medium">{pl.player.name}</TableCell>
                   <TableCell className="w-[36px] px-1 text-center">{pl.minutes}</TableCell>
                   <TableCell className="w-[36px] px-1 text-center">{pl.stats.fgMade}-{pl.stats.fgAttempted}</TableCell>
