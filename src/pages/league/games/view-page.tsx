@@ -41,21 +41,21 @@ export default function ViewPage() {
     return {
       seconds:      0,
       // temp start
-      fgMade:       acc.fgMade + cur.fgMade,
-      fgAttempted:  acc.fgAttempted + cur.fgAttempted,
-      fg3Made:      acc.fg3Made + cur.fg3Made,
-      fg3Attempted: acc.fg3Attempted + cur.fg3Attempted,
-      ftMade:       acc.ftMade + cur.ftMade,
-      ftAttempted:  acc.ftAttempted + cur.ftAttempted,
+      fgMade:       acc.fgMade + cur.stats.fgMade,
+      fgAttempted:  acc.fgAttempted + cur.stats.fgAttempted,
+      fg3Made:      acc.fg3Made + cur.stats.fg3Made,
+      fg3Attempted: acc.fg3Attempted + cur.stats.fg3Attempted,
+      ftMade:       acc.ftMade + cur.stats.ftMade,
+      ftAttempted:  acc.ftAttempted + cur.stats.ftAttempted,
       // temp finish
-      offRebounds:  acc.offRebounds + cur.offRebounds,
-      defRebounds:  acc.defRebounds + cur.defRebounds,
-      rebounds:     acc.rebounds + cur.rebounds,
-      assists:      acc.assists + cur.assists,
-      steals:       acc.steals + cur.steals,
-      blocks:       acc.blocks + cur.blocks,
-      turnovers:    acc.turnovers + cur.turnovers,
-      points:       acc.points + cur.points,
+      offRebounds:  acc.offRebounds + cur.stats.offRebounds,
+      defRebounds:  acc.defRebounds + cur.stats.defRebounds,
+      rebounds:     acc.rebounds + cur.stats.rebounds,
+      assists:      acc.assists + cur.stats.assists,
+      steals:       acc.steals + cur.stats.steals,
+      blocks:       acc.blocks + cur.stats.blocks,
+      turnovers:    acc.turnovers + cur.stats.turnovers,
+      points:       acc.points + cur.stats.points,
     }
   };
 
@@ -71,26 +71,28 @@ export default function ViewPage() {
     team: teamLog.team,
     playerLogs: (teamLog as any).playerLogs.map((gtp) => ({
       player:       gtp.player,
-      seconds:      formatMinutes(gtp.seconds),
+      seconds:      formatMinutes(gtp.stats.seconds),
       // temp start
-      fgMade:       gtp.fgMade,
-      fgAttempted:  gtp.fgAttempted,
-      fg3Made:      gtp.fg3Made,
-      fg3Attempted: gtp.fg3Attempted,
-      ftMade:       gtp.ftMade,
-      ftAttempted:  gtp.ftAttempted,
+      fgMade:       gtp.stats.fgMade,
+      fgAttempted:  gtp.stats.fgAttempted,
+      fg3Made:      gtp.stats.fg3Made,
+      fg3Attempted: gtp.stats.fg3Attempted,
+      ftMade:       gtp.stats.ftMade,
+      ftAttempted:  gtp.stats.ftAttempted,
       // temp finish
-      offRebounds:  gtp.offRebounds,
-      defRebounds:  gtp.defRebounds,
-      rebounds:     gtp.rebounds,
-      assists:      gtp.assists,
-      steals:       gtp.steals,
-      blocks:       gtp.blocks,
-      turnovers:    gtp.turnovers,
-      points:       gtp.points,
+      offRebounds:  gtp.stats.offRebounds,
+      defRebounds:  gtp.stats.defRebounds,
+      rebounds:     gtp.stats.rebounds,
+      assists:      gtp.stats.assists,
+      steals:       gtp.stats.steals,
+      blocks:       gtp.stats.blocks,
+      turnovers:    gtp.stats.turnovers,
+      points:       gtp.stats.points,
     })),
     totals: (teamLog as any).playerLogs.reduce(statsReducer, { ...initialAccumulator })
   }));
+
+  console.log(teamsLogs);
 
   return (
     <>

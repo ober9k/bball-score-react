@@ -1,3 +1,5 @@
+import type { Player } from "@/types/player.ts";
+import type { Stats } from "@/types/stats.ts";
 import type { Team } from "@/types/team.ts";
 
 export const Side = {
@@ -15,13 +17,20 @@ export const Phase = {
 
 export type PhaseType = typeof Phase[keyof typeof Phase];
 
+export type PlayerLog = {
+  player:  Player,
+  started: boolean,
+  stats:   Stats,
+};
+
 export type TeamLog = {
-  id:       number,
-  side:     SideType,
-  score:    number,
-  byPeriod: number[], /* score by period */
-  team:     Team,
-}
+  id:         number,
+  side:       SideType,
+  score:      number,
+  byPeriod:   number[], /* score by period */
+  team:       Team,
+  playerLogs: PlayerLog[],
+};
 
 export type Game = {
   id:       number,
@@ -29,4 +38,4 @@ export type Game = {
   phase:    PhaseType,
   round:    number,
   teamLogs: TeamLog[],
-}
+};

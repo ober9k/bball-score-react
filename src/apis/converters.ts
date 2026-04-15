@@ -2,6 +2,7 @@ import type { Division } from "@/types/division.ts";
 import type { Game, SideType, TeamLog } from "@/types/game.ts";
 import type { Player } from "@/types/player.ts";
 import type { Season } from "@/types/season.ts";
+import type { Stats } from "@/types/stats.ts";
 import type { Team } from "@/types/team.ts";
 
 export type DtoConverter<T> = (data: any) => T;
@@ -57,6 +58,14 @@ export function toTeamLog(teamLog: any): TeamLog {
     score:      teamLog.score,
     byPeriod:   teamLog.scoreByPeriod, /* score by period */
     team:       teamLog.team,
-    playerLogs: [], /* temporary */
+    playerLogs: teamLog.gameTeamPlayers.map(toPlayerLog), /* temporary, update key on API as well */
+  };
+}
+
+export function toPlayerLog(playerLog: any): TeamLog {
+  return {
+    player:  playerLog.player,
+    started: playerLog.started,
+    stats:   playerLog.stats,
   };
 }
