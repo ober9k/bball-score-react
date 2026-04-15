@@ -1,14 +1,10 @@
+import type { SeasonsLoaderProps } from "@/apis/loaders/types.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import type { SeasonDataWithId } from "@/types/season.ts";
 import { getRouteApi, Link } from "@tanstack/react-router";
 
-type LoaderProps = {
-  season: SeasonDataWithId[], /* TBD for using types */
-}
-
 export function IndexPage() {
-  const { seasons }: LoaderProps = getRouteApi(leaguePaths.Seasons.Index).useLoaderData();
+  const { seasons }: SeasonsLoaderProps = getRouteApi(leaguePaths.Seasons.Index).useLoaderData();
 
   useTitle("Seasons");
   useBreadcrumbs([

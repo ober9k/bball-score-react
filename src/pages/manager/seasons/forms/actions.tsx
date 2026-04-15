@@ -1,7 +1,7 @@
 import { onFieldError, onFormError, onSuccess, onUnexpectedError } from "@/lib/forms.ts";
 import type { FormState } from "@/pages/manager/seasons/forms/update-form.tsx";
 import { zSeason } from "@/schemas/season.ts";
-import type { SeasonData } from "@/types/season.ts";
+import type { UpdateSeasonDto } from "@/types/season.ts";
 import axios from "axios";
 import { z } from "zod";
 
@@ -17,12 +17,12 @@ export const buildFormAction = (mutation) => {
     };
 
     try {
-      const data: SeasonData = {
+      const data: UpdateSeasonDto = {
         name: fieldValues.name,
       };
 
       zSeason.parse(data);
-      await mutation.mutateAsync<SeasonData>(data);
+      await mutation.mutateAsync<UpdateSeasonDto>(data);
     }
     catch (error) {
       if (error instanceof z.ZodError) {

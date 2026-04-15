@@ -1,22 +1,6 @@
-/* TODO: to be tidied up */
 export type Season = {
-  id: number,
+  id:   number,
   name: string,
-}
+};
 
-/* TODO: to be tidied up */
-export type SeasonData = {
-  name: string,
-}
-
-/* TODO: to be tidied up */
-export type SeasonDataWithId = {
-  id: number,
-  name: string,
-}
-/* TODO: to be tidied up */
-export type SeasonDto = {
-  id?: number,
-  name: string,
-}
-
+export type UpdateSeasonDto = Omit<Season, "id">;

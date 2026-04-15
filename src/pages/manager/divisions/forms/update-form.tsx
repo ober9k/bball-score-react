@@ -6,7 +6,7 @@ import InputField from "@/components/forms/input-field.tsx";
 import type { SelectFieldState } from "@/components/forms/select-field.tsx";
 import SelectField from "@/components/forms/select-field.tsx";
 import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
-import type { SeasonDataWithId } from "@/types/season.ts";
+import type { Season } from "@/types/season.ts";
 import { useQuery } from "@tanstack/react-query";
 import { Fragment, useEffect, useState } from "react";
 
@@ -32,12 +32,12 @@ type DivisionFormProps = {
 
 export default function UpdateForm({ formAction, formState, formMode, isPending, onCancel }: DivisionFormProps) {
   const { formErrors, fieldValues, fieldErrors } = formState;
-  const [ seasons, setSeasons ] = useState<SeasonDataWithId[]>([]);
+  const [ seasons, setSeasons ] = useState<Season[]>([]);
   const { data } = useQuery(seasonsQueryOptions);
 
   useEffect(() => {
     if (data) {
-      setSeasons(data as SeasonDataWithId[]);
+      setSeasons(data as Season[]);
     }
   }, [data]);
 

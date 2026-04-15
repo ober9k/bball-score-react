@@ -1,4 +1,6 @@
-import { fetchAll, fetchById } from "@/apis/api.ts";
+import { fetchAll, fetchAllWithConverter, fetchById, fetchByIdWithConverter } from "@/apis/api.ts";
+import { toSeason } from "@/apis/converters.ts";
+import type { SeasonLoaderProps, SeasonsLoaderProps } from "@/apis/loaders/types.ts";
 import {
   buildDivisionQueryOptions,
   buildGameQueryOptions,
@@ -11,14 +13,15 @@ import {
   seasonsQueryOptions,
   teamsQueryOptions
 } from "@/apis/query-options.ts";
+import type { Season } from "@/types/season.ts";
 
-export async function seasonsLoader({ context }) {
-  return fetchAll(context.queryClient, seasonsQueryOptions);
+export async function seasonsLoader({ context }): SeasonsLoaderProps {
+  return fetchAllWithConverter<Season>(context.queryClient, seasonsQueryOptions, toSeason);
 }
 
-export async function seasonLoader({ context, params }) {
+export async function seasonLoader({ context, params }): SeasonLoaderProps {
   const seasonId = +params["seasonId"];
-  return fetchById(context.queryClient, buildSeasonQueryOptions(seasonId));
+  return fetchByIdWithConverter<Season>(context.queryClient, buildSeasonQueryOptions(seasonId), toSeason);
 }
 
 export async function divisionsLoader({ context }) {

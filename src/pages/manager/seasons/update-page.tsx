@@ -1,11 +1,10 @@
+import type { SeasonLoaderProps } from "@/apis/loaders/types.ts";
 import { buildSeasonsMutationFn } from "@/apis/mutation-functions.ts";
-import type { FormState } from "@/components/forms/season-form.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { buildFormAction } from "@/pages/manager/seasons/forms/actions.tsx";
-import UpdateForm from "@/pages/manager/seasons/forms/update-form.tsx";
+import UpdateForm, { type FormState } from "@/pages/manager/seasons/forms/update-form.tsx";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { managerPaths } from "@/routes/manager/routes.ts";
-import type { SeasonDataWithId } from "@/types/season.ts";
 import { useMutation } from "@tanstack/react-query";
 import { getRouteApi, useRouter } from "@tanstack/react-router";
 import { Fragment, useActionState } from "react";
@@ -18,12 +17,8 @@ const initialFormState: FormState = {
   formErrors:  [],
 };
 
-type LoaderProps = {
-  season: SeasonDataWithId, /* temp */
-}
-
 export function UpdatePage() {
-  const { season }: LoaderProps = getRouteApi(managerPaths.Seasons.Update).useLoaderData();
+  const { season }: SeasonLoaderProps = getRouteApi(managerPaths.Seasons.Update).useLoaderData();
   const router = useRouter();
 
   useTitle("Update Season", season.name);
