@@ -24,6 +24,7 @@ export default function GamePage() {
   const [ awayTeam, homeTeam ] = (game as any).gameTeams;
 
   const initialAccumulator = {
+    seconds:      0,
     // temp start
     fgMade:       0,
     fgAttempted:  0,
@@ -44,6 +45,7 @@ export default function GamePage() {
 
   const statsReducer = (acc, cur) => {
     return {
+      seconds:      0,
       // temp start
       fgMade:       acc.fgMade + cur.fgMade,
       fgAttempted:  acc.fgAttempted + cur.fgAttempted,
@@ -66,10 +68,18 @@ export default function GamePage() {
 
   game.teamLogs = (game as any).gameTeams; /* temp */
 
+  const formatMinutes = (seconds: number) => {
+    return (new Intl.DateTimeFormat(navigator.language, {
+      minute: '2-digit',
+      second: '2-digit',
+    })).format(new Date(0, 0, 0, 0, 0, seconds));
+  };
+
   const teamsLogs = game.teamLogs.map((teamLog) => ({
     team: teamLog.team,
     playerLogs: (teamLog as any).gameTeamPlayers.map((gtp) => ({
-      player:   gtp.player,
+      player:       gtp.player,
+      seconds:      formatMinutes(gtp.seconds),
       // temp start
       fgMade:       gtp.fgMade,
       fgAttempted:  gtp.fgAttempted,
@@ -100,9 +110,10 @@ export default function GamePage() {
             <TableHeader>
               <TableRow>
                 <TableHead>Player</TableHead>
-                <TableHead className="w-[36px] px-1 text-center">FGM-A</TableHead>
-                <TableHead className="w-[36px] px-1 text-center">3PM-A</TableHead>
-                <TableHead className="w-[36px] px-1 text-center">FTM-A</TableHead>
+                <TableHead className="w-[24px] px-1 text-center">MIN</TableHead>
+                <TableHead className="w-[30px] px-1 text-center">FG</TableHead>
+                <TableHead className="w-[30px] px-1 text-center">3PT</TableHead>
+                <TableHead className="w-[30px] px-1 text-center">FT</TableHead>
                 <TableHead className="w-[24px] px-1 text-center">OREB</TableHead>
                 <TableHead className="w-[24px] px-1 text-center">DREB</TableHead>
                 <TableHead className="w-[24px] px-1 text-center">REB</TableHead>
@@ -117,9 +128,10 @@ export default function GamePage() {
               {teamLog.playerLogs.map((pl, index) => (
                 <TableRow key={index}>
                   <TableCell className="font-medium">{pl.player.name}</TableCell>
-                  <TableCell className="w-[36px] px-1 text-center">{pl.fgMade}-{pl.fgAttempted}</TableCell>
-                  <TableCell className="w-[36px] px-1 text-center">{pl.fg3Made}-{pl.fg3Attempted}</TableCell>
-                  <TableCell className="w-[24px] px-1 text-center">{pl.ftMade}-{pl.ftAttempted}</TableCell>
+                  <TableCell className="w-[24px] px-1 text-center">{pl.seconds}</TableCell>
+                  <TableCell className="w-[30px] px-1 text-center">{pl.fgMade}-{pl.fgAttempted}</TableCell>
+                  <TableCell className="w-[30px] px-1 text-center">{pl.fg3Made}-{pl.fg3Attempted}</TableCell>
+                  <TableCell className="w-[30px] px-1 text-center">{pl.ftMade}-{pl.ftAttempted}</TableCell>
                   <TableCell className="w-[24px] px-1 text-center">{pl.offRebounds}</TableCell>
                   <TableCell className="w-[24px] px-1 text-center">{pl.defRebounds}</TableCell>
                   <TableCell className="w-[24px] px-1 text-center">{pl.rebounds}</TableCell>
@@ -134,6 +146,7 @@ export default function GamePage() {
             <TableFooter>
               <TableRow>
                 <TableCell>Totals</TableCell>
+                <TableCell className="text-center">---</TableCell>
                 <TableCell className="text-center">{teamLog.totals.fgMade}-{teamLog.totals.fgAttempted}</TableCell>
                 <TableCell className="text-center">{teamLog.totals.fg3Made}-{teamLog.totals.fg3Attempted}</TableCell>
                 <TableCell className="text-center">{teamLog.totals.ftMade}-{teamLog.totals.ftAttempted}</TableCell>
