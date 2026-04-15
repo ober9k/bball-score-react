@@ -1,5 +1,5 @@
 import { divisionLoader, divisionsLoader, gameLoader, gamesLoader, playerLoader, playersLoader, seasonLoader, seasonsLoader, teamLoader, teamsLoader } from "@/apis/loaders.ts";
-import NotFoundPage from "@/pages/league/errors/not-found-page.tsx";
+import NotFoundPage from "@/pages/errors/not-found-page.tsx";
 import {
   DivisionsIndexPage,
   DivisionsViewPage,

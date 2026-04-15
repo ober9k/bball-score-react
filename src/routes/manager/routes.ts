@@ -1,6 +1,6 @@
 import { divisionLoader, divisionsLoader, playerLoader, playersLoader, seasonLoader, seasonsLoader, teamLoader, teamsLoader } from "@/apis/loaders.ts";
-import NotFoundPage from "@/pages/league/errors/not-found-page.tsx";
-import UnauthorizedPage from "@/pages/league/errors/unauthorized-page.tsx";
+import NotFoundPage from "@/pages/errors/not-found-page.tsx";
+import UnauthorizedPage from "@/pages/errors/unauthorized-page.tsx";
 import { DivisionsCreatePage } from "@/pages/manager/divisions/create-page.tsx";
 import { DivisionsIndexPage } from "@/pages/manager/divisions/index-page.tsx";
 import { DivisionsUpdatePage } from "@/pages/manager/divisions/update-page.tsx";
