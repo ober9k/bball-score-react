@@ -23,7 +23,7 @@ export default function ViewPage() {
     team: teamLog.team,
     playerLogs: (teamLog as any).playerLogs.map((gtp) => ({
       player:  gtp.player,
-      seconds: formatMinutes(gtp.stats.seconds),
+      minutes: formatMinutes(gtp.stats.seconds),
       stats:   gtp.stats,
     })),
     totals: calculateTotals(teamLog.playerLogs),
@@ -57,7 +57,7 @@ export default function ViewPage() {
               {teamLog.playerLogs.map((pl, index) => (
                 <TableRow key={index}>
                   <TableCell className="font-medium">{pl.player.name}</TableCell>
-                  <TableCell className="w-[24px] px-1 text-center">{pl.stats.seconds}</TableCell>
+                  <TableCell className="w-[24px] px-1 text-center">{pl.minutes}</TableCell>
                   <TableCell className="w-[30px] px-1 text-center">{pl.stats.fgMade}-{pl.stats.fgAttempted}</TableCell>
                   <TableCell className="w-[30px] px-1 text-center">{pl.stats.fg3Made}-{pl.stats.fg3Attempted}</TableCell>
                   <TableCell className="w-[30px] px-1 text-center">{pl.stats.ftMade}-{pl.stats.ftAttempted}</TableCell>
