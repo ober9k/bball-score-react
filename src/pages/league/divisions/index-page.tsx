@@ -8,7 +8,7 @@ type LoaderProps = {
   divisions: DivisionDataWithId[], /* TBD for using types */
 }
 
-export default function DivisionsPage() {
+export function IndexPage() {
   const { divisions }: LoaderProps = getRouteApi(leaguePaths.Divisions.Index).useLoaderData();
 
   useTitle("Divisions");
@@ -27,3 +27,5 @@ export default function DivisionsPage() {
     </>
   );
 }
+
+export { IndexPage as DivisionsIndexPage };

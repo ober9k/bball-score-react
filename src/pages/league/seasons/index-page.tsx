@@ -7,7 +7,7 @@ type LoaderProps = {
   season: SeasonDataWithId[], /* TBD for using types */
 }
 
-export default function SeasonsPage() {
+export function IndexPage() {
   const { seasons }: LoaderProps = getRouteApi(leaguePaths.Seasons.Index).useLoaderData();
 
   useTitle("Seasons");
@@ -28,3 +28,5 @@ export default function SeasonsPage() {
     </>
   );
 }
+
+export { IndexPage as SeasonsIndexPage };

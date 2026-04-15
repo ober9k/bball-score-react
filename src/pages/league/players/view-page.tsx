@@ -7,10 +7,8 @@ type LoaderProps = {
   player: PlayerDataWithId, /* TBD for using types */
 }
 
-export default function PlayerPage() {
+export function ViewPage() {
   const { player }: LoaderProps = getRouteApi(leaguePaths.Players.View).useLoaderData();
-
-  console.log(player);
 
   useTitle("Player", player.name);
   useBreadcrumbs([
@@ -32,3 +30,5 @@ export default function PlayerPage() {
     </>
   );
 }
+
+export { ViewPage as PlayersViewPage };

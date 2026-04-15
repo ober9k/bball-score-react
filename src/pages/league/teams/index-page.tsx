@@ -8,7 +8,7 @@ type LoaderProps = {
   team: TeamDataWithId[], /* TBD for using types */
 }
 
-export default function TeamsPage() {
+export function IndexPage() {
   const { teams }: LoaderProps = getRouteApi(leaguePaths.Teams.Index).useLoaderData();
 
   useTitle("Teams");
@@ -27,3 +27,5 @@ export default function TeamsPage() {
     </>
   );
 }
+
+export { IndexPage as TeamsIndexPage };

@@ -1,18 +1,20 @@
 import { divisionLoader, divisionsLoader, gameLoader, gamesLoader, playerLoader, playersLoader, seasonLoader, seasonsLoader, teamLoader, teamsLoader } from "@/apis/loaders.ts";
-import DivisionPage from "@/pages/league/divisions/division-page.tsx";
-import DivisionsPage from "@/pages/league/divisions/divisions-page.tsx";
 import NotFoundPage from "@/pages/league/errors/not-found-page.tsx";
-import GamePage from "@/pages/league/games/game-page.tsx";
-import GamesPage from "@/pages/league/games/games-page.tsx";
-import LeaguePage from "@/pages/league/league-page";
-import PlayerPage from "@/pages/league/players/player-page.tsx";
-import PlayersPage from "@/pages/league/players/players-page.tsx";
-import SeasonPage from "@/pages/league/seasons/season-page.tsx";
-import SeasonsPage from "@/pages/league/seasons/seasons-page.tsx";
-import StandingsPage from "@/pages/league/standings-page";
-import StatisticsPage from "@/pages/league/statistics-page";
-import TeamPage from "@/pages/league/teams/team-page.tsx";
-import TeamsPage from "@/pages/league/teams/teams-page.tsx";
+import {
+  DivisionsIndexPage,
+  DivisionsViewPage,
+  GamesIndexPage,
+  GamesViewPage,
+  LeagueIndexPage,
+  LeagueStandingsPage,
+  LeagueStatisticsPage,
+  PlayersIndexPage,
+  PlayersViewPage,
+  SeasonsIndexPage,
+  SeasonsViewPage,
+  TeamsIndexPage,
+  TeamsViewPage
+} from "@/routes/league/pages.ts";
 import { mapRoute } from "@/routes/route.ts";
 
 const paths = {
@@ -43,56 +45,56 @@ const paths = {
 
 const routes = [{
   path: paths.League,
-  component: LeaguePage,
+  component: LeagueIndexPage,
 },{
   path: paths.Standings,
-  component: StandingsPage,
+  component: LeagueStandingsPage,
 },{
   path: paths.Statistics,
-  component: StatisticsPage,
+  component: LeagueStatisticsPage,
 },{
   path: paths.Seasons.Index,
-  component: SeasonsPage,
+  component: SeasonsIndexPage,
   loader: seasonsLoader,
 },{
   path: paths.Seasons.View,
-  component: SeasonPage,
+  component: SeasonsViewPage,
   notFoundComponent: NotFoundPage,
   loader: seasonLoader,
 },{
   path: paths.Divisions.Index,
-  component: DivisionsPage,
+  component: DivisionsIndexPage,
   loader: divisionsLoader,
 },{
   path: paths.Divisions.View,
-  component: DivisionPage,
+  component: DivisionsViewPage,
   notFoundComponent: NotFoundPage,
   loader: divisionLoader,
 },{
   path: paths.Teams.Index,
-  component: TeamsPage,
+  component: TeamsIndexPage,
   loader: teamsLoader,
 },{
   path: paths.Teams.View,
-  component: TeamPage,
+  component: TeamsViewPage,
   notFoundComponent: NotFoundPage,
   loader: teamLoader,
 },{
   path: paths.Players.Index,
-  component: PlayersPage,
+  component: PlayersIndexPage,
   loader: playersLoader,
 },{
   path: paths.Players.View,
-  component: PlayerPage,
+  component: PlayersViewPage,
   notFoundComponent: NotFoundPage,
   loader: playerLoader,
 },{
   path: paths.Games.Index,
-  component: GamesPage,
+  component: GamesIndexPage,
   loader: gamesLoader,
 }, {
   path: paths.Games.View,
-  component: GamePage,
+  component: GamesViewPage,
   notFoundComponent: NotFoundPage,
   loader: gameLoader,
 }];

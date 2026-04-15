@@ -10,7 +10,7 @@ type LoaderProps = {
   game: Game, /* TBD for using types */
 }
 
-export default function GamePage() {
+export default function ViewPage() {
   const { game }: LoaderProps = getRouteApi(leaguePaths.Games.View).useLoaderData();
 
   useTitle("Game", `#${game.id}`); /* gameId for now */
@@ -165,3 +165,5 @@ export default function GamePage() {
     </>
   );
 }
+
+export { ViewPage as GamesViewPage };

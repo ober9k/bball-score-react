@@ -7,7 +7,7 @@ type LoaderProps = {
   season: SeasonDataWithId, /* TBD for using types */
 }
 
-export default function SeasonPage() {
+export function ViewPage() {
   const { season }: LoaderProps = getRouteApi(leaguePaths.Seasons.View).useLoaderData();
 
   useTitle("Season", season.name)
@@ -30,3 +30,5 @@ export default function SeasonPage() {
     </>
   );
 }
+
+export { ViewPage as SeasonsViewPage };

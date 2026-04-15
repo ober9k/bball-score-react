@@ -8,7 +8,7 @@ type LoaderProps = {
   games: Game[],
 };
 
-export default function GamesPage() {
+export default function IndexPage() {
   const { games }: LoaderProps = getRouteApi(leaguePaths.Games.Index).useLoaderData();
 
   useTitle("Games");
@@ -27,3 +27,5 @@ export default function GamesPage() {
     </>
   );
 }
+
+export { IndexPage as GamesIndexPage };

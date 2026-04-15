@@ -6,7 +6,7 @@ import { Button } from "@/shared/components/ui/button.tsx";
 import { useRouter } from "@tanstack/react-router";
 import { Fragment, useEffect } from "react";
 
-export default function LeaguePage() {
+export function IndexPage() {
   const { setPageHeader } = usePageContext();
   const { user, isAuthenticated } = useAuthContext();
   const router = useRouter();
@@ -89,3 +89,5 @@ export default function LeaguePage() {
     </>
   );
 }
+
+export { IndexPage as LeagueIndexPage };

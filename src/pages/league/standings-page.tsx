@@ -2,7 +2,7 @@ import usePageContext from "@/hooks/use-page-context.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { useEffect } from "react";
 
-export default function StandingsPage() {
+export function StandingsPage() {
   const { setPageHeader } = usePageContext();
 
   useEffect(() => {
@@ -20,3 +20,5 @@ export default function StandingsPage() {
     </>
   );
 }
+
+export { StandingsPage as LeagueStandingsPage };

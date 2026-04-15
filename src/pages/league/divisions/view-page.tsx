@@ -6,7 +6,7 @@ type LoaderProps = {
   division: { id: number, name: string }, /* TBD for using types */
 }
 
-export default function DivisionPage() {
+export function ViewPage() {
   const { division }: LoaderProps = getRouteApi(leaguePaths.Divisions.View).useLoaderData();
 
   useTitle("Division", division.name);
@@ -29,3 +29,5 @@ export default function DivisionPage() {
     </>
   );
 }
+
+export { ViewPage as DivisionsViewPage };

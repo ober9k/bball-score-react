@@ -7,7 +7,7 @@ type LoaderProps = {
   team: TeamDataWithId, /* TBD for using types */
 }
 
-export default function TeamPage() {
+export function ViewPage() {
   const { team }: LoaderProps = getRouteApi(leaguePaths.Teams.View).useLoaderData();
 
   useTitle("Team", team.name);
@@ -30,3 +30,5 @@ export default function TeamPage() {
     </>
   );
 }
+
+export { ViewPage as TeamsViewPage };
