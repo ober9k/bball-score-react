@@ -1,19 +1,9 @@
-import { fetchAll, fetchById } from "@/apis/api.ts";
-import { buildPlayerQueryOptions, playersQueryOptions } from "@/apis/query-options";
+import { playerLoader, playersLoader } from "@/apis/loaders.ts";
 import NotFoundPage from "@/pages/league/errors/not-found-page";
 import PlayerPage from "@/pages/league/players/player-page";
 import PlayersPage from "@/pages/league/players/players-page";
 import type { Route } from "@/routes/route";
 import { mapRoute } from "@/routes/route";
-
-export async function playersLoader({ context }) {
-  return fetchAll(context.queryClient, playersQueryOptions);
-}
-
-export async function playerLoader({ context, params }) {
-  const playerId = +params["playerId"];
-  return fetchById(context.queryClient, buildPlayerQueryOptions(playerId));
-}
 
 const paths = {
   Players: "/league/players",
@@ -28,7 +18,7 @@ const routes: Route[] = [{
   path: paths.Player,
   component: PlayerPage,
   notFoundComponent: NotFoundPage,
-  loader: playerLoader,
+  loader: playersLoader,
 }];
 
 export const playersPaths = paths;
