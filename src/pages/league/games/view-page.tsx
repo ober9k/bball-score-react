@@ -1,6 +1,7 @@
 import type { GameLoaderProps } from "@/apis/loaders/types.ts";
 import GameCard from "@/components/games/game-card.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
+import { calculateTotals, formatMinutes } from "@/lib/stats-utils.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table.tsx";
 import type { Game } from "@/types/game.ts";
@@ -16,55 +17,6 @@ export default function ViewPage() {
     { title: "Games", to: leaguePaths.Games.Index },
     { title: "Game" },
   ]);
-
-  const initialAccumulator = {
-    seconds:      0,
-    // temp start
-    fgMade:       0,
-    fgAttempted:  0,
-    fg3Made:      0,
-    fg3Attempted: 0,
-    ftMade:       0,
-    ftAttempted:  0,
-    // temp finish
-    offRebounds:  0,
-    defRebounds:  0,
-    rebounds:     0,
-    assists:      0,
-    steals:       0,
-    blocks:       0,
-    turnovers:    0,
-    points:       0,
-  };
-
-  const statsReducer = (acc, cur) => {
-    return {
-      seconds:      0,
-      // temp start
-      fgMade:       acc.fgMade + cur.stats.fgMade,
-      fgAttempted:  acc.fgAttempted + cur.stats.fgAttempted,
-      fg3Made:      acc.fg3Made + cur.stats.fg3Made,
-      fg3Attempted: acc.fg3Attempted + cur.stats.fg3Attempted,
-      ftMade:       acc.ftMade + cur.stats.ftMade,
-      ftAttempted:  acc.ftAttempted + cur.stats.ftAttempted,
-      // temp finish
-      offRebounds:  acc.offRebounds + cur.stats.offRebounds,
-      defRebounds:  acc.defRebounds + cur.stats.defRebounds,
-      rebounds:     acc.rebounds + cur.stats.rebounds,
-      assists:      acc.assists + cur.stats.assists,
-      steals:       acc.steals + cur.stats.steals,
-      blocks:       acc.blocks + cur.stats.blocks,
-      turnovers:    acc.turnovers + cur.stats.turnovers,
-      points:       acc.points + cur.stats.points,
-    }
-  };
-
-  const formatMinutes = (seconds: number) => {
-    return (new Intl.DateTimeFormat(navigator.language, {
-      minute: '2-digit',
-      second: '2-digit',
-    })).format(new Date(0, 0, 0, 0, 0, seconds));
-  };
 
   /* playerLogs needs to be updated */
   const teamsLogs = game.teamLogs.map((teamLog) => ({
@@ -89,10 +41,8 @@ export default function ViewPage() {
       turnovers:    gtp.stats.turnovers,
       points:       gtp.stats.points,
     })),
-    totals: (teamLog as any).playerLogs.reduce(statsReducer, { ...initialAccumulator })
+    totals: calculateTotals(teamLog.playerLogs),
   }));
-
-  console.log(teamsLogs);
 
   return (
     <>
