@@ -1,4 +1,4 @@
-import { authUserQueryFn, buildDivisionsQueryFn, buildPlayersQueryFn, buildSeasonsQueryFn, buildTeamsQueryFn, gameQueryFn, gamesQueryFn, logoutQueryFn } from "@/apis/query-functions";
+import { authUserQueryFn, buildDivisionsQueryFn, buildGamesQueryFn, buildPlayersQueryFn, buildSeasonsQueryFn, buildTeamsQueryFn, logoutQueryFn } from "@/apis/query-functions";
 import { getDivisionsQK, getGamesQK, getPlayersQK, getSeasonsQK, getTeamsQK, queryKeys } from "@/apis/query-keys";
 
 export const seasonsQueryOptions = {
@@ -10,7 +10,7 @@ export function buildSeasonQueryOptions(id: number) {
   return {
     queryKey: getSeasonsQK(id),
     queryFn:  buildSeasonsQueryFn(id),
-  }
+  };
 }
 
 export const divisionsQueryOptions = {
@@ -22,7 +22,7 @@ export function buildDivisionQueryOptions(id: number) {
   return {
     queryKey: getDivisionsQK(id),
     queryFn:  buildDivisionsQueryFn(id),
-  }
+  };
 }
 
 export const teamsQueryOptions = {
@@ -34,7 +34,7 @@ export function buildTeamQueryOptions(id: number) {
   return {
     queryKey: getTeamsQK(id),
     queryFn:  buildTeamsQueryFn(id),
-  }
+  };
 }
 
 export const playersQueryOptions = {
@@ -46,19 +46,19 @@ export function buildPlayerQueryOptions(id: number) {
   return {
     queryKey: getPlayersQK(id),
     queryFn:  buildPlayersQueryFn(id),
-  }
+  };
 }
 
 export const gamesQueryOptions = {
   queryKey: getGamesQK(),
-  queryFn:  gamesQueryFn,
+  queryFn:  buildGamesQueryFn(),
 };
 
 export function buildGameQueryOptions(id: number) {
   return {
     queryKey: getGamesQK(id),
-    queryFn:  gameQueryFn,
-  }
+    queryFn:  buildGamesQueryFn(id),
+  };
 }
 
 export const logoutQueryOptions = {

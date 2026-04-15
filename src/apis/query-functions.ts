@@ -35,33 +35,6 @@ export function buildAuthApiPath(...parts: Array<string>): string {
   return buildApiPath("auth", ...parts);
 }
 
-export async function gamesQueryFn() {
-  const { data: games } = await axios.get(buildLeagueApiPath("games"));
-
-  /**
-   * Minor restructuring until the API is tidied up more
-   */
-  return games.map((game: any) => ({
-    id:    game.id,
-    date:  game.date,
-    phase: game.phase,
-    round: game.round,
-    teamLogs: game.gameTeams.map((gameTeam: any) => ({
-      id:            gameTeam.id,
-      side:          gameTeam.side,
-      score:         gameTeam.score,
-      scoreByPeriod: gameTeam.scoreByPeriod,
-      team:          gameTeam.team,
-    } as TeamLog)),
-  } as Game));
-}
-
-export async function gameQueryFn({ queryKey }) {
-  const [ key, { id } ] = queryKey;
-  const { data } = await axios.get(buildLeagueApiPath("games", id));
-  return data;
-}
-
 type PathKey = "seasons" | "divisions" | "teams" | "players";
 
 function buildBaseQueryFn(pathKey: PathKey, id?: number) {
@@ -89,6 +62,10 @@ export function buildTeamsQueryFn(id?: number) {
 
 export function buildPlayersQueryFn(id?: number) {
   return buildBaseQueryFn("players", id);
+}
+
+export function buildGamesQueryFn(id?: number) {
+  return buildBaseQueryFn("games", id);
 }
 
 export async function logoutQueryFn() {
