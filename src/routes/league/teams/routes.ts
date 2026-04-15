@@ -1,28 +1,18 @@
+import { fetchAll, fetchById } from "@/apis/api.ts";
 import { buildTeamQueryOptions, teamsQueryOptions } from "@/apis/query-options.ts";
 import NotFoundPage from "@/pages/league/errors/not-found-page.tsx";
 import TeamPage from "@/pages/league/teams/team-page";
 import TeamsPage from "@/pages/league/teams/teams-page";
 import type { Route } from "@/routes/route";
 import { mapRoute } from "@/routes/route";
-import type { AxiosError } from "axios";
 
 export async function teamsLoader({ context }) {
-  return {
-    teams: await context.queryClient.fetchQuery(teamsQueryOptions)
-  };
+  return fetchAll(context.queryClient, teamsQueryOptions);
 }
 
 export async function teamLoader({ context, params }) {
   const teamId = +params["teamId"];
-
-  try {
-    return {
-      team: await context.queryClient.fetchQuery(buildTeamQueryOptions(teamId))
-    };
-  }
-  catch (error: AxiosError) {
-    throw new Error(error.message);
-  }
+  return fetchById(context.queryClient, buildTeamQueryOptions(teamId));
 }
 
 const paths = {
@@ -37,7 +27,7 @@ const routes: Route[] = [{
 },{
   path: paths.Team,
   component: TeamPage,
-  errorComponent: NotFoundPage,
+  notFoundComponent: NotFoundPage,
   loader: teamLoader,
 }];
 

@@ -1,28 +1,18 @@
+import { fetchAll, fetchById } from "@/apis/api.ts";
 import { buildDivisionQueryOptions, divisionsQueryOptions } from "@/apis/query-options";
 import DivisionPage from "@/pages/league/divisions/division-page";
 import DivisionsPage from "@/pages/league/divisions/divisions-page";
 import NotFoundPage from "@/pages/league/errors/not-found-page.tsx";
 import type { Route } from "@/routes/route";
 import { mapRoute } from "@/routes/route";
-import type { AxiosError } from "axios";
 
 export async function divisionsLoader({ context }) {
-  return {
-    divisions: await context.queryClient.fetchQuery(divisionsQueryOptions)
-  };
+  return fetchAll(context.queryClient, divisionsQueryOptions);
 }
 
 export async function divisionLoader({ context, params }) {
   const divisionId = +params["divisionId"];
-
-  try {
-    return {
-      division: await context.queryClient.fetchQuery(buildDivisionQueryOptions(divisionId))
-    };
-  }
-  catch (error: AxiosError) {
-    throw new Error(error.message);
-  }
+  return fetchById(context.queryClient, buildDivisionQueryOptions(divisionId));
 }
 
 const paths = {
@@ -37,7 +27,7 @@ const routes: Route[] = [{
 }, {
   path: paths.Division,
   component: DivisionPage,
-  errorComponent: NotFoundPage,
+  notFoundComponent: NotFoundPage,
   loader: divisionLoader,
 }];
 

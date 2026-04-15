@@ -1,27 +1,18 @@
-import { buildGameQueryOptions, buildPlayerQueryOptions, gamesQueryOptions, playersQueryOptions } from "@/apis/query-options.ts";
+import { fetchAll, fetchById } from "@/apis/api.ts";
+import { buildGameQueryOptions, gamesQueryOptions } from "@/apis/query-options.ts";
+import NotFoundPage from "@/pages/league/errors/not-found-page.tsx";
 import GamePage from "@/pages/league/games/game-page";
 import GamesPage from "@/pages/league/games/games-page";
 import type { Route } from "@/routes/route";
 import { mapRoute } from "@/routes/route";
-import type { AxiosError } from "axios";
 
-async function gamesLoader({ context }) {
-  return {
-    games: await context.queryClient.fetchQuery(gamesQueryOptions)
-  };
+export async function gamesLoader({ context }) {
+  return fetchAll(context.queryClient, gamesQueryOptions);
 }
 
-async function gameLoader({ context, params }) {
+export async function gameLoader({ context, params }) {
   const gameId = +params["gameId"];
-
-  try {
-    return {
-      game: await context.queryClient.fetchQuery(buildGameQueryOptions(gameId))
-    };
-  }
-  catch (error: AxiosError) {
-    throw new Error(error.message);
-  }
+  return fetchById(context.queryClient, buildGameQueryOptions(gameId));
 }
 
 const paths = {
@@ -36,6 +27,7 @@ const routes: Route[] = [{
 }, {
   path: paths.Game,
   component: GamePage,
+  notFoundComponent: NotFoundPage,
   loader: gameLoader,
 }];
 

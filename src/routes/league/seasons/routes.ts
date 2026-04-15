@@ -1,35 +1,23 @@
+import { fetchAll, fetchById } from "@/apis/api.ts";
 import { buildSeasonQueryOptions, seasonsQueryOptions } from "@/apis/query-options.ts";
 import NotFoundPage from "@/pages/league/errors/not-found-page.tsx";
 import SeasonPage from "@/pages/league/seasons/season-page";
 import SeasonsPage from "@/pages/league/seasons/seasons-page";
 import type { Route } from "@/routes/route";
 import { mapRoute } from "@/routes/route";
-import { notFound } from "@tanstack/react-router";
-import type { AxiosError } from "axios";
 
 export async function seasonsLoader({ context }) {
-  return {
-    seasons: await context.queryClient.fetchQuery(seasonsQueryOptions)
-  };
+  return fetchAll(context.queryClient, seasonsQueryOptions);
 }
 
 export async function seasonLoader({ context, params }) {
   const seasonId = +params["seasonId"];
-
-  try {
-    return {
-      season: await context.queryClient.fetchQuery(buildSeasonQueryOptions(seasonId))
-    };
-  }
-  catch (error: AxiosError) {
-    throw notFound();
-  }
+  return fetchById(context.queryClient, buildSeasonQueryOptions(seasonId));
 }
 
 const paths = {
   Seasons: "/league/seasons",
   Season:  "/league/seasons/$seasonId",
-  SeasonUpdate:  "/league/seasons/$seasonId/update",
 };
 
 const routes: Route[] = [{
@@ -39,7 +27,7 @@ const routes: Route[] = [{
 },{
   path: paths.Season,
   component: SeasonPage,
-  errorComponent: NotFoundPage,
+  notFoundComponent: NotFoundPage,
   loader: seasonLoader,
 }];
 
