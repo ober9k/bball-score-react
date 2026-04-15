@@ -7,7 +7,7 @@ import type { SelectFieldState } from "@/components/forms/select-field.tsx";
 import SelectField from "@/components/forms/select-field.tsx";
 import { i18n } from "@/lib/phrases.ts";
 import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
-import { Position } from "@/types/player/position.ts";
+import { Position } from "@/types/player.ts";
 import { useQuery } from "@tanstack/react-query";
 import { Fragment, useEffect, useState } from "react";
 

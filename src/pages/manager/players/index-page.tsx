@@ -1,16 +1,12 @@
+import type { PlayersLoaderProps } from "@/apis/loaders/types.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { managerPaths } from "@/routes/manager/routes.ts";
-import type { PlayerDataWithId } from "@/types/player.ts";
 import { getRouteApi, Link } from "@tanstack/react-router";
 import { Fragment } from "react";
 
-type LoaderProps = {
-  players: PlayerDataWithId[], /* temp */
-}
-
 export function IndexPage() {
-  const { players }: LoaderProps = getRouteApi(managerPaths.Players.Index).useLoaderData();
+  const { players }: PlayersLoaderProps = getRouteApi(managerPaths.Players.Index).useLoaderData();
 
   useTitle("Players");
   useBreadcrumbs([

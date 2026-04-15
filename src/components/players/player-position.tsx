@@ -1,6 +1,5 @@
 import { i18n } from "@/lib/phrases.ts";
-import type { Player } from "@/types/player.ts";
-import { Position, type PositionType } from "@/types/player/position.ts";
+import { type Player, Position, type PositionType } from "@/types/player.ts";
 import { Fragment } from "react";
 
 const fullPositionMap = new Map<PositionType, string>()

@@ -1,7 +1,7 @@
 import { onFieldError, onFormError, onSuccess, onUnexpectedError } from "@/lib/forms.ts";
 import type { FormState } from "@/pages/manager/players/forms/update-form.tsx";
 import { zPlayer } from "@/schemas/player.ts";
-import type { PlayerData } from "@/types/player.ts";
+import type { UpdatePlayerDto } from "@/types/player.ts";
 import axios from "axios";
 import { z } from "zod";
 
@@ -13,22 +13,22 @@ export const buildFormAction = (mutation) => {
     }
 
     const fieldValues = {
-      name: getValue("name"),
+      name:     getValue("name"),
       position: getValue("position"),
-      number: getValue("number"),
-      height: getValue("height"),
+      number:   getValue("number"),
+      height:   getValue("height"),
     };
 
     try {
-      const data: PlayerData = {
-        name: fieldValues.name,
+      const data: UpdatePlayerDto = {
+        name:     fieldValues.name,
         position: fieldValues.position,
-        number: fieldValues.number,
-        height: fieldValues.height,
+        number:   fieldValues.number,
+        height:   fieldValues.height,
       };
 
       zPlayer.parse(data);
-      await mutation.mutateAsync<PlayerData>(data);
+      await mutation.mutateAsync<UpdatePlayerDto>(data);
     }
     catch (error) {
       if (error instanceof z.ZodError) {

@@ -1,4 +1,5 @@
 import type { Division } from "@/types/division.ts";
+import type { Player } from "@/types/player.ts";
 import type { Season } from "@/types/season.ts";
 import type { Team } from "@/types/team.ts";
 
@@ -25,5 +26,15 @@ export function toTeam(team: any): Team {
     name:       team.name,
     shortName:  team.shortName,
     divisionId: team.divisionId,
+  };
+}
+
+export function toPlayer(player: any): Player {
+  return {
+    id:       player.id,
+    name:     player.name,
+    position: player.position,
+    number:   player.number,
+    height:   player.height,
   };
 }
