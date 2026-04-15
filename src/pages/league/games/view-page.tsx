@@ -39,57 +39,51 @@ export default function ViewPage() {
             <TableHeader>
               <TableRow>
                 <TableHead>Player</TableHead>
-                <TableHead className="w-[24px] px-1 text-center">MIN</TableHead>
-                <TableHead className="w-[30px] px-1 text-center">FG</TableHead>
-                <TableHead className="w-[30px] px-1 text-center">3PT</TableHead>
-                <TableHead className="w-[30px] px-1 text-center">FT</TableHead>
-                <TableHead className="w-[24px] px-1 text-center">OREB</TableHead>
-                <TableHead className="w-[24px] px-1 text-center">DREB</TableHead>
-                <TableHead className="w-[24px] px-1 text-center">REB</TableHead>
-                <TableHead className="w-[24px] px-1 text-center">AST</TableHead>
-                <TableHead className="w-[24px] px-1 text-center">STL</TableHead>
-                <TableHead className="w-[24px] px-1 text-center">BLK</TableHead>
-                <TableHead className="w-[24px] px-1 text-center">TOV</TableHead>
-                <TableHead className="w-[24px] px-1 text-center">PF</TableHead>
-                <TableHead className="w-[24px] px-1 text-center">PTS</TableHead>
+                <TableHead className="w-[36px] px-1 text-center">MIN</TableHead>
+                <TableHead className="w-[36px] px-1 text-center">FG</TableHead>
+                <TableHead className="w-[36px] px-1 text-center">3PT</TableHead>
+                <TableHead className="w-[36px] px-1 text-center">FT</TableHead>
+                <TableHead className="w-[32px] px-1 text-center">REB</TableHead>
+                <TableHead className="w-[32px] px-1 text-center">AST</TableHead>
+                <TableHead className="w-[32px] px-1 text-center">STL</TableHead>
+                <TableHead className="w-[32px] px-1 text-center">BLK</TableHead>
+                <TableHead className="w-[32px] px-1 text-center">TOV</TableHead>
+                <TableHead className="w-[32px] px-1 text-center">PF</TableHead>
+                <TableHead className="w-[32px] px-1 text-center">PTS</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {teamLog.playerLogs.map((pl, index) => (
                 <TableRow key={index}>
                   <TableCell className="font-medium">{pl.player.name}</TableCell>
-                  <TableCell className="w-[24px] px-1 text-center">{pl.minutes}</TableCell>
-                  <TableCell className="w-[30px] px-1 text-center">{pl.stats.fgMade}-{pl.stats.fgAttempted}</TableCell>
-                  <TableCell className="w-[30px] px-1 text-center">{pl.stats.fg3Made}-{pl.stats.fg3Attempted}</TableCell>
-                  <TableCell className="w-[30px] px-1 text-center">{pl.stats.ftMade}-{pl.stats.ftAttempted}</TableCell>
-                  <TableCell className="w-[24px] px-1 text-center">{pl.stats.offRebounds}</TableCell>
-                  <TableCell className="w-[24px] px-1 text-center">{pl.stats.defRebounds}</TableCell>
-                  <TableCell className="w-[24px] px-1 text-center">{pl.stats.rebounds}</TableCell>
-                  <TableCell className="w-[24px] px-1 text-center">{pl.stats.assists}</TableCell>
-                  <TableCell className="w-[24px] px-1 text-center">{pl.stats.steals}</TableCell>
-                  <TableCell className="w-[24px] px-1 text-center">{pl.stats.blocks}</TableCell>
-                  <TableCell className="w-[24px] px-1 text-center">{pl.stats.turnovers}</TableCell>
-                  <TableCell className="w-[24px] px-1 text-center">{pl.stats.personalFouls}</TableCell>
-                  <TableCell className="w-[24px] px-1 text-center">{pl.stats.points}</TableCell>
+                  <TableCell className="w-[36px] px-1 text-center">{pl.minutes}</TableCell>
+                  <TableCell className="w-[36px] px-1 text-center">{pl.stats.fgMade}-{pl.stats.fgAttempted}</TableCell>
+                  <TableCell className="w-[36px] px-1 text-center">{pl.stats.fg3Made}-{pl.stats.fg3Attempted}</TableCell>
+                  <TableCell className="w-[36px] px-1 text-center">{pl.stats.ftMade}-{pl.stats.ftAttempted}</TableCell>
+                  <TableCell className="w-[32px] px-1 text-center">{pl.stats.rebounds}</TableCell>
+                  <TableCell className="w-[32px] px-1 text-center">{pl.stats.assists}</TableCell>
+                  <TableCell className="w-[32px] px-1 text-center">{pl.stats.steals}</TableCell>
+                  <TableCell className="w-[32px] px-1 text-center">{pl.stats.blocks}</TableCell>
+                  <TableCell className="w-[32px] px-1 text-center">{pl.stats.turnovers}</TableCell>
+                  <TableCell className="w-[32px] px-1 text-center">{pl.stats.personalFouls}</TableCell>
+                  <TableCell className="w-[32px] px-1 text-center">{pl.stats.points}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
             <TableFooter>
               <TableRow>
                 <TableCell>Totals</TableCell>
-                <TableCell className="text-center">---</TableCell>
-                <TableCell className="text-center">{teamLog.totals.fgMade}-{teamLog.totals.fgAttempted}</TableCell>
-                <TableCell className="text-center">{teamLog.totals.fg3Made}-{teamLog.totals.fg3Attempted}</TableCell>
-                <TableCell className="text-center">{teamLog.totals.ftMade}-{teamLog.totals.ftAttempted}</TableCell>
-                <TableCell className="text-center">{teamLog.totals.offRebounds}</TableCell>
-                <TableCell className="text-center">{teamLog.totals.defRebounds}</TableCell>
-                <TableCell className="text-center">{teamLog.totals.rebounds}</TableCell>
-                <TableCell className="text-center">{teamLog.totals.assists}</TableCell>
-                <TableCell className="text-center">{teamLog.totals.steals}</TableCell>
-                <TableCell className="text-center">{teamLog.totals.blocks}</TableCell>
-                <TableCell className="text-center">{teamLog.totals.turnovers}</TableCell>
-                <TableCell className="text-center">{teamLog.totals.personalFouls}</TableCell>
-                <TableCell className="text-center">{teamLog.totals.points}</TableCell>
+                <TableCell className="w-[36px] px-1 text-center">---</TableCell>
+                <TableCell className="w-[36px] px-1 text-center">{teamLog.totals.fgMade}-{teamLog.totals.fgAttempted}</TableCell>
+                <TableCell className="w-[36px] px-1 text-center">{teamLog.totals.fg3Made}-{teamLog.totals.fg3Attempted}</TableCell>
+                <TableCell className="w-[36px] px-1 text-center">{teamLog.totals.ftMade}-{teamLog.totals.ftAttempted}</TableCell>
+                <TableCell className="w-[32px] px-1 text-center">{teamLog.totals.rebounds}</TableCell>
+                <TableCell className="w-[32px] px-1 text-center">{teamLog.totals.assists}</TableCell>
+                <TableCell className="w-[32px] px-1 text-center">{teamLog.totals.steals}</TableCell>
+                <TableCell className="w-[32px] px-1 text-center">{teamLog.totals.blocks}</TableCell>
+                <TableCell className="w-[32px] px-1 text-center">{teamLog.totals.turnovers}</TableCell>
+                <TableCell className="w-[32px] px-1 text-center">{teamLog.totals.personalFouls}</TableCell>
+                <TableCell className="w-[32px] px-1 text-center">{teamLog.totals.points}</TableCell>
               </TableRow>
             </TableFooter>
           </Table>
