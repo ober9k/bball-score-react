@@ -50,6 +50,7 @@ export default function ViewPage() {
                 <TableHead className="w-[24px] px-1 text-center">STL</TableHead>
                 <TableHead className="w-[24px] px-1 text-center">BLK</TableHead>
                 <TableHead className="w-[24px] px-1 text-center">TOV</TableHead>
+                <TableHead className="w-[24px] px-1 text-center">PF</TableHead>
                 <TableHead className="w-[24px] px-1 text-center">PTS</TableHead>
               </TableRow>
             </TableHeader>
@@ -68,6 +69,7 @@ export default function ViewPage() {
                   <TableCell className="w-[24px] px-1 text-center">{pl.stats.steals}</TableCell>
                   <TableCell className="w-[24px] px-1 text-center">{pl.stats.blocks}</TableCell>
                   <TableCell className="w-[24px] px-1 text-center">{pl.stats.turnovers}</TableCell>
+                  <TableCell className="w-[24px] px-1 text-center">{pl.stats.personalFouls}</TableCell>
                   <TableCell className="w-[24px] px-1 text-center">{pl.stats.points}</TableCell>
                 </TableRow>
               ))}
@@ -86,6 +88,7 @@ export default function ViewPage() {
                 <TableCell className="text-center">{teamLog.totals.steals}</TableCell>
                 <TableCell className="text-center">{teamLog.totals.blocks}</TableCell>
                 <TableCell className="text-center">{teamLog.totals.turnovers}</TableCell>
+                <TableCell className="text-center">{teamLog.totals.personalFouls}</TableCell>
                 <TableCell className="text-center">{teamLog.totals.points}</TableCell>
               </TableRow>
             </TableFooter>
