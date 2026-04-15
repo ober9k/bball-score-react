@@ -11,19 +11,19 @@ type Link = {
 }
 
 const links: Link[] = [
-  { title: "League",     to: leaguePaths.League, },
+  { title: "League",     to: leaguePaths.League.Index, },
   { title: "Games",      to: leaguePaths.Games.Index, },
   { title: "Players",    to: leaguePaths.Players.Index, },
   { title: "Teams",      to: leaguePaths.Teams.Index, },
-  { title: "Standings",  to: leaguePaths.Standings, },
-  { title: "Statistics", to: leaguePaths.Statistics, },
+  { title: "Standings",  to: leaguePaths.League.Standings, },
+  { title: "Statistics", to: leaguePaths.League.Statistics, },
 ];
 
 export default function Navigation() {
   const { isAuthenticated } = useAuthContext();
 
   const isExact = (link: Link): boolean => {
-    return (link.to === leaguePaths.League);
+    return (link.to === leaguePaths.League.Index);
   };
 
   return (

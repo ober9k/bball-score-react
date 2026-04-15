@@ -18,9 +18,11 @@ import {
 import { mapRoute } from "@/routes/route.ts";
 
 const paths = {
-  League:     "/league",
-  Standings:  "/league/standings",
-  Statistics: "/league/statistics",
+  League: {
+    Index:      "/league",
+    Standings:  "/league/standings",
+    Statistics: "/league/statistics",
+  },
   Seasons: {
     Index:  "/league/seasons",
     View:   "/league/seasons/$seasonId/view",
@@ -44,13 +46,13 @@ const paths = {
 };
 
 const routes = [{
-  path: paths.League,
+  path: paths.League.Index,
   component: LeagueIndexPage,
 },{
-  path: paths.Standings,
+  path: paths.League.Standings,
   component: LeagueStandingsPage,
 },{
-  path: paths.Statistics,
+  path: paths.League.Statistics,
   component: LeagueStatisticsPage,
 },{
   path: paths.Seasons.Index,

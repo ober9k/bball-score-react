@@ -24,7 +24,7 @@ export function CreatePage() {
 
   useTitle("Create Player");
   useBreadcrumbs([
-    { title: "Manager", to: leaguePaths.League },
+    { title: "Manager", to: leaguePaths.League.Index },
     { title: "Players", to: managerPaths.Players.Index },
     { title: "Create Player" },
   ]);

@@ -12,7 +12,7 @@ export function IndexPage() {
 
   useTitle("Seasons");
   useBreadcrumbs([
-    { title: "League", to: leaguePaths.League },
+    { title: "League", to: leaguePaths.League.Index },
     { title: "Seasons" },
   ]);
 

@@ -14,7 +14,7 @@ export function IndexPage() {
 
   useTitle("Divisions");
   useBreadcrumbs([
-    { title: "Manager", to: leaguePaths.League },
+    { title: "Manager", to: leaguePaths.League.Index },
     { title: "Divisions" },
   ]);
 

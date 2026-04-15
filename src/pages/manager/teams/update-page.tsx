@@ -29,7 +29,7 @@ export function UpdatePage() {
 
   useTitle("Update Team", team.name);
   useBreadcrumbs([
-    { title: "Manager", to: leaguePaths.League },
+    { title: "Manager", to: leaguePaths.League.Index },
     { title: "Teams", to: managerPaths.Teams.Index },
     { title: "Update Team" },
   ]);

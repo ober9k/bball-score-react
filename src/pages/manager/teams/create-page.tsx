@@ -23,7 +23,7 @@ export function CreatePage() {
 
   useTitle("Create Team");
   useBreadcrumbs([
-    { title: "Manager", to: leaguePaths.League },
+    { title: "Manager", to: leaguePaths.League.Index },
     { title: "Teams", to: managerPaths.Teams.Index },
     { title: "Create Team" },
   ]);

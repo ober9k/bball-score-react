@@ -13,7 +13,7 @@ export default function IndexPage() {
 
   useTitle("Games");
   useBreadcrumbs([
-    { title: "League", to: leaguePaths.League },
+    { title: "League", to: leaguePaths.League.Index },
     { title: "Games" },
   ]);
 

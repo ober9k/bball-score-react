@@ -25,7 +25,7 @@ export default function LoginPage() {
     mutationFn: loginMutationFn,
     onSuccess: () => {
       router.navigate({
-        to: leaguePaths.League,
+        to: leaguePaths.League.Index,
         replace: true,
       });
     },
@@ -35,7 +35,7 @@ export default function LoginPage() {
 
   const onCancel = () => {
     router.navigate({
-      to: leaguePaths.League,
+      to: leaguePaths.League.Index,
       replace: true,
     });
   };

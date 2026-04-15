@@ -15,7 +15,7 @@ export default function ViewPage() {
 
   useTitle("Game", `#${game.id}`); /* gameId for now */
   useBreadcrumbs([
-    { title: "League", to: leaguePaths.League },
+    { title: "League", to: leaguePaths.League.Index },
     { title: "Games", to: leaguePaths.Games.Index },
     { title: "Game" },
   ]);

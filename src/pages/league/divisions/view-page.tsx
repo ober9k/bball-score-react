@@ -11,7 +11,7 @@ export function ViewPage() {
 
   useTitle("Division", division.name);
   useBreadcrumbs([
-    { title: "League", to: leaguePaths.League },
+    { title: "League", to: leaguePaths.League.Index },
     { title: "Divisions", to: leaguePaths.Divisions.Index },
     { title: division.name },
   ]);

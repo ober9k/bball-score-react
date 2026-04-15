@@ -7,7 +7,7 @@ export function StatisticsPage() {
 
   useEffect(() => {
     setPageHeader("League", "", [
-      { title: "League", to: leaguePaths.League },
+      { title: "League", to: leaguePaths.League.Index },
       { title: "Statistics" },
     ]);
   }, []);
