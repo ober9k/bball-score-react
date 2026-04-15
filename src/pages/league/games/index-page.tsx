@@ -1,15 +1,11 @@
+import type { GamesLoaderProps } from "@/apis/loaders/types.ts";
 import GameCard from "@/components/games/game-card.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import type { Game } from "@/types/game.ts";
 import { getRouteApi } from "@tanstack/react-router";
 
-type LoaderProps = {
-  games: Game[],
-};
-
 export default function IndexPage() {
-  const { games }: LoaderProps = getRouteApi(leaguePaths.Games.Index).useLoaderData();
+  const { games }: GamesLoaderProps = getRouteApi(leaguePaths.Games.Index).useLoaderData();
 
   useTitle("Games");
   useBreadcrumbs([

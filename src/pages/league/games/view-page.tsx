@@ -1,3 +1,4 @@
+import type { GameLoaderProps } from "@/apis/loaders/types.ts";
 import GameCard from "@/components/games/game-card.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
@@ -6,12 +7,8 @@ import type { Game } from "@/types/game.ts";
 import { getRouteApi } from "@tanstack/react-router";
 import { Fragment } from "react";
 
-type LoaderProps = {
-  game: Game, /* TBD for using types */
-}
-
 export default function ViewPage() {
-  const { game }: LoaderProps = getRouteApi(leaguePaths.Games.View).useLoaderData();
+  const { game }: GameLoaderProps = getRouteApi(leaguePaths.Games.View).useLoaderData();
 
   useTitle("Game", `#${game.id}`); /* gameId for now */
   useBreadcrumbs([
@@ -19,8 +16,6 @@ export default function ViewPage() {
     { title: "Games", to: leaguePaths.Games.Index },
     { title: "Game" },
   ]);
-
-  const [ awayTeam, homeTeam ] = (game as any).gameTeams;
 
   const initialAccumulator = {
     seconds:      0,
@@ -64,9 +59,6 @@ export default function ViewPage() {
     }
   };
 
-
-  game.teamLogs = (game as any).gameTeams; /* temp */
-
   const formatMinutes = (seconds: number) => {
     return (new Intl.DateTimeFormat(navigator.language, {
       minute: '2-digit',
@@ -74,9 +66,10 @@ export default function ViewPage() {
     })).format(new Date(0, 0, 0, 0, 0, seconds));
   };
 
+  /* playerLogs needs to be updated */
   const teamsLogs = game.teamLogs.map((teamLog) => ({
     team: teamLog.team,
-    playerLogs: (teamLog as any).gameTeamPlayers.map((gtp) => ({
+    playerLogs: (teamLog as any).playerLogs.map((gtp) => ({
       player:       gtp.player,
       seconds:      formatMinutes(gtp.seconds),
       // temp start
@@ -96,7 +89,7 @@ export default function ViewPage() {
       turnovers:    gtp.turnovers,
       points:       gtp.points,
     })),
-    totals: (teamLog as any).gameTeamPlayers.reduce(statsReducer, { ...initialAccumulator })
+    totals: (teamLog as any).playerLogs.reduce(statsReducer, { ...initialAccumulator })
   }));
 
   return (

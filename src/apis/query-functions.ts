@@ -1,5 +1,3 @@
-import type { Game } from "@/types/game.ts";
-import type { TeamLog } from "@/types/game/team-log.ts";
 import axios from "axios";
 
 /* TODO: add to config/env file instead */

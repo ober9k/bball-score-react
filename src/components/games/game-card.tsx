@@ -6,10 +6,9 @@ import { Fragment } from "react";
 
 type Props = {
   game: Game,
-}
+};
 
 export default function GameCard({ game }: Props) {
-
   /* this should later check the actual flag */
   const [ awayTeamLog, homeTeamLog ] = game.teamLogs;
 
