@@ -1,29 +1,20 @@
+import type { TeamLoaderProps } from "@/apis/loaders/types.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import type { TeamDataWithId } from "@/types/team.ts";
-import { getRouteApi, Link } from "@tanstack/react-router";
-
-type LoaderProps = {
-  team: TeamDataWithId, /* TBD for using types */
-}
+import { getRouteApi } from "@tanstack/react-router";
 
 export function ViewPage() {
-  const { team }: LoaderProps = getRouteApi(leaguePaths.Teams.View).useLoaderData();
+  const { team }: TeamLoaderProps = getRouteApi(leaguePaths.Teams.View).useLoaderData();
 
   useTitle("Team", team.name);
   useBreadcrumbs([
     { title: "League", to: leaguePaths.League.Index },
     { title: "Teams", to: leaguePaths.Teams.Index },
-    { title: "Team" },
+    { title: team.name },
   ]);
 
   return (
     <>
-      <p className="p-2 text-sm">
-        <Link to={leaguePaths.Teams.Index}>
-          Goto: Teams
-        </Link>
-      </p>
       <p className="p-2 text-sm">
         {team.name}
       </p>

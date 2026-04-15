@@ -1,16 +1,12 @@
+import type { TeamsLoaderProps } from "@/apis/loaders/types.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { managerPaths } from "@/routes/manager/routes.ts";
-import type { TeamDataWithId } from "@/types/team.ts";
 import { getRouteApi, Link } from "@tanstack/react-router";
 import { Fragment } from "react";
 
-type LoaderProps = {
-  teams: TeamDataWithId[], /* temp */
-}
-
 export function IndexPage() {
-  const { teams }: LoaderProps = getRouteApi(managerPaths.Teams.Index).useLoaderData();
+  const { teams }: TeamsLoaderProps = getRouteApi(managerPaths.Teams.Index).useLoaderData();
 
   useTitle("Teams");
   useBreadcrumbs([

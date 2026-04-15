@@ -1,10 +1,10 @@
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/shared/components/ui/card";
-import type { TeamDataWithId } from "@/types/team.ts";
+import type { Team } from "@/types/team.ts";
 import { Link } from "@tanstack/react-router";
 
 type Props = {
-  team: TeamDataWithId,
+  team: Team,
 }
 
 export default function TeamCard({ team }: Props) {

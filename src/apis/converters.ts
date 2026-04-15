@@ -1,5 +1,6 @@
 import type { Division } from "@/types/division.ts";
 import type { Season } from "@/types/season.ts";
+import type { Team } from "@/types/team.ts";
 
 export type DtoConverter<T> = (data: any) => T;
 
@@ -15,5 +16,14 @@ export function toDivision(division: any): Division {
     id:       division.id,
     name:     division.name,
     seasonId: division.seasonId,
+  };
+}
+
+export function toTeam(team: any): Team {
+  return {
+    id:         team.id,
+    name:       team.name,
+    shortName:  team.shortName,
+    divisionId: team.divisionId,
   };
 }

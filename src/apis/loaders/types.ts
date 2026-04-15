@@ -1,5 +1,6 @@
 import type { Division } from "@/types/division.ts";
 import type { Season } from "@/types/season.ts";
+import type { Team } from "@/types/team.ts";
 
 export type SeasonsLoaderProps = {
   seasons: Season[],
@@ -15,4 +16,12 @@ export type DivisionsLoaderProps = {
 
 export type DivisionLoaderProps = {
   division: Division,
+};
+
+export type TeamsLoaderProps = {
+  teams: Team[],
+};
+
+export type TeamLoaderProps = {
+  team: Team,
 };

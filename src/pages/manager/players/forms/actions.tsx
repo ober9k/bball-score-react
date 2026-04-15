@@ -9,7 +9,6 @@ export const buildFormAction = (mutation) => {
   return async (formState: FormState, formData: FormData) => {
 
     const getValue = (key: string): string => {
-      console.log("getValue", "key", key, formData.get(key).toString());
       return formData.get(key).toString();
     }
 
