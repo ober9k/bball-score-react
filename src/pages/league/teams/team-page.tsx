@@ -1,6 +1,5 @@
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { teamsPaths } from "@/routes/league/teams/routes.ts";
 import type { TeamDataWithId } from "@/types/team.ts";
 import { getRouteApi, Link } from "@tanstack/react-router";
 
@@ -9,19 +8,19 @@ type LoaderProps = {
 }
 
 export default function TeamPage() {
-  const { team }: LoaderProps = getRouteApi(teamsPaths.Team).useLoaderData();
+  const { team }: LoaderProps = getRouteApi(leaguePaths.Teams.View).useLoaderData();
 
   useTitle("Team", team.name);
   useBreadcrumbs([
     { title: "League", to: leaguePaths.League },
-    { title: "Teams", to: teamsPaths.Teams },
+    { title: "Teams", to: leaguePaths.Teams.Index },
     { title: "Team" },
   ]);
 
   return (
     <>
       <p className="p-2 text-sm">
-        <Link to={teamsPaths.Teams}>
+        <Link to={leaguePaths.Teams.Index}>
           Goto: Teams
         </Link>
       </p>

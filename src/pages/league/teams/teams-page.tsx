@@ -1,7 +1,6 @@
 import TeamCard from "@/components/teams/team-card.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { teamsPaths } from "@/routes/league/teams/routes.ts";
 import type { TeamDataWithId } from "@/types/team.ts";
 import { getRouteApi } from "@tanstack/react-router";
 
@@ -10,12 +9,12 @@ type LoaderProps = {
 }
 
 export default function TeamsPage() {
-  const { teams }: LoaderProps = getRouteApi(teamsPaths.Teams).useLoaderData();
+  const { teams }: LoaderProps = getRouteApi(leaguePaths.Teams.Index).useLoaderData();
 
   useTitle("Teams");
   useBreadcrumbs([
     { title: "League", to: leaguePaths.League },
-    { title: "Teams", to: teamsPaths.Teams },
+    { title: "Teams" },
   ]);
 
   return (

@@ -1,6 +1,5 @@
 import GameCard from "@/components/games/game-card.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
-import { gamesPaths } from "@/routes/league/games/routes.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table.tsx";
 import type { Game } from "@/types/game.ts";
@@ -12,12 +11,12 @@ type LoaderProps = {
 }
 
 export default function GamePage() {
-  const { game }: LoaderProps = getRouteApi(gamesPaths.Game).useLoaderData();
+  const { game }: LoaderProps = getRouteApi(leaguePaths.Games.View).useLoaderData();
 
   useTitle("Game", `#${game.id}`); /* gameId for now */
   useBreadcrumbs([
     { title: "League", to: leaguePaths.League },
-    { title: "Games", to: gamesPaths.Games },
+    { title: "Games", to: leaguePaths.Games.Index },
     { title: "Game" },
   ]);
 

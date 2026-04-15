@@ -1,6 +1,5 @@
 import GameCard from "@/components/games/game-card.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
-import { gamesPaths } from "@/routes/league/games/routes.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import type { Game } from "@/types/game.ts";
 import { getRouteApi } from "@tanstack/react-router";
@@ -10,7 +9,7 @@ type LoaderProps = {
 };
 
 export default function GamesPage() {
-  const { games }: LoaderProps = getRouteApi(gamesPaths.Games).useLoaderData();
+  const { games }: LoaderProps = getRouteApi(leaguePaths.Games.Index).useLoaderData();
 
   useTitle("Games");
   useBreadcrumbs([

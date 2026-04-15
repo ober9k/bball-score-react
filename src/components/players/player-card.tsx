@@ -1,12 +1,12 @@
 import { PlayerPosition } from "@/components/players/player-position.tsx";
-import { playersPaths } from "@/routes/league/players/routes.ts";
+import { leaguePaths } from "@/routes/league/routes.ts";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/shared/components/ui/card";
-import type { Player } from "@/types/player.ts";
+import type { PlayerDataWithId } from "@/types/player.ts";
 import { Link } from "@tanstack/react-router";
 import { Fragment } from "react";
 
 type Props = {
-  player: Player,
+  player: PlayerDataWithId,
 }
 
 export default function PlayerCard({ player }: Props) {
@@ -15,7 +15,7 @@ export default function PlayerCard({ player }: Props) {
       <Card>
         <CardHeader>
           <CardTitle>
-            <Link to={playersPaths.Player} params={{ playerId: player.id }}>
+            <Link to={leaguePaths.Players.View} params={{ playerId: player.id }}>
               {player.name} #{player.number}
             </Link>
           </CardTitle>

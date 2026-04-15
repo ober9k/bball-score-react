@@ -1,7 +1,6 @@
 import { useAuthContext } from "@/auth.tsx";
 import usePageContext from "@/hooks/use-page-context.ts";
-import { divisionsPaths } from "@/routes/league/divisions/routes.ts";
-import { seasonsPaths } from "@/routes/league/seasons/routes.ts";
+import { leaguePaths } from "@/routes/league/routes.ts";
 import { managerPaths } from "@/routes/manager/routes.ts";
 import { Button } from "@/shared/components/ui/button.tsx";
 import { useRouter } from "@tanstack/react-router";
@@ -52,14 +51,14 @@ export default function LeaguePage() {
 
   const gotoLeagueSeasons = () => {
     router.navigate({
-      to: seasonsPaths.Seasons,
+      to: leaguePaths.Seasons.Index,
       replace: true,
     });
   };
 
   const gotoLeagueDivisions = () => {
     router.navigate({
-      to: divisionsPaths.Divisions,
+      to: leaguePaths.Divisions.Index,
       replace: true,
     });
   };

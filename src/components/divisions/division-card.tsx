@@ -1,4 +1,4 @@
-import { divisionsPaths } from "@/routes/league/divisions/routes.ts";
+import { leaguePaths } from "@/routes/league/routes.ts";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/shared/components/ui/card";
 import type { DivisionDataWithId } from "@/types/division.ts";
 import { Link } from "@tanstack/react-router";
@@ -17,7 +17,7 @@ export default function DivisionCard({ division }: Props) {
           </CardTitle>
         </CardHeader>
         <CardFooter className="border-t-gray-200 flex justify-center gap-2">
-          <Link to={divisionsPaths.Division} params={{ divisionId: division.id }}>
+          <Link to={leaguePaths.Divisions.View} params={{ divisionId: division.id }}>
             View Division
           </Link>
         </CardFooter>

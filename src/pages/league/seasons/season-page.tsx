@@ -1,6 +1,5 @@
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { seasonsPaths } from "@/routes/league/seasons/routes.ts";
 import type { SeasonDataWithId } from "@/types/season.ts";
 import { getRouteApi, Link } from "@tanstack/react-router";
 
@@ -9,19 +8,19 @@ type LoaderProps = {
 }
 
 export default function SeasonPage() {
-  const { season }: LoaderProps = getRouteApi(seasonsPaths.Season).useLoaderData();
+  const { season }: LoaderProps = getRouteApi(leaguePaths.Seasons.View).useLoaderData();
 
   useTitle("Season", season.name)
   useBreadcrumbs([
     { title: "League", to: leaguePaths.League },
-    { title: "Seasons", to: seasonsPaths.Seasons },
+    { title: "Seasons", to: leaguePaths.Seasons.Index },
     { title: "Season" },
   ]);
 
   return (
     <>
       <p className="p-2 text-sm">
-        <Link to={seasonsPaths.Seasons}>
+        <Link to={leaguePaths.Seasons.Index}>
           Goto: Seasons
         </Link>
       </p>

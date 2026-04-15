@@ -1,26 +1,28 @@
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
-import { playersPaths } from "@/routes/league/players/routes.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
+import type { PlayerDataWithId } from "@/types/player.ts";
 import { getRouteApi, Link } from "@tanstack/react-router";
 
 type LoaderProps = {
-  player: { id: number, name: string, number: string, position: string }, /* TBD for using types */
+  player: PlayerDataWithId, /* TBD for using types */
 }
 
 export default function PlayerPage() {
-  const { player }: LoaderProps = getRouteApi(playersPaths.Player).useLoaderData();
+  const { player }: LoaderProps = getRouteApi(leaguePaths.Players.View).useLoaderData();
+
+  console.log(player);
 
   useTitle("Player", player.name);
   useBreadcrumbs([
     { title: "League", to: leaguePaths.League },
-    { title: "Players", to: playersPaths.Players },
+    { title: "Players", to: leaguePaths.Players.Index },
     { title: player.name },
   ]);
 
   return (
     <>
       <p className="p-2 text-sm">
-        <Link to={playersPaths.Players}>
+        <Link to={leaguePaths.Players.Index}>
           Goto: Players
         </Link>
       </p>

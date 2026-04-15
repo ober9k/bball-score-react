@@ -1,4 +1,4 @@
-import { gamesPaths } from "@/routes/league/games/routes.ts";
+import { leaguePaths } from "@/routes/league/routes.ts";
 import { Card, CardContent, CardFooter } from "@/shared/components/ui/card.tsx";
 import type { Game } from "@/types/game.ts";
 import { Link } from "@tanstack/react-router";
@@ -39,7 +39,7 @@ export default function GameCard({ game }: Props) {
           </div>
         </CardContent>
         <CardFooter className="border-t-gray-200 flex justify-center gap-2">
-          <Link to={gamesPaths.Game} params={{ id: game.id }}>
+          <Link to={leaguePaths.Games.View} params={{ gameId: game.id }}>
             ...
           </Link>
         </CardFooter>
