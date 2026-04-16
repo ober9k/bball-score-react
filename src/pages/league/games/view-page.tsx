@@ -1,11 +1,12 @@
 import type { GameLoaderProps } from "@/apis/loaders/types.ts";
 import GameCard from "@/components/games/game-card.tsx";
-import { StatsRow } from "@/components/stats/stats-row.tsx";
+import { StatsRow, StatsTitleCell } from "@/components/stats/stats-row.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { calculateTotals } from "@/lib/stats-utils.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table.tsx";
+import { Table, TableBody, TableFooter, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table.tsx";
 import type { Game, TeamLogWithTotals } from "@/types/game.ts";
+import { StatsKey } from "@/types/stats.ts";
 import { getRouteApi } from "@tanstack/react-router";
 import { Fragment } from "react";
 
@@ -35,17 +36,17 @@ export default function ViewPage() {
             <TableHeader>
               <TableRow>
                 <TableHead>Player</TableHead>
-                <TableHead className="w-[36px] px-1 text-center">MIN</TableHead>
-                <TableHead className="w-[36px] px-1 text-center">FG</TableHead>
-                <TableHead className="w-[36px] px-1 text-center">3PT</TableHead>
-                <TableHead className="w-[36px] px-1 text-center">FT</TableHead>
-                <TableHead className="w-[32px] px-1 text-center">REB</TableHead>
-                <TableHead className="w-[32px] px-1 text-center">AST</TableHead>
-                <TableHead className="w-[32px] px-1 text-center">STL</TableHead>
-                <TableHead className="w-[32px] px-1 text-center">BLK</TableHead>
-                <TableHead className="w-[32px] px-1 text-center">TOV</TableHead>
-                <TableHead className="w-[32px] px-1 text-center">PF</TableHead>
-                <TableHead className="w-[32px] px-1 text-center">PTS</TableHead>
+                <StatsTitleCell statsKey={StatsKey.Minutes} />
+                <StatsTitleCell statsKey={StatsKey.FieldGoals} />
+                <StatsTitleCell statsKey={StatsKey.ThreePointFieldGoals} />
+                <StatsTitleCell statsKey={StatsKey.FreeThrows} />
+                <StatsTitleCell statsKey={StatsKey.Rebounds} />
+                <StatsTitleCell statsKey={StatsKey.Assists} />
+                <StatsTitleCell statsKey={StatsKey.Steals} />
+                <StatsTitleCell statsKey={StatsKey.Blocks} />
+                <StatsTitleCell statsKey={StatsKey.Turnovers} />
+                <StatsTitleCell statsKey={StatsKey.PersonalFouls} />
+                <StatsTitleCell statsKey={StatsKey.Points} />
               </TableRow>
             </TableHeader>
             <TableBody>

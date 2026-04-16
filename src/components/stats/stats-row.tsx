@@ -1,24 +1,44 @@
 import * as styles from "@/components/stats/stats-row.module.css";
-import { formatValue } from "@/lib/stats-utils.ts";
+import { formatValue, getStatsTitle } from "@/lib/stats-utils.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { TableCell, TableRow } from "@/shared/components/ui/table.tsx";
+import { TableCell, TableHead, TableRow } from "@/shared/components/ui/table.tsx";
 import type { Player } from "@/types/player.ts";
 import type { Stats } from "@/types/stats.ts";
 import { StatsKey, type StatsKeyType } from "@/types/stats.ts";
 import { Link } from "@tanstack/react-router";
 import { Fragment } from "react";
 
-type StatsCellProps = {
+type StatsTitleCellProps = {
+  statsKey: StatsKeyType,
+};
+
+export function StatsTitleCell(props: StatsTitleCellProps) {
+  const { statsKey } = props;
+
+  const cellClass = ([StatsKey.FieldGoals, StatsKey.TwoPointFieldGoals, StatsKey.ThreePointFieldGoals, StatsKey.FreeThrows].includes(statsKey))
+    ? styles.statsWideTitleCell
+    : styles.statsTitleCell;
+
+  const cellValue = getStatsTitle(statsKey);
+
+  return (
+    <Fragment>
+      <TableHead className={cellClass}>{cellValue}</TableHead>
+    </Fragment>
+  );
+}
+
+export type StatsCellProps = {
   stats:    Stats,
   statsKey: StatsKeyType,
-}
+};
 
 function StatsCell(props: StatsCellProps) {
   const { stats, statsKey } = props;
 
-  const cellClass = (statsKey === StatsKey.Points)
-    ? styles.statsTitleCell
-    : styles.statsCell;
+  const cellClass = ([StatsKey.Points].includes(statsKey))
+    ? styles.statsLabelCell
+    : styles.statsValueCell;
 
   const cellValue = formatValue(stats, statsKey);
 
@@ -51,7 +71,7 @@ export function StatsRow(props: StatsRowProps) {
         </TableCell>
         {(player && stats.seconds === 0) ? (
           <Fragment>
-            <TableCell className={styles.statsCell} colSpan={11}>DNP &ndash; DID NOT PLAY</TableCell>
+            <TableCell className={styles.statsValueCell} colSpan={99}>DNP &ndash; DID NOT PLAY</TableCell>
           </Fragment>
         ) : (
           <Fragment>

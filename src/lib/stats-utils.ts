@@ -3,6 +3,31 @@ import type { Stats, StatsKeyType } from "@/types/stats.ts";
 import { StatsKey } from "@/types/stats.ts";
 
 /**
+ * Table cell titles for stats pages.
+ * This should be relocated and make use of phrases.
+ */
+const statsTitles = new Map<StatsKeyType, string>()
+  .set(StatsKey.Minutes, "MIN")
+  .set(StatsKey.FieldGoals, "FG")
+  .set(StatsKey.TwoPointFieldGoals, "2PT")
+  .set(StatsKey.ThreePointFieldGoals, "3PT")
+  .set(StatsKey.FreeThrows, "FT")
+  .set(StatsKey.OffensiveRebounds, "OREB")
+  .set(StatsKey.DefensiveRebounds, "DREB")
+  .set(StatsKey.Rebounds, "REB")
+  .set(StatsKey.Assists, "AST")
+  .set(StatsKey.Steals, "STL")
+  .set(StatsKey.Blocks, "BLK")
+  .set(StatsKey.Turnovers, "TOV")
+  .set(StatsKey.PersonalFouls, "PF")
+  .set(StatsKey.TechnicalFouls, "TF")
+  .set(StatsKey.Points, "PTS");
+
+export function getStatsTitle(statsKey: StatsKeyType): string {
+  return statsTitles.get(statsKey);
+}
+
+/**
  * Format minutes:seconds display from the seconds.
  */
 export function formatMinutes(seconds: number): string {
