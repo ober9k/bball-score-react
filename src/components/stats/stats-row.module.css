@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
+.statsTitleCell,
 .statsCell {
   @apply px-1;
   @apply text-sm text-center;
+}
+
+.statsTitleCell {
+  @apply font-medium;
 }

@@ -1,21 +1,41 @@
 import * as styles from "@/components/stats/stats-row.module.css";
-import { formatMinutes } from "@/lib/stats-utils.ts";
+import { formatValue } from "@/lib/stats-utils.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { TableCell, TableRow } from "@/shared/components/ui/table.tsx";
 import type { Player } from "@/types/player.ts";
 import type { Stats } from "@/types/stats.ts";
+import { StatsKey, type StatsKeyType } from "@/types/stats.ts";
 import { Link } from "@tanstack/react-router";
 import { Fragment } from "react";
 
-type Props = {
+type StatsCellProps = {
+  stats:    Stats,
+  statsKey: StatsKeyType,
+}
+
+function StatsCell(props: StatsCellProps) {
+  const { stats, statsKey } = props;
+
+  const cellClass = (statsKey === StatsKey.Points)
+    ? styles.statsTitleCell
+    : styles.statsCell;
+
+  const cellValue = formatValue(stats, statsKey);
+
+  return (
+    <Fragment>
+      <TableCell className={cellClass}>{cellValue}</TableCell>
+    </Fragment>
+  );
+}
+
+type StatsRowProps = {
   player?: Player,
   totals?: boolean,
   stats:   Stats,
 };
 
-function StatsCell() {}
-
-export function StatsRow(props: Props) {
+export function StatsRow(props: StatsRowProps) {
   const { player, totals, stats } = props;
 
   return (
@@ -35,21 +55,17 @@ export function StatsRow(props: Props) {
           </Fragment>
         ) : (
           <Fragment>
-            <TableCell className={styles.statsCell}>
-              {player && formatMinutes(stats.seconds)}
-            </TableCell>
-            <TableCell className={styles.statsCell}>{stats.fgMade}-{stats.fgAttempted}</TableCell>
-            <TableCell className={styles.statsCell}>{stats.fg3Made}-{stats.fg3Attempted}</TableCell>
-            <TableCell className={styles.statsCell}>{stats.ftMade}-{stats.ftAttempted}</TableCell>
-            <TableCell className={styles.statsCell}>{stats.rebounds}</TableCell>
-            <TableCell className={styles.statsCell}>{stats.assists}</TableCell>
-            <TableCell className={styles.statsCell}>{stats.steals}</TableCell>
-            <TableCell className={styles.statsCell}>{stats.blocks}</TableCell>
-            <TableCell className={styles.statsCell}>{stats.turnovers}</TableCell>
-            <TableCell className={styles.statsCell}>{stats.personalFouls}</TableCell>
-            <TableCell className={styles.statsCell}>
-              <strong className="font-medium">{stats.points}</strong>
-            </TableCell>
+            <StatsCell stats={stats} statsKey={StatsKey.Minutes} />
+            <StatsCell stats={stats} statsKey={StatsKey.FieldGoals} />
+            <StatsCell stats={stats} statsKey={StatsKey.ThreePointFieldGoals} />
+            <StatsCell stats={stats} statsKey={StatsKey.FreeThrows} />
+            <StatsCell stats={stats} statsKey={StatsKey.Rebounds} />
+            <StatsCell stats={stats} statsKey={StatsKey.Assists} />
+            <StatsCell stats={stats} statsKey={StatsKey.Steals} />
+            <StatsCell stats={stats} statsKey={StatsKey.Blocks} />
+            <StatsCell stats={stats} statsKey={StatsKey.Turnovers} />
+            <StatsCell stats={stats} statsKey={StatsKey.PersonalFouls} />
+            <StatsCell stats={stats} statsKey={StatsKey.Points} />
           </Fragment>
         )}
       </TableRow>

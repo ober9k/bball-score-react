@@ -1,14 +1,47 @@
 import type { PlayerLog } from "@/types/game.ts";
-import type { Stats } from "@/types/stats.ts";
+import type { Stats, StatsKeyType } from "@/types/stats.ts";
+import { StatsKey } from "@/types/stats.ts";
 
 /**
- * Format minutes display from the seconds.
+ * Format minutes:seconds display from the seconds.
  */
 export function formatMinutes(seconds: number): string {
+  if (seconds === 0) {
+    return ""; /* cover just not displaying it */
+  }
+
   return (new Intl.DateTimeFormat(navigator.language, {
-    minute: '2-digit',
-    second: '2-digit',
+    minute: "2-digit",
+    second: "2-digit",
   })).format(new Date(0, 0, 0, 0, 0, seconds));
+}
+
+/**
+ * Format shots made and attempted into dash format.
+ */
+export function formatAttempts(made: number, attempted: number): string {
+  return `${made}-${attempted}`;
+}
+
+/**
+ * Format respective stats value based on provided key.
+ */
+export function formatValue(stats: Stats, statsKey: StatsKeyType): string {
+  switch (statsKey) {
+    case StatsKey.Minutes:
+      return formatMinutes(stats.seconds);
+    case StatsKey.FieldGoals:
+      return formatAttempts(stats.fgMade, stats.fgAttempted);
+    case StatsKey.TwoPointFieldGoals:
+      return formatAttempts(stats.fgMade - stats.fg3Made, stats.fgAttempted - stats.fg3Attempted);
+    case StatsKey.ThreePointFieldGoals:
+      return formatAttempts(stats.fg3Made, stats.fg3Attempted);
+    case StatsKey.FreeThrows:
+      return formatAttempts(stats.ftMade, stats.ftAttempted);
+    default:
+      /* standard value handling */
+      return stats[statsKey].toString();
+  }
 }
 
 export function getInitialAccumulator(): Stats {
