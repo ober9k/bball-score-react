@@ -32,6 +32,10 @@ export type TeamLog = {
   playerLogs: PlayerLog[],
 };
 
+export type TeamLogWithTotals = TeamLog & {
+  totals: Stats,
+};
+
 export type Game = {
   id:       number,
   date:     Date

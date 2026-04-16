@@ -4,7 +4,7 @@ import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { calculateTotals, formatMinutes } from "@/lib/stats-utils.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table.tsx";
-import type { Game } from "@/types/game.ts";
+import type { Game, TeamLogWithTotals } from "@/types/game.ts";
 import { getRouteApi } from "@tanstack/react-router";
 import { Fragment } from "react";
 
@@ -18,21 +18,16 @@ export default function ViewPage() {
     { title: "Game" },
   ]);
 
-  /* playerLogs needs to be updated */
-  const teamsLogs = game.teamLogs.map((teamLog) => ({
-    team: teamLog.team,
-    playerLogs: (teamLog as any).playerLogs.map((gtp) => ({
-      player:  gtp.player,
-      minutes: formatMinutes(gtp.stats.seconds),
-      stats:   gtp.stats,
-    })),
-    totals: calculateTotals(teamLog.playerLogs),
-  }));
+  const teamLogs: TeamLogWithTotals[] = game.teamLogs
+    .map((tl) => ({
+      ...tl,
+      totals: calculateTotals(tl.playerLogs),
+    }));
 
   return (
     <>
       <GameCard game={game} />
-      {teamsLogs.map((teamLog, index) => (
+      {teamLogs.map((teamLog, index) => (
         <Fragment key={index}>
           <h2 className="p-2 pt-4 font-medium">{teamLog.team.name}</h2>
           <Table>
@@ -56,7 +51,7 @@ export default function ViewPage() {
               {teamLog.playerLogs.map((pl, index) => (
                 <TableRow key={index} className="border-b-gray-200">
                   <TableCell className="font-medium">{pl.player.name}</TableCell>
-                  <TableCell className="w-[36px] px-1 text-center">{pl.minutes}</TableCell>
+                  <TableCell className="w-[36px] px-1 text-center">{formatMinutes(pl.stats.seconds)}</TableCell>
                   <TableCell className="w-[36px] px-1 text-center">{pl.stats.fgMade}-{pl.stats.fgAttempted}</TableCell>
                   <TableCell className="w-[36px] px-1 text-center">{pl.stats.fg3Made}-{pl.stats.fg3Attempted}</TableCell>
                   <TableCell className="w-[36px] px-1 text-center">{pl.stats.ftMade}-{pl.stats.ftAttempted}</TableCell>
