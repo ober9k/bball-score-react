@@ -1,7 +1,8 @@
 import type { GameLoaderProps } from "@/apis/loaders/types.ts";
 import GameCard from "@/components/games/game-card.tsx";
+import { StatsRow } from "@/components/stats/stats-row.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
-import { calculateTotals, formatMinutes } from "@/lib/stats-utils.ts";
+import { calculateTotals } from "@/lib/stats-utils.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table.tsx";
 import type { Game, TeamLogWithTotals } from "@/types/game.ts";
@@ -48,38 +49,12 @@ export default function ViewPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {teamLog.playerLogs.map((pl, index) => (
-                <TableRow key={index} className="border-b-gray-200">
-                  <TableCell className="font-medium">{pl.player.name}</TableCell>
-                  <TableCell className="w-[36px] px-1 text-center">{formatMinutes(pl.stats.seconds)}</TableCell>
-                  <TableCell className="w-[36px] px-1 text-center">{pl.stats.fgMade}-{pl.stats.fgAttempted}</TableCell>
-                  <TableCell className="w-[36px] px-1 text-center">{pl.stats.fg3Made}-{pl.stats.fg3Attempted}</TableCell>
-                  <TableCell className="w-[36px] px-1 text-center">{pl.stats.ftMade}-{pl.stats.ftAttempted}</TableCell>
-                  <TableCell className="w-[32px] px-1 text-center">{pl.stats.rebounds}</TableCell>
-                  <TableCell className="w-[32px] px-1 text-center">{pl.stats.assists}</TableCell>
-                  <TableCell className="w-[32px] px-1 text-center">{pl.stats.steals}</TableCell>
-                  <TableCell className="w-[32px] px-1 text-center">{pl.stats.blocks}</TableCell>
-                  <TableCell className="w-[32px] px-1 text-center">{pl.stats.turnovers}</TableCell>
-                  <TableCell className="w-[32px] px-1 text-center">{pl.stats.personalFouls}</TableCell>
-                  <TableCell className="w-[32px] px-1 text-center"><strong className="font-medium">{pl.stats.points}</strong></TableCell>
-                </TableRow>
+              {teamLog.playerLogs.map(({ player, stats }) => (
+                <StatsRow key={player.id} player={player} stats={stats} />
               ))}
             </TableBody>
             <TableFooter>
-              <TableRow>
-                <TableCell>Totals</TableCell>
-                <TableCell className="w-[36px] px-1 text-center">---</TableCell>
-                <TableCell className="w-[36px] px-1 text-center">{teamLog.totals.fgMade}-{teamLog.totals.fgAttempted}</TableCell>
-                <TableCell className="w-[36px] px-1 text-center">{teamLog.totals.fg3Made}-{teamLog.totals.fg3Attempted}</TableCell>
-                <TableCell className="w-[36px] px-1 text-center">{teamLog.totals.ftMade}-{teamLog.totals.ftAttempted}</TableCell>
-                <TableCell className="w-[32px] px-1 text-center">{teamLog.totals.rebounds}</TableCell>
-                <TableCell className="w-[32px] px-1 text-center">{teamLog.totals.assists}</TableCell>
-                <TableCell className="w-[32px] px-1 text-center">{teamLog.totals.steals}</TableCell>
-                <TableCell className="w-[32px] px-1 text-center">{teamLog.totals.blocks}</TableCell>
-                <TableCell className="w-[32px] px-1 text-center">{teamLog.totals.turnovers}</TableCell>
-                <TableCell className="w-[32px] px-1 text-center">{teamLog.totals.personalFouls}</TableCell>
-                <TableCell className="w-[32px] px-1 text-center"><strong className="font-medium">{teamLog.totals.points}</strong></TableCell>
-              </TableRow>
+              <StatsRow totals={true} stats={teamLog.totals} />
             </TableFooter>
           </Table>
         </Fragment>

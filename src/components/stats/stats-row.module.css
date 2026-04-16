@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+.statsCell {
+  @apply px-1;
+  @apply text-sm text-center;
+}
