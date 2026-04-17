@@ -1,5 +1,5 @@
 import { fetchAll, fetchAllWithConverter, fetchById, fetchByIdWithConverter } from "@/apis/api.ts";
-import { toDivision, toGame, toPlayer, toSeason, toTeam } from "@/apis/converters.ts";
+import { toDivision, toGame, toPlayer, toSeason, toStatisticsLog, toTeam } from "@/apis/converters.ts";
 import type { DivisionLoaderProps, DivisionsLoaderProps, SeasonLoaderProps, SeasonsLoaderProps } from "@/apis/loaders/types.ts";
 import {
   buildDivisionQueryOptions,
@@ -10,13 +10,14 @@ import {
   divisionsQueryOptions,
   gamesQueryOptions,
   playersQueryOptions,
-  seasonsQueryOptions,
+  seasonsQueryOptions, statisticsQueryOptions,
   teamsQueryOptions
 } from "@/apis/query-options.ts";
 import type { Division } from "@/types/division.ts";
 import type { Game } from "@/types/game.ts";
 import type { Player } from "@/types/player.ts";
 import type { Season } from "@/types/season.ts";
+import type { StatisticsLog } from "@/types/statistics-log.ts";
 import type { Team } from "@/types/team.ts";
 
 export async function seasonsLoader({ context }): SeasonsLoaderProps {
@@ -62,4 +63,8 @@ export async function gamesLoader({ context }) {
 export async function gameLoader({ context, params }) {
   const gameId = +params["gameId"];
   return fetchByIdWithConverter<Game>(context.queryClient, buildGameQueryOptions(gameId), toGame);
+}
+
+export async function statisticsLoader({ context }) {
+  return fetchAllWithConverter<StatisticsLog>(context.queryClient, statisticsQueryOptions, toStatisticsLog);
 }

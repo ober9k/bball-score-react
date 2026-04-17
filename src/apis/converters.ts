@@ -2,6 +2,7 @@ import type { Division } from "@/types/division.ts";
 import type { Game, PlayerLog, SideType, TeamLog } from "@/types/game.ts";
 import type { Player } from "@/types/player.ts";
 import type { Season } from "@/types/season.ts";
+import type { StatisticsLog } from "@/types/statistics-log.ts";
 import type { Stats } from "@/types/stats.ts";
 import type { Team } from "@/types/team.ts";
 
@@ -67,5 +68,11 @@ export function toPlayerLog(playerLog: any): PlayerLog {
     player:  playerLog.player,
     started: playerLog.started,
     stats:   playerLog.stats,
+  };
+}
+
+export function toStatisticsLog(statisticsLog: any): StatisticsLog {
+  return {
+    ...statisticsLog, /* this case should be clean, just missing team.divisionId */
   };
 }

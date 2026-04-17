@@ -66,6 +66,10 @@ export function buildGamesQueryFn(id?: number) {
   return buildBaseQueryFn("games", id);
 }
 
+export function buildStatisticsQueryFn(id?: number) {
+  return buildBaseQueryFn("statistics", id); /* seasonId */
+}
+
 export async function logoutQueryFn() {
   const { data } = await axios.get(buildAuthApiPath("logout"));
   return data;

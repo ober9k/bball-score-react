@@ -1,4 +1,4 @@
-import { divisionLoader, divisionsLoader, gameLoader, gamesLoader, playerLoader, playersLoader, seasonLoader, seasonsLoader, teamLoader, teamsLoader } from "@/apis/loaders.ts";
+import { divisionLoader, divisionsLoader, gameLoader, gamesLoader, playerLoader, playersLoader, seasonLoader, seasonsLoader, statisticsLoader, teamLoader, teamsLoader } from "@/apis/loaders.ts";
 import NotFoundPage from "@/pages/errors/not-found-page.tsx";
 import {
   DivisionsIndexPage,
@@ -54,6 +54,7 @@ const routes = [{
 },{
   path: paths.League.Statistics,
   component: LeagueStatisticsPage,
+  loader: statisticsLoader,
 },{
   path: paths.Seasons.Index,
   component: SeasonsIndexPage,
