@@ -1,16 +1,12 @@
-import usePageContext from "@/hooks/use-page-context.ts";
+import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { useEffect } from "react";
 
 export function StandingsPage() {
-  const { setPageHeader } = usePageContext();
-
-  useEffect(() => {
-    setPageHeader("League", "", [
-      { title: "League", to: leaguePaths.League.Index },
-      { title: "Standings" },
-    ]);
-  }, []);
+  useTitle("Standings");
+  useBreadcrumbs([
+    { title: "League", to: leaguePaths.League.Index },
+    { title: "Standings" },
+  ]);
 
   return (
     <>
