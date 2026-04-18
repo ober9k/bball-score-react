@@ -6,7 +6,7 @@
 }
 
 .heading {
-  @apply mx-auto max-w-2xl;
+  @apply mx-auto max-w-3xl;
   @apply px-4 py-6;
   @apply flex items-center gap-2;
 }
@@ -22,6 +22,6 @@
 }
 
 .breadcrumbs {
-    @apply mx-auto max-w-2xl;
+    @apply mx-auto max-w-3xl;
     @apply px-4 py-6 -mt-6;
 }
