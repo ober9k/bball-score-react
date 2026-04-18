@@ -51,21 +51,21 @@ export function formatAttempts(made: number, attempted: number): string {
 /**
  * Format respective stats value based on provided key.
  */
-export function formatValue(stats: Stats, statsKey: StatsKeyType): string {
+export function formatValue(stats: Stats, statsKey: StatsKeyType, precision = 0): string {
   switch (statsKey) {
     case StatsKey.Minutes:
       return formatMinutes(stats.seconds);
     case StatsKey.FieldGoals:
-      return formatAttempts(stats.fgMade, stats.fgAttempted);
+      return formatAttempts(stats.fgMade.toFixed(precision), stats.fgAttempted.toFixed(precision));
     case StatsKey.TwoPointFieldGoals:
-      return formatAttempts(stats.fgMade - stats.fg3Made, stats.fgAttempted - stats.fg3Attempted);
+      return formatAttempts((stats.fgMade - stats.fg3Made).toFixed(precision), (stats.fgAttempted - stats.fg3Attempted).toFixed(precision));
     case StatsKey.ThreePointFieldGoals:
-      return formatAttempts(stats.fg3Made, stats.fg3Attempted);
+      return formatAttempts(stats.fg3Made.toFixed(precision), stats.fg3Attempted.toFixed(precision));
     case StatsKey.FreeThrows:
-      return formatAttempts(stats.ftMade, stats.ftAttempted);
+      return formatAttempts(stats.ftMade.toFixed(precision), stats.ftAttempted.toFixed(precision));
     default:
       /* standard value handling */
-      return stats[statsKey].toString();
+      return stats[statsKey].toFixed(precision);
   }
 }
 

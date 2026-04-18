@@ -11,6 +11,7 @@ export type Route = {
   errorComponent?: RouteComponent,
   notFoundComponent?: RouteComponent,
   loader?: any,
+  loaderDeps?: any,
 };
 
 export const mapRoute = (route: Route) => {
@@ -22,5 +23,6 @@ export const mapRoute = (route: Route) => {
     errorComponent: route.errorComponent,
     notFoundComponent: route.notFoundComponent,
     loader: route.loader,
+    loaderDeps: route.loaderDeps,
   });
 };

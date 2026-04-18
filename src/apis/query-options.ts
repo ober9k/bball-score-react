@@ -1,6 +1,8 @@
 import { authUserQueryFn, buildDivisionsQueryFn, buildGamesQueryFn, buildPlayersQueryFn, buildSeasonsQueryFn, buildStatisticsQueryFn, buildTeamsQueryFn, logoutQueryFn } from "@/apis/query-functions";
 import { getDivisionsQK, getGamesQK, getPlayersQK, getSeasonsQK, getStatisticsQK, getTeamsQK, queryKeys } from "@/apis/query-keys";
 
+export type StatisticsContext = "averages" | "totals";
+
 export const seasonsQueryOptions = {
   queryKey: getSeasonsQK(),
   queryFn:  buildSeasonsQueryFn(),
@@ -61,10 +63,12 @@ export function buildGameQueryOptions(id: number) {
   };
 }
 
-export const statisticsQueryOptions = {
-  queryKey: getStatisticsQK(),
-  queryFn:  buildStatisticsQueryFn(),
-};
+export function buildStatisticsQueryOptions(context: StatisticsContext) {
+  return {
+    queryKey: getStatisticsQK(context),
+    queryFn:  buildStatisticsQueryFn(context),
+  };
+}
 
 export const logoutQueryOptions = {
   queryKey: [queryKeys.Logout],

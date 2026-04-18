@@ -1,3 +1,4 @@
+import type { StatisticsContext } from "@/apis/query-options.ts";
 import axios from "axios";
 
 /* TODO: add to config/env file instead */
@@ -66,8 +67,8 @@ export function buildGamesQueryFn(id?: number) {
   return buildBaseQueryFn("games", id);
 }
 
-export function buildStatisticsQueryFn(id?: number) {
-  return buildBaseQueryFn("statistics", id); /* seasonId */
+export function buildStatisticsQueryFn(statisticsContext: StatisticsContext) {
+  return buildBaseQueryFn(`statistics/${statisticsContext}`); /* temporary workaround */ /* ++seasonId */
 }
 
 export async function logoutQueryFn() {

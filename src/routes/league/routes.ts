@@ -55,6 +55,7 @@ const routes = [{
   path: paths.League.Statistics,
   component: LeagueStatisticsPage,
   loader: statisticsLoader,
+  loaderDeps: ({ search: { context } }) => ({ context }),
 },{
   path: paths.Seasons.Index,
   component: SeasonsIndexPage,

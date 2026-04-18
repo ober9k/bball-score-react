@@ -29,18 +29,21 @@ export function StatsTitleCell(props: StatsTitleCellProps) {
 }
 
 export type StatsCellProps = {
-  stats:    Stats,
-  statsKey: StatsKeyType,
+  stats:     Stats,
+  statsKey:  StatsKeyType,
+  averages?: boolean,
 };
 
 function StatsCell(props: StatsCellProps) {
-  const { stats, statsKey } = props;
+  const { stats, statsKey, averages = false } = props;
 
   const cellClass = ([StatsKey.Points].includes(statsKey))
     ? styles.statsLabelCell
     : styles.statsValueCell;
 
-  const cellValue = formatValue(stats, statsKey);
+  const cellValue = (averages)
+    ? formatValue(stats, statsKey, 1) /* 1 decimal point for averages */
+    : formatValue(stats, statsKey);
 
   return (
     <Fragment>
@@ -50,13 +53,37 @@ function StatsCell(props: StatsCellProps) {
 }
 
 type StatsRowProps = {
-  player?: Player,
-  totals?: boolean,
-  stats:   Stats,
+  player?:   Player,
+  played?:   number,
+  totals?:   boolean,
+  averages?: boolean,
+  stats:     Stats,
 };
 
+function calcAverageStats(stats: Stats, played: number): Stats {
+  return {
+    seconds:        stats.seconds / played,
+    fgMade:         stats.fgMade / played,
+    fgAttempted:    stats.fgAttempted / played,
+    fg3Made:        stats.fg3Made / played,
+    fg3Attempted:   stats.fg3Attempted / played,
+    ftMade:         stats.ftMade / played,
+    ftAttempted:    stats.ftAttempted / played,
+    points:         stats.points / played,
+    offRebounds:    stats.offRebounds / played,
+    defRebounds:    stats.defRebounds / played,
+    rebounds:       stats.rebounds / played,
+    assists:        stats.assists / played,
+    steals:         stats.steals / played,
+    blocks:         stats.blocks / played,
+    turnovers:      stats.turnovers / played,
+    personalFouls:  stats.personalFouls / played,
+    technicalFouls: stats.technicalFouls / played,
+  } as Stats;
+}
+
 export function StatsRow(props: StatsRowProps) {
-  const { player, totals, stats } = props;
+  const { player, totals, averages = false, stats } = props;
 
   return (
     <Fragment>
@@ -75,17 +102,17 @@ export function StatsRow(props: StatsRowProps) {
           </Fragment>
         ) : (
           <Fragment>
-            <StatsCell stats={stats} statsKey={StatsKey.Minutes} />
-            <StatsCell stats={stats} statsKey={StatsKey.FieldGoals} />
-            <StatsCell stats={stats} statsKey={StatsKey.ThreePointFieldGoals} />
-            <StatsCell stats={stats} statsKey={StatsKey.FreeThrows} />
-            <StatsCell stats={stats} statsKey={StatsKey.Rebounds} />
-            <StatsCell stats={stats} statsKey={StatsKey.Assists} />
-            <StatsCell stats={stats} statsKey={StatsKey.Steals} />
-            <StatsCell stats={stats} statsKey={StatsKey.Blocks} />
-            <StatsCell stats={stats} statsKey={StatsKey.Turnovers} />
-            <StatsCell stats={stats} statsKey={StatsKey.PersonalFouls} />
-            <StatsCell stats={stats} statsKey={StatsKey.Points} />
+            <StatsCell stats={stats} statsKey={StatsKey.Minutes} averages={averages} />
+            <StatsCell stats={stats} statsKey={StatsKey.FieldGoals} averages={averages} />
+            <StatsCell stats={stats} statsKey={StatsKey.ThreePointFieldGoals} averages={averages} />
+            <StatsCell stats={stats} statsKey={StatsKey.FreeThrows} averages={averages} />
+            <StatsCell stats={stats} statsKey={StatsKey.Rebounds} averages={averages} />
+            <StatsCell stats={stats} statsKey={StatsKey.Assists} averages={averages} />
+            <StatsCell stats={stats} statsKey={StatsKey.Steals} averages={averages} />
+            <StatsCell stats={stats} statsKey={StatsKey.Blocks} averages={averages} />
+            <StatsCell stats={stats} statsKey={StatsKey.Turnovers} averages={averages} />
+            <StatsCell stats={stats} statsKey={StatsKey.PersonalFouls} averages={averages} />
+            <StatsCell stats={stats} statsKey={StatsKey.Points} averages={averages} />
           </Fragment>
         )}
       </TableRow>
