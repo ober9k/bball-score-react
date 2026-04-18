@@ -47,21 +47,32 @@ export function formatMinutes(seconds: number): string {
 }
 
 /**
- * Format shots made and attempted into dash format.
- */
-export function formatAttempts(made: number, attempted: number, precision: number): string {
-  return `${made.toFixed(precision)}-${attempted.toFixed(precision)}`;
-}
-
-/**
  * Format shots made and attempted into percentage format.
  */
-export function formatAttemptsPercentage(made: number, attempted: number, precision: number = 1): string {
+export function formatAttemptsPercentage(made: number, attempted: number): string {
+  const precision = 1; /* only need single digit */
   const format = (percentage: number) => `${percentage.toFixed(precision)}%`;
 
   return (attempted > 0)
     ? format(made / attempted * 100)
     : format(0);
+}
+
+/**
+ * Format shots made and attempted into dash format.
+ */
+export function formatAttemptsAsDashed(made: number, attempted: number): string {
+  const precision = 0; /* not needed for here, unless averages */
+  return `${made.toFixed(precision)}-${attempted.toFixed(precision)}`;
+}
+
+/**
+ * Format shots made and attempted into dash format.
+ */
+export function formatAttempts(made: number, attempted: number, asPercentage: boolean = true): string {
+  return (asPercentage)
+    ? formatAttemptsPercentage(made, attempted)
+    : formatAttemptsAsDashed(made, attempted);
 }
 
 /**
@@ -81,32 +92,25 @@ function isPercentageStatsKey(statsKey: StatsKeyType): boolean {
 
 /**
  * Format respective stats value based on provided key.
- * TODO: this can be optimized... wtf is this ugly code
  */
 export function formatValue(stats: Stats, statsKey: StatsKeyType, precision = 0): string {
+  const asPercentage = isPercentageStatsKey(statsKey);
+
   switch (statsKey) {
     case StatsKey.Minutes:
       return formatMinutes(stats.seconds);
     case StatsKey.FieldGoals:
     case StatsKey.FieldGoalsPercentage:
-      return (isPercentageStatsKey(statsKey))
-        ? formatAttempts(stats.fgMade, stats.fgAttempted)
-        : formatAttemptsPercentage(stats.fgMade, stats.fgAttempted);
+      return formatAttempts(stats.fgMade, stats.fgAttempted, asPercentage);
     case StatsKey.TwoPointFieldGoals:
     case StatsKey.TwoPointFieldGoalsPercentage:
-      return (isPercentageStatsKey(statsKey))
-        ? formatAttempts((stats.fgMade - stats.fg3Made), (stats.fgAttempted - stats.fg3Attempted))
-        : formatAttemptsPercentage((stats.fgMade - stats.fg3Made), (stats.fgAttempted - stats.fg3Attempted));
+      return formatAttempts(stats.fgMade - stats.fg3Made, stats.fgAttempted - stats.fg3Attempted, asPercentage);
     case StatsKey.ThreePointFieldGoals:
     case StatsKey.ThreePointFieldGoalsPercentage:
-      return (isPercentageStatsKey(statsKey))
-        ? formatAttempts(stats.fg3Made, stats.fg3Attempted)
-        : formatAttemptsPercentage(stats.fg3Made, stats.fg3Attempted);
+      return formatAttempts(stats.fg3Made, stats.fg3Attempted, asPercentage);
     case StatsKey.FreeThrows:
     case StatsKey.FreeThrowsPercentage:
-      return (isPercentageStatsKey(statsKey))
-        ? formatAttempts(stats.ftMade, stats.ftAttempted)
-        : formatAttemptsPercentage(stats.ftMade, stats.ftAttempted);
+      return formatAttempts(stats.ftMade, stats.ftAttempted, asPercentage);
     default:
       /* standard value handling */
       return stats[statsKey].toFixed(precision);
