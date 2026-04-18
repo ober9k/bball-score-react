@@ -9,8 +9,8 @@ import { StatsKey } from "@/types/stats.ts";
 const statsTitles = new Map<StatsKeyType, string>()
   .set(StatsKey.Minutes, "MIN")
   .set(StatsKey.FieldGoals, "FG")
-  .set(StatsKey.TwoPointFieldGoals, "2PT")
-  .set(StatsKey.ThreePointFieldGoals, "3PT")
+  .set(StatsKey.TwoPointFieldGoals, "2P")
+  .set(StatsKey.ThreePointFieldGoals, "3P")
   .set(StatsKey.FreeThrows, "FT")
   .set(StatsKey.OffensiveRebounds, "OREB")
   .set(StatsKey.DefensiveRebounds, "DREB")
@@ -24,8 +24,8 @@ const statsTitles = new Map<StatsKeyType, string>()
   .set(StatsKey.Points, "PTS")
   /* special percentage cases */
   .set(StatsKey.FieldGoalsPercentage, "FG%")
-  .set(StatsKey.TwoPointFieldGoalsPercentage, "2PT%")
-  .set(StatsKey.ThreePointFieldGoalsPercentage, "3PT%")
+  .set(StatsKey.TwoPointFieldGoalsPercentage, "2P%")
+  .set(StatsKey.ThreePointFieldGoalsPercentage, "3P%")
   .set(StatsKey.FreeThrowsPercentage,  "FT%")
 
 export function getStatsTitle(statsKey: StatsKeyType): string {

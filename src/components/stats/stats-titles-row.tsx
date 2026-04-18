@@ -12,9 +12,13 @@ type StatsTitleCellProps = {
 
 const WidenedColumns = [
   StatsKey.FieldGoals,
+  StatsKey.FieldGoalsPercentage,
   StatsKey.TwoPointFieldGoals,
+  StatsKey.TwoPointFieldGoalsPercentage,
   StatsKey.ThreePointFieldGoals,
+  StatsKey.ThreePointFieldGoalsPercentage,
   StatsKey.FreeThrows,
+  StatsKey.FreeThrowsPercentage,
 ] as const;
 
 export function StatsTitleCell(props: StatsTitleCellProps) {

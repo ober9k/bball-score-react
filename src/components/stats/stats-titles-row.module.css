@@ -8,5 +8,5 @@
 }
 
 .statsWidenedColumn {
-  @apply w-[48px];
+  @apply w-[40px];
 }
