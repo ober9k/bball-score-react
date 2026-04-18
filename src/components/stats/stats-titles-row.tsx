@@ -1,4 +1,4 @@
-import * as styles from "@/components/stats/stats-row.module.css";
+import * as styles from "@/components/stats/stats-titles-row.module.css";
 import type { ColumnsType } from "@/lib/stats-utils.ts";
 import { ColumnsMap, getStatsTitle } from "@/lib/stats-utils.ts";
 import { TableHead, TableRow } from "@/shared/components/ui/table.tsx";
@@ -21,8 +21,8 @@ export function StatsTitleCell(props: StatsTitleCellProps) {
   const { statsKey } = props;
 
   const cellClass = (WidenedColumns.includes(statsKey))
-    ? styles.statsWideTitleCell
-    : styles.statsTitleCell;
+    ? styles.statsWidenedColumn
+    : styles.statsColumn;
 
   const cellValue = getStatsTitle(statsKey);
 

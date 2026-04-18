@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
-.statsLabelCell,
-.statsValueCell {
+.statsColumn,
+.statsWidenedColumn {
   @apply px-0.5;
   @apply text-[13px] text-center; /* custom size, figuring out best sizing */
-  @apply font-light;
+  @apply w-[32px];
 }
 
-.statsLabelCell {
-  @apply font-medium;
+.statsWidenedColumn {
+  @apply w-[48px];
 }
