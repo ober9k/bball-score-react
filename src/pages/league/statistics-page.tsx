@@ -1,9 +1,9 @@
 import type { StatisticsLoaderProps } from "@/apis/loaders/types.ts";
-import { StatsRow, StatsTitleCell } from "@/components/stats/stats-row.tsx";
+import { StatsRow } from "@/components/stats/stats-row.tsx";
+import { StatsTitlesRow } from "@/components/stats/stats-titles-row.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table.tsx";
-import { StatsKey } from "@/types/stats.ts";
+import { Table, TableBody, TableHeader } from "@/shared/components/ui/table.tsx";
 import { getRouteApi } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
@@ -33,20 +33,7 @@ export function StatisticsPage() {
     <>
       <Table>
         <TableHeader>
-          <TableRow>
-            <TableHead>Player</TableHead>
-            <StatsTitleCell statsKey={StatsKey.Minutes} />
-            <StatsTitleCell statsKey={StatsKey.FieldGoals} />
-            <StatsTitleCell statsKey={StatsKey.ThreePointFieldGoals} />
-            <StatsTitleCell statsKey={StatsKey.FreeThrows} />
-            <StatsTitleCell statsKey={StatsKey.Rebounds} />
-            <StatsTitleCell statsKey={StatsKey.Assists} />
-            <StatsTitleCell statsKey={StatsKey.Steals} />
-            <StatsTitleCell statsKey={StatsKey.Blocks} />
-            <StatsTitleCell statsKey={StatsKey.Turnovers} />
-            <StatsTitleCell statsKey={StatsKey.PersonalFouls} />
-            <StatsTitleCell statsKey={StatsKey.Points} />
-          </TableRow>
+          <StatsTitlesRow />
         </TableHeader>
         <TableBody>
           {statisticsLogs.map(({ player, played, stats }) => (

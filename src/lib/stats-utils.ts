@@ -116,3 +116,51 @@ export function calculateTotals(playerLogs: PlayerLog[]): Stats {
       points:        acc.points        + cur.points,
     }), getInitialAccumulator())
 }
+
+export type ColumnsType = "basic" | "extended" | "complete";
+
+const BasicColumns = [
+  StatsKey.Rebounds,
+  StatsKey.Assists,
+  StatsKey.Steals,
+  StatsKey.Blocks,
+  StatsKey.Turnovers,
+  StatsKey.PersonalFouls,
+  StatsKey.Points,
+];
+
+const ExtendedColumns = [
+  StatsKey.Minutes,
+  StatsKey.FieldGoals,
+  StatsKey.ThreePointFieldGoals,
+  StatsKey.FreeThrows,
+  StatsKey.Rebounds,
+  StatsKey.Assists,
+  StatsKey.Steals,
+  StatsKey.Blocks,
+  StatsKey.Turnovers,
+  StatsKey.PersonalFouls,
+  StatsKey.Points,
+];
+
+const CompleteColumns = [
+  StatsKey.Minutes,
+  StatsKey.FieldGoals,
+  /* todo: StatsKey.FieldGoalsPercentage, */
+  StatsKey.ThreePointFieldGoals,
+  /* todo: StatsKey.ThreePointFieldPercentage, */
+  StatsKey.FreeThrows,
+  /* todo: StatsKey.FreeThrowsPercentage, */
+  StatsKey.Rebounds,
+  StatsKey.Assists,
+  StatsKey.Steals,
+  StatsKey.Blocks,
+  StatsKey.Turnovers,
+  StatsKey.PersonalFouls,
+  StatsKey.Points,
+];
+
+export const ColumnsMap = new Map<ColumnsType, Array<StatsKeyType>>()
+  .set("basic",    BasicColumns)
+  .set("extended", ExtendedColumns)
+  .set("complete", CompleteColumns);
