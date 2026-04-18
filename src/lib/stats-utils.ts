@@ -127,7 +127,7 @@ const BasicColumns = [
   StatsKey.Turnovers,
   StatsKey.PersonalFouls,
   StatsKey.Points,
-];
+] as const;
 
 const ExtendedColumns = [
   StatsKey.Minutes,
@@ -141,7 +141,7 @@ const ExtendedColumns = [
   StatsKey.Turnovers,
   StatsKey.PersonalFouls,
   StatsKey.Points,
-];
+] as const;
 
 const CompleteColumns = [
   StatsKey.Minutes,
@@ -158,7 +158,7 @@ const CompleteColumns = [
   StatsKey.Turnovers,
   StatsKey.PersonalFouls,
   StatsKey.Points,
-];
+] as const;
 
 export const ColumnsMap = new Map<ColumnsType, Array<StatsKeyType>>()
   .set("basic",    BasicColumns)

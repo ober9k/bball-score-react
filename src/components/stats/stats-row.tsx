@@ -1,32 +1,12 @@
 import * as styles from "@/components/stats/stats-row.module.css";
-import { formatValue, getStatsTitle } from "@/lib/stats-utils.ts";
+import { formatValue } from "@/lib/stats-utils.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { TableCell, TableHead, TableRow } from "@/shared/components/ui/table.tsx";
+import { TableCell, TableRow } from "@/shared/components/ui/table.tsx";
 import type { Player } from "@/types/player.ts";
 import type { Stats } from "@/types/stats.ts";
 import { StatsKey, type StatsKeyType } from "@/types/stats.ts";
 import { Link } from "@tanstack/react-router";
 import { Fragment } from "react";
-
-type StatsTitleCellProps = {
-  statsKey: StatsKeyType,
-};
-
-export function StatsTitleCell(props: StatsTitleCellProps) {
-  const { statsKey } = props;
-
-  const cellClass = ([StatsKey.FieldGoals, StatsKey.TwoPointFieldGoals, StatsKey.ThreePointFieldGoals, StatsKey.FreeThrows].includes(statsKey))
-    ? styles.statsWideTitleCell
-    : styles.statsTitleCell;
-
-  const cellValue = getStatsTitle(statsKey);
-
-  return (
-    <Fragment>
-      <TableHead className={cellClass}>{cellValue}</TableHead>
-    </Fragment>
-  );
-}
 
 export type StatsCellProps = {
   stats:     Stats,

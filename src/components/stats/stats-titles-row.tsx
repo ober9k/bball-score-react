@@ -1,14 +1,43 @@
-import { StatsTitleCell } from "@/components/stats/stats-row.tsx";
+import * as styles from "@/components/stats/stats-row.module.css";
 import type { ColumnsType } from "@/lib/stats-utils.ts";
-import { ColumnsMap } from "@/lib/stats-utils.ts";
+import { ColumnsMap, getStatsTitle } from "@/lib/stats-utils.ts";
 import { TableHead, TableRow } from "@/shared/components/ui/table.tsx";
+import type { StatsKeyType } from "@/types/stats.ts";
+import { StatsKey } from "@/types/stats.ts";
 import { Fragment } from "react";
 
-type Props = {
+type StatsTitleCellProps = {
+  statsKey: StatsKeyType,
+};
+
+const WidenedColumns = [
+  StatsKey.FieldGoals,
+  StatsKey.TwoPointFieldGoals,
+  StatsKey.ThreePointFieldGoals,
+  StatsKey.FreeThrows,
+] as const;
+
+export function StatsTitleCell(props: StatsTitleCellProps) {
+  const { statsKey } = props;
+
+  const cellClass = (WidenedColumns.includes(statsKey))
+    ? styles.statsWideTitleCell
+    : styles.statsTitleCell;
+
+  const cellValue = getStatsTitle(statsKey);
+
+  return (
+    <Fragment>
+      <TableHead className={cellClass}>{cellValue}</TableHead>
+    </Fragment>
+  );
+}
+
+type StatsTitlesRowProps = {
   columnsType?: ColumnsType,
 };
 
-export function StatsTitlesRow(props: Props) {
+export function StatsTitlesRow(props: StatsTitlesRowProps) {
   const { columnsType = "complete" } = props;
   const columns = ColumnsMap.get(columnsType);
 
