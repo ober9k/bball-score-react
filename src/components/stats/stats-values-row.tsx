@@ -14,7 +14,7 @@ export type StatsValueCellProps = {
   averages?: boolean,
 };
 
-function StatsCell(props: StatsValueCellProps) {
+export function StatsValueCell(props: StatsValueCellProps) {
   const { stats, statsKey, averages = false } = props;
 
   const cellClass = ([StatsKey.Points].includes(statsKey))
@@ -60,17 +60,17 @@ export function StatsValuesRow(props: StatsValuesRowProps) {
           </Fragment>
         ) : (
           <Fragment>
-            <StatsCell stats={stats} statsKey={StatsKey.Minutes} averages={averages} />
-            <StatsCell stats={stats} statsKey={StatsKey.FieldGoals} averages={averages} />
-            <StatsCell stats={stats} statsKey={StatsKey.ThreePointFieldGoals} averages={averages} />
-            <StatsCell stats={stats} statsKey={StatsKey.FreeThrows} averages={averages} />
-            <StatsCell stats={stats} statsKey={StatsKey.Rebounds} averages={averages} />
-            <StatsCell stats={stats} statsKey={StatsKey.Assists} averages={averages} />
-            <StatsCell stats={stats} statsKey={StatsKey.Steals} averages={averages} />
-            <StatsCell stats={stats} statsKey={StatsKey.Blocks} averages={averages} />
-            <StatsCell stats={stats} statsKey={StatsKey.Turnovers} averages={averages} />
-            <StatsCell stats={stats} statsKey={StatsKey.PersonalFouls} averages={averages} />
-            <StatsCell stats={stats} statsKey={StatsKey.Points} averages={averages} />
+            <StatsValueCell stats={stats} statsKey={StatsKey.Minutes} averages={averages} />
+            <StatsValueCell stats={stats} statsKey={StatsKey.FieldGoals} averages={averages} />
+            <StatsValueCell stats={stats} statsKey={StatsKey.ThreePointFieldGoals} averages={averages} />
+            <StatsValueCell stats={stats} statsKey={StatsKey.FreeThrows} averages={averages} />
+            <StatsValueCell stats={stats} statsKey={StatsKey.Rebounds} averages={averages} />
+            <StatsValueCell stats={stats} statsKey={StatsKey.Assists} averages={averages} />
+            <StatsValueCell stats={stats} statsKey={StatsKey.Steals} averages={averages} />
+            <StatsValueCell stats={stats} statsKey={StatsKey.Blocks} averages={averages} />
+            <StatsValueCell stats={stats} statsKey={StatsKey.Turnovers} averages={averages} />
+            <StatsValueCell stats={stats} statsKey={StatsKey.PersonalFouls} averages={averages} />
+            <StatsValueCell stats={stats} statsKey={StatsKey.Points} averages={averages} />
           </Fragment>
         )}
       </TableRow>
