@@ -1,5 +1,5 @@
 import type { StatisticsLoaderProps } from "@/apis/loaders/types.ts";
-import { StatsRow } from "@/components/stats/stats-row.tsx";
+import { StatsValuesRow } from "@/components/stats/stats-values-row.tsx";
 import { StatsTitlesRow } from "@/components/stats/stats-titles-row.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
@@ -37,7 +37,7 @@ export function StatisticsPage() {
         </TableHeader>
         <TableBody>
           {statisticsLogs.map(({ player, played, stats }) => (
-            <StatsRow key={player.id} player={player} played={played} stats={stats} averages={true} />
+            <StatsValuesRow key={player.id} player={player} played={played} stats={stats} averages={true} />
           ))}
         </TableBody>
       </Table>

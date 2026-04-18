@@ -1,4 +1,4 @@
-import * as styles from "@/components/stats/stats-row.module.css";
+import * as styles from "@/components/stats/stats-values-row.module.css";
 import { formatValue } from "@/lib/stats-utils.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { TableCell, TableRow } from "@/shared/components/ui/table.tsx";
@@ -8,13 +8,13 @@ import { StatsKey, type StatsKeyType } from "@/types/stats.ts";
 import { Link } from "@tanstack/react-router";
 import { Fragment } from "react";
 
-export type StatsCellProps = {
+export type StatsValueCellProps = {
   stats:     Stats,
   statsKey:  StatsKeyType,
   averages?: boolean,
 };
 
-function StatsCell(props: StatsCellProps) {
+function StatsCell(props: StatsValueCellProps) {
   const { stats, statsKey, averages = false } = props;
 
   const cellClass = ([StatsKey.Points].includes(statsKey))
@@ -32,7 +32,7 @@ function StatsCell(props: StatsCellProps) {
   );
 }
 
-type StatsRowProps = {
+type StatsValuesRowProps = {
   player?:   Player,
   played?:   number,
   totals?:   boolean,
@@ -40,29 +40,7 @@ type StatsRowProps = {
   stats:     Stats,
 };
 
-function calcAverageStats(stats: Stats, played: number): Stats {
-  return {
-    seconds:        stats.seconds / played,
-    fgMade:         stats.fgMade / played,
-    fgAttempted:    stats.fgAttempted / played,
-    fg3Made:        stats.fg3Made / played,
-    fg3Attempted:   stats.fg3Attempted / played,
-    ftMade:         stats.ftMade / played,
-    ftAttempted:    stats.ftAttempted / played,
-    points:         stats.points / played,
-    offRebounds:    stats.offRebounds / played,
-    defRebounds:    stats.defRebounds / played,
-    rebounds:       stats.rebounds / played,
-    assists:        stats.assists / played,
-    steals:         stats.steals / played,
-    blocks:         stats.blocks / played,
-    turnovers:      stats.turnovers / played,
-    personalFouls:  stats.personalFouls / played,
-    technicalFouls: stats.technicalFouls / played,
-  } as Stats;
-}
-
-export function StatsRow(props: StatsRowProps) {
+export function StatsValuesRow(props: StatsValuesRowProps) {
   const { player, totals, averages = false, stats } = props;
 
   return (

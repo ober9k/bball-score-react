@@ -1,6 +1,6 @@
 import type { GameLoaderProps } from "@/apis/loaders/types.ts";
 import GameCard from "@/components/games/game-card.tsx";
-import { StatsRow } from "@/components/stats/stats-row.tsx";
+import { StatsValuesRow } from "@/components/stats/stats-values-row.tsx";
 import { StatsTitlesRow } from "@/components/stats/stats-titles-row.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { calculateTotals } from "@/lib/stats-utils.ts";
@@ -38,11 +38,11 @@ export default function ViewPage() {
             </TableHeader>
             <TableBody>
               {teamLog.playerLogs.map(({ player, stats }) => (
-                <StatsRow key={player.id} player={player} stats={stats} />
+                <StatsValuesRow key={player.id} player={player} stats={stats} />
               ))}
             </TableBody>
             <TableFooter>
-              <StatsRow totals={true} stats={teamLog.totals} />
+              <StatsValuesRow totals={true} stats={teamLog.totals} />
             </TableFooter>
           </Table>
         </Fragment>
