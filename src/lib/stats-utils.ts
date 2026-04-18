@@ -21,7 +21,12 @@ const statsTitles = new Map<StatsKeyType, string>()
   .set(StatsKey.Turnovers, "TOV")
   .set(StatsKey.PersonalFouls, "PF")
   .set(StatsKey.TechnicalFouls, "TF")
-  .set(StatsKey.Points, "PTS");
+  .set(StatsKey.Points, "PTS")
+  /* special percentage cases */
+  .set(StatsKey.FieldGoalsPercentage, "FG%")
+  .set(StatsKey.TwoPointFieldGoalsPercentage, "2PT%")
+  .set(StatsKey.ThreePointFieldGoalsPercentage, "3PT%")
+  .set(StatsKey.FreeThrowsPercentage,  "FT%")
 
 export function getStatsTitle(statsKey: StatsKeyType): string {
   return statsTitles.get(statsKey);
@@ -49,7 +54,19 @@ export function formatAttempts(made: number, attempted: number): string {
 }
 
 /**
+ * Format shots made and attempted into percentage format.
+ */
+export function formatAttemptsPercentage(made: number, attempted: number, precision: number = 1): string {
+  const format = (percentage: number) => `${percentage.toFixed(precision)}%`;
+
+  return (attempted > 0)
+    ? format(made / attempted * 100)
+    : format(0);
+}
+
+/**
  * Format respective stats value based on provided key.
+ * TODO: this can be optimized... wtf is this ugly code
  */
 export function formatValue(stats: Stats, statsKey: StatsKeyType, precision = 0): string {
   switch (statsKey) {
@@ -57,12 +74,20 @@ export function formatValue(stats: Stats, statsKey: StatsKeyType, precision = 0)
       return formatMinutes(stats.seconds);
     case StatsKey.FieldGoals:
       return formatAttempts(stats.fgMade.toFixed(precision), stats.fgAttempted.toFixed(precision));
+    case StatsKey.FieldGoalsPercentage:
+      return formatAttemptsPercentage(stats.fgMade, stats.fgAttempted);
     case StatsKey.TwoPointFieldGoals:
       return formatAttempts((stats.fgMade - stats.fg3Made).toFixed(precision), (stats.fgAttempted - stats.fg3Attempted).toFixed(precision));
+    case StatsKey.TwoPointFieldGoalsPercentage:
+      return formatAttemptsPercentage((stats.fgMade - stats.fg3Made), (stats.fgAttempted - stats.fg3Attempted));
     case StatsKey.ThreePointFieldGoals:
       return formatAttempts(stats.fg3Made.toFixed(precision), stats.fg3Attempted.toFixed(precision));
+    case StatsKey.ThreePointFieldGoalsPercentage:
+      return formatAttemptsPercentage(stats.fg3Made, stats.fg3Attempted);
     case StatsKey.FreeThrows:
       return formatAttempts(stats.ftMade.toFixed(precision), stats.ftAttempted.toFixed(precision));
+    case StatsKey.FreeThrowsPercentage:
+      return formatAttemptsPercentage(stats.ftMade, stats.ftAttempted);
     default:
       /* standard value handling */
       return stats[statsKey].toFixed(precision);
@@ -146,11 +171,11 @@ const ExtendedColumns = [
 const CompleteColumns = [
   StatsKey.Minutes,
   StatsKey.FieldGoals,
-  /* todo: StatsKey.FieldGoalsPercentage, */
+  StatsKey.FieldGoalsPercentage,
   StatsKey.ThreePointFieldGoals,
-  /* todo: StatsKey.ThreePointFieldPercentage, */
+  StatsKey.ThreePointFieldGoalsPercentage,
   StatsKey.FreeThrows,
-  /* todo: StatsKey.FreeThrowsPercentage, */
+  StatsKey.FreeThrowsPercentage,
   StatsKey.Rebounds,
   StatsKey.Assists,
   StatsKey.Steals,

@@ -3,7 +3,7 @@
  */
 export const StatsKey = {
   Minutes:              "minutes",
-  FieldGoals:           "fieldGoals",  /* all field goals */
+  FieldGoals:           "fieldGoals",           /* all field goals */
   TwoPointFieldGoals:   "twoPointFieldGoals",   /* only 2 point field goals */
   ThreePointFieldGoals: "threePointFieldGoals", /* only 3 point field goals */
   FreeThrows:           "freeThrows",
@@ -17,6 +17,11 @@ export const StatsKey = {
   PersonalFouls:        "personalFouls",
   TechnicalFouls:       "technicalFouls",
   Points:               "points",
+  /* special percentage cases */
+  FieldGoalsPercentage:           "fieldGoalsPercentage",
+  TwoPointFieldGoalsPercentage:   "twoPointFieldGoalsPercentage",
+  ThreePointFieldGoalsPercentage: "threePointFieldPercentage",
+  FreeThrowsPercentage:           "freeThrowsPercentage",
 } as const;
 
 export type StatsKeyType = typeof StatsKey[keyof typeof StatsKey];
