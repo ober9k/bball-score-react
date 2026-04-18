@@ -49,8 +49,8 @@ export function formatMinutes(seconds: number): string {
 /**
  * Format shots made and attempted into dash format.
  */
-export function formatAttempts(made: number, attempted: number): string {
-  return `${made}-${attempted}`;
+export function formatAttempts(made: number, attempted: number, precision: number): string {
+  return `${made.toFixed(precision)}-${attempted.toFixed(precision)}`;
 }
 
 /**
@@ -73,19 +73,19 @@ export function formatValue(stats: Stats, statsKey: StatsKeyType, precision = 0)
     case StatsKey.Minutes:
       return formatMinutes(stats.seconds);
     case StatsKey.FieldGoals:
-      return formatAttempts(stats.fgMade.toFixed(precision), stats.fgAttempted.toFixed(precision));
+      return formatAttempts(stats.fgMade, stats.fgAttempted);
     case StatsKey.FieldGoalsPercentage:
       return formatAttemptsPercentage(stats.fgMade, stats.fgAttempted);
     case StatsKey.TwoPointFieldGoals:
-      return formatAttempts((stats.fgMade - stats.fg3Made).toFixed(precision), (stats.fgAttempted - stats.fg3Attempted).toFixed(precision));
+      return formatAttempts((stats.fgMade - stats.fg3Made), (stats.fgAttempted - stats.fg3Attempted));
     case StatsKey.TwoPointFieldGoalsPercentage:
       return formatAttemptsPercentage((stats.fgMade - stats.fg3Made), (stats.fgAttempted - stats.fg3Attempted));
     case StatsKey.ThreePointFieldGoals:
-      return formatAttempts(stats.fg3Made.toFixed(precision), stats.fg3Attempted.toFixed(precision));
+      return formatAttempts(stats.fg3Made, stats.fg3Attempted);
     case StatsKey.ThreePointFieldGoalsPercentage:
       return formatAttemptsPercentage(stats.fg3Made, stats.fg3Attempted);
     case StatsKey.FreeThrows:
-      return formatAttempts(stats.ftMade.toFixed(precision), stats.ftAttempted.toFixed(precision));
+      return formatAttempts(stats.ftMade, stats.ftAttempted);
     case StatsKey.FreeThrowsPercentage:
       return formatAttemptsPercentage(stats.ftMade, stats.ftAttempted);
     default:
