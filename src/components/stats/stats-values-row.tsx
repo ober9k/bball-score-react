@@ -1,5 +1,5 @@
 import * as styles from "@/components/stats/stats-values-row.module.css";
-import { formatValue } from "@/lib/stats-utils.ts";
+import { ColumnsMap, type ColumnsType, formatValue } from "@/lib/stats-utils.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { TableCell, TableRow } from "@/shared/components/ui/table.tsx";
 import type { Player } from "@/types/player.ts";
@@ -33,6 +33,7 @@ export function StatsValueCell(props: StatsValueCellProps) {
 }
 
 type StatsValuesRowProps = {
+  columnsType?: ColumnsType,
   player?:   Player,
   played?:   number,
   totals?:   boolean,
@@ -41,7 +42,8 @@ type StatsValuesRowProps = {
 };
 
 export function StatsValuesRow(props: StatsValuesRowProps) {
-  const { player, totals, averages = false, stats } = props;
+  const { columnsType = "complete", player, totals, averages = false, stats } = props;
+  const columns = ColumnsMap.get(columnsType);
 
   return (
     <Fragment>
@@ -60,17 +62,9 @@ export function StatsValuesRow(props: StatsValuesRowProps) {
           </Fragment>
         ) : (
           <Fragment>
-            <StatsValueCell stats={stats} statsKey={StatsKey.Minutes} averages={averages} />
-            <StatsValueCell stats={stats} statsKey={StatsKey.FieldGoals} averages={averages} />
-            <StatsValueCell stats={stats} statsKey={StatsKey.ThreePointFieldGoals} averages={averages} />
-            <StatsValueCell stats={stats} statsKey={StatsKey.FreeThrows} averages={averages} />
-            <StatsValueCell stats={stats} statsKey={StatsKey.Rebounds} averages={averages} />
-            <StatsValueCell stats={stats} statsKey={StatsKey.Assists} averages={averages} />
-            <StatsValueCell stats={stats} statsKey={StatsKey.Steals} averages={averages} />
-            <StatsValueCell stats={stats} statsKey={StatsKey.Blocks} averages={averages} />
-            <StatsValueCell stats={stats} statsKey={StatsKey.Turnovers} averages={averages} />
-            <StatsValueCell stats={stats} statsKey={StatsKey.PersonalFouls} averages={averages} />
-            <StatsValueCell stats={stats} statsKey={StatsKey.Points} averages={averages} />
+            {columns.map((column) => (
+              <StatsValueCell key={column} stats={stats} statsKey={column} averages={averages} />
+            ))}
           </Fragment>
         )}
       </TableRow>
