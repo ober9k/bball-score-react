@@ -1,7 +1,7 @@
 import type { StandingsLoaderProps } from "@/apis/loaders/types.ts";
 import { StandingsTable } from "@/components/standings/standings-table.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
-import { getPoints } from "@/lib/standings-utils.ts";
+import { formatPoints } from "@/lib/standings-utils.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import type { StandingsLog } from "@/types/standings-log.ts";
 import { getRouteApi } from "@tanstack/react-router";
@@ -16,8 +16,8 @@ export function StandingsPage() {
   ]);
 
   const standingsLogs = standings.sort((logA: StandingsLog, logB: StandingsLog) => {
-    const pointsA = getPoints(logA);
-    const pointsB = getPoints(logB);
+    const pointsA = formatPoints(logA);
+    const pointsB = formatPoints(logB);
 
     if (pointsA < pointsB) return  1;
     if (pointsA > pointsB) return -1;
