@@ -19,10 +19,12 @@ export function StandingsPage() {
         <TableHeader>
           <TableRow>
             <TableHead>Team</TableHead>
+            <TableHead>GP</TableHead>
             <TableHead>W</TableHead>
             <TableHead>L</TableHead>
             <TableHead>D</TableHead>
             <TableHead>B</TableHead>
+            <TableHead>F</TableHead>
             <TableHead>PF</TableHead>
             <TableHead>PA</TableHead>
           </TableRow>
@@ -31,10 +33,12 @@ export function StandingsPage() {
           {standingsLogs.map((log) => (
           <TableRow key={log.id}>
             <TableCell>{log.team.name}</TableCell>
+            <TableCell>{log.played}</TableCell>
             <TableCell>{log.wins}</TableCell>
             <TableCell>{log.losses}</TableCell>
             <TableCell>{log.draws}</TableCell>
             <TableCell>{log.byes}</TableCell>
+            <TableCell>{log.forfeits}</TableCell>
             <TableCell>{log.pointsFor}</TableCell>
             <TableCell>{log.pointsAgainst}</TableCell>
           </TableRow>
