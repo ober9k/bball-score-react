@@ -67,6 +67,10 @@ export function buildGamesQueryFn(id?: number) {
   return buildBaseQueryFn("games", id);
 }
 
+export function buildStandingsQueryFn() {
+  return buildBaseQueryFn("standings"); /* ++seasonId */
+}
+
 export function buildStatisticsQueryFn(statisticsContext: StatisticsContext) {
   return buildBaseQueryFn(`statistics/${statisticsContext}`); /* temporary workaround */ /* ++seasonId */
 }

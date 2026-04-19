@@ -9,6 +9,7 @@ export const queryKeys = {
   Player:     "player",
   Games:      "games",
   Game:       "game",
+  Standings:  "standings",
   Statistics: "statistics",
   Logout:     "logout",
 }
@@ -38,6 +39,10 @@ export const getPlayersQK = (id?: number): Array<string|number> => {
 
 export const getGamesQK = (id?: number): Array<string|number> => {
   return getQK([queryKeys.Games, queryKeys.Game], id);
+};
+
+export const getStandingsQK = (id?: number): Array<string|number> => {
+  return getQK([queryKeys.Standings, queryKeys.Standings], id); /* seasonId */
 };
 
 export const getStatisticsQK = (id?: number): Array<string|number> => {

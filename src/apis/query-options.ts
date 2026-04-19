@@ -1,5 +1,15 @@
-import { authUserQueryFn, buildDivisionsQueryFn, buildGamesQueryFn, buildPlayersQueryFn, buildSeasonsQueryFn, buildStatisticsQueryFn, buildTeamsQueryFn, logoutQueryFn } from "@/apis/query-functions";
-import { getDivisionsQK, getGamesQK, getPlayersQK, getSeasonsQK, getStatisticsQK, getTeamsQK, queryKeys } from "@/apis/query-keys";
+import {
+  authUserQueryFn,
+  buildDivisionsQueryFn,
+  buildGamesQueryFn,
+  buildPlayersQueryFn,
+  buildSeasonsQueryFn,
+  buildStandingsQueryFn,
+  buildStatisticsQueryFn,
+  buildTeamsQueryFn,
+  logoutQueryFn
+} from "@/apis/query-functions";
+import { getDivisionsQK, getGamesQK, getPlayersQK, getSeasonsQK, getStandingsQK, getStatisticsQK, getTeamsQK, queryKeys } from "@/apis/query-keys";
 
 export type StatisticsContext = "averages" | "totals";
 
@@ -60,6 +70,13 @@ export function buildGameQueryOptions(id: number) {
   return {
     queryKey: getGamesQK(id),
     queryFn:  buildGamesQueryFn(id),
+  };
+}
+
+export function buildStandingsQueryOptions() {
+  return {
+    queryKey: getStandingsQK(),
+    queryFn:  buildStandingsQueryFn(),
   };
 }
 
