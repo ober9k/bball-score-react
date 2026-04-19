@@ -1,26 +1,10 @@
 import type { StandingsLoaderProps } from "@/apis/loaders/types.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
+import { getPoints, getPointsDiff, getWinPercent } from "@/lib/standings-utils.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table.tsx";
 import type { StandingsLog } from "@/types/standings-log.ts";
 import { getRouteApi } from "@tanstack/react-router";
-
-function getWinPercentage(log: StandingsLog): string {
-  return  (log.wins / log.played).toFixed(3);
-}
-
-function getPointsDiff(log: StandingsLog): string {
-  const diff = ((log.pointsFor - log.pointsAgainst) / log.played);
-  const diffValue = diff.toFixed(1);
-
-  return (diff > 0)
-    ? `+${diffValue}`
-    : diffValue;
-}
-
-function getPoints(log: StandingsLog): number {
-  return (log.wins * 3) + (log.draws * 2) + (log.losses) + (log.byes);
-}
 
 export function StandingsPage() {
   const { standings }: StandingsLoaderProps = getRouteApi(leaguePaths.League.Standings).useLoaderData();
@@ -65,7 +49,7 @@ export function StandingsPage() {
             <TableCell className="px-0.5 text-[13px] text-center">{log.losses}</TableCell>
             <TableCell className="px-0.5 text-[13px] text-center">{log.draws}</TableCell>
             <TableCell className="px-0.5 text-[13px] text-center">{log.byes}</TableCell>
-            <TableCell className="px-0.5 text-[13px] text-center">{getWinPercentage(log)}</TableCell>
+            <TableCell className="px-0.5 text-[13px] text-center">{getWinPercent(log)}</TableCell>
             <TableCell className="px-0.5 text-[13px] text-center">{getPointsDiff(log)}</TableCell>
             <TableCell className="px-0.5 text-[13px] text-center">{getPoints(log)}</TableCell>
           </TableRow>
