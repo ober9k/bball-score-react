@@ -1,11 +1,10 @@
+import { PlayerLink } from "@/components/shared/links.tsx";
 import * as styles from "@/components/stats/stats-values-row.module.css";
 import { ColumnsMap, type ColumnsType, formatValue } from "@/lib/stats-utils.ts";
-import { leaguePaths } from "@/routes/league/routes.ts";
 import { TableCell, TableRow } from "@/shared/components/ui/table.tsx";
 import type { Player } from "@/types/player.ts";
 import type { Stats } from "@/types/stats.ts";
 import { StatsKey, type StatsKeyType } from "@/types/stats.ts";
-import { Link } from "@tanstack/react-router";
 import { Fragment } from "react";
 
 export type StatsValueCellProps = {
@@ -50,9 +49,7 @@ export function StatsValuesRow(props: StatsValuesRowProps) {
       <TableRow>
         <TableCell className="font-medium">
           {player && (
-            <Link to={leaguePaths.Players.View} params={{ playerId: player.id }}>
-              {player.name}
-            </Link>
+            <PlayerLink player={player} />
           )}
           {totals && ("Totals")}
         </TableCell>

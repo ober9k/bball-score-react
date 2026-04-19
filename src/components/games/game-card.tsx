@@ -1,3 +1,4 @@
+import { TeamLink } from "@/components/shared/links.tsx";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { Card, CardContent, CardFooter } from "@/shared/components/ui/card.tsx";
 import type { Game } from "@/types/game.ts";
@@ -25,14 +26,14 @@ export default function GameCard({ game }: Props) {
             <div className="text-3xl/6 font-medium text-right w-50">
               {awayTeamLog.score}
               <div className="pt-2 text-base">
-                {awayTeamLog.team.name}
+                <TeamLink team={awayTeamLog.team} />
               </div>
             </div>
             <div className="text-sm/6">vs</div>
             <div className="text-3xl/6 font-medium text-left w-50">
               {homeTeamLog.score}
               <div className="pt-2 text-base">
-                {homeTeamLog.team.name}
+                <TeamLink team={homeTeamLog.team} />
               </div>
             </div>
           </div>

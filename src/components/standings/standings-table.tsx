@@ -1,3 +1,4 @@
+import { TeamLink } from "@/components/shared/links.tsx";
 import * as styles from "@/components/standings/standings-table.module.css";
 import { ColumnsMap, type ColumnsType, formatValue, getStandingsTitle } from "@/lib/standings-utils.ts";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table.tsx";
@@ -29,7 +30,9 @@ export function StandingsTable(props: StandingsTableProps) {
         <TableBody>
           {standingsLogs.map((log) => (
             <TableRow key={log.id}>
-              <TableCell className={styles.statsLabelColumn}>{log.team.name}</TableCell>
+              <TableCell className={styles.statsLabelColumn}>
+                <TeamLink team={log.team} />
+              </TableCell>
               {columns.map((column) => (
                 <TableCell key={column} className={styles.statsValueColumn}>
                   {formatValue(log, column)}
