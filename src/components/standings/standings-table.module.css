@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+.statsLabelColumn,
+.statsTitleColumn,
+.statsValueColumn {
+  @apply px-0.5;
+  @apply text-[13px]; /* custom size, figuring out best sizing */
+}
+
+.statsTitleColumn,
+.statsTitleWidenedColumn,
+.statsValueColumn {
+  @apply text-center; /* custom size, figuring out best sizing */
+}
+
+.statsLabelColumn {
+  @apply font-medium;
+}
+
+.statsTitleColumn {
+  @apply w-[40px];
+}
