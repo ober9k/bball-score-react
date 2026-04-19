@@ -1,9 +1,7 @@
 import type { StatisticsLoaderProps } from "@/apis/loaders/types.ts";
-import { StatsValuesRow } from "@/components/stats/stats-values-row.tsx";
-import { StatsTitlesRow } from "@/components/stats/stats-titles-row.tsx";
+import { StatisticsTable } from "@/components/statistics/statistics-table.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { Table, TableBody, TableHeader } from "@/shared/components/ui/table.tsx";
 import { getRouteApi } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
@@ -31,16 +29,7 @@ export function StatisticsPage() {
 
   return (
     <>
-      <Table>
-        <TableHeader>
-          <StatsTitlesRow />
-        </TableHeader>
-        <TableBody>
-          {statisticsLogs.map(({ player, played, stats }) => (
-            <StatsValuesRow key={player.id} player={player} played={played} stats={stats} averages={true} />
-          ))}
-        </TableBody>
-      </Table>
+      <StatisticsTable statisticsLogs={statisticsLogs} />
     </>
   );
 }
