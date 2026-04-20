@@ -41,5 +41,7 @@ export type Game = {
   date:     Date
   phase:    PhaseType,
   round:    number,
+  active:   boolean,
+  archived: boolean,
   teamLogs: TeamLog[],
 };

@@ -9,8 +9,10 @@ export type DtoConverter<T> = (data: any) => T;
 
 export function toSeason(season: any): Season {
   return {
-    id:   season.id,
-    name: season.name,
+    id:       season.id,
+    name:     season.name,
+    active:   season.active,
+    archived: season.archived,
   };
 }
 
@@ -18,6 +20,8 @@ export function toDivision(division: any): Division {
   return {
     id:       division.id,
     name:     division.name,
+    active:   division.active,
+    archived: division.archived,
     seasonId: division.seasonId,
   };
 }
@@ -27,6 +31,8 @@ export function toTeam(team: any): Team {
     id:         team.id,
     name:       team.name,
     shortName:  team.shortName,
+    active:     team.active,
+    archived:   team.archived,
     divisionId: team.divisionId,
   };
 }
@@ -38,6 +44,8 @@ export function toPlayer(player: any): Player {
     position: player.position,
     number:   player.number,
     height:   player.height,
+    active:   player.active,
+    archived: player.archived,
   };
 }
 
@@ -47,6 +55,8 @@ export function toGame(game: any): Game {
     date:     game.date,
     phase:    game.phase,
     round:    game.round,
+    active:   game.active,
+    archived: game.archived,
     teamLogs: game.gameTeams.map(toTeamLog), /* temporary, update key on API as well */
   };
 }

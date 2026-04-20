@@ -14,6 +14,8 @@ export type Player = {
   position: PositionType,
   number:   number,
   height:   string,
+  active:   boolean,
+  archived: boolean,
 };
 
 export type UpdatePlayerDto = Omit<Player, "id">;
