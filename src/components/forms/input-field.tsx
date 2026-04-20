@@ -2,7 +2,7 @@ import FieldDescription from "@/components/forms/field/field-description.tsx";
 import FieldErrors from "@/components/forms/field/field-errors.tsx";
 import FieldLabel from "@/components/forms/field/field-label.tsx";
 import { Field as UiField } from "@/shared/components/ui/field.tsx";
-import { Input } from "@/shared/components/ui/input.tsx";
+import { Input as UiInput } from "@/shared/components/ui/input.tsx";
 import { Fragment } from "react";
 
 export type InputFieldState = {
@@ -35,7 +35,7 @@ export default function InputField({ fieldState }: Props) {
     <Fragment>
       <UiField>
         <FieldLabel field={name} label={label} required={required} />
-        <Input type={type} id={name} name={name} defaultValue={value} noValidate aria-invalid={hasErrors()} />
+        <UiInput type={type} id={name} name={name} defaultValue={value} noValidate aria-invalid={hasErrors()} />
         <FieldErrors errors={errors} />
         <FieldDescription description={description} />
       </UiField>

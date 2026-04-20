@@ -1,7 +1,14 @@
 import FieldErrors from "@/components/forms/field/field-errors.tsx";
 import FieldLabel from "@/components/forms/field/field-label.tsx";
 import { Field as UiField, FieldDescription } from "@/shared/components/ui/field.tsx";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/shared/components/ui/select.tsx";
+import {
+  Select as UiSelect,
+  SelectContent as UiSelectContent,
+  SelectGroup as UiSelectGroup,
+  SelectItem as UiSelectItem,
+  SelectTrigger as UiSelectTrigger,
+  SelectValue as UiSelectValue
+} from "@/shared/components/ui/select.tsx";
 import { Fragment } from "react";
 
 export type SelectFieldState = {
@@ -36,18 +43,18 @@ export default function SelectField({ fieldState }: Props) {
     <Fragment>
       <UiField>
         <FieldLabel field={name} label={label} required={required} />
-        <Select name={name} defaultValue={value}>
-          <SelectTrigger aria-invalid={hasErrors()}>
-            <SelectValue placeholder={selectLabel} />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
+        <UiSelect name={name} defaultValue={value}>
+          <UiSelectTrigger aria-invalid={hasErrors()}>
+            <UiSelectValue placeholder={selectLabel} />
+          </UiSelectTrigger>
+          <UiSelectContent>
+            <UiSelectGroup>
               {values.map(({ label, value }) => (
-                <SelectItem key={value} value={value.toString()}>{label}</SelectItem>
+                <UiSelectItem key={value} value={value.toString()}>{label}</UiSelectItem>
               ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+            </UiSelectGroup>
+          </UiSelectContent>
+        </UiSelect>
         <FieldErrors errors={errors} />
         <FieldDescription description={description} />
       </UiField>
