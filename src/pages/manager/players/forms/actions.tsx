@@ -12,11 +12,19 @@ export const buildFormAction = (mutation) => {
       return formData.get(key).toString();
     }
 
+    const getCheckboxValue = (key: string): string => {
+      return formData.has(key)
+        ? formData.get(key) === "on"
+        : false;
+    }
+
     const fieldValues = {
       name:     getValue("name"),
       position: getValue("position"),
       number:   getValue("number"),
       height:   getValue("height"),
+      active:   getCheckboxValue("active"),
+      archived: getCheckboxValue("archived"),
     };
 
     try {
@@ -25,6 +33,8 @@ export const buildFormAction = (mutation) => {
         position: fieldValues.position,
         number:   fieldValues.number,
         height:   fieldValues.height,
+        active:   fieldValues.active,
+        archived: fieldValues.archived,
       };
 
       zPlayer.parse(data);

@@ -1,4 +1,5 @@
 import { teamsQueryOptions } from "@/apis/query-options.ts";
+import CheckboxField, { type CheckboxFieldState } from "@/components/forms/checkbox-field.tsx";
 import FormButtons from "@/components/forms/form-buttons.tsx";
 import FormErrors from "@/components/forms/form-errors.tsx";
 import type { InputFieldState } from "@/components/forms/input-field.tsx";
@@ -7,6 +8,7 @@ import type { SelectFieldState } from "@/components/forms/select-field.tsx";
 import SelectField from "@/components/forms/select-field.tsx";
 import { i18n } from "@/lib/phrases.ts";
 import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
+import { Separator } from "@/shared/components/ui/separator.tsx";
 import { Position } from "@/types/player.ts";
 import { useQuery } from "@tanstack/react-query";
 import { Fragment, useEffect, useState } from "react";
@@ -18,12 +20,16 @@ export type FormState = {
     position: string,
     number: string,
     height: string,
+    active: boolean,
+    archived: boolean,
   },
   fieldErrors: {
     name?: string[],
     position?: string[],
     number?: string[],
     height?: string[],
+    active?: string[],
+    archived?: string[],
   },
 };
 
@@ -35,7 +41,13 @@ type TeamFormProps = {
   onCancel: () => void,
 };
 
-export default function UpdateForm({ formAction, formState, formMode, isPending, onCancel }: TeamFormProps) {
+export default function UpdateForm({ formAction, formState, formMode, isPending, onCancel }: TeamFormProps, newParam: CheckboxFieldState = {
+  name: "active",
+  label: "Active",
+  description: "An active Player is available for selection and be displayed across the league.",
+  value: fieldValues.active,
+  errors: fieldErrors.active || [],
+}) {
   const { formErrors, fieldValues, fieldErrors } = formState;
   const [ positions, setPositions ] = useState<{ id: string, name: string }[]>([]);
   const { data } = useQuery(teamsQueryOptions);
@@ -91,6 +103,16 @@ export default function UpdateForm({ formAction, formState, formMode, isPending,
     errors:   fieldErrors.height || [],
   };
 
+  const activeFieldState: CheckboxFieldState = newParam;
+
+  const archivedFieldState: CheckboxFieldState = {
+    name:     "archived",
+    label:    "Archived",
+    description: "An archived Player is no longer accessible for selection, however will still be displayed for historic results.",
+    value:    fieldValues.archived,
+    errors:   fieldErrors.archived || [],
+  };
+
   return (
     <Fragment>
       <form action={formAction}>
@@ -109,6 +131,17 @@ export default function UpdateForm({ formAction, formState, formMode, isPending,
             <SelectField fieldState={positionFieldState} />
             <InputField fieldState={numberFieldState} />
             <InputField fieldState={heightFieldState} />
+          </FieldSet>
+          <Separator />
+          <FieldSet>
+            <FieldLegend>
+              Configuration
+            </FieldLegend>
+            <FieldDescription>
+              Set the state of the Season and any additional configurations.
+            </FieldDescription>
+            <CheckboxField fieldState={activeFieldState} />
+            <CheckboxField fieldState={archivedFieldState} />
           </FieldSet>
           <FieldSet>
             <FormButtons formMode={formMode} isPending={isPending} onCancel={onCancel} />
