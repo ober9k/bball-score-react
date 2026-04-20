@@ -1,4 +1,6 @@
 import { seasonsQueryOptions } from "@/apis/query-options.ts";
+import type { CheckboxFieldState } from "@/components/forms/checkbox-field.tsx";
+import CheckboxField from "@/components/forms/checkbox-field.tsx";
 import FormButtons from "@/components/forms/form-buttons.tsx";
 import FormErrors from "@/components/forms/form-errors.tsx";
 import type { InputFieldState } from "@/components/forms/input-field.tsx";
@@ -6,6 +8,7 @@ import InputField from "@/components/forms/input-field.tsx";
 import type { SelectFieldState } from "@/components/forms/select-field.tsx";
 import SelectField from "@/components/forms/select-field.tsx";
 import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
+import { Separator } from "@/shared/components/ui/separator.tsx";
 import type { Season } from "@/types/season.ts";
 import { useQuery } from "@tanstack/react-query";
 import { Fragment, useEffect, useState } from "react";
@@ -15,10 +18,14 @@ export type FormState = {
   fieldValues: {
     name: string,
     seasonId: string,
+    active: boolean,
+    archived: boolean,
   },
   fieldErrors: {
     name?: string[],
     seasonId?: string[],
+    active?: string[],
+    archived?: string[],
   },
 };
 
@@ -60,6 +67,22 @@ export default function UpdateForm({ formAction, formState, formMode, isPending,
     errors:   fieldErrors.seasonId || [],
   };
 
+  const activeFieldState: CheckboxFieldState = {
+    name:     "active",
+    label:    "Active",
+    description: "An active Division is available for selection and be displayed across the league.",
+    value:    fieldValues.active,
+    errors:   fieldErrors.active || [],
+  };
+
+  const archivedFieldState: CheckboxFieldState = {
+    name:     "archived",
+    label:    "Archived",
+    description: "An archived Division is no longer accessible for selection, however will still be displayed for historic results.",
+    value:    fieldValues.archived,
+    errors:   fieldErrors.archived || [],
+  };
+
   return (
     <Fragment>
       <form action={formAction}>
@@ -76,6 +99,17 @@ export default function UpdateForm({ formAction, formState, formMode, isPending,
             </FieldDescription>
             <InputField fieldState={nameFieldState} />
             <SelectField fieldState={seasonIdFieldState}></SelectField>
+          </FieldSet>
+          <Separator />
+          <FieldSet>
+            <FieldLegend>
+              Configuration
+            </FieldLegend>
+            <FieldDescription>
+              Set the state of the Division and any additional configurations.
+            </FieldDescription>
+            <CheckboxField fieldState={activeFieldState} />
+            <CheckboxField fieldState={archivedFieldState} />
           </FieldSet>
           <FieldSet>
             <FormButtons formMode={formMode} isPending={isPending} onCancel={onCancel} />

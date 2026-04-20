@@ -13,6 +13,8 @@ const initialFormState: FormState = {
   fieldValues: {
     name: "",
     seasonId: "",
+    active: false,
+    archived: false,
   },
   fieldErrors: {},
   formErrors:  [],
@@ -31,6 +33,8 @@ export function UpdatePage() {
 
   initialFormState.fieldValues.name = division.name;
   initialFormState.fieldValues.seasonId = division.seasonId;
+  initialFormState.fieldValues.active = division.active;
+  initialFormState.fieldValues.archived = division.archived;
 
   const mutation = useMutation({
     mutationFn: buildDivisionsMutationFn(division.id),
