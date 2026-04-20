@@ -22,4 +22,6 @@ export const zTeam = z.object({
   divisionId: z
     .number()
     .min(DivisionMinLength, minLengthMessage(DivisionLabel, DivisionMinLength)),
+  active: z.boolean(),
+  archived: z.boolean(),
 });

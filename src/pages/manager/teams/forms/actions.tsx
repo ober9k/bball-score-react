@@ -12,10 +12,18 @@ export const buildFormAction = (mutation) => {
       return formData.get(key).toString();
     }
 
+    const getCheckboxValue = (key: string): string => {
+      return formData.has(key)
+        ? formData.get(key) === "on"
+        : false;
+    }
+
     const fieldValues = {
       name:       getValue("name"),
       shortName:  getValue("shortName"),
       divisionId: getValue("divisionId"),
+      active:     getCheckboxValue("active"),
+      archived:   getCheckboxValue("archived"),
     };
 
     try {
@@ -23,6 +31,8 @@ export const buildFormAction = (mutation) => {
         name:        fieldValues.name,
         shortName:   fieldValues.shortName,
         divisionId: +fieldValues.divisionId,
+        active:      fieldValues.active,
+        archived:    fieldValues.archived,
       };
 
       zTeam.parse(data);
