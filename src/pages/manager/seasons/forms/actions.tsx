@@ -12,13 +12,23 @@ export const buildFormAction = (mutation) => {
       return formData.get(key).toString();
     }
 
+    const getCheckboxValue = (key: string): string => {
+      return formData.has(key)
+        ? formData.get(key) === "on"
+        : false;
+    }
+
     const fieldValues = {
       name: getValue("name"),
+      active: getCheckboxValue("active"),
+      archived: getCheckboxValue("archived"),
     };
 
     try {
       const data: UpdateSeasonDto = {
         name: fieldValues.name,
+        active: fieldValues.active,
+        archived: fieldValues.archived,
       };
 
       zSeason.parse(data);

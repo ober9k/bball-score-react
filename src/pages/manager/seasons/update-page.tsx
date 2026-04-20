@@ -12,6 +12,8 @@ import { Fragment, useActionState } from "react";
 const initialFormState: FormState = {
   fieldValues: {
     name: "",
+    active: false,
+    archived: false,
   },
   fieldErrors: {},
   formErrors:  [],
@@ -29,6 +31,8 @@ export function UpdatePage() {
   ]);
 
   initialFormState.fieldValues.name = season.name;
+  initialFormState.fieldValues.active = season.active;
+  initialFormState.fieldValues.archived = season.archived;
 
   const mutation = useMutation({
     mutationFn: buildSeasonsMutationFn(season.id),
