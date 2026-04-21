@@ -71,26 +71,6 @@ function buildBaseQueryFn(pathKey: PathKey, id?: number) {
   }
 }
 
-export function buildSeasonsQueryFn(id?: number) {
-  return buildBaseQueryFn("seasons", id);
-}
-
-export function buildDivisionsQueryFn(id?: number) {
-  return buildBaseQueryFn("divisions", id);
-}
-
-export function buildTeamsQueryFn(id?: number) {
-  return buildBaseQueryFn("teams", id);
-}
-
-export function buildPlayersQueryFn(id?: number) {
-  return buildBaseQueryFn("players", id);
-}
-
-export function buildGamesQueryFn(id?: number) {
-  return buildBaseQueryFn("games", id);
-}
-
 export function buildStandingsQueryFn() {
   return buildBaseQueryFn("standings"); /* ++seasonId */
 }
@@ -101,11 +81,6 @@ export function buildStatisticsQueryFn(statisticsContext: StatisticsContext) {
 
 export async function logoutQueryFn() {
   const { data } = await axios.get(buildAuthApiPath("logout"));
-  return data;
-}
-
-export async function usersMeQueryFn() {
-  const { data } = await axios.get(buildAuthApiPath("me"));
   return data;
 }
 
