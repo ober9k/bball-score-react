@@ -37,11 +37,15 @@ export type TeamLogWithTotals = TeamLog & {
 };
 
 export type Game = {
-  id:       number,
-  date:     Date
-  phase:    PhaseType,
-  round:    number,
-  active:   boolean,
-  archived: boolean,
-  teamLogs: TeamLog[],
+  id:         number,
+  date:       Date
+  phase:      PhaseType,
+  round:      number,
+  seasonId:   number,
+  divisionId: number,
+  active:     boolean,
+  archived:   boolean,
+  teamLogs:   TeamLog[],
 };
+
+export type UpdateGameDto = Omit<Game, "id" | "teamLogs">;

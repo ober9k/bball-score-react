@@ -51,13 +51,15 @@ export function toPlayer(player: any): Player {
 
 export function toGame(game: any): Game {
   return {
-    id:       game.id,
-    date:     game.date,
-    phase:    game.phase,
-    round:    game.round,
-    active:   game.active,
-    archived: game.archived,
-    teamLogs: game.gameTeams.map(toTeamLog), /* temporary, update key on API as well */
+    id:         game.id,
+    date:       game.date,
+    phase:      game.phase,
+    round:      game.round,
+    seasonId:   game.seasonId,
+    divisionId: game.divisionId,
+    active:     game.active,
+    archived:   game.archived,
+    teamLogs:   game.gameTeams.map(toTeamLog), /* temporary, update key on API as well */
   };
 }
 
