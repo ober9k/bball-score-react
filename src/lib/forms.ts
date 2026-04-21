@@ -38,3 +38,19 @@ export function onUnexpectedError(fieldValues: any) {
   const formErrors = ["Unexpected error has occurred."];
   return { fieldValues, fieldErrors, formErrors };
 }
+
+/**
+ * Helpers for using formData from useActionState.
+ */
+export const getValue = (formData: FormData, key: string): string => {
+  return formData.get(key).toString();
+}
+
+/**
+ * Helpers for using formData from useActionState.
+ */
+export const getCheckboxValue = (formData: FormData, key: string): string => {
+  return formData.has(key)
+    ? formData.get(key) === "on"
+    : false;
+}

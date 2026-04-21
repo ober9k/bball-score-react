@@ -1,4 +1,4 @@
-import { onFieldError, onFormError, onSuccess, onUnexpectedError } from "@/lib/forms.ts";
+import { getValue, onFieldError, onFormError, onSuccess, onUnexpectedError } from "@/lib/forms.ts";
 import type { FormState } from "@/pages/auth/forms/login-form.tsx";
 import { zUser } from "@/schemas/user.ts";
 import type { AuthUserData } from "@/types/user.ts";
@@ -8,13 +8,9 @@ import { z } from "zod";
 export const buildFormAction = (mutation) => {
   return async (formState: FormState, formData: FormData) => {
 
-    const getValue = (key: string): string => {
-      return formData.get(key).toString();
-    }
-
     const fieldValues = {
-      email: getValue("email"),
-      password: getValue("password"),
+      email:    getValue(formData, "email"),
+      password: getValue(formData, "password"),
     };
 
     try {

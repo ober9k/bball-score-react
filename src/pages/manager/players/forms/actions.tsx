@@ -1,4 +1,4 @@
-import { onFieldError, onFormError, onSuccess, onUnexpectedError } from "@/lib/forms.ts";
+import { getCheckboxValue, getValue, onFieldError, onFormError, onSuccess, onUnexpectedError } from "@/lib/forms.ts";
 import type { FormState } from "@/pages/manager/players/forms/update-form.tsx";
 import { zPlayer } from "@/schemas/player.ts";
 import type { UpdatePlayerDto } from "@/types/player.ts";
@@ -8,23 +8,13 @@ import { z } from "zod";
 export const buildFormAction = (mutation) => {
   return async (formState: FormState, formData: FormData) => {
 
-    const getValue = (key: string): string => {
-      return formData.get(key).toString();
-    }
-
-    const getCheckboxValue = (key: string): string => {
-      return formData.has(key)
-        ? formData.get(key) === "on"
-        : false;
-    }
-
     const fieldValues = {
-      name:     getValue("name"),
-      position: getValue("position"),
-      number:   getValue("number"),
-      height:   getValue("height"),
-      active:   getCheckboxValue("active"),
-      archived: getCheckboxValue("archived"),
+      name:     getValue(formData, "name"),
+      position: getValue(formData, "position"),
+      number:   getValue(formData, "number"),
+      height:   getValue(formData, "height"),
+      active:   getCheckboxValue(formData, "active"),
+      archived: getCheckboxValue(formData, "archived"),
     };
 
     try {

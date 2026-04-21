@@ -1,4 +1,4 @@
-import { onFieldError, onFormError, onSuccess, onUnexpectedError } from "@/lib/forms.ts";
+import { getCheckboxValue, getValue, onFieldError, onFormError, onSuccess, onUnexpectedError } from "@/lib/forms.ts";
 import type { FormState } from "@/pages/manager/seasons/forms/update-form.tsx";
 import { zSeason } from "@/schemas/season.ts";
 import type { UpdateSeasonDto } from "@/types/season.ts";
@@ -8,26 +8,16 @@ import { z } from "zod";
 export const buildFormAction = (mutation) => {
   return async (formState: FormState, formData: FormData) => {
 
-    const getValue = (key: string): string => {
-      return formData.get(key).toString();
-    }
-
-    const getCheckboxValue = (key: string): string => {
-      return formData.has(key)
-        ? formData.get(key) === "on"
-        : false;
-    }
-
     const fieldValues = {
-      name: getValue("name"),
-      active: getCheckboxValue("active"),
-      archived: getCheckboxValue("archived"),
+      name:     getValue(formData, "name"),
+      active:   getCheckboxValue(formData, "active"),
+      archived: getCheckboxValue(formData, "archived"),
     };
 
     try {
       const data: UpdateSeasonDto = {
-        name: fieldValues.name,
-        active: fieldValues.active,
+        name:     fieldValues.name,
+        active:   fieldValues.active,
         archived: fieldValues.archived,
       };
 
