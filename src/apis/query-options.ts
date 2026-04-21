@@ -1,19 +1,11 @@
-import { toDivision, toGame, toPlayer, toSeason, toTeam } from "@/apis/converters.ts";
-import {
-  authUserQueryFn,
-  buildAllQueryFn,
-  buildByIdQueryFn,
-  buildOptionsQueryFn,
-  buildStandingsQueryFn,
-  buildStatisticsQueryFn,
-  buildTeamsQueryFn,
-  logoutQueryFn
-} from "@/apis/query-functions";
+import { toDivision, toGame, toPlayer, toSeason, toStatisticsLog, toTeam } from "@/apis/converters.ts";
+import { authUserQueryFn, buildAllQueryFn, buildByIdQueryFn, buildOptionsQueryFn, buildStandingsQueryFn, buildStatisticsQueryFn, logoutQueryFn } from "@/apis/query-functions";
 import { getDivisionsQK, getGamesQK, getPlayersQK, getSeasonsQK, getStandingsQK, getStatisticsQK, getTeamsQK, queryKeys } from "@/apis/query-keys";
 import type { Division } from "@/types/division.ts";
 import type { Game } from "@/types/game.ts";
 import type { Player } from "@/types/player.ts";
 import type { Season } from "@/types/season.ts";
+import type { StatisticsLog } from "@/types/statistics-log.ts";
 import type { Team } from "@/types/team.ts";
 
 export type StatisticsContext = "averages" | "totals";
@@ -63,6 +55,13 @@ export function buildGamesQueryOptions(id?: number) {
   };
 }
 
+export function buildTeamStatisticsQueryOptions(id: number) {
+  return {
+    queryKey: [queryKeys.Teams, id.toString(), "statistics"],
+    queryFn:  buildAllQueryFn<StatisticsLog>(toStatisticsLog),
+  };
+}
+
 export function buildStandingsQueryOptions() {
   return {
     queryKey: getStandingsQK(),
@@ -88,8 +87,6 @@ export const authUserQueryOptions = {
   staleTime: 0,
   gcTime: 0,
 };
-
-export type OptionsType = "seasons" | "divisions" | "teams"; /* use a key or something instead */
 
 export const optionsKeys = [
   queryKeys.Seasons,

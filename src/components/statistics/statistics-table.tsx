@@ -23,7 +23,7 @@ export function StatisticsTable(props: StatisticsTableProps) {
           <TableRow>
             <TableHead className={styles.statsLabelColumn}>&nbsp;</TableHead>
             {columns.map((column) => (
-              <StatsTitleCell statsKey={column} />
+              <StatsTitleCell key={column} statsKey={column} />
             ))}
           </TableRow>
         </TableHeader>

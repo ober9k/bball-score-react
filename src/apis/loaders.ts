@@ -1,6 +1,3 @@
-import { fetchAllWithConverter, fetchByIdWithConverter } from "@/apis/api.ts";
-import { toDivision, toGame, toPlayer, toSeason, toStandingsLog, toStatisticsLog, toTeam } from "@/apis/converters.ts";
-import type { DivisionLoaderProps, DivisionsLoaderProps, SeasonLoaderProps, SeasonsLoaderProps } from "@/apis/loaders/types.ts";
 import { fetchAll, fetchAllWithConverter, fetchById } from "@/apis/api.ts";
 import { toStandingsLog, toStatisticsLog } from "@/apis/converters.ts";
 import type {
@@ -23,6 +20,7 @@ import {
   buildStandingsQueryOptions,
   buildStatisticsQueryOptions,
   buildTeamsQueryOptions,
+  buildTeamStatisticsQueryOptions
 } from "@/apis/query-options.ts";
 import type { Division } from "@/types/division.ts";
 import type { Game } from "@/types/game.ts";
@@ -92,6 +90,11 @@ export async function gameLoader({ context, params }): GameLoaderProps {
   }
 }
 
+export async function teamStatisticsLoader({ context, params }) {
+  return {
+    team: await fetchById<Team>(context.queryClient, buildTeamsQueryOptions(+params.teamId)),
+    statistics: await fetchAll<Season>(context.queryClient, buildTeamStatisticsQueryOptions(+params.teamId)),
+  }
 }
 
 export async function standingsLoader({ context }) {
