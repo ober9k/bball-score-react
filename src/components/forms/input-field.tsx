@@ -7,7 +7,7 @@ import { Fragment } from "react";
 
 export type InputFieldState = {
   name:         string,
-  type:         "text" | "email" | "password",
+  type:         "text" | "date" | "email" | "password",
   label:        string,
   required?:    boolean,
   description?: string,
