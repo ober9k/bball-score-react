@@ -1,4 +1,3 @@
-import { teamsQueryOptions } from "@/apis/query-options.ts";
 import CheckboxField, { type CheckboxFieldState } from "@/components/forms/checkbox-field.tsx";
 import FormButtons from "@/components/forms/form-buttons.tsx";
 import FormErrors from "@/components/forms/form-errors.tsx";
@@ -10,8 +9,7 @@ import { i18n } from "@/lib/phrases.ts";
 import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
 import { Separator } from "@/shared/components/ui/separator.tsx";
 import { Position } from "@/types/player.ts";
-import { useQuery } from "@tanstack/react-query";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 
 export type FormState = {
   formErrors: string[],
@@ -41,28 +39,16 @@ type TeamFormProps = {
   onCancel: () => void,
 };
 
-export default function UpdateForm({ formAction, formState, formMode, isPending, onCancel }: TeamFormProps, newParam: CheckboxFieldState = {
-  name: "active",
-  label: "Active",
-  description: "An active Player is available for selection and be displayed across the league.",
-  value: fieldValues.active,
-  errors: fieldErrors.active || [],
-}) {
-  const { formErrors, fieldValues, fieldErrors } = formState;
-  const [ positions, setPositions ] = useState<{ id: string, name: string }[]>([]);
-  const { data } = useQuery(teamsQueryOptions);
+const positionsOptions = [
+  { value: Position.PointGuard,    label: i18n("position.type.label.pointGuard") },
+  { value: Position.ShootingGuard, label: i18n("position.type.label.shootingGuard") },
+  { value: Position.SmallForward,  label: i18n("position.type.label.smallForward") },
+  { value: Position.PowerForward,  label: i18n("position.type.label.powerForward") },
+  { value: Position.Center,        label: i18n("position.type.label.center") },
+] as const;
 
-  useEffect(() => {
-    if (data) {
-      setPositions([
-        { id: Position.PointGuard,    name: i18n("position.type.label.pointGuard") },
-        { id: Position.ShootingGuard, name: i18n("position.type.label.shootingGuard") },
-        { id: Position.SmallForward,  name: i18n("position.type.label.smallForward") },
-        { id: Position.PowerForward,  name: i18n("position.type.label.powerForward") },
-        { id: Position.Center,        name: i18n("position.type.label.center") },
-      ]);
-    }
-  }, [data]);
+export default function UpdateForm({ formAction, formState, formMode, isPending, onCancel }: TeamFormProps) {
+  const { formErrors, fieldValues, fieldErrors } = formState;
 
   const nameFieldState: InputFieldState = {
     name:     "name",
@@ -79,7 +65,7 @@ export default function UpdateForm({ formAction, formState, formMode, isPending,
     label:    "Position",
     required: true,
     value:    fieldValues.position.toString(),
-    values:   positions.map((position) => ({ label: position.name, value: position.id })),
+    values:   positionsOptions,
     errors:   fieldErrors.position || [],
   };
 
@@ -103,7 +89,13 @@ export default function UpdateForm({ formAction, formState, formMode, isPending,
     errors:   fieldErrors.height || [],
   };
 
-  const activeFieldState: CheckboxFieldState = newParam;
+  const activeFieldState: CheckboxFieldState = {
+    name:     "active",
+    label:    "Active",
+    description: "An active Player is available for selection and be displayed across the league.",
+    value:    fieldValues.active,
+    errors:   fieldErrors.active || [],
+  };
 
   const archivedFieldState: CheckboxFieldState = {
     name:     "archived",

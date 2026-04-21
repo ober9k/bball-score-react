@@ -94,3 +94,10 @@ export async function authUserQueryFn() {
     return null;
   }
 }
+/**
+ * Function builder for getting options to display.
+ * This is built off the query key contains a type and options.
+ */
+export function buildOptionsQueryFn() {
+  return async function({ queryKey }): Option[] {
+    const { data } = await axios.get(buildLeagueApiPath(...queryKey));

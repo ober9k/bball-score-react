@@ -1,6 +1,7 @@
-import { divisionsQueryOptions } from "@/apis/query-options.ts";
-import CheckboxField from "@/components/forms/checkbox-field.tsx";
+import { queryKeys } from "@/apis/query-keys.ts";
+import { buildOptionsQueryOptions } from "@/apis/query-options.ts";
 import type { CheckboxFieldState } from "@/components/forms/checkbox-field.tsx";
+import CheckboxField from "@/components/forms/checkbox-field.tsx";
 import FormButtons from "@/components/forms/form-buttons.tsx";
 import FormErrors from "@/components/forms/form-errors.tsx";
 import type { InputFieldState } from "@/components/forms/input-field.tsx";
@@ -10,6 +11,7 @@ import SelectField from "@/components/forms/select-field.tsx";
 import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
 import { Separator } from "@/shared/components/ui/separator.tsx";
 import type { Division } from "@/types/division.ts";
+import type { Option } from "@/types/option.ts";
 import { useQuery } from "@tanstack/react-query";
 import { Fragment, useEffect, useState } from "react";
 
@@ -41,12 +43,12 @@ type DivisionFormProps = {
 
 export default function UpdateForm({ formAction, formState, formMode, isPending, onCancel }: DivisionFormProps) {
   const { formErrors, fieldValues, fieldErrors } = formState;
-  const [ divisions, setDivisions ] = useState<Division[]>([]);
-  const { data } = useQuery(divisionsQueryOptions);
+  const [ divisionsOptions, setDivisionsOptions ] = useState<Division[]>([]);
+  const { data } = useQuery(buildOptionsQueryOptions(queryKeys.Divisions));
 
   useEffect(() => {
     if (data) {
-      setDivisions(data as Division[]);
+      setDivisionsOptions(data as Option[]);
     }
   }, [data]);
 
@@ -75,7 +77,7 @@ export default function UpdateForm({ formAction, formState, formMode, isPending,
     label:    "Division",
     required: true,
     value:    fieldValues.divisionId.toString(),
-    values:   divisions.map((division) => ({ label: division.name, value: division.id })),
+    values:   divisionsOptions,
     errors:   fieldErrors.divisionId || [],
   };
 

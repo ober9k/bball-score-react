@@ -1,7 +1,7 @@
 import {
   authUserQueryFn,
   buildDivisionsQueryFn,
-  buildGamesQueryFn,
+  buildGamesQueryFn, buildOptionsQueryFn,
   buildPlayersQueryFn,
   buildSeasonsQueryFn,
   buildStandingsQueryFn,
@@ -98,3 +98,24 @@ export const authUserQueryOptions = {
   staleTime: 0,
   gcTime: 0,
 };
+
+export type OptionsType = "seasons" | "divisions" | "teams"; /* use a key or something instead */
+
+export const optionsKeys = [
+  queryKeys.Seasons,
+  queryKeys.Divisions,
+  queryKeys.Teams,
+] as const;
+
+export type OptionsKeyType = typeof optionsKeys[number];
+
+
+export function buildOptionsQueryOptions(optionsKey: OptionsKeyType) {
+  if (!optionsKeys.includes(optionsKey)) {
+    throw new Error("Unsupported `optionsKey` provided for retrieving options.");
+  }
+
+  return {
+    queryKey: [optionsKey, "options"],
+    queryFn:  buildOptionsQueryFn(optionsKey),
+  }

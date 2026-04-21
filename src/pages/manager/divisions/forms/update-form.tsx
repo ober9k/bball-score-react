@@ -1,4 +1,5 @@
-import { seasonsQueryOptions } from "@/apis/query-options.ts";
+import { queryKeys } from "@/apis/query-keys.ts";
+import { buildOptionsQueryOptions } from "@/apis/query-options.ts";
 import type { CheckboxFieldState } from "@/components/forms/checkbox-field.tsx";
 import CheckboxField from "@/components/forms/checkbox-field.tsx";
 import FormButtons from "@/components/forms/form-buttons.tsx";
@@ -9,6 +10,7 @@ import type { SelectFieldState } from "@/components/forms/select-field.tsx";
 import SelectField from "@/components/forms/select-field.tsx";
 import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
 import { Separator } from "@/shared/components/ui/separator.tsx";
+import type { Option } from "@/types/option.ts";
 import type { Season } from "@/types/season.ts";
 import { useQuery } from "@tanstack/react-query";
 import { Fragment, useEffect, useState } from "react";
@@ -39,12 +41,12 @@ type DivisionFormProps = {
 
 export default function UpdateForm({ formAction, formState, formMode, isPending, onCancel }: DivisionFormProps) {
   const { formErrors, fieldValues, fieldErrors } = formState;
-  const [ seasons, setSeasons ] = useState<Season[]>([]);
-  const { data } = useQuery(seasonsQueryOptions);
+  const [ seasonsOptions, setSeasonsOptions ] = useState<Option[]>([]);
+  const { data } = useQuery(buildOptionsQueryOptions(queryKeys.Seasons));
 
   useEffect(() => {
     if (data) {
-      setSeasons(data as Season[]);
+      setSeasonsOptions(data as Option[]);
     }
   }, [data]);
 
@@ -63,7 +65,7 @@ export default function UpdateForm({ formAction, formState, formMode, isPending,
     label:    "Season",
     required: true,
     value:    fieldValues.seasonId.toString(),
-    values:   seasons.map((season) => ({ label: season.name, value: season.id })),
+    values:   seasonsOptions,
     errors:   fieldErrors.seasonId || [],
   };
 
