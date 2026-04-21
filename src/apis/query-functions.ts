@@ -1,4 +1,6 @@
+import type { DtoConverter } from "@/apis/converters.ts";
 import type { StatisticsContext } from "@/apis/query-options.ts";
+import type { Option } from "@/types/option.ts";
 import axios from "axios";
 
 /* TODO: add to config/env file instead */
@@ -16,6 +18,28 @@ function buildApiPath(...parts: Array<string>): string {
   url.pathname = ["api", "v1", ...parts].join("/");
 
   return url.toString();
+}
+
+/**
+ * Generic function builder for fetching all items.
+ * This will work off the linked query key and apply the provided converter.
+ */
+export function buildAllQueryFn<T>(converter: DtoConverter<T>) {
+  return async function({ queryKey }): T[] {
+    const { data } = await axios.get<any[]>(buildLeagueApiPath(...queryKey));
+    return data.map(converter);
+  };
+}
+
+/**
+ * Generic function builder for fetching a single item by ID.
+ * This will work off the linked query key and apply the provided converter.
+ */
+export function buildByIdQueryFn<T>(converter: DtoConverter<T>) {
+  return async function({ queryKey }): T {
+    const { data } = await axios.get<any>(buildLeagueApiPath(...queryKey));
+    return converter(data);
+  };
 }
 
 /**
@@ -41,7 +65,7 @@ function buildBaseQueryFn(pathKey: PathKey, id?: number) {
     ? buildLeagueApiPath(pathKey, id.toString())
     : buildLeagueApiPath(pathKey);
 
-  return async function() {
+  return async function({ queryKey }) {
     const { data } = await axios.get(apiUrl);
     return data;
   }
@@ -94,6 +118,7 @@ export async function authUserQueryFn() {
     return null;
   }
 }
+
 /**
  * Function builder for getting options to display.
  * This is built off the query key contains a type and options.
@@ -101,3 +126,6 @@ export async function authUserQueryFn() {
 export function buildOptionsQueryFn() {
   return async function({ queryKey }): Option[] {
     const { data } = await axios.get(buildLeagueApiPath(...queryKey));
+    return data;
+  };
+}

@@ -14,37 +14,36 @@ export const queryKeys = {
   Logout:     "logout",
 }
 
-const getQK = (baseQK: string[], id?: number): Array<string|number> => {
-  const [ all, byId ] = baseQK;
+const getQK = (baseQK: string, id?: number): Array<string> => {
   return (id && id > 0)
-    ? [byId, { id }]
-    : [all];
+    ? [baseQK, id.toString()]
+    : [baseQK];
 }
 
 export const getSeasonsQK = (id?: number): Array<string|number> => {
-  return getQK([queryKeys.Seasons, queryKeys.Season], id);
+  return getQK(queryKeys.Seasons, id);
 };
 
 export const getDivisionsQK = (id?: number): Array<string|number> => {
-  return getQK([queryKeys.Divisions, queryKeys.Division], id);
+  return getQK(queryKeys.Divisions, id);
 };
 
 export const getTeamsQK = (id?: number): Array<string|number> => {
-  return getQK([queryKeys.Teams, queryKeys.Team], id);
+  return getQK(queryKeys.Teams, id);
 }
 
 export const getPlayersQK = (id?: number): Array<string|number> => {
-  return getQK([queryKeys.Players, queryKeys.Player], id);
+  return getQK(queryKeys.Players, id);
 };
 
 export const getGamesQK = (id?: number): Array<string|number> => {
-  return getQK([queryKeys.Games, queryKeys.Game], id);
+  return getQK(queryKeys.Games, id);
 };
 
 export const getStandingsQK = (id?: number): Array<string|number> => {
-  return getQK([queryKeys.Standings, queryKeys.Standings], id); /* seasonId */
+  return getQK(queryKeys.Standings, id); /* seasonId */
 };
 
 export const getStatisticsQK = (id?: number): Array<string|number> => {
-  return getQK([queryKeys.Statistics, queryKeys.Statistics], id); /* seasonId */
+  return getQK(queryKeys.Statistics, id); /* seasonId */
 };

@@ -1,75 +1,65 @@
+import { toDivision, toGame, toPlayer, toSeason, toTeam } from "@/apis/converters.ts";
 import {
   authUserQueryFn,
-  buildDivisionsQueryFn,
-  buildGamesQueryFn, buildOptionsQueryFn,
-  buildPlayersQueryFn,
-  buildSeasonsQueryFn,
+  buildAllQueryFn,
+  buildByIdQueryFn,
+  buildOptionsQueryFn,
   buildStandingsQueryFn,
   buildStatisticsQueryFn,
   buildTeamsQueryFn,
   logoutQueryFn
 } from "@/apis/query-functions";
 import { getDivisionsQK, getGamesQK, getPlayersQK, getSeasonsQK, getStandingsQK, getStatisticsQK, getTeamsQK, queryKeys } from "@/apis/query-keys";
+import type { Division } from "@/types/division.ts";
+import type { Game } from "@/types/game.ts";
+import type { Player } from "@/types/player.ts";
+import type { Season } from "@/types/season.ts";
+import type { Team } from "@/types/team.ts";
 
 export type StatisticsContext = "averages" | "totals";
 
-export const seasonsQueryOptions = {
-  queryKey: getSeasonsQK(),
-  queryFn:  buildSeasonsQueryFn(),
-};
-
-export function buildSeasonQueryOptions(id: number) {
+export function buildSeasonsQueryOptions(id?: number) {
   return {
     queryKey: getSeasonsQK(id),
-    queryFn:  buildSeasonsQueryFn(id),
+    queryFn:  (id && id > 0)
+      ? buildByIdQueryFn<Season>(toSeason)
+      : buildAllQueryFn<Season>(toSeason),
   };
 }
 
-export const divisionsQueryOptions = {
-  queryKey: getDivisionsQK(),
-  queryFn:  buildDivisionsQueryFn(),
-};
-
-export function buildDivisionQueryOptions(id: number) {
+export function buildDivisionsQueryOptions(id?: number) {
   return {
     queryKey: getDivisionsQK(id),
-    queryFn:  buildDivisionsQueryFn(id),
+    queryFn:  (id && id > 0)
+      ? buildByIdQueryFn<Division>(toDivision)
+      : buildAllQueryFn<Division>(toDivision),
   };
 }
 
-export const teamsQueryOptions = {
-  queryKey: getTeamsQK(),
-  queryFn:  buildTeamsQueryFn(),
-};
-
-export function buildTeamQueryOptions(id: number) {
+export function buildTeamsQueryOptions(id?: number) {
   return {
     queryKey: getTeamsQK(id),
-    queryFn:  buildTeamsQueryFn(id),
+    queryFn:  (id && id > 0)
+      ? buildByIdQueryFn<Team>(toTeam)
+      : buildAllQueryFn<Team>(toTeam),
   };
 }
 
-export const playersQueryOptions = {
-  queryKey: getPlayersQK(),
-  queryFn:  buildPlayersQueryFn(),
-};
-
-export function buildPlayerQueryOptions(id: number) {
+export function buildPlayersQueryOptions(id?: number) {
   return {
     queryKey: getPlayersQK(id),
-    queryFn:  buildPlayersQueryFn(id),
+    queryFn:  (id && id > 0)
+      ? buildByIdQueryFn<Player>(toPlayer)
+      : buildAllQueryFn<Player>(toPlayer),
   };
 }
 
-export const gamesQueryOptions = {
-  queryKey: getGamesQK(),
-  queryFn:  buildGamesQueryFn(),
-};
-
-export function buildGameQueryOptions(id: number) {
+export function buildGamesQueryOptions(id?: number) {
   return {
     queryKey: getGamesQK(id),
-    queryFn:  buildGamesQueryFn(id),
+    queryFn:  (id && id > 0)
+      ? buildByIdQueryFn<Game>(toGame)
+      : buildAllQueryFn<Game>(toGame),
   };
 }
 
@@ -119,3 +109,4 @@ export function buildOptionsQueryOptions(optionsKey: OptionsKeyType) {
     queryKey: [optionsKey, "options"],
     queryFn:  buildOptionsQueryFn(optionsKey),
   }
+}
