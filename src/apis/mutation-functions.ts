@@ -38,3 +38,7 @@ export function buildTeamsMutationFn(id?: number) {
 export function buildPlayersMutationFn(id?: number) {
   return buildBaseMutationFn("players", id);
 }
+
+export function buildGamesMutationFn(id?: number) {
+  return buildBaseMutationFn("games", id);
+}

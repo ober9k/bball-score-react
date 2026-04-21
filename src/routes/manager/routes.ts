@@ -1,9 +1,12 @@
-import { divisionLoader, divisionsLoader, playerLoader, playersLoader, seasonLoader, seasonsLoader, teamLoader, teamsLoader } from "@/apis/loaders.ts";
+import { divisionLoader, divisionsLoader, gameLoader, gamesLoader, playerLoader, playersLoader, seasonLoader, seasonsLoader, teamLoader, teamsLoader } from "@/apis/loaders.ts";
 import NotFoundPage from "@/pages/errors/not-found-page.tsx";
 import UnauthorizedPage from "@/pages/errors/unauthorized-page.tsx";
 import { DivisionsCreatePage } from "@/pages/manager/divisions/create-page.tsx";
 import { DivisionsIndexPage } from "@/pages/manager/divisions/index-page.tsx";
 import { DivisionsUpdatePage } from "@/pages/manager/divisions/update-page.tsx";
+import { GamesCreatePage } from "@/pages/manager/games/create-page.tsx";
+import { GamesIndexPage } from "@/pages/manager/games/index-page.tsx";
+import { GamesUpdatePage } from "@/pages/manager/games/update-page.tsx";
 import { PlayersCreatePage } from "@/pages/manager/players/create-page.tsx";
 import { PlayersIndexPage } from "@/pages/manager/players/index-page.tsx";
 import { PlayersUpdatePage } from "@/pages/manager/players/update-page.tsx";
@@ -35,6 +38,11 @@ const paths = {
     Index:  "/manager/players",
     Create: "/manager/players/create",
     Update: "/manager/players/$playerId/update",
+  },
+  Games: {
+    Index:  "/manager/games",
+    Create: "/manager/games/create",
+    Update: "/manager/games/$gameId/update",
   },
 };
 
@@ -112,6 +120,21 @@ const routes = [{
   component: PlayersUpdatePage,
   notFoundComponent: NotFoundPage,
   loader: playerLoader,
+  ...defaultOptions,
+},{
+  path: paths.Games.Index,
+  component: GamesIndexPage,
+  loader: gamesLoader,
+  ...defaultOptions,
+},{
+  path: paths.Games.Create,
+  component: GamesCreatePage,
+  ...defaultOptions,
+},{
+  path: paths.Games.Update,
+  component: GamesUpdatePage,
+  notFoundComponent: NotFoundPage,
+  loader: gameLoader,
   ...defaultOptions,
 }];
 

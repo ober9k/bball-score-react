@@ -46,7 +46,10 @@ export function IndexPage() {
   };
 
   const gotoGames = () => {
-    alert("TBD");
+    router.navigate({
+      to: managerPaths.Games.Index,
+      replace: true,
+    });
   };
 
   const gotoLeagueSeasons = () => {
