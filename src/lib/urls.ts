@@ -17,7 +17,7 @@ export function buildApiUrl(...parts: string[]): string {
  * Build standardised URL for league API usage.
  */
 export function buildLeagueApiUrl(...parts: string[]): string {
-  return buildApiUrl("league", "1", ...parts);
+  return buildApiUrl("leagues", "1", ...parts);
 }
 
 /**
