@@ -1,24 +1,8 @@
 import type { DtoConverter } from "@/apis/converters.ts";
 import type { StatisticsContext } from "@/apis/query-options.ts";
+import { buildAuthApiUrl, buildLeagueApiUrl } from "@/lib/urls.ts";
 import type { Option } from "@/types/option.ts";
 import axios from "axios";
-
-/* TODO: add to config/env file instead */
-const RootApiPath = "http://localhost/";
-const RootApiPort = "8080";
-
-
-/**
- * Build standardised URL for API usage.
- * @param parts
- */
-function buildApiPath(...parts: Array<string>): string {
-  const url =  new URL(RootApiPath);
-  url.port = RootApiPort;
-  url.pathname = ["api", "v1", ...parts].join("/");
-
-  return url.toString();
-}
 
 /**
  * Generic function builder for fetching all items.
@@ -26,7 +10,7 @@ function buildApiPath(...parts: Array<string>): string {
  */
 export function buildAllQueryFn<T>(converter: DtoConverter<T>) {
   return async function({ queryKey }): T[] {
-    const { data } = await axios.get<any[]>(buildLeagueApiPath(...queryKey));
+    const { data } = await axios.get<any[]>(buildLeagueApiUrl(...queryKey));
     return data.map(converter);
   };
 }
@@ -37,33 +21,17 @@ export function buildAllQueryFn<T>(converter: DtoConverter<T>) {
  */
 export function buildByIdQueryFn<T>(converter: DtoConverter<T>) {
   return async function({ queryKey }): T {
-    const { data } = await axios.get<any>(buildLeagueApiPath(...queryKey));
+    const { data } = await axios.get<any>(buildLeagueApiUrl(...queryKey));
     return converter(data);
   };
-}
-
-/**
- * Build standardised URL for league API usage.
- * @param parts
- */
-export function buildLeagueApiPath(...parts: Array<string>): string {
-  return buildApiPath("league", "1", ...parts);
-}
-
-/**
- * Build standardised URL for auth API usage.
- * @param parts
- */
-export function buildAuthApiPath(...parts: Array<string>): string {
-  return buildApiPath("auth", ...parts);
 }
 
 type PathKey = "seasons" | "divisions" | "teams" | "players";
 
 function buildBaseQueryFn(pathKey: PathKey, id?: number) {
   const apiUrl = (id && id > 0)
-    ? buildLeagueApiPath(pathKey, id.toString())
-    : buildLeagueApiPath(pathKey);
+    ? buildLeagueApiUrl(pathKey, id.toString())
+    : buildLeagueApiUrl(pathKey);
 
   return async function({ queryKey }) {
     const { data } = await axios.get(apiUrl);
@@ -80,13 +48,13 @@ export function buildStatisticsQueryFn(statisticsContext: StatisticsContext) {
 }
 
 export async function logoutQueryFn() {
-  const { data } = await axios.get(buildAuthApiPath("logout"));
+  const { data } = await axios.get(buildAuthApiUrl("logout"));
   return data;
 }
 
 export async function authUserQueryFn() {
   try {
-    const { data: user } = await axios.get(buildAuthApiPath("me"));
+    const { data: user } = await axios.get(buildAuthApiUrl("me"));
     return user;
   }
   catch (error) {
@@ -100,7 +68,7 @@ export async function authUserQueryFn() {
  */
 export function buildOptionsQueryFn() {
   return async function({ queryKey }): Option[] {
-    const { data } = await axios.get(buildLeagueApiPath(...queryKey));
+    const { data } = await axios.get(buildLeagueApiUrl(...queryKey));
     return data;
   };
 }

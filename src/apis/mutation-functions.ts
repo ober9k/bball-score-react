@@ -1,9 +1,9 @@
-import { buildAuthApiPath, buildLeagueApiPath } from "@/apis/query-functions.ts";
+import { buildAuthApiUrl, buildLeagueApiUrl } from "@/lib/urls.ts";
 import type { LoginData } from "@/types/login.ts";
 import axios from "axios";
 
 export async function loginMutationFn(loginData: LoginData) {
-  const { data } = await axios.post(buildAuthApiPath("login"), loginData);
+  const { data } = await axios.post(buildAuthApiUrl("login"), loginData);
   return data;
 }
 
@@ -11,8 +11,8 @@ type PathKey = "seasons" | "divisions" | "teams" | "players";
 
 function buildBaseMutationFn(pathKey: PathKey, id?: number) {
   const apiUrl = (id && id > 0)
-    ? buildLeagueApiPath(pathKey, id.toString())
-    : buildLeagueApiPath(pathKey);
+    ? buildLeagueApiUrl(pathKey, id.toString())
+    : buildLeagueApiUrl(pathKey);
 
   return async function(data) { /* this can maybe use a generic */
     const result = (id && id > 0)
