@@ -6,13 +6,13 @@ import { getRouteApi } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 export function StatisticsPage() {
-  const { team, statistics }: TeamStatisticsLoaderProps = getRouteApi(leaguePaths.Teams.Statistics).useLoaderData();
+  const { team, statisticsLogs: statistics }: TeamStatisticsLoaderProps = getRouteApi(leaguePaths.Teams.Statistics).useLoaderData();
 
   useTitle("Statistics");
   useBreadcrumbs([
     { title: "League", to: leaguePaths.League.Index },
     { title: "Teams", to: leaguePaths.Teams.Index },
-    { title: team.name + "Statistics" },
+    { title: team.name + " Statistics" },
   ]);
 
   const [ sort, setSort ] = useState("points");

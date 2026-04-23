@@ -1,5 +1,5 @@
 import type { DtoConverter } from "@/apis/converters.ts";
-import type { StatisticsContext } from "@/apis/query-options.ts";
+import type { StatisticsMode } from "@/apis/query-options.ts";
 import { buildAuthApiUrl, buildLeagueApiUrl } from "@/lib/urls.ts";
 import type { Option } from "@/types/option.ts";
 import axios from "axios";
@@ -43,7 +43,7 @@ export function buildStandingsQueryFn() {
   return buildBaseQueryFn("standings"); /* ++seasonId */
 }
 
-export function buildStatisticsQueryFn(statisticsContext: StatisticsContext) {
+export function buildStatisticsQueryFn(statisticsContext: StatisticsMode) {
   return buildBaseQueryFn(`statistics/${statisticsContext}`); /* temporary workaround */ /* ++seasonId */
 }
 

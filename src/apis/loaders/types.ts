@@ -56,5 +56,5 @@ export type StandingsLoaderProps = {
 };
 
 export type StatisticsLoaderProps = {
-  statistics: StatisticsLog[],
+  statisticsLogs: StatisticsLog[],
 };

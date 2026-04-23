@@ -1,6 +1,6 @@
 import { toDivision, toGame, toPlayer, toSeason, toStatisticsLog, toTeam } from "@/apis/converters.ts";
-import { authUserQueryFn, buildAllQueryFn, buildByIdQueryFn, buildOptionsQueryFn, buildStandingsQueryFn, buildStatisticsQueryFn, logoutQueryFn } from "@/apis/query-functions";
-import { getDivisionsQK, getGamesQK, getPlayersQK, getSeasonsQK, getStandingsQK, getStatisticsQK, getTeamsQK, queryKeys } from "@/apis/query-keys";
+import { authUserQueryFn, buildAllQueryFn, buildByIdQueryFn, buildOptionsQueryFn, buildStandingsQueryFn, logoutQueryFn } from "@/apis/query-functions";
+import { getDivisionsQK, getGamesQK, getPlayersQK, getSeasonsQK, getStandingsQK, getTeamsQK, queryKeys } from "@/apis/query-keys";
 import type { Division } from "@/types/division.ts";
 import type { Game } from "@/types/game.ts";
 import type { Player } from "@/types/player.ts";
@@ -8,7 +8,7 @@ import type { Season } from "@/types/season.ts";
 import type { StatisticsLog } from "@/types/statistics-log.ts";
 import type { Team } from "@/types/team.ts";
 
-export type StatisticsContext = "averages" | "totals";
+export type StatisticsMode = "averages" | "totals";
 
 export function buildSeasonsQueryOptions(id?: number) {
   return {
@@ -55,9 +55,9 @@ export function buildGamesQueryOptions(id?: number) {
   };
 }
 
-export function buildTeamStatisticsQueryOptions(id: number) {
+export function buildTeamStatisticsQueryOptions(id: number, mode: StatisticsMode) {
   return {
-    queryKey: [queryKeys.Teams, id.toString(), "statistics"],
+    queryKey: [queryKeys.Teams, id.toString(), "statistics", mode],
     queryFn:  buildAllQueryFn<StatisticsLog>(toStatisticsLog),
   };
 }
@@ -69,10 +69,10 @@ export function buildStandingsQueryOptions() {
   };
 }
 
-export function buildStatisticsQueryOptions(context: StatisticsContext) {
+export function buildStatisticsQueryOptions(mode: StatisticsMode) {
   return {
-    queryKey: getStatisticsQK(context),
-    queryFn:  buildStatisticsQueryFn(context),
+    queryKey: [queryKeys.Statistics, mode],
+    queryFn:  buildAllQueryFn<StatisticsLog>(toStatisticsLog),
   };
 }
 
@@ -95,7 +95,6 @@ export const optionsKeys = [
 ] as const;
 
 export type OptionsKeyType = typeof optionsKeys[number];
-
 
 export function buildOptionsQueryOptions(optionsKey: OptionsKeyType) {
   if (!optionsKeys.includes(optionsKey)) {

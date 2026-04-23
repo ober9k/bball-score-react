@@ -6,7 +6,7 @@ import { getRouteApi } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 export function StatisticsPage() {
-  const { statistics }: StatisticsLoaderProps = getRouteApi(leaguePaths.League.Statistics).useLoaderData();
+  const { statisticsLogs: statistics }: StatisticsLoaderProps = getRouteApi(leaguePaths.League.Statistics).useLoaderData();
 
   useTitle("Statistics");
   useBreadcrumbs([

@@ -72,7 +72,7 @@ const routes = [{
   path: paths.League.Statistics,
   component: LeagueStatisticsPage,
   loader: statisticsLoader,
-  loaderDeps: ({ search: { context } }) => ({ context }),
+  loaderDeps: ({ search: { mode } }) => ({ mode }),
 },{
   path: paths.Seasons.Index,
   component: SeasonsIndexPage,
@@ -105,6 +105,7 @@ const routes = [{
   component: TeamStatisticsPage,
   notFoundComponent: NotFoundPage,
   loader: teamStatisticsLoader,
+  loaderDeps: ({ search: { mode } }) => ({ mode }),
 },{
   path: paths.Players.Index,
   component: PlayersIndexPage,

@@ -1,5 +1,5 @@
 import { fetchAll, fetchAllWithConverter, fetchById } from "@/apis/api.ts";
-import { toStandingsLog, toStatisticsLog } from "@/apis/converters.ts";
+import { toStandingsLog } from "@/apis/converters.ts";
 import type {
   DivisionLoaderProps,
   DivisionsLoaderProps,
@@ -90,10 +90,11 @@ export async function gameLoader({ context, params }): GameLoaderProps {
   }
 }
 
-export async function teamStatisticsLoader({ context, params }) {
+export async function teamStatisticsLoader({ context, params, deps }) {
+  const mode = (deps.mode === "totals") ? "totals" : "averages";
   return {
-    team: await fetchById<Team>(context.queryClient, buildTeamsQueryOptions(+params.teamId)),
-    statistics: await fetchAll<Season>(context.queryClient, buildTeamStatisticsQueryOptions(+params.teamId)),
+    team:           await fetchById<Team>(context.queryClient, buildTeamsQueryOptions(+params.teamId)),
+    statisticsLogs: await fetchAll<StatisticsLog>(context.queryClient, buildTeamStatisticsQueryOptions(+params.teamId, mode)),
   }
 }
 
@@ -102,6 +103,8 @@ export async function standingsLoader({ context }) {
 }
 
 export async function statisticsLoader({ context, deps }) {
-  const statisticsContext = (deps.context === "totals") ? "totals" : "averages";
-  return fetchAllWithConverter<StatisticsLog>(context.queryClient, buildStatisticsQueryOptions(statisticsContext), toStatisticsLog);
+  const mode = (deps.mode === "totals") ? "totals" : "averages";
+  return {
+    statisticsLogs: await fetchAll<StatisticsLog>(context.queryClient, buildStatisticsQueryOptions(mode)),
+  }
 }
