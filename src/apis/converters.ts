@@ -59,7 +59,7 @@ export function toGame(game: any): Game {
     divisionId: game.divisionId,
     active:     game.active,
     archived:   game.archived,
-    teamLogs:   game.gameTeams.map(toTeamLog), /* temporary, update key on API as well */
+    teamLogs:   game.teamLogs.map(toTeamLog),
   };
 }
 
@@ -68,9 +68,9 @@ export function toTeamLog(teamLog: any): TeamLog {
     id:         teamLog.id,
     side:       teamLog.side,
     score:      teamLog.score,
-    byPeriod:   teamLog.scoreByPeriod, /* score by period */
+    byPeriod:   teamLog.byPeriod,
     team:       teamLog.team,
-    playerLogs: (teamLog.gameTeamPlayers || []).map(toPlayerLog), /* temporary, update key on API as well */
+    playerLogs: teamLog.playerLogs.map(toPlayerLog),
   };
 }
 
