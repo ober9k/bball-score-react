@@ -6,10 +6,6 @@ import type { StatsKeyType } from "@/types/stats.ts";
 import { StatsKey } from "@/types/stats.ts";
 import { Fragment } from "react";
 
-type StatsTitleCellProps = {
-  statsKey: StatsKeyType,
-};
-
 const WidenedColumns = [
   StatsKey.FieldGoals,
   StatsKey.FieldGoalsPercentage,
@@ -21,28 +17,57 @@ const WidenedColumns = [
   StatsKey.FreeThrowsPercentage,
 ] as const;
 
-export function StatsTitleCell(props: StatsTitleCellProps) {
-  const { statsKey } = props;
+const SortableColumns = [
+  StatsKey.FieldGoalsPercentage,
+  StatsKey.TwoPointFieldGoalsPercentage,
+  StatsKey.ThreePointFieldGoalsPercentage,
+  StatsKey.FreeThrowsPercentage,
+  StatsKey.Rebounds,
+  StatsKey.Assists,
+  StatsKey.Steals,
+  StatsKey.Blocks,
+  StatsKey.Turnovers,
+  StatsKey.PersonalFouls,
+  StatsKey.Points,
+] as const;
 
-  const cellClass = (WidenedColumns.includes(statsKey))
-    ? styles.statsWidenedColumn
-    : styles.statsColumn;
+type StatsTitleCellProps = {
+  statsKey: StatsKeyType,
+  onSortHandler: (statsKey: StatsKeyType) => {},
+};
+
+export function StatsTitleCell(props: StatsTitleCellProps) {
+  const { statsKey, onSortHandler } = props;
+
+  const isWidenedColumn  = () => WidenedColumns.includes(statsKey);
+  const isSortableColumn = () => SortableColumns.includes(statsKey);
+
+  const cellClasses = [styles.statsColumn];
+
+  if (isWidenedColumn())  cellClasses.push(styles.statsWidenedColumn);
+  if (isSortableColumn()) cellClasses.push(styles.statsClickableColumn);
 
   const cellValue = getStatsTitle(statsKey);
+  const cellClass = cellClasses.join(" ");
 
   return (
     <Fragment>
-      <TableHead className={cellClass}>{cellValue}</TableHead>
+      {isSortableColumn() ? (
+        <TableHead className={cellClass} onClick={() => onSortHandler(statsKey)}>{cellValue}</TableHead>
+      ) : (
+        <TableHead className={cellClass}>{cellValue}</TableHead>
+      )}
     </Fragment>
   );
 }
 
 type StatsTitlesRowProps = {
   columnsType?: ColumnsType,
+  onSortHandler: (statsKey: StatsKeyType) => {},
 };
 
 export function StatsTitlesRow(props: StatsTitlesRowProps) {
-  const { columnsType = "complete" } = props;
+  const { columnsType = "complete", onSortHandler } = props;
   const columns = ColumnsMap.get(columnsType);
 
   return (
@@ -50,7 +75,7 @@ export function StatsTitlesRow(props: StatsTitlesRowProps) {
       <TableRow>
         <TableHead>...</TableHead>
         {columns.map((column) => (
-          <StatsTitleCell key={column} statsKey={column} />
+          <StatsTitleCell key={column} statsKey={column} onSortHandler={onSortHandler} />
         ))}
       </TableRow>
     </Fragment>

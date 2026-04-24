@@ -5,7 +5,8 @@ import { StatsValueCell } from "@/components/stats/stats-values-row.tsx";
 import { ColumnsMap, type ColumnsType } from "@/lib/stats-utils.ts";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table.tsx";
 import type { StatisticsLog } from "@/types/statistics-log.ts";
-import { Fragment } from "react";
+import { StatsKey, type StatsKeyType } from "@/types/stats.ts";
+import { Fragment, useEffect, useState } from "react";
 
 type StatisticsTableProps = {
   columnsType?:  ColumnsType,
@@ -16,6 +17,41 @@ export function StatisticsTable(props: StatisticsTableProps) {
   const { columnsType = "complete", statisticsLogs } = props;
   const columns = ColumnsMap.get(columnsType);
 
+  const [ sortStatsKey, setSortStatsKey ] = useState<StatsKeyType>(StatsKey.Points);
+  const [ sortedStatisticsLogs, setSortedStatisticsLogs ] = useState(statisticsLogs);
+
+  useEffect(() => {
+    setSortedStatisticsLogs(
+      [...statisticsLogs.sort((sla, slb) => {
+        let a, b;
+        const [ statsA, statsB ] = [ sla.stats, slb.stats ];
+
+        switch (sortStatsKey) {
+          case StatsKey.FieldGoalsPercentage:
+            a = statsA.fgMade / statsA.fgAttempted;
+            b = statsB.fgMade / statsB.fgAttempted;
+            break;
+          case StatsKey.TwoPointFieldGoalsPercentage:
+            a = statsA.fg3Made / statsA.fg3Attempted;
+            b = statsB.fg3Made / statsB.fg3Attempted;
+            break;
+          case StatsKey.FreeThrowsPercentage:
+            a = statsA.ftMade / statsA.ftAttempted;
+            b = statsB.ftMade / statsB.ftAttempted;
+            break;
+          default:
+            a = statsA[sortStatsKey];
+            b = statsB[sortStatsKey];
+            break;
+        }
+
+        if (a < b) return  1;
+        if (a > b) return -1;
+        return 0;
+      })]
+    );
+  }, [sortStatsKey]);
+
   return (
     <Fragment>
       <Table>
@@ -23,12 +59,12 @@ export function StatisticsTable(props: StatisticsTableProps) {
           <TableRow>
             <TableHead className={styles.statsLabelColumn}>&nbsp;</TableHead>
             {columns.map((column) => (
-              <StatsTitleCell key={column} statsKey={column} />
+              <StatsTitleCell key={column} statsKey={column} onSortHandler={setSortStatsKey}/>
             ))}
           </TableRow>
         </TableHeader>
         <TableBody>
-          {statisticsLogs.map((log) => (
+          {sortedStatisticsLogs.map((log) => (
             <TableRow key={log.id}>
               <TableCell className={styles.statsLabelColumn}>
                 <PlayerLink player={log.player} />

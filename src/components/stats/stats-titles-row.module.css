@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
-.statsColumn,
-.statsWidenedColumn {
+.statsColumn {
   @apply px-0.5;
   @apply text-[13px] text-center; /* custom size, figuring out best sizing */
   @apply w-[32px];
@@ -9,4 +8,8 @@
 
 .statsWidenedColumn {
   @apply w-[40px];
+}
+
+.statsClickableColumn {
+  @apply cursor-pointer;
 }

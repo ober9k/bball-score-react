@@ -3,10 +3,9 @@ import { StatisticsTable } from "@/components/statistics/statistics-table.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { getRouteApi } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
 
 export function StatisticsPage() {
-  const { team, statisticsLogs: statistics }: TeamStatisticsLoaderProps = getRouteApi(leaguePaths.Teams.Statistics).useLoaderData();
+  const { team, statisticsLogs }: TeamStatisticsLoaderProps = getRouteApi(leaguePaths.Teams.Statistics).useLoaderData();
 
   useTitle("Statistics");
   useBreadcrumbs([
@@ -14,19 +13,6 @@ export function StatisticsPage() {
     { title: "Teams", to: leaguePaths.Teams.Index },
     { title: team.name + " Statistics" },
   ]);
-
-  const [ sort, setSort ] = useState("points");
-  const [ statisticsLogs, setStatisticsLogs] = useState(Object.values(statistics));
-
-  useEffect(() => {
-    setStatisticsLogs((statisticsLogs) => {
-      return  statisticsLogs.sort((sla, slb) => {
-        if (sla.stats.points < slb.stats.points) return  1;
-        if (sla.stats.points > slb.stats.points) return -1;
-        return 0;
-      });
-    });
-  }, [sort]);
 
   return (
     <>
