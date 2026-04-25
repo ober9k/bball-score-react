@@ -55,6 +55,13 @@ export function buildGamesQueryOptions(id?: number) {
   };
 }
 
+export function buildTeamPlayersQueryOptions(id: number) {
+  return {
+    queryKey: [queryKeys.Teams, id.toString(), "players"],
+    queryFn:  buildAllQueryFn<Player>(toPlayer),
+  };
+}
+
 export function buildTeamStatisticsQueryOptions(id: number, mode: StatisticsMode) {
   return {
     queryKey: [queryKeys.Teams, id.toString(), "statistics", mode],

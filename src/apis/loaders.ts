@@ -19,6 +19,7 @@ import {
   buildSeasonsQueryOptions,
   buildStandingsQueryOptions,
   buildStatisticsQueryOptions,
+  buildTeamPlayersQueryOptions,
   buildTeamsQueryOptions,
   buildTeamStatisticsQueryOptions
 } from "@/apis/query-options.ts";
@@ -63,6 +64,13 @@ export async function teamsLoader({ context }): TeamsLoaderProps {
 export async function teamLoader({ context, params }): TeamLoaderProps {
   return {
     team: await fetchById<Team>(context.queryClient, buildTeamsQueryOptions(+params.teamId)),
+  }
+}
+
+export async function teamPlayersLoader({ context, params }): TeamLoaderProps {
+  return {
+    team:    await fetchById<Team>(context.queryClient, buildTeamsQueryOptions(+params.teamId)),
+    players: await fetchById<Player>(context.queryClient, buildTeamPlayersQueryOptions(+params.teamId)),
   }
 }
 

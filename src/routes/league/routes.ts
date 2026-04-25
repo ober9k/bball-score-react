@@ -10,10 +10,12 @@ import {
   standingsLoader,
   statisticsLoader,
   teamLoader,
+  teamPlayersLoader,
   teamsLoader,
   teamStatisticsLoader
 } from "@/apis/loaders.ts";
 import NotFoundPage from "@/pages/errors/not-found-page.tsx";
+import { TeamsPlayersPage } from "@/pages/league/teams/players-page.tsx";
 import { TeamStatisticsPage } from "@/pages/league/teams/statistics-page.tsx";
 import {
   DivisionsIndexPage,
@@ -49,6 +51,7 @@ const paths = {
   Teams: {
     Index:      "/league/teams",
     View:       "/league/teams/$teamId/view",
+    Players   : "/league/teams/$teamId/players",
     Statistics: "/league/teams/$teamId/statistics",
   },
   Players: {
@@ -100,6 +103,11 @@ const routes = [{
   component: TeamsViewPage,
   notFoundComponent: NotFoundPage,
   loader: teamLoader,
+},{
+  path: paths.Teams.Players,
+  component: TeamsPlayersPage,
+  notFoundComponent: NotFoundPage,
+  loader: teamPlayersLoader,
 },{
   path: paths.Teams.Statistics,
   component: TeamStatisticsPage,
