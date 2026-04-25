@@ -11,10 +11,11 @@ import { Fragment, useEffect, useState } from "react";
 type StatisticsTableProps = {
   columnsType?:  ColumnsType,
   statisticsLogs: StatisticsLog[],
+  averages?: boolean,
 }
 
 export function StatisticsTable(props: StatisticsTableProps) {
-  const { columnsType = "complete", statisticsLogs } = props;
+  const { columnsType = "complete", statisticsLogs, averages } = props;
   const columns = ColumnsMap.get(columnsType);
 
   const [ sortStatsKey, setSortStatsKey ] = useState<StatsKeyType>(StatsKey.Points);
@@ -40,8 +41,8 @@ export function StatisticsTable(props: StatisticsTableProps) {
             b = statsB.ftMade / statsB.ftAttempted;
             break;
           default:
-            a = statsA[sortStatsKey];
-            b = statsB[sortStatsKey];
+            a = statsA[sortStatsKey].toFixed(averages);
+            b = statsB[sortStatsKey].toFixed(averages);
             break;
         }
 
@@ -70,7 +71,7 @@ export function StatisticsTable(props: StatisticsTableProps) {
                 <PlayerLink player={log.player} />
               </TableCell>
               {columns.map((column) => (
-                <StatsValueCell key={column} stats={log.stats} statsKey={column} />
+                <StatsValueCell key={column} stats={log.stats} statsKey={column} averages={averages} />
               ))}
             </TableRow>
           ))}

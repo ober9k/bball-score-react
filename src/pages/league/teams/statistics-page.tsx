@@ -19,7 +19,7 @@ export function StatisticsPage() {
     <>
       <TeamMenu team={team} />
       <h3 className={"py-1 border-b-1 border-b-gray-700"}>Averages</h3>
-      <StatisticsTable statisticsLogs={averagesStatisticsLogs} />
+      <StatisticsTable statisticsLogs={averagesStatisticsLogs} averages={true} />
       <h3 className={"py-1 border-b-1 border-b-gray-700"}>Totals</h3>
       <StatisticsTable statisticsLogs={totalsStatisticsLogs} />
     </>
