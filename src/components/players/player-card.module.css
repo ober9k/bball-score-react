@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+.footer {
+  @apply p-2;
+  @apply border-t-gray-200;
+}
+
+.stats {
+  @apply w-full;
+  @apply flex justify-center gap-2;
+
+  > div {
+    @apply w-16;
+  }
+}
+
+.statsValue,
+.statsTitle {
+  @apply block;
+  @apply text-center;
+}
+
+.statsValue {
+  @apply font-medium text-lg;
+}
+
+.statsTitle {
+  @apply py-0.5;
+  @apply text-gray-400 text-xs uppercase;
+}
