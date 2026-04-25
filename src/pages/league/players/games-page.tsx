@@ -1,4 +1,5 @@
 import type { PlayerLoaderProps } from "@/apis/loaders/types.ts";
+import { PlayerMenu } from "@/components/players/player-menu.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { getRouteApi } from "@tanstack/react-router";
@@ -15,6 +16,7 @@ export function GamesPage() {
 
   return (
     <>
+      <PlayerMenu player={player} />
       <p className="p-2 text-sm">
         {player.name} #{player.number}
       </p>
