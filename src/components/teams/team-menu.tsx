@@ -1,7 +1,8 @@
+import type { PageLink } from "@/components/shared/page/page-menu.tsx";
+import { PageMenu } from "@/components/shared/page/page-menu.tsx";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "@/shared/components/ui/navigation-menu.tsx";
 import type { Team } from "@/types/team.ts";
-import { Link, useRouter } from "@tanstack/react-router";
+import { useRouter } from "@tanstack/react-router";
 import { Fragment, useCallback } from "react";
 
 type Props = {
@@ -12,7 +13,7 @@ export function TeamMenu(props: Props) {
   const { team } = props;
   const { latestLocation } = useRouter();
 
-  const links = [
+  const links: PageLink[] = [
     { title: "Team Home",  to: leaguePaths.Teams.View,       params: { id: team.id } },
     { title: "Players",    to: leaguePaths.Teams.Players,    params: { id: team.id } },
     { title: "Statistics", to: leaguePaths.Teams.Statistics, params: { id: team.id } },
@@ -24,19 +25,7 @@ export function TeamMenu(props: Props) {
 
   return (
     <Fragment>
-      <div className="flex gap-2 justify-end pb-2">
-        <NavigationMenu>
-          <NavigationMenuList>
-            {links.map((link, index) => (
-              <NavigationMenuItem key={index}>
-                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()} data-active={isActive(link)}>
-                  <Link to={link.to} params={link.params}>{link.title}</Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
-      </div>
+      <PageMenu links={links} isActive={isActive} />
     </Fragment>
   );
 }

@@ -1,7 +1,7 @@
+import { PageMenu } from "@/components/shared/page/page-menu.tsx";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "@/shared/components/ui/navigation-menu.tsx";
 import type { Player } from "@/types/player.ts";
-import { Link, useRouter } from "@tanstack/react-router";
+import { useRouter } from "@tanstack/react-router";
 import { Fragment, useCallback } from "react";
 
 type Props = {
@@ -24,19 +24,7 @@ export function PlayerMenu(props: Props) {
 
   return (
     <Fragment>
-      <div className="flex gap-2 justify-end pb-2">
-        <NavigationMenu>
-          <NavigationMenuList>
-            {links.map((link, index) => (
-              <NavigationMenuItem key={index}>
-                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()} data-active={isActive(link)}>
-                  <Link to={link.to} params={link.params}>{link.title}</Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
-      </div>
+      <PageMenu links={links} isActive={isActive} />
     </Fragment>
   );
 }
