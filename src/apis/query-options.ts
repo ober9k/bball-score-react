@@ -46,6 +46,13 @@ export function buildPlayersQueryOptions(id?: number) {
   };
 }
 
+export function buildPlayersStatisticsQueryOptions(id: number, mode: StatisticsMode) {
+  return {
+    queryKey: [queryKeys.Players, id.toString(), "statistics", mode],
+    queryFn:  buildAllQueryFn<StatisticsLog>(toStatisticsLog),
+  };
+}
+
 export function buildGamesQueryOptions(id?: number) {
   return {
     queryKey: getGamesQK(id),

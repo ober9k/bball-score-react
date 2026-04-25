@@ -50,6 +50,11 @@ export type PlayerLoaderProps = {
   player: Player,
 };
 
+export type PlayerStatisticsLoaderProps = {
+  player: Player,
+  statisticsLogs: StatisticsLog[],
+};
+
 export type GamesLoaderProps = {
   games: Game[],
 };

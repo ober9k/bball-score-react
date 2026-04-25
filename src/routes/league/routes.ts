@@ -4,7 +4,7 @@ import {
   gameLoader,
   gamesLoader,
   playerLoader,
-  playersLoader,
+  playersLoader, playerStatisticsLoader,
   seasonLoader,
   seasonsLoader,
   standingsLoader,
@@ -136,7 +136,8 @@ const routes = [{
   path: paths.Players.Statistics,
   component: PlayersStatisticsPage,
   notFoundComponent: NotFoundPage,
-  loader: playerLoader,
+  loader: playerStatisticsLoader,
+  loaderDeps: ({ search: { mode } }) => ({ mode }),
 },{
   path: paths.Games.Index,
   component: GamesIndexPage,

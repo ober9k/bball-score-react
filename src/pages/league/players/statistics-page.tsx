@@ -1,11 +1,12 @@
-import type { PlayerLoaderProps } from "@/apis/loaders/types.ts";
+import type { PlayerStatisticsLoaderProps } from "@/apis/loaders/types.ts";
 import { PlayerMenu } from "@/components/players/player-menu.tsx";
+import { StatisticsTable } from "@/components/statistics/statistics-table.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { getRouteApi } from "@tanstack/react-router";
 
 export function StatisticsPage() {
-  const { player }: PlayerLoaderProps = getRouteApi(leaguePaths.Players.Statistics).useLoaderData();
+  const { player, statisticsLogs }: PlayerStatisticsLoaderProps = getRouteApi(leaguePaths.Players.Statistics).useLoaderData();
 
   useTitle("Statistics", player.name);
   useBreadcrumbs([
@@ -17,9 +18,7 @@ export function StatisticsPage() {
   return (
     <>
       <PlayerMenu player={player} />
-      <p className="p-2 text-sm">
-        {player.name} #{player.number}
-      </p>
+      <StatisticsTable statisticsLogs={statisticsLogs} />
     </>
   );
 }

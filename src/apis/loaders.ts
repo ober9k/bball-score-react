@@ -17,6 +17,7 @@ import {
   buildDivisionsQueryOptions,
   buildGamesQueryOptions,
   buildPlayersQueryOptions,
+  buildPlayersStatisticsQueryOptions,
   buildSeasonsQueryOptions,
   buildStandingsQueryOptions,
   buildStatisticsQueryOptions,
@@ -86,6 +87,14 @@ export async function playersLoader({ context }): PlayersLoaderProps {
 export async function playerLoader({ context, params }): PlayerLoaderProps {
   return {
     player: await fetchById<Player>(context.queryClient, buildPlayersQueryOptions(+params.playerId)),
+  }
+}
+
+export async function playerStatisticsLoader({ context, params, deps }): PlayerLoaderProps {
+  const mode = (deps.mode === "totals") ? "totals" : "averages";
+  return {
+    player:         await fetchById<Player>(context.queryClient, buildPlayersQueryOptions(+params.playerId)),
+    statisticsLogs: await fetchAll<StatisticsLog>(context.queryClient, buildPlayersStatisticsQueryOptions(+params.playerId, mode)), /* todo: optimize */
   }
 }
 
