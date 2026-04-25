@@ -1,11 +1,12 @@
-import type { TeamLoaderProps } from "@/apis/loaders/types.ts";
+import type { TeamLoaderProps, TeamPlayersLoaderProps } from "@/apis/loaders/types.ts";
 import PlayerCard from "@/components/players/player-card.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
+import type { StatisticsLog } from "@/types/statistics-log.ts";
 import { getRouteApi } from "@tanstack/react-router";
 
 export function PlayersPage() {
-  const { team, players }: TeamLoaderProps = getRouteApi(leaguePaths.Teams.Players).useLoaderData();
+  const { team, players, statisticsLogs }: TeamPlayersLoaderProps = getRouteApi(leaguePaths.Teams.Players).useLoaderData();
 
   useTitle("Players", team.name);
   useBreadcrumbs([
@@ -14,11 +15,17 @@ export function PlayersPage() {
     { title: team.name + " Players" },
   ]);
 
+  /* todo: optimize */
+  const playerStats = new Map<number, StatisticsLog>();
+  statisticsLogs.forEach((log) => {
+    playerStats.set(log.player.id, log.stats);
+  });
+
   return (
     <>
       <div className="grid grid-cols-3 gap-4">
         {players.map((player) => (
-          <PlayerCard player={player} key={player.id} />
+          <PlayerCard key={player.id} player={player} stats={playerStats.get(player.id)} />
         ))}
       </div>
     </>

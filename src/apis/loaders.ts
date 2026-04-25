@@ -10,6 +10,7 @@ import type {
   SeasonLoaderProps,
   SeasonsLoaderProps,
   TeamLoaderProps,
+  TeamPlayersLoaderProps,
   TeamsLoaderProps
 } from "@/apis/loaders/types.ts";
 import {
@@ -67,16 +68,18 @@ export async function teamLoader({ context, params }): TeamLoaderProps {
   }
 }
 
-export async function teamPlayersLoader({ context, params }): TeamLoaderProps {
+export async function teamPlayersLoader({ context, params }): TeamPlayersLoaderProps {
   return {
-    team:    await fetchById<Team>(context.queryClient, buildTeamsQueryOptions(+params.teamId)),
-    players: await fetchById<Player>(context.queryClient, buildTeamPlayersQueryOptions(+params.teamId)),
+    team:           await fetchById<Team>(context.queryClient, buildTeamsQueryOptions(+params.teamId)),
+    players:        await fetchById<Player>(context.queryClient, buildTeamPlayersQueryOptions(+params.teamId)),
+    statisticsLogs: await fetchAll<StatisticsLog>(context.queryClient, buildTeamStatisticsQueryOptions(+params.teamId, "averages")), /* todo: optimize */
   }
 }
 
 export async function playersLoader({ context }): PlayersLoaderProps {
   return {
-    players: await fetchAll<Player>(context.queryClient, buildPlayersQueryOptions()),
+    players:        await fetchAll<Player>(context.queryClient, buildPlayersQueryOptions()),
+    statisticsLogs: await fetchAll<StatisticsLog>(context.queryClient, buildStatisticsQueryOptions("averages")), /* todo: optimize */
   }
 }
 

@@ -30,6 +30,12 @@ export type TeamLoaderProps = {
   team: Team,
 };
 
+export type TeamPlayersLoaderProps = {
+  team: Team,
+  players: Player[],
+  statisticsLogs: StatisticsLog[],
+};
+
 export type TeamStatisticsLoaderProps = {
   team: Team,
   statisticsLogs: StatisticsLog[],
@@ -37,6 +43,7 @@ export type TeamStatisticsLoaderProps = {
 
 export type PlayersLoaderProps = {
   players: Player[],
+  statisticsLogs: StatisticsLog[],
 };
 
 export type PlayerLoaderProps = {
