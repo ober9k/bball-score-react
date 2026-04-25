@@ -8,7 +8,7 @@ import { getRouteApi } from "@tanstack/react-router";
 export function StatisticsPage() {
   const { team, statisticsLogs }: TeamStatisticsLoaderProps = getRouteApi(leaguePaths.Teams.Statistics).useLoaderData();
 
-  useTitle("Statistics");
+  useTitle("Statistics", team.name);
   useBreadcrumbs([
     { title: "League", to: leaguePaths.League.Index },
     { title: "Teams", to: leaguePaths.Teams.Index },
