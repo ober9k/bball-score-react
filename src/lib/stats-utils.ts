@@ -61,18 +61,17 @@ export function formatAttemptsPercentage(made: number, attempted: number): strin
 /**
  * Format shots made and attempted into dash format.
  */
-export function formatAttemptsAsDashed(made: number, attempted: number): string {
-  const precision = 0; /* not needed for here, unless averages */
+export function formatAttemptsAsDashed(made: number, attempted: number, precision: number = 0): string {
   return `${made.toFixed(precision)}-${attempted.toFixed(precision)}`;
 }
 
 /**
  * Format shots made and attempted into dash format.
  */
-export function getPoints(made: number, attempted: number, asPercentage: boolean = true): string {
+export function getPoints(made: number, attempted: number, precision: number, asPercentage: boolean = true): string {
   return (asPercentage)
     ? formatAttemptsPercentage(made, attempted)
-    : formatAttemptsAsDashed(made, attempted);
+    : formatAttemptsAsDashed(made, attempted, precision);
 }
 
 /**
@@ -101,16 +100,16 @@ export function formatValue(stats: Stats, statsKey: StatsKeyType, precision = 0)
       return formatMinutes(stats.seconds);
     case StatsKey.FieldGoals:
     case StatsKey.FieldGoalsPercentage:
-      return getPoints(stats.fgMade, stats.fgAttempted, asPercentage);
+      return getPoints(stats.fgMade, stats.fgAttempted, precision, asPercentage);
     case StatsKey.TwoPointFieldGoals:
     case StatsKey.TwoPointFieldGoalsPercentage:
-      return getPoints(stats.fgMade - stats.fg3Made, stats.fgAttempted - stats.fg3Attempted, asPercentage);
+      return getPoints(stats.fgMade - stats.fg3Made, stats.fgAttempted - stats.fg3Attempted, precision, asPercentage);
     case StatsKey.ThreePointFieldGoals:
     case StatsKey.ThreePointFieldGoalsPercentage:
-      return getPoints(stats.fg3Made, stats.fg3Attempted, asPercentage);
+      return getPoints(stats.fg3Made, stats.fg3Attempted, precision, asPercentage);
     case StatsKey.FreeThrows:
     case StatsKey.FreeThrowsPercentage:
-      return getPoints(stats.ftMade, stats.ftAttempted, asPercentage);
+      return getPoints(stats.ftMade, stats.ftAttempted, precision, asPercentage);
     default:
       /* standard value handling */
       return stats[statsKey].toFixed(precision);
