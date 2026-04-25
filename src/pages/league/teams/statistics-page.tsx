@@ -1,5 +1,6 @@
 import type { TeamStatisticsLoaderProps } from "@/apis/loaders/types.ts";
 import { StatisticsTable } from "@/components/statistics/statistics-table.tsx";
+import { TeamMenu } from "@/components/teams/team-menu.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { getRouteApi } from "@tanstack/react-router";
@@ -16,6 +17,7 @@ export function StatisticsPage() {
 
   return (
     <>
+      <TeamMenu team={team} />
       <StatisticsTable statisticsLogs={statisticsLogs} />
     </>
   );

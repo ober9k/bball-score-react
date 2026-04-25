@@ -1,5 +1,6 @@
 import type { TeamLoaderProps, TeamPlayersLoaderProps } from "@/apis/loaders/types.ts";
 import PlayerCard from "@/components/players/player-card.tsx";
+import { TeamMenu } from "@/components/teams/team-menu.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import type { StatisticsLog } from "@/types/statistics-log.ts";
@@ -23,6 +24,7 @@ export function PlayersPage() {
 
   return (
     <>
+      <TeamMenu team={team} />
       <div className="grid grid-cols-3 gap-4">
         {players.map((player) => (
           <PlayerCard key={player.id} player={player} stats={playerStats.get(player.id)} />
