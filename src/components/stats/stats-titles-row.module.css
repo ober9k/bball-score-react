@@ -7,7 +7,7 @@
 }
 
 .statsWidenedColumn {
-  @apply w-[40px];
+  @apply w-[48px];
 }
 
 .statsClickableColumn {
