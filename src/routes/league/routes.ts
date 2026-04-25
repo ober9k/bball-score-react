@@ -15,6 +15,8 @@ import {
   teamStatisticsLoader
 } from "@/apis/loaders.ts";
 import NotFoundPage from "@/pages/errors/not-found-page.tsx";
+import { PlayersGamesPage } from "@/pages/league/players/games-page.tsx";
+import { PlayersStatisticsPage } from "@/pages/league/players/statistics-page.tsx";
 import { TeamsPlayersPage } from "@/pages/league/teams/players-page.tsx";
 import { TeamStatisticsPage } from "@/pages/league/teams/statistics-page.tsx";
 import {
@@ -55,8 +57,10 @@ const paths = {
     Statistics: "/league/teams/$teamId/statistics",
   },
   Players: {
-    Index:  "/league/players",
-    View:   "/league/players/$playerId/view",
+    Index:      "/league/players",
+    View:       "/league/players/$playerId/view",
+    Games:      "/league/players/$playerId/games",
+    Statistics: "/league/players/$playerId/statistics",
   },
   Games: {
     Index:  "/league/games",
@@ -121,6 +125,16 @@ const routes = [{
 },{
   path: paths.Players.View,
   component: PlayersViewPage,
+  notFoundComponent: NotFoundPage,
+  loader: playerLoader,
+},{
+  path: paths.Players.Games,
+  component: PlayersGamesPage,
+  notFoundComponent: NotFoundPage,
+  loader: playerLoader,
+},{
+  path: paths.Players.Statistics,
+  component: PlayersStatisticsPage,
   notFoundComponent: NotFoundPage,
   loader: playerLoader,
 },{
