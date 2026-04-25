@@ -33,14 +33,16 @@ const SortableColumns = [
 
 type StatsTitleCellProps = {
   statsKey: StatsKeyType,
-  onSortHandler: (statsKey: StatsKeyType) => {},
+  sortStatsKey: StatsKeyType,
+  setSortStatsKey: (statsKey: StatsKeyType) => {},
 };
 
 export function StatsTitleCell(props: StatsTitleCellProps) {
-  const { statsKey, onSortHandler } = props;
+  const { statsKey, sortStatsKey, setSortStatsKey } = props;
 
   const isWidenedColumn  = () => WidenedColumns.includes(statsKey);
   const isSortableColumn = () => SortableColumns.includes(statsKey);
+  const isSortedColumn   = () => statsKey === sortStatsKey;
 
   const cellClasses = [styles.statsColumn];
 
@@ -53,9 +55,16 @@ export function StatsTitleCell(props: StatsTitleCellProps) {
   return (
     <Fragment>
       {isSortableColumn() ? (
-        <TableHead className={cellClass} onClick={() => onSortHandler(statsKey)}>{cellValue}</TableHead>
+        <TableHead className={cellClass} onClick={() => setSortStatsKey(statsKey)}>
+          {cellValue}
+          {isSortedColumn() && (
+            <span className="px-0.25 text-xs">▼</span>
+          )}
+        </TableHead>
       ) : (
-        <TableHead className={cellClass}>{cellValue}</TableHead>
+        <TableHead className={cellClass}>
+          {cellValue}
+        </TableHead>
       )}
     </Fragment>
   );
@@ -63,11 +72,12 @@ export function StatsTitleCell(props: StatsTitleCellProps) {
 
 type StatsTitlesRowProps = {
   columnsType?: ColumnsType,
-  onSortHandler: (statsKey: StatsKeyType) => {},
+  sortStatsKey: StatsKeyType,
+  setSortStatsKey: (statsKey: StatsKeyType) => {},
 };
 
 export function StatsTitlesRow(props: StatsTitlesRowProps) {
-  const { columnsType = "complete", onSortHandler } = props;
+  const { columnsType = "complete", sortStatsKey, setSortStatsKey } = props;
   const columns = ColumnsMap.get(columnsType);
 
   return (
@@ -75,7 +85,7 @@ export function StatsTitlesRow(props: StatsTitlesRowProps) {
       <TableRow>
         <TableHead>...</TableHead>
         {columns.map((column) => (
-          <StatsTitleCell key={column} statsKey={column} onSortHandler={onSortHandler} />
+          <StatsTitleCell key={column} statsKey={column} sortStatsKey={sortStatsKey} setSortStatsKey={setSortStatsKey} />
         ))}
       </TableRow>
     </Fragment>

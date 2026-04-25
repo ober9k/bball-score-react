@@ -59,7 +59,7 @@ export function StatisticsTable(props: StatisticsTableProps) {
           <TableRow>
             <TableHead className={styles.statsLabelColumn}>&nbsp;</TableHead>
             {columns.map((column) => (
-              <StatsTitleCell key={column} statsKey={column} onSortHandler={setSortStatsKey}/>
+              <StatsTitleCell key={column} statsKey={column} sortStatsKey={sortStatsKey} setSortStatsKey={setSortStatsKey}/>
             ))}
           </TableRow>
         </TableHeader>
