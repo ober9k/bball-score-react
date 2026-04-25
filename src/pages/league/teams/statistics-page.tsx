@@ -6,7 +6,7 @@ import { leaguePaths } from "@/routes/league/routes.ts";
 import { getRouteApi } from "@tanstack/react-router";
 
 export function StatisticsPage() {
-  const { team, statisticsLogs }: TeamStatisticsLoaderProps = getRouteApi(leaguePaths.Teams.Statistics).useLoaderData();
+  const { team, averagesStatisticsLogs, totalsStatisticsLogs }: TeamStatisticsLoaderProps = getRouteApi(leaguePaths.Teams.Statistics).useLoaderData();
 
   useTitle("Statistics", team.name);
   useBreadcrumbs([
@@ -19,9 +19,9 @@ export function StatisticsPage() {
     <>
       <TeamMenu team={team} />
       <h3 className={"py-1 border-b-1 border-b-gray-700"}>Averages</h3>
-      <StatisticsTable statisticsLogs={statisticsLogs} />
+      <StatisticsTable statisticsLogs={averagesStatisticsLogs} />
       <h3 className={"py-1 border-b-1 border-b-gray-700"}>Totals</h3>
-      <StatisticsTable statisticsLogs={statisticsLogs} />
+      <StatisticsTable statisticsLogs={totalsStatisticsLogs} />
     </>
   );
 }

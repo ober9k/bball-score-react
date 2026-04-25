@@ -90,11 +90,11 @@ export async function playerLoader({ context, params }): PlayerLoaderProps {
   }
 }
 
-export async function playerStatisticsLoader({ context, params, deps }): PlayerLoaderProps {
-  const mode = (deps.mode === "totals") ? "totals" : "averages";
+export async function playerStatisticsLoader({ context, params }): PlayerLoaderProps {
   return {
-    player:         await fetchById<Player>(context.queryClient, buildPlayersQueryOptions(+params.playerId)),
-    statisticsLogs: await fetchAll<StatisticsLog>(context.queryClient, buildPlayersStatisticsQueryOptions(+params.playerId, mode)), /* todo: optimize */
+    player:                 await fetchById<Player>(context.queryClient, buildPlayersQueryOptions(+params.playerId)),
+    averagesStatisticsLogs: await fetchAll<StatisticsLog>(context.queryClient, buildPlayersStatisticsQueryOptions(+params.playerId, "averages")), /* todo: optimize */
+    totalsStatisticsLogs:   await fetchAll<StatisticsLog>(context.queryClient, buildPlayersStatisticsQueryOptions(+params.playerId, "totals")),   /* todo: optimize */
   }
 }
 
@@ -110,11 +110,11 @@ export async function gameLoader({ context, params }): GameLoaderProps {
   }
 }
 
-export async function teamStatisticsLoader({ context, params, deps }) {
-  const mode = (deps.mode === "totals") ? "totals" : "averages";
+export async function teamStatisticsLoader({ context, params }) {
   return {
-    team:           await fetchById<Team>(context.queryClient, buildTeamsQueryOptions(+params.teamId)),
-    statisticsLogs: await fetchAll<StatisticsLog>(context.queryClient, buildTeamStatisticsQueryOptions(+params.teamId, mode)),
+    team:                   await fetchById<Team>(context.queryClient, buildTeamsQueryOptions(+params.teamId)),
+    averagesStatisticsLogs: await fetchAll<StatisticsLog>(context.queryClient, buildTeamStatisticsQueryOptions(+params.teamId, "averages")), /* todo: optimize */
+    totalsStatisticsLogs:   await fetchAll<StatisticsLog>(context.queryClient, buildTeamStatisticsQueryOptions(+params.teamId, "totals")),   /* todo: optimize */
   }
 }
 

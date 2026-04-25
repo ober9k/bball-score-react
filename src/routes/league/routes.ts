@@ -117,7 +117,6 @@ const routes = [{
   component: TeamStatisticsPage,
   notFoundComponent: NotFoundPage,
   loader: teamStatisticsLoader,
-  loaderDeps: ({ search: { mode } }) => ({ mode }),
 },{
   path: paths.Players.Index,
   component: PlayersIndexPage,
@@ -137,7 +136,6 @@ const routes = [{
   component: PlayersStatisticsPage,
   notFoundComponent: NotFoundPage,
   loader: playerStatisticsLoader,
-  loaderDeps: ({ search: { mode } }) => ({ mode }),
 },{
   path: paths.Games.Index,
   component: GamesIndexPage,
