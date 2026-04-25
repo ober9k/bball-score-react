@@ -18,6 +18,9 @@ export function StatisticsPage() {
   return (
     <>
       <PlayerMenu player={player} />
+      <h3 className={"py-1 border-b-1 border-b-gray-700"}>Averages</h3>
+      <StatisticsTable statisticsLogs={statisticsLogs} />
+      <h3 className={"py-1 border-b-1 border-b-gray-700"}>Totals</h3>
       <StatisticsTable statisticsLogs={statisticsLogs} />
     </>
   );
