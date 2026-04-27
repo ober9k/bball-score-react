@@ -3,6 +3,7 @@ import * as styles from "@/components/stats/stats-values-row.module.css";
 import { ColumnsMap, type ColumnsType, formatValue } from "@/lib/stats-utils.ts";
 import { TableCell, TableRow } from "@/shared/components/ui/table.tsx";
 import type { Player } from "@/types/player.ts";
+import type { Season } from "@/types/season.ts";
 import type { Stats } from "@/types/stats.ts";
 import { StatsKey, type StatsKeyType } from "@/types/stats.ts";
 import { Fragment } from "react";
@@ -34,6 +35,7 @@ export function StatsValueCell(props: StatsValueCellProps) {
 type StatsValuesRowProps = {
   columnsType?: ColumnsType,
   player?:   Player,
+  season?:   Season,
   played?:   number,
   totals?:   boolean,
   averages?: boolean,
@@ -41,7 +43,7 @@ type StatsValuesRowProps = {
 };
 
 export function StatsValuesRow(props: StatsValuesRowProps) {
-  const { columnsType = "complete", player, totals, averages = false, stats } = props;
+  const { columnsType = "complete", player, season, totals, averages = false, stats } = props;
   const columns = ColumnsMap.get(columnsType);
 
   return (
@@ -50,6 +52,9 @@ export function StatsValuesRow(props: StatsValuesRowProps) {
         <TableCell className="font-medium">
           {player && (
             <PlayerLink player={player} />
+          )}
+          {season && (
+            <span>{season.name}</span>
           )}
           {totals && ("Totals")}
         </TableCell>

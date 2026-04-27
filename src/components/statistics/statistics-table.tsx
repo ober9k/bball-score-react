@@ -67,9 +67,16 @@ export function StatisticsTable(props: StatisticsTableProps) {
         <TableBody>
           {sortedStatisticsLogs.map((log) => (
             <TableRow key={log.id}>
-              <TableCell className={styles.statsLabelColumn}>
-                <PlayerLink player={log.player} />
-              </TableCell>
+              {log.season && (
+                <TableCell className={styles.statsLabelColumn}>
+                  <span>{log.season.name}</span>
+                </TableCell>
+              )}
+              {!log.season && log.player && (
+                <TableCell className={styles.statsLabelColumn}>
+                  <PlayerLink player={log.player} />
+                </TableCell>
+              )}
               {columns.map((column) => (
                 <StatsValueCell key={column} stats={log.stats} statsKey={column} averages={averages} />
               ))}
