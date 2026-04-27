@@ -33,8 +33,8 @@ const SortableColumns = [
 
 type StatsTitleCellProps = {
   statsKey: StatsKeyType,
-  sortStatsKey: StatsKeyType,
-  setSortStatsKey: (statsKey: StatsKeyType) => {},
+  sortStatsKey?: StatsKeyType,
+  setSortStatsKey?: (statsKey: StatsKeyType) => {},
 };
 
 export function StatsTitleCell(props: StatsTitleCellProps) {
@@ -47,7 +47,7 @@ export function StatsTitleCell(props: StatsTitleCellProps) {
   const cellClasses = [styles.statsColumn];
 
   if (isWidenedColumn())  cellClasses.push(styles.statsWidenedColumn);
-  if (isSortableColumn()) cellClasses.push(styles.statsClickableColumn);
+  if (isSortableColumn()) sortStatsKey && cellClasses.push(styles.statsClickableColumn);
 
   const cellValue = getStatsTitle(statsKey);
   const cellClass = cellClasses.join(" ");
