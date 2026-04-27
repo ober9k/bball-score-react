@@ -7,6 +7,7 @@ import type {
   GamesLoaderProps,
   PlayerLoaderProps,
   PlayersLoaderProps,
+  PlayerStatisticsLoaderProps,
   SeasonLoaderProps,
   SeasonsLoaderProps,
   TeamLoaderProps,
@@ -90,7 +91,7 @@ export async function playerLoader({ context, params }): PlayerLoaderProps {
   }
 }
 
-export async function playerStatisticsLoader({ context, params }): PlayerLoaderProps {
+export async function playerStatisticsLoader({ context, params }): PlayerStatisticsLoaderProps {
   return {
     player:                 await fetchById<Player>(context.queryClient, buildPlayersQueryOptions(+params.playerId)),
     averagesStatisticsLogs: await fetchAll<StatisticsLog>(context.queryClient, buildPlayersStatisticsQueryOptions(+params.playerId, "averages")), /* todo: optimize */

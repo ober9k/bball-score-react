@@ -57,6 +57,12 @@ export type PlayerStatisticsLoaderProps = {
   totalsStatisticsLogs: StatisticsLog[],
 };
 
+export type PlayerGamesLoaderProps = {
+  player: Player,
+  averagesStatisticsLogs: StatisticsLog[],
+  totalsStatisticsLogs: StatisticsLog[],
+};
+
 export type GamesLoaderProps = {
   games: Game[],
 };
