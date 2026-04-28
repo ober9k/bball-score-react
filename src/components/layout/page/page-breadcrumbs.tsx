@@ -16,24 +16,24 @@ type Props = {
 };
 
 function BreadcrumbForLink(props: LinkProps) {
-  const { title, to } = props;
+  const { link } = props;
 
   return (
     <BreadcrumbItem>
-      <BreadcrumbLink href={to}>
-        {title}
+      <BreadcrumbLink href={link.to}>
+        {link.title}
       </BreadcrumbLink>
     </BreadcrumbItem>
   );
 }
 
 function BreadcrumbForPage(props: LinkProps) {
-  const { title } = props;
+  const { link } = props;
 
   return (
     <BreadcrumbItem>
       <BreadcrumbPage>
-        {title}
+        {link.title}
       </BreadcrumbPage>
     </BreadcrumbItem>
   );
