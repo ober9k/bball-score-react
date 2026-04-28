@@ -5,27 +5,35 @@ export type Link = {
   title: string,
   to?: string,
   params?: object,
-}
+};
+
+type LinkProps = {
+  link: Link,
+};
 
 type Props = {
   breadcrumbs: Link[],
 };
 
-function BreadcrumbForLink({ link }: Link) {
+function BreadcrumbForLink(props: LinkProps) {
+  const { title, to } = props;
+
   return (
     <BreadcrumbItem>
-      <BreadcrumbLink href={link.to}>
-        {link.title}
+      <BreadcrumbLink href={to}>
+        {title}
       </BreadcrumbLink>
     </BreadcrumbItem>
   );
 }
 
-function BreadcrumbForPage({ link }: Link) {
+function BreadcrumbForPage(props: LinkProps) {
+  const { title } = props;
+
   return (
     <BreadcrumbItem>
       <BreadcrumbPage>
-        {link.title}
+        {title}
       </BreadcrumbPage>
     </BreadcrumbItem>
   );
