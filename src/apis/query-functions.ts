@@ -9,7 +9,7 @@ import axios from "axios";
  * This will work off the linked query key and apply the provided converter.
  */
 export function buildAllQueryFn<T>(converter: DtoConverter<T>) {
-  return async function({ queryKey }): T[] {
+  return async function({ queryKey }): Promise<T[]> {
     const { data } = await axios.get<any[]>(buildLeagueApiUrl(...queryKey));
     return data.map(converter);
   };
@@ -20,7 +20,7 @@ export function buildAllQueryFn<T>(converter: DtoConverter<T>) {
  * This will work off the linked query key and apply the provided converter.
  */
 export function buildByIdQueryFn<T>(converter: DtoConverter<T>) {
-  return async function({ queryKey }): T {
+  return async function({ queryKey }): Promise<T> {
     const { data } = await axios.get<any>(buildLeagueApiUrl(...queryKey));
     return converter(data);
   };
