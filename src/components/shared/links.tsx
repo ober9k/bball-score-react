@@ -8,8 +8,15 @@ type PlayerLinkProps = {
 }
 
 export function PlayerLink({ player }: PlayerLinkProps) {
+  /**
+   * @todo: this is a place holder due to compilation complaints for `params` types
+   */
+  const buildPlayerViewLink = (player: Player): string => {
+    return leaguePaths.Teams.View.replace("$playerId", player.id.toString());
+  };
+
   return (
-    <Link to={leaguePaths.Players.View} params={{ playerId: player.id }}>
+    <Link to={buildPlayerViewLink(player)}>
       {player.name}
     </Link>
   );
@@ -20,8 +27,15 @@ type TeamLinkProps = {
 }
 
 export function TeamLink({ team }: TeamLinkProps) {
+  /**
+   * @todo: this is a place holder due to compilation complaints for `params` types
+   */
+  const buildTeamViewLink = (team: Team): string => {
+    return leaguePaths.Teams.View.replace("$teamId", team.id.toString());
+  };
+
   return (
-    <Link to={leaguePaths.Teams.View} params={{ teamId: team.id }}>
+    <Link to={buildTeamViewLink(team)}>
       {team.name}
     </Link>
   );
