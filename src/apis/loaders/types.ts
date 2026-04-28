@@ -59,8 +59,7 @@ export type PlayerStatisticsLoaderProps = {
 
 export type PlayerGamesLoaderProps = {
   player: Player,
-  averagesStatisticsLogs: StatisticsLog[],
-  totalsStatisticsLogs: StatisticsLog[],
+  gamesStatisticsLogs: StatisticsLog[],
 };
 
 export type GamesLoaderProps = {

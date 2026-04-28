@@ -18,7 +18,7 @@ export async function fetchAll<T>(client: QueryClient, options: QueryOptions): P
 /**
  * Retrieve single item by provided options.
  */
-export async function fetchById<T>(client: QueryClient, options: QueryOptions): T {
+export async function fetchById<T>(client: QueryClient, options: QueryOptions): Promise<T> {
   try {
     return client.fetchQuery(options);
   }
