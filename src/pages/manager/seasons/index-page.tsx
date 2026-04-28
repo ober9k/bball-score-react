@@ -1,4 +1,5 @@
 import type { SeasonsLoaderProps } from "@/apis/loaders/types.ts";
+import { SeasonUpdateLink } from "@/components/shared/links.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { managerPaths } from "@/routes/manager/routes.ts";
@@ -20,7 +21,7 @@ export function IndexPage() {
       <ul>
         {seasons.map((season) => (
           <li key={season.id}>
-            {season.name} [<Link to={managerPaths.Seasons.Update} params={{ seasonId: season.id }}>Edit</Link>]
+            {season.name} [<SeasonUpdateLink season={season} />]
           </li>
         ))}
       </ul>

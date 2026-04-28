@@ -1,4 +1,5 @@
 import type { TeamsLoaderProps } from "@/apis/loaders/types.ts";
+import { TeamUpdateLink } from "@/components/shared/links.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { managerPaths } from "@/routes/manager/routes.ts";
@@ -20,7 +21,7 @@ export function IndexPage() {
       <ul>
         {teams.map((team) => (
           <li key={team.id}>
-            {team.name} [<Link to={managerPaths.Teams.Update} params={{ teamId: team.id }}>Edit</Link>]
+            {team.name} [<TeamUpdateLink team={team} />]
           </li>
         ))}
       </ul>

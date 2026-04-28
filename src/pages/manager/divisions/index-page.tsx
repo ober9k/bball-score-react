@@ -1,4 +1,5 @@
 import type { DivisionsLoaderProps } from "@/apis/loaders/types.ts";
+import { DivisionUpdateLink } from "@/components/shared/links.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { managerPaths } from "@/routes/manager/routes.ts";
@@ -20,7 +21,7 @@ export function IndexPage() {
       <ul>
         {divisions.map((division) => (
           <li key={division.id}>
-            {division.name} [<Link to={managerPaths.Divisions.Update} params={{ divisionId: division.id }}>Edit</Link>]
+            {division.name} [<DivisionUpdateLink division={division} />]
           </li>
         ))}
       </ul>

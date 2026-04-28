@@ -1,4 +1,5 @@
 import type { GamesLoaderProps } from "@/apis/loaders/types.ts";
+import { GameUpdateLink } from "@/components/shared/links.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { managerPaths } from "@/routes/manager/routes.ts";
@@ -20,7 +21,7 @@ export function IndexPage() {
       <ul>
         {games.map((game) => (
           <li key={game.id}>
-            {game.id} {game.date} [<Link to={managerPaths.Games.Update} params={{ gameId: game.id }}>Edit</Link>]
+            {game.id} {game.date} [<GameUpdateLink game={game} />]
           </li>
         ))}
       </ul>
