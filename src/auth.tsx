@@ -1,6 +1,6 @@
 import type { AuthUser } from "@/types/user.ts";
 import { Role } from "@/types/user/role.ts";
-import { createContext, ReactNode, type Ref, useContext, useRef } from "react";
+import { createContext, type ReactNode, type Ref, useContext, useRef } from "react";
 
 export interface IAuthContext {
   user: () => AuthUser, /* utility access to current user */
