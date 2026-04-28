@@ -1,4 +1,3 @@
-import type { ColumnsType } from "@/lib/stats-utils.ts";
 import type { StandingsKeyType, StandingsLog } from "@/types/standings-log.ts";
 import { StandingsKey } from "@/types/standings-log.ts";
 
