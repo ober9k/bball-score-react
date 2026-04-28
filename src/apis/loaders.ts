@@ -128,7 +128,9 @@ export async function teamStatisticsLoader({ context, params }) {
 }
 
 export async function standingsLoader({ context }) {
-  return fetchAll<StandingsLog>(context.queryClient, buildStandingsQueryOptions(), toStandingsLog);
+  return {
+    standingsLogs: await fetchAll<StandingsLog>(context.queryClient, buildStandingsQueryOptions(), toStandingsLog),
+  };
 }
 
 export async function statisticsLoader({ context, deps }) {

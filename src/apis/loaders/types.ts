@@ -71,7 +71,7 @@ export type GameLoaderProps = {
 };
 
 export type StandingsLoaderProps = {
-  standings: StandingsLog[],
+  standingsLogs: StandingsLog[],
 };
 
 export type StatisticsLoaderProps = {

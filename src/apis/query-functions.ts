@@ -43,10 +43,6 @@ export function buildStandingsQueryFn() {
   return buildBaseQueryFn("standings"); /* ++seasonId */
 }
 
-export function buildStatisticsQueryFn(statisticsContext: StatisticsMode) {
-  return buildBaseQueryFn(`statistics/${statisticsContext}`); /* temporary workaround */ /* ++seasonId */
-}
-
 export async function logoutQueryFn() {
   const { data } = await axios.get(buildAuthApiUrl("logout"));
   return data;

@@ -7,7 +7,7 @@ import type { StandingsLog } from "@/types/standings-log.ts";
 import { getRouteApi } from "@tanstack/react-router";
 
 export function StandingsPage() {
-  const { standings }: StandingsLoaderProps = getRouteApi(leaguePaths.League.Standings).useLoaderData();
+  const { standingsLogs }: StandingsLoaderProps = getRouteApi(leaguePaths.League.Standings).useLoaderData();
 
   useTitle("Standings");
   useBreadcrumbs([
@@ -15,7 +15,7 @@ export function StandingsPage() {
     { title: "Standings" },
   ]);
 
-  const standingsLogs = standings.sort((logA: StandingsLog, logB: StandingsLog) => {
+  const sortedStandingsLogs = standingsLogs.sort((logA: StandingsLog, logB: StandingsLog) => {
     const pointsA = formatPoints(logA.wins, logA.losses, logA.draws, logA.byes);
     const pointsB = formatPoints(logB.wins, logB.losses, logB.draws, logB.byes);
 
@@ -26,7 +26,7 @@ export function StandingsPage() {
 
   return (
     <>
-      <StandingsTable standingsLogs={standingsLogs} />
+      <StandingsTable standingsLogs={sortedStandingsLogs} />
     </>
   );
 }

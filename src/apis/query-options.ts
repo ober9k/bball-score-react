@@ -1,10 +1,11 @@
-import { toDivision, toGame, toPlayer, toSeason, toStatisticsLog, toTeam } from "@/apis/converters.ts";
+import { toDivision, toGame, toPlayer, toSeason, toStandingsLog, toStatisticsLog, toTeam } from "@/apis/converters.ts";
 import { authUserQueryFn, buildAllQueryFn, buildByIdQueryFn, buildOptionsQueryFn, buildStandingsQueryFn, logoutQueryFn } from "@/apis/query-functions";
 import { getDivisionsQK, getGamesQK, getPlayersQK, getSeasonsQK, getStandingsQK, getTeamsQK, queryKeys } from "@/apis/query-keys";
 import type { Division } from "@/types/division.ts";
 import type { Game } from "@/types/game.ts";
 import type { Player } from "@/types/player.ts";
 import type { Season } from "@/types/season.ts";
+import type { StandingsLog } from "@/types/standings-log.ts";
 import type { StatisticsLog } from "@/types/statistics-log.ts";
 import type { Team } from "@/types/team.ts";
 
@@ -79,7 +80,7 @@ export function buildTeamStatisticsQueryOptions(id: number, mode: StatisticsMode
 export function buildStandingsQueryOptions() {
   return {
     queryKey: getStandingsQK(),
-    queryFn:  buildStandingsQueryFn(),
+    queryFn:  buildAllQueryFn<StandingsLog>(toStandingsLog),
   };
 }
 
