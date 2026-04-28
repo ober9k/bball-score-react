@@ -8,6 +8,7 @@ import SelectField from "@/components/forms/select-field.tsx";
 import { i18n } from "@/lib/phrases.ts";
 import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
 import { Separator } from "@/shared/components/ui/separator.tsx";
+import type { Option } from "@/types/option.ts";
 import { Position } from "@/types/player.ts";
 import { Fragment } from "react";
 
@@ -39,7 +40,7 @@ type TeamFormProps = {
   onCancel: () => void,
 };
 
-const positionsOptions = [
+const positionsOptions: Option[] = [
   { value: Position.PointGuard,    label: i18n("position.type.label.pointGuard") },
   { value: Position.ShootingGuard, label: i18n("position.type.label.shootingGuard") },
   { value: Position.SmallForward,  label: i18n("position.type.label.smallForward") },

@@ -34,7 +34,7 @@ export function UpdatePage() {
 
   initialFormState.fieldValues.name = team.name;
   initialFormState.fieldValues.shortName = team.shortName;
-  initialFormState.fieldValues.divisionId = team.divisionId;
+  initialFormState.fieldValues.divisionId = team.divisionId.toString();
   initialFormState.fieldValues.active = team.active;
   initialFormState.fieldValues.archived = team.archived;
 

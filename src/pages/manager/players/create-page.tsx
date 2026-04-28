@@ -14,6 +14,8 @@ const initialFormState: FormState = {
     position: "",
     number: "",
     height: "",
+    active: false,
+    archived: false,
   },
   fieldErrors: {},
   formErrors:  [],

@@ -67,7 +67,7 @@ export async function authUserQueryFn() {
  * This is built off the query key contains a type and options.
  */
 export function buildOptionsQueryFn() {
-  return async function({ queryKey }): Option[] {
+  return async function({ queryKey }): Promise<Option[]> {
     const { data } = await axios.get(buildLeagueApiUrl(...queryKey));
     return data;
   };

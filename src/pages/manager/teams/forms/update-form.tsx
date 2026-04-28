@@ -26,7 +26,7 @@ export type FormState = {
   },
   fieldErrors: {
     name?: string[],
-    shortName: string[],
+    shortName?: string[],
     divisionId?: string[],
     active?: string[],
     archived?: string[],
@@ -43,7 +43,7 @@ type DivisionFormProps = {
 
 export default function UpdateForm({ formAction, formState, formMode, isPending, onCancel }: DivisionFormProps) {
   const { formErrors, fieldValues, fieldErrors } = formState;
-  const [ divisionsOptions, setDivisionsOptions ] = useState<Division[]>([]);
+  const [ divisionsOptions, setDivisionsOptions ] = useState<Option[]>([]);
   const { data } = useQuery(buildOptionsQueryOptions(queryKeys.Divisions));
 
   useEffect(() => {

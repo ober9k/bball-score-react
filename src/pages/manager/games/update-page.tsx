@@ -36,9 +36,9 @@ export function UpdatePage() {
 
   initialFormState.fieldValues.date = (new Date(game.date)).toISOString().split('T')[0];
   initialFormState.fieldValues.phase = game.phase;
-  initialFormState.fieldValues.round = game.round;
-  initialFormState.fieldValues.seasonId = game.seasonId;
-  initialFormState.fieldValues.divisionId = game.divisionId;
+  initialFormState.fieldValues.round = game.round.toString();
+  initialFormState.fieldValues.seasonId = game.seasonId.toString();
+  initialFormState.fieldValues.divisionId = game.divisionId.toString();
   initialFormState.fieldValues.active = game.active;
   initialFormState.fieldValues.archived = game.archived;
 

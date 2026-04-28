@@ -1,8 +1,7 @@
 import { buildSeasonsMutationFn } from "@/apis/mutation-functions.ts";
-import type { FormState } from "@/components/forms/season-form.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { buildFormAction } from "@/pages/manager/seasons/forms/actions.tsx";
-import UpdateForm from "@/pages/manager/seasons/forms/update-form.tsx";
+import UpdateForm, { type FormState } from "@/pages/manager/seasons/forms/update-form.tsx";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { managerPaths } from "@/routes/manager/routes.ts";
 import { useMutation } from "@tanstack/react-query";
@@ -12,6 +11,8 @@ import { Fragment, useActionState } from "react";
 const initialFormState: FormState = {
   fieldValues: {
     name: "",
+    active: false,
+    archived: false,
   },
   fieldErrors: {},
   formErrors:  [],

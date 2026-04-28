@@ -12,7 +12,7 @@ export type Player = {
   id:       number,
   name:     string,
   position: PositionType,
-  number:   number,
+  number:   string,
   height:   string,
   active:   boolean,
   archived: boolean,

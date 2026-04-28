@@ -20,7 +20,7 @@ export type FormState = {
   fieldValues: {
     date: Date,
     phase: string,
-    round: number,
+    round: string,
     seasonId: string,
     divisionId: string,
     active: boolean,
@@ -45,7 +45,7 @@ type GameFormProps = {
   onCancel: () => void,
 };
 
-const phaseOptions = [
+const phaseOptions: Option[] = [
   { value: Phase.PRE_SEASON,     label: "Pre Season" },
   { value: Phase.REGULAR_SEASON, label: "Regular Season" },
   { value: Phase.POST_SEASON,    label: "Post Season" },

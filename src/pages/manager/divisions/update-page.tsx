@@ -32,7 +32,7 @@ export function UpdatePage() {
   ]);
 
   initialFormState.fieldValues.name = division.name;
-  initialFormState.fieldValues.seasonId = division.seasonId;
+  initialFormState.fieldValues.seasonId = division.seasonId.toString();
   initialFormState.fieldValues.active = division.active;
   initialFormState.fieldValues.archived = division.archived;
 

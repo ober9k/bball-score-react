@@ -49,7 +49,7 @@ export const getValue = (formData: FormData, key: string): string => {
 /**
  * Helpers for using formData from useActionState.
  */
-export const getCheckboxValue = (formData: FormData, key: string): string => {
+export const getCheckboxValue = (formData: FormData, key: string): boolean => {
   return formData.has(key)
     ? formData.get(key) === "on"
     : false;
