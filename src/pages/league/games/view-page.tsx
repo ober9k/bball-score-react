@@ -1,7 +1,7 @@
 import type { GameLoaderProps } from "@/apis/loaders/types.ts";
 import GameCard from "@/components/games/game-card.tsx";
-import { StatsValuesRow } from "@/components/stats/stats-values-row.tsx";
 import { StatsTitlesRow } from "@/components/stats/stats-titles-row.tsx";
+import { StatsValuesRow } from "@/components/stats/stats-values-row.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { calculateTotals } from "@/lib/stats-utils.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";

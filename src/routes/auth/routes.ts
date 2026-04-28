@@ -2,7 +2,6 @@ import { logoutQueryOptions } from "@/apis/query-options.ts";
 import LoginPage from "@/pages/auth/login-page";
 import LogoutPage from "@/pages/auth/logout-page";
 import ErrorPage from "@/pages/errors/error-page.tsx";
-import UnauthorizedPage from "@/pages/errors/unauthorized-page.tsx";
 import { mapRoute } from "@/routes/route.ts";
 
 async function logoutLoader({ context }) {

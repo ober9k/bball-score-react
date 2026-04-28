@@ -2,7 +2,7 @@ import type { TeamLoaderProps } from "@/apis/loaders/types.ts";
 import { TeamMenu } from "@/components/teams/team-menu.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { getRouteApi, Link } from "@tanstack/react-router";
+import { getRouteApi } from "@tanstack/react-router";
 
 export function ViewPage() {
   const { team }: TeamLoaderProps = getRouteApi(leaguePaths.Teams.View).useLoaderData();

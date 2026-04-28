@@ -1,3 +1,4 @@
+import * as styles from "@/components/players/player-card.module.css";
 import { PlayerPosition } from "@/components/players/player-position.tsx";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/shared/components/ui/card";
@@ -5,7 +6,6 @@ import type { Player } from "@/types/player.ts";
 import type { Stats } from "@/types/stats.ts";
 import { Link } from "@tanstack/react-router";
 import { Fragment } from "react";
-import * as styles from "@/components/players/player-card.module.css";
 
 type Props = {
   player: Player,

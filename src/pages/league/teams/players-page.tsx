@@ -1,4 +1,4 @@
-import type { TeamLoaderProps, TeamPlayersLoaderProps } from "@/apis/loaders/types.ts";
+import type { TeamPlayersLoaderProps } from "@/apis/loaders/types.ts";
 import PlayerCard from "@/components/players/player-card.tsx";
 import { TeamMenu } from "@/components/teams/team-menu.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";

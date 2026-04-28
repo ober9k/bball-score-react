@@ -1,7 +1,6 @@
-import type { PlayerGamesLoaderProps, PlayerLoaderProps } from "@/apis/loaders/types.ts";
+import type { PlayerGamesLoaderProps } from "@/apis/loaders/types.ts";
 import { PlayerMenu } from "@/components/players/player-menu.tsx";
 import { GameLogTable } from "@/components/statistics/game-log-table.tsx";
-import { StatisticsTable } from "@/components/statistics/statistics-table.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { getRouteApi } from "@tanstack/react-router";

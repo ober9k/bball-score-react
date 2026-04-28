@@ -1,7 +1,7 @@
 import type { DivisionLoaderProps } from "@/apis/loaders/types.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { getRouteApi, Link } from "@tanstack/react-router";
+import { getRouteApi } from "@tanstack/react-router";
 
 export function ViewPage() {
   const { division }: DivisionLoaderProps = getRouteApi(leaguePaths.Divisions.View).useLoaderData();
