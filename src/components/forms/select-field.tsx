@@ -9,6 +9,7 @@ import {
   SelectTrigger as UiSelectTrigger,
   SelectValue as UiSelectValue
 } from "@/shared/components/ui/select.tsx";
+import type { Option } from "@/types/option.ts";
 import { Fragment } from "react";
 
 export type SelectFieldState = {
@@ -17,7 +18,7 @@ export type SelectFieldState = {
   required?:    boolean,
   description?: string,
   value:        string,
-  values:       { label: string, value: string }[],
+  values:       Option[],
   errors:       string[],
 }
 
