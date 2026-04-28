@@ -1,4 +1,4 @@
-import { fetchAll, fetchAllWithConverter, fetchById } from "@/apis/api.ts";
+import { fetchAll, fetchById } from "@/apis/api.ts";
 import { toStandingsLog } from "@/apis/converters.ts";
 import type {
   DivisionLoaderProps,
@@ -128,7 +128,7 @@ export async function teamStatisticsLoader({ context, params }) {
 }
 
 export async function standingsLoader({ context }) {
-  return fetchAllWithConverter<StandingsLog>(context.queryClient, buildStandingsQueryOptions(), toStandingsLog);
+  return fetchAll<StandingsLog>(context.queryClient, buildStandingsQueryOptions(), toStandingsLog);
 }
 
 export async function statisticsLoader({ context, deps }) {

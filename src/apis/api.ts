@@ -11,22 +11,8 @@ import { StatusCodes } from "http-status-codes";
 /**
  * Retrieve all items by provided options.
  */
-export async function fetchAll(client: QueryClient, options: QueryOptions): any[] {
+export async function fetchAll<T>(client: QueryClient, options: QueryOptions): Promise<T[]> {
   return client.fetchQuery(options)
-}
-
-/**
- * Retrieve all items by provided options.
- * This will be the replacement.
- * TODO: add type handling
- */
-export async function fetchAllWithConverter<T>(client: QueryClient, options: QueryOptions, dtoConverter: DtoConverter<T>): T[] {
-  const [ key ] = options.queryKey;
-
-  return {
-    [key]: await client.fetchQuery(options)
-      .then((items) => items.map(dtoConverter)),
-  };
 }
 
 /**
