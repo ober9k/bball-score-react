@@ -51,7 +51,7 @@ export function formatValue(log: StandingsLog, standingsKey: StandingsKeyType): 
     case StandingsKey.PointsDiff:
       return formatPointsDiff(log.pointsFor, log.pointsAgainst, log.played);
     case StandingsKey.Points:
-      return formatPoints(log.wins, log.losses, log.draws, log.byes);
+      return formatPoints(log.wins, log.losses, log.draws, log.byes).toString();
     default:
       /* standard value handling */
       return log[standingsKey].toString();

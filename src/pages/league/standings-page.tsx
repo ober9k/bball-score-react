@@ -16,8 +16,8 @@ export function StandingsPage() {
   ]);
 
   const standingsLogs = standings.sort((logA: StandingsLog, logB: StandingsLog) => {
-    const pointsA = formatPoints(logA);
-    const pointsB = formatPoints(logB);
+    const pointsA = formatPoints(logA.wins, logA.losses, logA.draws, logA.byes);
+    const pointsB = formatPoints(logB.wins, logB.losses, logB.draws, logB.byes);
 
     if (pointsA < pointsB) return  1;
     if (pointsA > pointsB) return -1;
