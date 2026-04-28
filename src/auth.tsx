@@ -1,8 +1,9 @@
 import type { AuthUser } from "@/types/user.ts";
 import { Role } from "@/types/user/role.ts";
-import { createContext, ReactNode, Ref, useContext, useRef } from "react";
+import { createContext, ReactNode, type Ref, useContext, useRef } from "react";
 
 export interface IAuthContext {
+  user: () => AuthUser, /* utility access to current user */
   userRef: Ref<AuthUser | null>, /* just use a plain object */
   isAuthenticated: () => boolean,
   isAuthorized: (permission: string) => boolean,
@@ -40,8 +41,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
   /**
    * Check if user is authorized based on permissions.
    * This still needs to be implemented properly.
+   * TODO: permission will be later used and checked against
    */
-  const isAuthorized = (permission: string) => {
+  const isAuthorized = (/*permission: string*/) => {
     return user() && true;
   };
 
