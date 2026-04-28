@@ -20,7 +20,7 @@ export function PlayerMenu(props: Props) {
 
   const isActive = useCallback((link) => {
     return (latestLocation.href === link.to.replace("$playerId", player.id.toString()));
-  });
+  }, [player.id]);
 
   return (
     <Fragment>

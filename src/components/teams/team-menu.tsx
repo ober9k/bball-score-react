@@ -21,7 +21,7 @@ export function TeamMenu(props: Props) {
 
   const isActive = useCallback((link) => {
     return (latestLocation.href === link.to.replace("$teamId", team.id.toString()));
-  });
+  }, [team.id]);
 
   return (
     <Fragment>
