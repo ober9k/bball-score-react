@@ -1,3 +1,4 @@
+import { DivisionLink } from "@/components/shared/links.tsx";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/shared/components/ui/card";
 import type { Division } from "@/types/division.ts";
@@ -17,9 +18,7 @@ export default function DivisionCard({ division }: Props) {
           </CardTitle>
         </CardHeader>
         <CardFooter className="border-t-gray-200 flex justify-center gap-2">
-          <Link to={leaguePaths.Divisions.View} params={{ divisionId: division.id }}>
-            View Division
-          </Link>
+          <DivisionLink division={division} />
         </CardFooter>
       </Card>
     </>

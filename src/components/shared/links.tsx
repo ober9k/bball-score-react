@@ -102,14 +102,50 @@ export function SeasonUpdateLink({ season }: SeasonUpdateLinkProps) {
   );
 }
 
+type DivisionLinkProps = {
+  division: Division,
+};
+
+export function DivisionLink({ division }: DivisionLinkProps) {
+  /**
+   * @todo: this is a place holder due to compilation complaints for `params` types
+   */
+  const buildDivisionViewLink = (division: Division): string => {
+    return leaguePaths.Divisions.View.replace("$divisionId", division.id.toString());
+  };
+
+  return (
+    <Link to={buildDivisionViewLink(division)}>
+      <span>{division.name}</span>
+    </Link>
+  );
+}
+
+type GameLinkProps = {
+  game: Game,
+};
+
+export function GameLink({ game }: GameLinkProps) {
+  /**
+   * @todo: this is a place holder due to compilation complaints for `params` types
+   */
+  const buildGameViewLink = (game: Game): string => {
+    return leaguePaths.Games.View.replace("$gameId", game.id.toString());
+  };
+
+  return (
+    <Link to={buildGameViewLink(game)}>
+      <span>{game.id}</span> {/*this is temporary for viewing*/}
+    </Link>
+  );
+}
+
 type PlayerLinkProps = {
   player: Player,
   withNumber?: boolean,
-  asEdit?: boolean,
-  asView?: boolean,
 };
 
-export function PlayerLink({ player, withNumber, asEdit, asView }: PlayerLinkProps) {
+export function PlayerLink({ player, withNumber }: PlayerLinkProps) {
   /**
    * @todo: this is a place holder due to compilation complaints for `params` types
    */
@@ -119,14 +155,17 @@ export function PlayerLink({ player, withNumber, asEdit, asView }: PlayerLinkPro
 
   return (
     <Link to={buildPlayerViewLink(player)}>
-      {player.name}
+      <span>{player.name}</span>
+      {withNumber && (
+        <span>#{player.number}</span>
+      )}
     </Link>
   );
 }
 
 type TeamLinkProps = {
   team: Team,
-}
+};
 
 export function TeamLink({ team }: TeamLinkProps) {
   /**
@@ -138,7 +177,26 @@ export function TeamLink({ team }: TeamLinkProps) {
 
   return (
     <Link to={buildTeamViewLink(team)}>
-      {team.name}
+      <span>{team.name}</span>
+    </Link>
+  );
+}
+
+type SeasonLinkProps = {
+  season: Season,
+};
+
+export function SeasonLink({ season }: SeasonLinkProps) {
+  /**
+   * @todo: this is a place holder due to compilation complaints for `params` types
+   */
+  const buildSeasonViewLink = (season: Season): string => {
+    return leaguePaths.Seasons.View.replace("$seasonId", season.id.toString());
+  };
+
+  return (
+    <Link to={buildSeasonViewLink(season)}>
+      <span>{season.name}</span>
     </Link>
   );
 }

@@ -1,4 +1,5 @@
 import type { SeasonsLoaderProps } from "@/apis/loaders/types.ts";
+import { SeasonLink } from "@/components/shared/links.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { getRouteApi, Link } from "@tanstack/react-router";
@@ -16,9 +17,7 @@ export function IndexPage() {
     <>
       <div className="p-2 text-sm flex flex-col gap-2">
         {seasons.map((season) => (
-          <Link to={leaguePaths.Seasons.View} params={{seasonId: season.id}} key={season.id}>
-            {season.name}
-          </Link>
+          <SeasonLink season={season} />
         ))}
       </div>
     </>

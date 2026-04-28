@@ -1,3 +1,4 @@
+import { TeamLink } from "@/components/shared/links.tsx";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/shared/components/ui/card";
 import type { Team } from "@/types/team.ts";
@@ -17,9 +18,7 @@ export default function TeamCard({ team }: Props) {
           </CardTitle>
         </CardHeader>
         <CardFooter className="border-t-gray-200 flex justify-center gap-2">
-          <Link to={leaguePaths.Teams.View} params={{ teamId: team.id }}>
-            View Team
-          </Link>
+          <TeamLink team={team} asView={true} />
         </CardFooter>
       </Card>
     </>

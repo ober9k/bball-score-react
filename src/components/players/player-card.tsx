@@ -1,5 +1,6 @@
 import * as styles from "@/components/players/player-card.module.css";
 import { PlayerPosition } from "@/components/players/player-position.tsx";
+import { PlayerLink } from "@/components/shared/links.tsx";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/shared/components/ui/card";
 import type { Player } from "@/types/player.ts";
@@ -23,9 +24,7 @@ export default function PlayerCard({ player, stats }: Props) {
       <Card>
         <CardHeader>
           <CardTitle>
-            <Link to={leaguePaths.Players.View} params={{ playerId: player.id }}>
-              {player.name} #{player.number}
-            </Link>
+            <PlayerLink player={player} withNumber={true} />
           </CardTitle>
         </CardHeader>
         <CardContent>

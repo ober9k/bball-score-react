@@ -1,4 +1,4 @@
-import { TeamLink } from "@/components/shared/links.tsx";
+import { GameLink, TeamLink } from "@/components/shared/links.tsx";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { Card, CardContent, CardFooter } from "@/shared/components/ui/card.tsx";
 import type { Game } from "@/types/game.ts";
@@ -39,9 +39,7 @@ export default function GameCard({ game }: Props) {
           </div>
         </CardContent>
         <CardFooter className="border-t-gray-200 flex justify-center gap-2">
-          <Link to={leaguePaths.Games.View} params={{ gameId: game.id }}>
-            ...
-          </Link>
+          <GameLink game={game} />
         </CardFooter>
       </Card>
     </Fragment>
