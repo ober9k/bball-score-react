@@ -60,7 +60,7 @@ export function formatValue(log: StandingsLog, standingsKey: StandingsKeyType): 
 
 export type ColumnsType = "basic" | "complete";
 
-const BasicColumns = [
+const BasicColumns: StandingsKeyType[] = [
   StandingsKey.Played,
   StandingsKey.Wins,
   StandingsKey.Losses,
@@ -69,7 +69,7 @@ const BasicColumns = [
   StandingsKey.Points,
 ] as const;
 
-const CompleteColumns = [
+const CompleteColumns: StandingsKeyType[] = [
   StandingsKey.Played,
   StandingsKey.Wins,
   StandingsKey.Losses,
