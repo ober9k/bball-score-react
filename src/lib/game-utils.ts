@@ -1,4 +1,4 @@
-import { Phase, PhaseType, Side, SideType } from "@/types/game.ts";
+import { Phase, type PhaseType, Side, type SideType } from "@/types/game.ts";
 
 export function mapSide(side: string): SideType {
   switch (side) {

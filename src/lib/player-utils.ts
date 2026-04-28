@@ -1,5 +1,4 @@
-import { Position } from "@/types/player.ts";
-import type { PositionType } from "@/types/player.ts";
+import { Position, type PositionType } from "@/types/player.ts";
 
 export function mapPosition(position: string): PositionType {
   switch (position) {
