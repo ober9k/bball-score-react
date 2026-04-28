@@ -1,6 +1,7 @@
 import type { GameLoaderProps } from "@/apis/loaders/types.ts";
 import { buildGamesMutationFn } from "@/apis/mutation-functions.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
+import { mapPhase } from "@/lib/game-utils.ts";
 import { buildFormAction } from "@/pages/manager/games/forms/actions.tsx";
 import UpdateForm, { type FormState } from "@/pages/manager/games/forms/update-form.tsx";
 import { leaguePaths } from "@/routes/league/routes.ts";
@@ -35,7 +36,7 @@ export function UpdatePage() {
   ]);
 
   initialFormState.fieldValues.date = (new Date(game.date)).toISOString().split('T')[0];
-  initialFormState.fieldValues.phase = game.phase;
+  initialFormState.fieldValues.phase = mapPhase(game.phase);
   initialFormState.fieldValues.round = game.round.toString();
   initialFormState.fieldValues.seasonId = game.seasonId.toString();
   initialFormState.fieldValues.divisionId = game.divisionId.toString();

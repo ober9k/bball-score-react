@@ -1,4 +1,5 @@
 import { getCheckboxValue, getValue, onFieldError, onFormError, onSuccess, onUnexpectedError } from "@/lib/forms.ts";
+import { mapPosition } from "@/lib/player-utils.ts";
 import type { FormState } from "@/pages/manager/players/forms/update-form.tsx";
 import { zPlayer } from "@/schemas/player.ts";
 import type { UpdatePlayerDto } from "@/types/player.ts";
@@ -20,7 +21,7 @@ export const buildFormAction = (mutation) => {
     try {
       const data: UpdatePlayerDto = {
         name:     fieldValues.name,
-        position: fieldValues.position,
+        position: mapPosition(fieldValues.position),
         number:   fieldValues.number,
         height:   fieldValues.height,
         active:   fieldValues.active,
