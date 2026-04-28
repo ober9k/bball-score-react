@@ -6,7 +6,7 @@ import type { StatsKeyType } from "@/types/stats.ts";
 import { StatsKey } from "@/types/stats.ts";
 import { Fragment } from "react";
 
-const WidenedColumns = [
+const WidenedColumns: StatsKeyType[] = [
   StatsKey.FieldGoals,
   StatsKey.FieldGoalsPercentage,
   StatsKey.TwoPointFieldGoals,
@@ -17,7 +17,7 @@ const WidenedColumns = [
   StatsKey.FreeThrowsPercentage,
 ] as const;
 
-const SortableColumns = [
+const SortableColumns: StatsKeyType[] = [
   StatsKey.FieldGoalsPercentage,
   StatsKey.TwoPointFieldGoalsPercentage,
   StatsKey.ThreePointFieldGoalsPercentage,

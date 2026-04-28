@@ -79,7 +79,7 @@ export function getPoints(made: number, attempted: number, precision: number, as
  * @param statsKey
  */
 function isPercentageStatsKey(statsKey: StatsKeyType): boolean {
-  const statsKeys = [
+  const statsKeys: StatsKeyType[] = [
     StatsKey.FieldGoalsPercentage,
     StatsKey.TwoPointFieldGoalsPercentage,
     StatsKey.ThreePointFieldGoalsPercentage,
@@ -168,7 +168,7 @@ export function calculateTotals(playerLogs: PlayerLog[]): Stats {
 
 export type ColumnsType = "basic" | "extended" | "complete";
 
-const BasicColumns = [
+const BasicColumns: StatsKeyType[] = [
   StatsKey.Rebounds,
   StatsKey.Assists,
   StatsKey.Steals,
@@ -178,7 +178,7 @@ const BasicColumns = [
   StatsKey.Points,
 ] as const;
 
-const ExtendedColumns = [
+const ExtendedColumns: StatsKeyType[] = [
   StatsKey.Minutes,
   StatsKey.FieldGoals,
   StatsKey.ThreePointFieldGoals,
@@ -192,7 +192,7 @@ const ExtendedColumns = [
   StatsKey.Points,
 ] as const;
 
-const CompleteColumns = [
+const CompleteColumns: StatsKeyType[] = [
   StatsKey.Minutes,
   StatsKey.FieldGoals,
   StatsKey.FieldGoalsPercentage,
