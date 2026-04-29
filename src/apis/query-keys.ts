@@ -1,5 +1,3 @@
-import type { StatisticsMode } from "@/apis/query-options.ts";
-
 export const queryKeys = {
   Seasons:    "seasons",
   Season:     "season",
@@ -44,8 +42,4 @@ export const getGamesQK = (id?: number): Array<string|number> => {
 
 export const getStandingsQK = (id?: number): Array<string|number> => {
   return getQK(queryKeys.Standings, id); /* seasonId */
-};
-
-export const getStatisticsQK = (mode: StatisticsMode): Array<string|number> => {
-  return getQK(queryKeys.Statistics, mode); /* to add later: seasonId */
 };

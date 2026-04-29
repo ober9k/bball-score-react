@@ -118,6 +118,6 @@ export function buildOptionsQueryOptions(optionsKey: OptionsKeyType) {
 
   return {
     queryKey: [optionsKey, "options"],
-    queryFn:  buildOptionsQueryFn(optionsKey),
-  }
+    queryFn:  buildOptionsQueryFn(),
+  };
 }
