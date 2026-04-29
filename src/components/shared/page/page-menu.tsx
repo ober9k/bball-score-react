@@ -5,7 +5,6 @@ import { Fragment } from "react";
 export type PageLink = {
   title: string,
   to: string,
-  params: { id: number },
 };
 
 type Props = {
@@ -24,7 +23,7 @@ export function PageMenu(props: Props) {
             {links.map((link, index) => (
               <NavigationMenuItem key={index}>
                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()} data-active={isActive(link)}>
-                  <Link to={link.to} params={link.params}>{link.title}</Link>
+                  <Link to={link.to}>{link.title}</Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
