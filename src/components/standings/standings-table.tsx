@@ -12,7 +12,7 @@ type StandingsTableProps = {
 
 export function StandingsTable(props: StandingsTableProps) {
   const { columnsType = "complete", standingsLogs } = props;
-  const columns = ColumnsMap.get(columnsType);
+  const columns = ColumnsMap.get(columnsType)!; /* todo: revisit strict/null checks for columns */
 
   return (
     <Fragment>

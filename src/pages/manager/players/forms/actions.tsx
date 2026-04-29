@@ -37,7 +37,7 @@ export const buildFormAction = (mutation) => {
         return onFieldError(fieldValues, fieldErrors);
       }
       else if (axios.isAxiosError(error)) {
-        const { formErrors } = error.response.data;
+        const { formErrors } = error.response!.data; /* todo: revisit strict/null checks for error data */
         return onFormError(fieldValues, formErrors);
       }
 

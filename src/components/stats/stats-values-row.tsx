@@ -48,7 +48,7 @@ type StatsValuesRowProps = {
 
 export function StatsValuesRow(props: StatsValuesRowProps) {
   const { columnsType = "complete", player, season, totals, averages = false, stats } = props;
-  const columns = ColumnsMap.get(columnsType);
+  const columns = ColumnsMap.get(columnsType)!; /* todo: revisit strict/null checks for columns */
 
   return (
     <Fragment>

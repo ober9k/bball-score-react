@@ -10,7 +10,7 @@ export default function usePageContext() {
     setSubTitle,
     breadcrumbs,
     setBreadcrumbs,
-  } = useContext(PageContext);
+  } = useContext(PageContext)!; /* todo: revisit strict/null checks for page context */
 
   return {
     setPageHeader,

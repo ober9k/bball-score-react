@@ -29,7 +29,7 @@ const statsTitles = new Map<StatsKeyType, string>()
   .set(StatsKey.FreeThrowsPercentage,  "FT%")
 
 export function getStatsTitle(statsKey: StatsKeyType): string {
-  return statsTitles.get(statsKey);
+  return statsTitles.get(statsKey)!; /* todo: revisit strict/null checks for statsTitles */
 }
 
 /**

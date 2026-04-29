@@ -55,7 +55,8 @@ export function StatsTitleCell(props: StatsTitleCellProps) {
   return (
     <Fragment>
       {isSortableColumn() ? (
-        <TableHead className={cellClass} onClick={() => setSortStatsKey(statsKey)}>
+        /* todo: revisit strict/null checks for statsTitles */
+        <TableHead className={cellClass} onClick={() => setSortStatsKey && setSortStatsKey(statsKey)}>
           {cellValue}
           {isSortedColumn() && (
             <span className="px-0.25 text-xs">▼</span>
@@ -78,7 +79,7 @@ type StatsTitlesRowProps = {
 
 export function StatsTitlesRow(props: StatsTitlesRowProps) {
   const { columnsType = "complete", sortStatsKey, setSortStatsKey } = props;
-  const columns = ColumnsMap.get(columnsType);
+  const columns = ColumnsMap.get(columnsType)!; /* todo: revisit strict/null checks for columns */
 
   return (
     <Fragment>

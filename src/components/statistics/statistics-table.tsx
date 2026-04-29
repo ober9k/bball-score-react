@@ -16,7 +16,7 @@ type StatisticsTableProps = {
 
 export function StatisticsTable(props: StatisticsTableProps) {
   const { columnsType = "complete", statisticsLogs, averages } = props;
-  const columns = ColumnsMap.get(columnsType);
+  const columns = ColumnsMap.get(columnsType)!; /* todo: revisit strict/null checks for columns */
 
   const [ sortStatsKey, setSortStatsKey ] = useState<StatsKeyType>(StatsKey.Points);
   const [ sortedStatisticsLogs, setSortedStatisticsLogs ] = useState(statisticsLogs);

@@ -28,7 +28,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
    * Convenience method for accessing user.
    */
   const user = () => {
-    return userRef.current;
+    return userRef.current!; /* todo: revisit strict/null checks for auth user */
   };
 
   /**

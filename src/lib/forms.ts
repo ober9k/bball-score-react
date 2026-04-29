@@ -43,7 +43,7 @@ export function onUnexpectedError(fieldValues: any) {
  * Helpers for using formData from useActionState.
  */
 export const getValue = (formData: FormData, key: string): string => {
-  return formData.get(key).toString();
+  return formData.get(key)!.toString(); /* todo: revisit strict/null checks for formData */
 }
 
 /**

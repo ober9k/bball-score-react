@@ -37,7 +37,7 @@ const standingsTitles = new Map<StandingsKeyType, string>()
   .set(StandingsKey.Points, "PTS")
 
 export function getStandingsTitle(standingsKey: StandingsKeyType): string {
-  return standingsTitles.get(standingsKey);
+  return standingsTitles.get(standingsKey)!; /* todo: revisit strict/null checks for standingsTitles */
 }
 
 /**

@@ -28,6 +28,6 @@ const phrasesMap = new Map<string, string>(Object.entries(phrases));
  */
 export const i18n = (key: string): string => {
   return phrasesMap.has(key)
-    ? phrasesMap.get(key)
+    ? phrasesMap.get(key)! /* todo: revisit strict/null checks for phrases */
     : "Undefined.";
 }
