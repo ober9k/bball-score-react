@@ -1,5 +1,5 @@
 import type { AuthUser } from "@/types/user.ts";
-import { Role } from "@/types/user/role.ts";
+import { Role, type RoleType } from "@/types/user/role.ts";
 import { createContext, type ReactNode, type Ref, useContext, useRef } from "react";
 
 export interface IAuthContext {
@@ -16,7 +16,7 @@ type AuthProviderProps = {
   children: ReactNode,
 };
 
-const authenticatedRoles = [
+const authenticatedRoles: RoleType[] = [
   Role.ADMINISTRATOR,
   Role.MANAGER,
 ];

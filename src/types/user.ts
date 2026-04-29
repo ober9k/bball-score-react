@@ -1,4 +1,6 @@
 /* TODO: to be tidied up */
+import type { RoleType } from "@/types/user/role.ts";
+
 export type User = {
   loggedIn: boolean,
   email?: string,
@@ -8,7 +10,7 @@ export type User = {
 /* TODO: to be tidied up */
 export type AuthUser = {
   email: string,
-  role: string,
+  role: RoleType,
   permissions: string[],
 }
 
