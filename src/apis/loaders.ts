@@ -74,7 +74,7 @@ export async function teamLoader({ context, params }): Promise<TeamLoaderProps> 
 export async function teamPlayersLoader({ context, params }): Promise<TeamPlayersLoaderProps> {
   return {
     team:           await fetchById<Team>(context.queryClient, buildTeamsQueryOptions(+params.teamId)),
-    players:        await fetchById<Player>(context.queryClient, buildTeamPlayersQueryOptions(+params.teamId)),
+    players:        await fetchAll<Player>(context.queryClient, buildTeamPlayersQueryOptions(+params.teamId)),
     statisticsLogs: await fetchAll<StatisticsLog>(context.queryClient, buildTeamStatisticsQueryOptions(+params.teamId, "averages")), /* todo: optimize */
   }
 }
@@ -129,7 +129,7 @@ export async function teamStatisticsLoader({ context, params }) {
 
 export async function standingsLoader({ context }) {
   return {
-    standingsLogs: await fetchAll<StandingsLog>(context.queryClient, buildStandingsQueryOptions(), toStandingsLog),
+    standingsLogs: await fetchAll<StandingsLog>(context.queryClient, buildStandingsQueryOptions()),
   };
 }
 
