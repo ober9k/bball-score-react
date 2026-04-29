@@ -20,7 +20,7 @@ export const buildFormAction = (mutation) => {
       };
 
       zUser.parse(data);
-      await mutation.mutateAsync<AuthUserData>(data);
+      await mutation.mutateAsync(data);
     }
     catch (error) {
       if (error instanceof z.ZodError) {

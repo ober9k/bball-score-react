@@ -29,7 +29,7 @@ export const buildFormAction = (mutation) => {
       };
 
       zPlayer.parse(data);
-      await mutation.mutateAsync<UpdatePlayerDto>(data);
+      await mutation.mutateAsync(data);
     }
     catch (error) {
       if (error instanceof z.ZodError) {

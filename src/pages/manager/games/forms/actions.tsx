@@ -31,7 +31,7 @@ export const buildFormAction = (mutation) => {
       };
 
       zGame.parse(data);
-      await mutation.mutateAsync<UpdateGameDto>(data);
+      await mutation.mutateAsync(data);
     }
     catch (error) {
       if (error instanceof z.ZodError) {

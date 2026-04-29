@@ -24,7 +24,7 @@ export const buildFormAction = (mutation) => {
       };
 
       zDivision.parse(data);
-      await mutation.mutateAsync<UpdateDivisionDto>(data);
+      await mutation.mutateAsync(data);
     }
     catch (error) {
       if (error instanceof z.ZodError) {

@@ -1,5 +1,5 @@
 import type { Link } from "@/components/layout/page/page-breadcrumbs.tsx";
-import { createContext, type Dispatch, SetStateAction } from "react";
+import { createContext, type Dispatch, type SetStateAction } from "react";
 
 export interface IPageContext {
   setPageHeader: (title?: string, subTitle?: string, breadcrumbs?: Link[]) => void,

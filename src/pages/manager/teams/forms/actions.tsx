@@ -26,7 +26,7 @@ export const buildFormAction = (mutation) => {
       };
 
       zTeam.parse(data);
-      await mutation.mutateAsync<UpdateTeamDto>(data);
+      await mutation.mutateAsync(data);
     }
     catch (error) {
       if (error instanceof z.ZodError) {

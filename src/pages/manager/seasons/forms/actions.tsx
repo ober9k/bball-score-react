@@ -22,7 +22,7 @@ export const buildFormAction = (mutation) => {
       };
 
       zSeason.parse(data);
-      await mutation.mutateAsync<UpdateSeasonDto>(data);
+      await mutation.mutateAsync(data);
     }
     catch (error) {
       if (error instanceof z.ZodError) {
