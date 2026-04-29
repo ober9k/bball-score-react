@@ -8,6 +8,7 @@ import type { InputFieldState } from "@/components/forms/input-field.tsx";
 import InputField from "@/components/forms/input-field.tsx";
 import type { SelectFieldState } from "@/components/forms/select-field.tsx";
 import SelectField from "@/components/forms/select-field.tsx";
+import { formatYMD } from "@/lib/date-utils.ts";
 import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
 import { Separator } from "@/shared/components/ui/separator.tsx";
 import { Phase } from "@/types/game.ts";
@@ -73,7 +74,7 @@ export default function UpdateForm({ formAction, formState, formMode, isPending,
     label:    "Date",
     description: "Enter a date and time for when the game occurred.",
     required: true,
-    value:    fieldValues.date.toString(),
+    value:    formatYMD(fieldValues.date),
     errors:   fieldErrors.date || [],
   };
 

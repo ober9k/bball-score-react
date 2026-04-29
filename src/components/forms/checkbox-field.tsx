@@ -30,7 +30,7 @@ export default function CheckboxField({ fieldState }: Props) {
     return errors.length > 0;
   };
 
-  const [ checked, setChecked ] = useState(value);
+  const [ checked, setChecked ] = useState<boolean | "indeterminate">(value);
 
   return (
     <Fragment>

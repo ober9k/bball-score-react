@@ -12,7 +12,7 @@ import { Fragment, useActionState } from "react";
 
 const initialFormState: FormState = {
   fieldValues: {
-    date:       "",
+    date:       new Date(),
     phase:      "",
     round:      "",
     seasonId:   "",
@@ -28,14 +28,14 @@ export function UpdatePage() {
   const { game }: GameLoaderProps = getRouteApi(managerPaths.Games.Update).useLoaderData();
   const router = useRouter();
 
-  useTitle("Update Game", game.date.toISOString() /*better handling TBD*/);
+  useTitle("Update Game", game.id.toString());
   useBreadcrumbs([
     { title: "Manager", to: leaguePaths.League.Index },
     { title: "Games", to: managerPaths.Games.Index },
     { title: "Update Game" },
   ]);
 
-  initialFormState.fieldValues.date = (new Date(game.date)).toISOString().split('T')[0];
+  initialFormState.fieldValues.date = game.date;
   initialFormState.fieldValues.phase = mapPhase(game.phase);
   initialFormState.fieldValues.round = game.round.toString();
   initialFormState.fieldValues.seasonId = game.seasonId.toString();

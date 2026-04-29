@@ -10,7 +10,7 @@ import { Fragment, useActionState } from "react";
 
 const initialFormState: FormState = {
   fieldValues: {
-    date:       "",
+    date:       new Date(),
     phase:      "",
     round:      "",
     seasonId:   "",

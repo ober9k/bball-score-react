@@ -35,7 +35,7 @@ export default function InputField({ fieldState }: Props) {
     <Fragment>
       <UiField>
         <FieldLabel field={name} label={label} required={required} />
-        <UiInput type={type} id={name} name={name} defaultValue={value} noValidate aria-invalid={hasErrors()} />
+        <UiInput type={type} id={name} name={name} defaultValue={value} aria-invalid={hasErrors()} />
         <FieldErrors errors={errors} />
         <FieldDescription description={description} />
       </UiField>

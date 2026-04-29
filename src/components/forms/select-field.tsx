@@ -1,6 +1,6 @@
 import FieldErrors from "@/components/forms/field/field-errors.tsx";
 import FieldLabel from "@/components/forms/field/field-label.tsx";
-import { Field as UiField, FieldDescription } from "@/shared/components/ui/field.tsx";
+import { Field as UiField, FieldDescription as UiFieldDescription } from "@/shared/components/ui/field.tsx";
 import {
   Select as UiSelect,
   SelectContent as UiSelectContent,
@@ -32,7 +32,7 @@ type Props = {
  * @constructor
  */
 export default function SelectField({ fieldState }: Props) {
-  const { name, type, label, required, description, value, values, errors } = fieldState;
+  const { name, label, required, description, value, values, errors } = fieldState;
 
   const hasErrors = (): boolean => {
     return errors.length > 0;
@@ -57,7 +57,9 @@ export default function SelectField({ fieldState }: Props) {
           </UiSelectContent>
         </UiSelect>
         <FieldErrors errors={errors} />
-        <FieldDescription description={description} />
+        <UiFieldDescription>
+          {description}
+        </UiFieldDescription>
       </UiField>
     </Fragment>
   );
