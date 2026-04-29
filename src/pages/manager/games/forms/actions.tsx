@@ -1,4 +1,5 @@
 import { getCheckboxValue, getValue, onFieldError, onFormError, onSuccess, onUnexpectedError } from "@/lib/forms.ts";
+import { mapPhase } from "@/lib/game-utils.ts";
 import type { FormState } from "@/pages/manager/games/forms/update-form.tsx";
 import { zGame } from "@/schemas/game.ts";
 import type { UpdateGameDto } from "@/types/game.ts";
@@ -21,7 +22,7 @@ export const buildFormAction = (mutation) => {
     try {
       const data: UpdateGameDto = {
         date:        new Date(fieldValues.date),
-        phase:       fieldValues.phase,
+        phase:       mapPhase(fieldValues.phase),
         round:       parseInt(fieldValues.round),
         seasonId:   +fieldValues.seasonId,
         divisionId: +fieldValues.divisionId,

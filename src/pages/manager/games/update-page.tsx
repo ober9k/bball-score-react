@@ -28,7 +28,7 @@ export function UpdatePage() {
   const { game }: GameLoaderProps = getRouteApi(managerPaths.Games.Update).useLoaderData();
   const router = useRouter();
 
-  useTitle("Update Game", game.date);
+  useTitle("Update Game", game.date.toISOString() /*better handling TBD*/);
   useBreadcrumbs([
     { title: "Manager", to: leaguePaths.League.Index },
     { title: "Games", to: managerPaths.Games.Index },

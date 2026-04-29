@@ -21,7 +21,7 @@ export function IndexPage() {
       <ul>
         {games.map((game) => (
           <li key={game.id}>
-            {game.id} {game.date} [<GameUpdateLink game={game} />]
+            {game.id} {game.date.toISOString()} {/*better handling TBD*/} [<GameUpdateLink game={game} />]
           </li>
         ))}
       </ul>

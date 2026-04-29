@@ -18,7 +18,7 @@ export default function TeamCard({ team }: Props) {
           </CardTitle>
         </CardHeader>
         <CardFooter className="border-t-gray-200 flex justify-center gap-2">
-          <TeamLink team={team} asView={true} />
+          <TeamLink team={team} />
         </CardFooter>
       </Card>
     </>
