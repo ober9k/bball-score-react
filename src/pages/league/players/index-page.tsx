@@ -2,7 +2,7 @@ import type { PlayersLoaderProps } from "@/apis/loaders/types.ts";
 import PlayerCard from "@/components/players/player-card.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import type { StatisticsLog } from "@/types/statistics-log.ts";
+import type { Stats } from "@/types/stats.ts";
 import { getRouteApi } from "@tanstack/react-router";
 
 export function IndexPage() {
@@ -15,7 +15,7 @@ export function IndexPage() {
   ]);
 
   /* todo: optimize */
-  const playerStats = new Map<number, StatisticsLog>();
+  const playerStats = new Map<number, Stats>();
   statisticsLogs.forEach((log) => {
     playerStats.set(log.player.id, log.stats);
   });
