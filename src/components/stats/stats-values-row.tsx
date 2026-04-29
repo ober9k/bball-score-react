@@ -8,6 +8,10 @@ import type { Stats } from "@/types/stats.ts";
 import { StatsKey, type StatsKeyType } from "@/types/stats.ts";
 import { Fragment } from "react";
 
+const LabelCells: StatsKeyType[] = [
+  StatsKey.Points,
+];
+
 export type StatsValueCellProps = {
   stats:     Stats,
   statsKey:  StatsKeyType,
@@ -17,7 +21,7 @@ export type StatsValueCellProps = {
 export function StatsValueCell(props: StatsValueCellProps) {
   const { stats, statsKey, averages = false } = props;
 
-  const cellClass = ([StatsKey.Points].includes(statsKey))
+  const cellClass = (LabelCells.includes(statsKey))
     ? styles.statsLabelCell
     : styles.statsValueCell;
 

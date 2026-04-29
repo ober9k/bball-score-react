@@ -4,7 +4,7 @@ import { ColumnsMap, getStatsTitle } from "@/lib/stats-utils.ts";
 import { TableHead, TableRow } from "@/shared/components/ui/table.tsx";
 import type { StatsKeyType } from "@/types/stats.ts";
 import { StatsKey } from "@/types/stats.ts";
-import { Fragment } from "react";
+import { type Dispatch, Fragment, type SetStateAction } from "react";
 
 const WidenedColumns: StatsKeyType[] = [
   StatsKey.FieldGoals,
@@ -34,7 +34,7 @@ const SortableColumns: StatsKeyType[] = [
 type StatsTitleCellProps = {
   statsKey: StatsKeyType,
   sortStatsKey?: StatsKeyType,
-  setSortStatsKey?: (statsKey: StatsKeyType) => {},
+  setSortStatsKey?: Dispatch<SetStateAction<StatsKeyType>>,
 };
 
 export function StatsTitleCell(props: StatsTitleCellProps) {
@@ -72,8 +72,8 @@ export function StatsTitleCell(props: StatsTitleCellProps) {
 
 type StatsTitlesRowProps = {
   columnsType?: ColumnsType,
-  sortStatsKey: StatsKeyType,
-  setSortStatsKey: (statsKey: StatsKeyType) => {},
+  sortStatsKey?: StatsKeyType,
+  setSortStatsKey?: Dispatch<SetStateAction<StatsKeyType>>,
 };
 
 export function StatsTitlesRow(props: StatsTitlesRowProps) {
