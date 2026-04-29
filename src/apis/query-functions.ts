@@ -26,7 +26,7 @@ export function buildByIdQueryFn<T>(converter: DtoConverter<T>) {
   };
 }
 
-type PathKey = "seasons" | "divisions" | "teams" | "players";
+type PathKey = "seasons" | "divisions" | "teams" | "players" | "games" | "standings";
 
 function buildBaseQueryFn(pathKey: PathKey, id?: number) {
   const apiUrl = (id && id > 0)
