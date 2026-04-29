@@ -9,7 +9,7 @@ import type { StandingsLog } from "@/types/standings-log.ts";
 import type { StatisticsLog } from "@/types/statistics-log.ts";
 import type { Team } from "@/types/team.ts";
 
-export type StatisticsMode = "averages" | "totals";
+export type StatisticsMode = "averages" | "totals" | "games";
 
 export function buildSeasonsQueryOptions(id?: number) {
   return {

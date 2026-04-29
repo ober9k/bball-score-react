@@ -7,7 +7,7 @@ export async function loginMutationFn(loginData: LoginData) {
   return data;
 }
 
-type PathKey = "seasons" | "divisions" | "teams" | "players";
+type PathKey = "seasons" | "divisions" | "teams" | "players" | "games";
 
 function buildBaseMutationFn(pathKey: PathKey, id?: number) {
   const apiUrl = (id && id > 0)
