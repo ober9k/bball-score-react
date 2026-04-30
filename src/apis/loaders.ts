@@ -1,5 +1,4 @@
 import { fetchAll, fetchById } from "@/apis/api.ts";
-import { toStandingsLog } from "@/apis/converters.ts";
 import type {
   DivisionLoaderProps,
   DivisionsLoaderProps,
