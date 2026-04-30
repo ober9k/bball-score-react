@@ -1,4 +1,5 @@
 import { minLengthMessage } from "@/lib/messages";
+import { withActivatable, withArchivable } from "@/schemas/schemas.ts";
 import { Phase, type PhaseType } from "@/types/game.ts";
 import { z } from "zod";
 
@@ -14,6 +15,6 @@ export const zGame = z.object({
     .min(RoundMinLength, minLengthMessage(RoundLabel, RoundMinLength)),
   seasonId: z.number(),
   divisionId: z.number(),
-  active: z.boolean(),
-  archived: z.boolean(),
+  ...withActivatable,
+  ...withArchivable,
 });

@@ -1,3 +1,4 @@
+import { withActivatable, withArchivable } from "@/schemas/schemas.ts";
 import { z } from "zod";
 import { maxLengthMessage, minLengthMessage } from "../lib/messages.ts";
 
@@ -16,6 +17,6 @@ export const zDivision = z.object({
   seasonId: z
     .number()
     .min(SeasonMinLength, minLengthMessage(SeasonLabel, SeasonMinLength)),
-  active: z.boolean(),
-  archived: z.boolean(),
+  ...withActivatable,
+  ...withArchivable,
 });

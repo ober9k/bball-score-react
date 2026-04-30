@@ -1,4 +1,5 @@
 import { maxLengthMessage, minLengthMessage } from "@/lib/messages";
+import { withActivatable, withArchivable } from "@/schemas/schemas.ts";
 import { z } from "zod";
 
 const NameLabel = "Name";
@@ -22,6 +23,6 @@ export const zTeam = z.object({
   divisionId: z
     .number()
     .min(DivisionMinLength, minLengthMessage(DivisionLabel, DivisionMinLength)),
-  active: z.boolean(),
-  archived: z.boolean(),
+  ...withActivatable,
+  ...withArchivable,
 });

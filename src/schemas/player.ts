@@ -1,4 +1,5 @@
 import { maxLengthMessage, minLengthMessage } from "@/lib/messages";
+import { withActivatable, withArchivable } from "@/schemas/schemas.ts";
 import { Position, type PositionType } from "@/types/player.ts";
 import { z } from "zod";
 
@@ -31,6 +32,6 @@ export const zPlayer = z.object({
   height: z.string()
     .min(HeightMinLength, minLengthMessage(HeightLabel, HeightMinLength))
     .regex(HeightRegex, heightFormatMessage(HeightLabel)),
-  active: z.boolean(),
-  archived: z.boolean(),
+  ...withActivatable,
+  ...withArchivable,
 });
