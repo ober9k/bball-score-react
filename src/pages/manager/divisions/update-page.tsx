@@ -1,4 +1,4 @@
-import type { DivisionLoaderProps } from "@/apis/loaders/types.ts";
+import type { ManageDivisionsByIdLoaderProps } from "@/apis/manage/types/loader-props.ts";
 import { buildDivisionsMutationFn } from "@/apis/mutation-functions.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { buildFormAction } from "@/pages/manager/divisions/forms/actions.tsx";
@@ -21,7 +21,7 @@ const initialFormState: FormState = {
 };
 
 export function UpdatePage() {
-  const { division }: DivisionLoaderProps = getRouteApi(managerPaths.Divisions.Update).useLoaderData();
+  const { division }: ManageDivisionsByIdLoaderProps = getRouteApi(managerPaths.Divisions.Update).useLoaderData();
   const router = useRouter();
 
   useTitle("Update Division", division.name);
@@ -33,7 +33,7 @@ export function UpdatePage() {
 
   initialFormState.fieldValues.name = division.name;
   initialFormState.fieldValues.seasonId = division.seasonId.toString();
-  initialFormState.fieldValues.active = division.active;
+  initialFormState.fieldValues.active = division.activated;
   initialFormState.fieldValues.archived = division.archived;
 
   const mutation = useMutation({

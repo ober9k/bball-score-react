@@ -1,4 +1,4 @@
-import type { PlayersLoaderProps } from "@/apis/loaders/types.ts";
+import type { ManagePlayersAllLoaderProps } from "@/apis/manage/types/loader-props.ts";
 import { PlayerUpdateLink } from "@/components/shared/links.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
@@ -7,7 +7,7 @@ import { getRouteApi, Link } from "@tanstack/react-router";
 import { Fragment } from "react";
 
 export function IndexPage() {
-  const { players }: PlayersLoaderProps = getRouteApi(managerPaths.Players.Index).useLoaderData();
+  const { players }: ManagePlayersAllLoaderProps = getRouteApi(managerPaths.Players.Index).useLoaderData();
 
   useTitle("Players");
   useBreadcrumbs([

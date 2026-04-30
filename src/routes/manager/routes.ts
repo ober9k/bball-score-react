@@ -1,4 +1,15 @@
-import { divisionLoader, divisionsLoader, gameLoader, gamesLoader, playerLoader, playersLoader, seasonLoader, seasonsLoader, teamLoader, teamsLoader } from "@/apis/loaders.ts";
+import {
+  manageDivisionsAllLoader,
+  manageDivisionsByIdLoader,
+  manageGamesAllLoader,
+  manageGamesByIdLoader,
+  managePlayersAllLoader,
+  managePlayersByIdLoader,
+  manageSeasonsAllLoader,
+  manageSeasonsByIdLoader,
+  manageTeamsAllLoader,
+  manageTeamsByIdLoader
+} from "@/apis/manage/query-loaders.ts";
 import NotFoundPage from "@/pages/errors/not-found-page.tsx";
 import UnauthorizedPage from "@/pages/errors/unauthorized-page.tsx";
 import { DivisionsCreatePage } from "@/pages/manager/divisions/create-page.tsx";
@@ -64,7 +75,7 @@ const defaultOptions = {
 const routes = [{
   path: paths.Seasons.Index,
   component: SeasonsIndexPage,
-  loader: seasonsLoader,
+  loader: manageSeasonsAllLoader,
   ...defaultOptions,
 },{
   path: paths.Seasons.Create,
@@ -74,12 +85,12 @@ const routes = [{
   path: paths.Seasons.Update,
   component: SeasonsUpdatePage,
   notFoundComponent: NotFoundPage,
-  loader: seasonLoader,
+  loader: manageSeasonsByIdLoader,
   ...defaultOptions,
 },{
   path: paths.Divisions.Index,
   component: DivisionsIndexPage,
-  loader: divisionsLoader,
+  loader: manageDivisionsAllLoader,
   ...defaultOptions,
 },{
   path: paths.Divisions.Create,
@@ -89,12 +100,12 @@ const routes = [{
   path: paths.Divisions.Update,
   component: DivisionsUpdatePage,
   notFoundComponent: NotFoundPage,
-  loader: divisionLoader,
+  loader: manageDivisionsByIdLoader,
   ...defaultOptions,
 },{
   path: paths.Teams.Index,
   component: TeamsIndexPage,
-  loader: teamsLoader,
+  loader: manageTeamsAllLoader,
   ...defaultOptions,
 },{
   path: paths.Teams.Create,
@@ -104,12 +115,12 @@ const routes = [{
   path: paths.Teams.Update,
   component: TeamsUpdatePage,
   notFoundComponent: NotFoundPage,
-  loader: teamLoader,
+  loader: manageTeamsByIdLoader,
   ...defaultOptions,
 },{
   path: paths.Players.Index,
   component: PlayersIndexPage,
-  loader: playersLoader,
+  loader: managePlayersAllLoader,
   ...defaultOptions,
 },{
   path: paths.Players.Create,
@@ -119,12 +130,12 @@ const routes = [{
   path: paths.Players.Update,
   component: PlayersUpdatePage,
   notFoundComponent: NotFoundPage,
-  loader: playerLoader,
+  loader: managePlayersByIdLoader,
   ...defaultOptions,
 },{
   path: paths.Games.Index,
   component: GamesIndexPage,
-  loader: gamesLoader,
+  loader: manageGamesAllLoader,
   ...defaultOptions,
 },{
   path: paths.Games.Create,
@@ -134,7 +145,7 @@ const routes = [{
   path: paths.Games.Update,
   component: GamesUpdatePage,
   notFoundComponent: NotFoundPage,
-  loader: gameLoader,
+  loader: manageGamesByIdLoader,
   ...defaultOptions,
 }];
 

@@ -1,5 +1,5 @@
 import { toBriefDivision, toBriefGame, toBriefPlayer, toBriefSeason, toBriefTeam } from "@/apis/manage/converters.ts";
-import { buildAllQueryFn } from "@/apis/query-functions.ts";
+import { buildAllQueryFn, buildByIdQueryFn } from "@/apis/query-functions.ts";
 import type { BriefDivision } from "@/types/division.ts";
 import type { BriefGame } from "@/types/game.ts";
 import type { BriefPlayer } from "@/types/player.ts";
@@ -16,7 +16,7 @@ export function buildManageSeasonsAllOptions() {
 export function buildManageSeasonsByIdOptions(id: number) {
   return {
     queryKey: ["manage", "seasons", id.toString()],
-    queryFn:  buildAllQueryFn<BriefSeason>(toBriefSeason)
+    queryFn:  buildByIdQueryFn<BriefSeason>(toBriefSeason)
   };
 }
 
@@ -30,7 +30,7 @@ export function buildManageDivisionsAllOptions() {
 export function buildManageDivisionsByIdOptions(id: number) {
   return {
     queryKey: ["manage", "divisions", id.toString()],
-    queryFn:  buildAllQueryFn<BriefDivision>(toBriefDivision)
+    queryFn:  buildByIdQueryFn<BriefDivision>(toBriefDivision)
   };
 }
 
@@ -44,7 +44,7 @@ export function buildManageTeamsAllOptions() {
 export function buildManageTeamsByIdOptions(id: number) {
   return {
     queryKey: ["manage", "teams", id.toString()],
-    queryFn:  buildAllQueryFn<BriefTeam>(toBriefTeam)
+    queryFn:  buildByIdQueryFn<BriefTeam>(toBriefTeam)
   };
 }
 
@@ -58,7 +58,7 @@ export function buildManagePlayersAllOptions() {
 export function buildManagePlayersByIdOptions(id: number) {
   return {
     queryKey: ["manage", "players", id.toString()],
-    queryFn:  buildAllQueryFn<BriefPlayer>(toBriefPlayer)
+    queryFn:  buildByIdQueryFn<BriefPlayer>(toBriefPlayer)
   };
 }
 
@@ -72,6 +72,6 @@ export function buildManageGamesAllOptions() {
 export function buildManageGamesByIdOptions(id: number) {
   return {
     queryKey: ["manage", "games", id.toString()],
-    queryFn:  buildAllQueryFn<BriefGame>(toBriefGame)
+    queryFn:  buildByIdQueryFn<BriefGame>(toBriefGame)
   };
 }

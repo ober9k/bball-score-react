@@ -1,4 +1,4 @@
-import type { TeamsLoaderProps } from "@/apis/loaders/types.ts";
+import type { ManageTeamsAllLoaderProps } from "@/apis/manage/types/loader-props.ts";
 import { TeamUpdateLink } from "@/components/shared/links.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
@@ -7,7 +7,7 @@ import { getRouteApi, Link } from "@tanstack/react-router";
 import { Fragment } from "react";
 
 export function IndexPage() {
-  const { teams }: TeamsLoaderProps = getRouteApi(managerPaths.Teams.Index).useLoaderData();
+  const { teams }: ManageTeamsAllLoaderProps = getRouteApi(managerPaths.Teams.Index).useLoaderData();
 
   useTitle("Teams");
   useBreadcrumbs([

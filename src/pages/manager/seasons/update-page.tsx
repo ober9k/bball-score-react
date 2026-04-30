@@ -1,4 +1,4 @@
-import type { SeasonLoaderProps } from "@/apis/loaders/types.ts";
+import type { ManageSeasonsByIdLoaderProps } from "@/apis/manage/types/loader-props.ts";
 import { buildSeasonsMutationFn } from "@/apis/mutation-functions.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { buildFormAction } from "@/pages/manager/seasons/forms/actions.tsx";
@@ -20,7 +20,7 @@ const initialFormState: FormState = {
 };
 
 export function UpdatePage() {
-  const { season }: SeasonLoaderProps = getRouteApi(managerPaths.Seasons.Update).useLoaderData();
+  const { season }: ManageSeasonsByIdLoaderProps = getRouteApi(managerPaths.Seasons.Update).useLoaderData();
   const router = useRouter();
 
   useTitle("Update Season", season.name);
@@ -31,7 +31,7 @@ export function UpdatePage() {
   ]);
 
   initialFormState.fieldValues.name = season.name;
-  initialFormState.fieldValues.active = season.active;
+  initialFormState.fieldValues.active = season.activated;
   initialFormState.fieldValues.archived = season.archived;
 
   const mutation = useMutation({

@@ -1,4 +1,4 @@
-import type { PlayerLoaderProps } from "@/apis/loaders/types.ts";
+import type { ManagePlayersByIdLoaderProps } from "@/apis/manage/types/loader-props.ts";
 import { buildPlayersMutationFn } from "@/apis/mutation-functions.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { buildFormAction } from "@/pages/manager/players/forms/actions.tsx";
@@ -23,7 +23,7 @@ const initialFormState: FormState = {
 };
 
 export function UpdatePage() {
-  const { player }: PlayerLoaderProps = getRouteApi(managerPaths.Players.Update).useLoaderData();
+  const { player }: ManagePlayersByIdLoaderProps = getRouteApi(managerPaths.Players.Update).useLoaderData();
   const router = useRouter();
 
   useTitle("Update Player", player.name);
@@ -37,7 +37,7 @@ export function UpdatePage() {
   initialFormState.fieldValues.position = player.position;
   initialFormState.fieldValues.number = player.number;
   initialFormState.fieldValues.height = player.height;
-  initialFormState.fieldValues.active = player.active;
+  initialFormState.fieldValues.active = player.activated;
   initialFormState.fieldValues.archived = player.archived;
 
   const mutation = useMutation({

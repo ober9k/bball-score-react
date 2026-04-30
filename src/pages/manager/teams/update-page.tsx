@@ -1,4 +1,4 @@
-import type { TeamLoaderProps } from "@/apis/loaders/types.ts";
+import type { ManageTeamsByIdLoaderProps } from "@/apis/manage/types/loader-props.ts";
 import { buildTeamsMutationFn } from "@/apis/mutation-functions.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { buildFormAction } from "@/pages/manager/teams/forms/actions.tsx";
@@ -22,7 +22,7 @@ const initialFormState: FormState = {
 };
 
 export function UpdatePage() {
-  const { team }: TeamLoaderProps = getRouteApi(managerPaths.Teams.Update).useLoaderData();
+  const { team }: ManageTeamsByIdLoaderProps = getRouteApi(managerPaths.Teams.Update).useLoaderData();
   const router = useRouter();
 
   useTitle("Update Team", team.name);
@@ -35,7 +35,7 @@ export function UpdatePage() {
   initialFormState.fieldValues.name = team.name;
   initialFormState.fieldValues.shortName = team.shortName;
   initialFormState.fieldValues.divisionId = team.divisionId.toString();
-  initialFormState.fieldValues.active = team.active;
+  initialFormState.fieldValues.active = team.activated;
   initialFormState.fieldValues.archived = team.archived;
 
   const mutation = useMutation({

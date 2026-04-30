@@ -1,4 +1,4 @@
-import type { GameLoaderProps } from "@/apis/loaders/types.ts";
+import type { ManageGamesByIdLoaderProps } from "@/apis/manage/types/loader-props.ts";
 import { buildGamesMutationFn } from "@/apis/mutation-functions.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { mapPhase } from "@/lib/game-utils.ts";
@@ -25,7 +25,7 @@ const initialFormState: FormState = {
 };
 
 export function UpdatePage() {
-  const { game }: GameLoaderProps = getRouteApi(managerPaths.Games.Update).useLoaderData();
+  const { game }: ManageGamesByIdLoaderProps = getRouteApi(managerPaths.Games.Update).useLoaderData();
   const router = useRouter();
 
   useTitle("Update Game", game.id.toString());
@@ -40,7 +40,7 @@ export function UpdatePage() {
   initialFormState.fieldValues.round = game.round.toString();
   initialFormState.fieldValues.seasonId = game.seasonId.toString();
   initialFormState.fieldValues.divisionId = game.divisionId.toString();
-  initialFormState.fieldValues.active = game.active;
+  initialFormState.fieldValues.active = game.activated;
   initialFormState.fieldValues.archived = game.archived;
 
   const mutation = useMutation({
