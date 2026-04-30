@@ -24,7 +24,7 @@ export type FormState = {
     round: string,
     seasonId: string,
     divisionId: string,
-    active: boolean,
+    activated: boolean,
     archived: boolean,
   },
   fieldErrors: {
@@ -33,7 +33,7 @@ export type FormState = {
     round?: string[],
     seasonId?: string[],
     divisionId?: string[],
-    active?: string[],
+    activated?: string[],
     archived?: string[],
   },
 };
@@ -116,12 +116,12 @@ export default function UpdateForm({ formAction, formState, formMode, isPending,
     errors:   fieldErrors.divisionId || [],
   };
 
-  const activeFieldState: CheckboxFieldState = {
-    name:     "active",
-    label:    "Active",
-    description: "An active Team is available for selection and be displayed across the league.",
-    value:    fieldValues.active,
-    errors:   fieldErrors.active || [],
+  const activatedFieldState: CheckboxFieldState = {
+    name:     "activated",
+    label:    "Activated",
+    description: "An activated Team is available for selection and be displayed across the league.",
+    value:    fieldValues.activated,
+    errors:   fieldErrors.activated || [],
   };
 
   const archivedFieldState: CheckboxFieldState = {
@@ -160,7 +160,7 @@ export default function UpdateForm({ formAction, formState, formMode, isPending,
             <FieldDescription>
               A game...
             </FieldDescription>
-            <CheckboxField fieldState={activeFieldState} />
+            <CheckboxField fieldState={activatedFieldState} />
             <CheckboxField fieldState={archivedFieldState} />
           </FieldSet>
           <FieldSet>

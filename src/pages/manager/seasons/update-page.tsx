@@ -12,7 +12,7 @@ import { Fragment, useActionState } from "react";
 const initialFormState: FormState = {
   fieldValues: {
     name: "",
-    active: false,
+    activated: false,
     archived: false,
   },
   fieldErrors: {},
@@ -31,7 +31,7 @@ export function UpdatePage() {
   ]);
 
   initialFormState.fieldValues.name = season.name;
-  initialFormState.fieldValues.active = season.activated;
+  initialFormState.fieldValues.activated = season.activated;
   initialFormState.fieldValues.archived = season.archived;
 
   const mutation = useMutation({

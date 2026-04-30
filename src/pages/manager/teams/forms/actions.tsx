@@ -1,7 +1,7 @@
 import { getCheckboxValue, getValue, onFieldError, onFormError, onSuccess, onUnexpectedError } from "@/lib/forms.ts";
 import type { FormState } from "@/pages/manager/teams/forms/update-form.tsx";
 import { zTeam } from "@/schemas/team.ts";
-import type { UpdateTeamDto } from "@/types/team.ts";
+import type { BriefTeamData } from "@/types/team.ts";
 import axios from "axios";
 import { z } from "zod";
 
@@ -12,16 +12,16 @@ export const buildFormAction = (mutation) => {
       name:       getValue(formData, "name"),
       shortName:  getValue(formData, "shortName"),
       divisionId: getValue(formData, "divisionId"),
-      active:     getCheckboxValue(formData, "active"),
+      activated:  getCheckboxValue(formData, "activated"),
       archived:   getCheckboxValue(formData, "archived"),
     };
 
     try {
-      const data: UpdateTeamDto = {
+      const data: BriefTeamData = {
         name:        fieldValues.name,
         shortName:   fieldValues.shortName,
         divisionId: +fieldValues.divisionId,
-        active:      fieldValues.active,
+        activated:   fieldValues.activated,
         archived:    fieldValues.archived,
       };
 

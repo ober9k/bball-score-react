@@ -13,7 +13,7 @@ const initialFormState: FormState = {
     name: "",
     shortName: "",
     divisionId: "",
-    active: false,
+    activated: false,
     archived: false,
   },
   fieldErrors: {},

@@ -12,7 +12,7 @@ const initialFormState: FormState = {
   fieldValues: {
     name: "",
     seasonId: "",
-    active: false,
+    activated: false,
     archived: false,
   },
   fieldErrors: {},

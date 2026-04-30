@@ -1,7 +1,7 @@
 import { getCheckboxValue, getValue, onFieldError, onFormError, onSuccess, onUnexpectedError } from "@/lib/forms.ts";
 import type { FormState } from "@/pages/manager/divisions/forms/update-form.tsx";
 import { zDivision } from "@/schemas/division.ts";
-import type { UpdateDivisionDto } from "@/types/division.ts";
+import type { BriefDivisionData } from "@/types/division.ts";
 import axios from "axios";
 import { z } from "zod";
 
@@ -9,18 +9,18 @@ export const buildFormAction = (mutation) => {
   return async (formState: FormState, formData: FormData) => {
 
     const fieldValues = {
-      name:     getValue(formData, "name"),
-      seasonId: getValue(formData, "seasonId"),
-      active:   getCheckboxValue(formData, "active"),
-      archived: getCheckboxValue(formData, "archived"),
+      name:      getValue(formData, "name"),
+      seasonId:  getValue(formData, "seasonId"),
+      activated: getCheckboxValue(formData, "activated"),
+      archived:  getCheckboxValue(formData, "archived"),
     };
 
     try {
-      const data: UpdateDivisionDto = {
-        name:      fieldValues.name,
-        seasonId: +fieldValues.seasonId,
-        active:    fieldValues.active,
-        archived:  fieldValues.archived,
+      const data: BriefDivisionData = {
+        name:       fieldValues.name,
+        seasonId:  +fieldValues.seasonId,
+        activated:  fieldValues.activated,
+        archived:   fieldValues.archived,
       };
 
       zDivision.parse(data);

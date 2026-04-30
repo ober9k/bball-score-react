@@ -40,7 +40,7 @@ export function UpdatePage() {
   initialFormState.fieldValues.round = game.round.toString();
   initialFormState.fieldValues.seasonId = game.seasonId.toString();
   initialFormState.fieldValues.divisionId = game.divisionId.toString();
-  initialFormState.fieldValues.active = game.activated;
+  initialFormState.fieldValues.activated = game.activated;
   initialFormState.fieldValues.archived = game.archived;
 
   const mutation = useMutation({

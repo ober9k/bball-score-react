@@ -12,12 +12,12 @@ export type FormState = {
   formErrors: string[],
   fieldValues: {
     name: string,
-    active: boolean,
+    activated: boolean,
     archived: boolean,
   },
   fieldErrors: {
     name?: string[],
-    active?: string[],
+    activated?: string[],
     archived?: string[],
   },
 };
@@ -43,12 +43,12 @@ export default function UpdateForm({ formAction, formState, formMode, isPending,
     errors:   fieldErrors.name || [],
   };
 
-  const activeFieldState: CheckboxFieldState = {
-    name:     "active",
-    label:    "Active",
-    description: "An active Season is available for selection and be displayed across the league.",
-    value:    fieldValues.active,
-    errors:   fieldErrors.active || [],
+  const activatedFieldState: CheckboxFieldState = {
+    name:     "activated",
+    label:    "Activated",
+    description: "An activated Season is available for selection and be displayed across the league.",
+    value:    fieldValues.activated,
+    errors:   fieldErrors.activated || [],
   };
 
   const archivedFieldState: CheckboxFieldState = {
@@ -83,7 +83,7 @@ export default function UpdateForm({ formAction, formState, formMode, isPending,
             <FieldDescription>
               Set the state of the Season and any additional configurations.
             </FieldDescription>
-            <CheckboxField fieldState={activeFieldState} />
+            <CheckboxField fieldState={activatedFieldState} />
             <CheckboxField fieldState={archivedFieldState} />
           </FieldSet>
           <FieldSet>

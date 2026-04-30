@@ -20,13 +20,13 @@ export type FormState = {
   fieldValues: {
     name: string,
     seasonId: string,
-    active: boolean,
+    activated: boolean,
     archived: boolean,
   },
   fieldErrors: {
     name?: string[],
     seasonId?: string[],
-    active?: string[],
+    activated?: string[],
     archived?: string[],
   },
 };
@@ -69,12 +69,12 @@ export default function UpdateForm({ formAction, formState, formMode, isPending,
     errors:   fieldErrors.seasonId || [],
   };
 
-  const activeFieldState: CheckboxFieldState = {
-    name:     "active",
-    label:    "Active",
-    description: "An active Division is available for selection and be displayed across the league.",
-    value:    fieldValues.active,
-    errors:   fieldErrors.active || [],
+  const activatedFieldState: CheckboxFieldState = {
+    name:     "activated",
+    label:    "Activated",
+    description: "An activated Division is available for selection and be displayed across the league.",
+    value:    fieldValues.activated,
+    errors:   fieldErrors.activated || [],
   };
 
   const archivedFieldState: CheckboxFieldState = {
@@ -110,7 +110,7 @@ export default function UpdateForm({ formAction, formState, formMode, isPending,
             <FieldDescription>
               Set the state of the Division and any additional configurations.
             </FieldDescription>
-            <CheckboxField fieldState={activeFieldState} />
+            <CheckboxField fieldState={activatedFieldState} />
             <CheckboxField fieldState={archivedFieldState} />
           </FieldSet>
           <FieldSet>

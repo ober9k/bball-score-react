@@ -2,7 +2,7 @@ import { getCheckboxValue, getValue, onFieldError, onFormError, onSuccess, onUne
 import { mapPhase } from "@/lib/game-utils.ts";
 import type { FormState } from "@/pages/manager/games/forms/update-form.tsx";
 import { zGame } from "@/schemas/game.ts";
-import type { UpdateGameDto } from "@/types/game.ts";
+import type { BriefGameData } from "@/types/game.ts";
 import axios from "axios";
 import { z } from "zod";
 
@@ -15,18 +15,18 @@ export const buildFormAction = (mutation) => {
       round:      getValue(formData, "round"),
       seasonId:   getValue(formData, "seasonId"),
       divisionId: getValue(formData, "divisionId"),
-      active:     getCheckboxValue(formData, "active"),
+      activated:  getCheckboxValue(formData, "activated"),
       archived:   getCheckboxValue(formData, "archived"),
     };
 
     try {
-      const data: UpdateGameDto = {
+      const data: BriefGameData = {
         date:        new Date(fieldValues.date),
         phase:       mapPhase(fieldValues.phase),
         round:       parseInt(fieldValues.round),
         seasonId:   +fieldValues.seasonId,
         divisionId: +fieldValues.divisionId,
-        active:      fieldValues.active,
+        activated:   fieldValues.activated,
         archived:    fieldValues.archived,
       };
 

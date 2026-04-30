@@ -15,7 +15,7 @@ const initialFormState: FormState = {
     position: "",
     number: "",
     height: "",
-    active: false,
+    activated: false,
     archived: false,
   },
   fieldErrors: {},
@@ -37,7 +37,7 @@ export function UpdatePage() {
   initialFormState.fieldValues.position = player.position;
   initialFormState.fieldValues.number = player.number;
   initialFormState.fieldValues.height = player.height;
-  initialFormState.fieldValues.active = player.activated;
+  initialFormState.fieldValues.activated = player.activated;
   initialFormState.fieldValues.archived = player.archived;
 
   const mutation = useMutation({

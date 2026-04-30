@@ -10,22 +10,22 @@ export const buildFormAction = (mutation) => {
   return async (formState: FormState, formData: FormData) => {
 
     const fieldValues = {
-      name:     getValue(formData, "name"),
-      position: getValue(formData, "position"),
-      number:   getValue(formData, "number"),
-      height:   getValue(formData, "height"),
-      active:   getCheckboxValue(formData, "active"),
-      archived: getCheckboxValue(formData, "archived"),
+      name:      getValue(formData, "name"),
+      position:  getValue(formData, "position"),
+      number:    getValue(formData, "number"),
+      height:    getValue(formData, "height"),
+      activated: getCheckboxValue(formData, "activated"),
+      archived:  getCheckboxValue(formData, "archived"),
     };
 
     try {
       const data: UpdatePlayerDto = {
-        name:     fieldValues.name,
-        position: mapPosition(fieldValues.position),
-        number:   fieldValues.number,
-        height:   fieldValues.height,
-        active:   fieldValues.active,
-        archived: fieldValues.archived,
+        name:      fieldValues.name,
+        position:  mapPosition(fieldValues.position),
+        number:    fieldValues.number,
+        height:    fieldValues.height,
+        activated: fieldValues.activated,
+        archived:  fieldValues.archived,
       };
 
       zPlayer.parse(data);

@@ -11,7 +11,7 @@ import { Fragment, useActionState } from "react";
 const initialFormState: FormState = {
   fieldValues: {
     name: "",
-    active: false,
+    activated: false,
     archived: false,
   },
   fieldErrors: {},

@@ -14,7 +14,7 @@ const initialFormState: FormState = {
     name: "",
     shortName: "",
     divisionId: "",
-    active: false,
+    activated: false,
     archived: false,
   },
   fieldErrors: {},
@@ -35,7 +35,7 @@ export function UpdatePage() {
   initialFormState.fieldValues.name = team.name;
   initialFormState.fieldValues.shortName = team.shortName;
   initialFormState.fieldValues.divisionId = team.divisionId.toString();
-  initialFormState.fieldValues.active = team.activated;
+  initialFormState.fieldValues.activated = team.activated;
   initialFormState.fieldValues.archived = team.archived;
 
   const mutation = useMutation({
