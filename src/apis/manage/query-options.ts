@@ -6,72 +6,80 @@ import type { BriefPlayer } from "@/types/player.ts";
 import type { BriefSeason } from "@/types/season.ts";
 import type { BriefTeam } from "@/types/team.ts";
 
+const QueryKeys = {
+  Seasons:   ["manage", "seasons"],
+  Divisions: ["manage", "divisions"],
+  Teams:     ["manage", "teams"],
+  Players:   ["manage", "players"],
+  Games:     ["manage", "games"],
+} as const;
+
 export function buildManageSeasonsAllOptions() {
   return {
-    queryKey: ["manage", "seasons"],
+    queryKey: [...QueryKeys.Seasons],
     queryFn:  buildAllQueryFn<BriefSeason>(toBriefSeason)
   };
 }
 
 export function buildManageSeasonsByIdOptions(id: number) {
   return {
-    queryKey: ["manage", "seasons", id.toString()],
+    queryKey: [...QueryKeys.Seasons, id.toString()],
     queryFn:  buildByIdQueryFn<BriefSeason>(toBriefSeason)
   };
 }
 
 export function buildManageDivisionsAllOptions() {
   return {
-    queryKey: ["manage", "divisions"],
+    queryKey: [...QueryKeys.Divisions],
     queryFn:  buildAllQueryFn<BriefDivision>(toBriefDivision)
   };
 }
 
 export function buildManageDivisionsByIdOptions(id: number) {
   return {
-    queryKey: ["manage", "divisions", id.toString()],
+    queryKey: [...QueryKeys.Divisions, id.toString()],
     queryFn:  buildByIdQueryFn<BriefDivision>(toBriefDivision)
   };
 }
 
 export function buildManageTeamsAllOptions() {
   return {
-    queryKey: ["manage", "teams"],
+    queryKey: [...QueryKeys.Teams],
     queryFn:  buildAllQueryFn<BriefTeam>(toBriefTeam)
   };
 }
 
 export function buildManageTeamsByIdOptions(id: number) {
   return {
-    queryKey: ["manage", "teams", id.toString()],
+    queryKey: [...QueryKeys.Teams, id.toString()],
     queryFn:  buildByIdQueryFn<BriefTeam>(toBriefTeam)
   };
 }
 
 export function buildManagePlayersAllOptions() {
   return {
-    queryKey: ["manage", "players"],
+    queryKey: [...QueryKeys.Players],
     queryFn:  buildAllQueryFn<BriefPlayer>(toBriefPlayer)
   };
 }
 
 export function buildManagePlayersByIdOptions(id: number) {
   return {
-    queryKey: ["manage", "players", id.toString()],
+    queryKey: [...QueryKeys.Players, id.toString()],
     queryFn:  buildByIdQueryFn<BriefPlayer>(toBriefPlayer)
   };
 }
 
 export function buildManageGamesAllOptions() {
   return {
-    queryKey: ["manage", "games"],
+    queryKey: [...QueryKeys.Games],
     queryFn:  buildAllQueryFn<BriefGame>(toBriefGame)
   };
 }
 
 export function buildManageGamesByIdOptions(id: number) {
   return {
-    queryKey: ["manage", "games", id.toString()],
+    queryKey: [...QueryKeys.Games, id.toString()],
     queryFn:  buildByIdQueryFn<BriefGame>(toBriefGame)
   };
 }
