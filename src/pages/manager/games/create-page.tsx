@@ -1,4 +1,4 @@
-import { buildGamesMutationFn } from "@/apis/mutation-functions.ts";
+import { buildGamesMutationFn } from "@/apis/manage/mutation-functions.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { buildFormAction } from "@/pages/manager/games/forms/actions.tsx";
 import UpdateForm, { type FormState } from "@/pages/manager/games/forms/update-form.tsx";

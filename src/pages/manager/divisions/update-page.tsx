@@ -1,5 +1,5 @@
 import type { ManageDivisionsByIdLoaderProps } from "@/apis/manage/types/loader-props.ts";
-import { buildDivisionsMutationFn } from "@/apis/mutation-functions.ts";
+import { buildDivisionsMutationFn } from "@/apis/manage/mutation-functions.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { buildFormAction } from "@/pages/manager/divisions/forms/actions.tsx";
 import UpdateForm, { type FormState } from "@/pages/manager/divisions/forms/update-form.tsx";

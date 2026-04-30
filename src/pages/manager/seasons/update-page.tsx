@@ -1,5 +1,5 @@
 import type { ManageSeasonsByIdLoaderProps } from "@/apis/manage/types/loader-props.ts";
-import { buildSeasonsMutationFn } from "@/apis/mutation-functions.ts";
+import { buildSeasonsMutationFn } from "@/apis/manage/mutation-functions.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { buildFormAction } from "@/pages/manager/seasons/forms/actions.tsx";
 import UpdateForm, { type FormState } from "@/pages/manager/seasons/forms/update-form.tsx";

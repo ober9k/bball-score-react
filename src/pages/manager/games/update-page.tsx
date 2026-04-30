@@ -1,5 +1,5 @@
 import type { ManageGamesByIdLoaderProps } from "@/apis/manage/types/loader-props.ts";
-import { buildGamesMutationFn } from "@/apis/mutation-functions.ts";
+import { buildGamesMutationFn } from "@/apis/manage/mutation-functions.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { mapPhase } from "@/lib/game-utils.ts";
 import { buildFormAction } from "@/pages/manager/games/forms/actions.tsx";
