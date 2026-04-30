@@ -1,4 +1,7 @@
+import type { Activatable, Archivable } from "@/types/base.ts";
+import type { BriefDivision } from "@/types/division.ts";
 import type { Player } from "@/types/player.ts";
+import type { BriefSeason } from "@/types/season.ts";
 import type { Stats } from "@/types/stats.ts";
 import type { Team } from "@/types/team.ts";
 
@@ -48,4 +51,18 @@ export type Game = {
   teamLogs:   TeamLog[],
 };
 
-export type UpdateGameDto = Omit<Game, "id" | "teamLogs">;
+export type BriefGame = {
+  id:         number,
+  date:       Date,
+  phase:      PhaseType,
+  round:      number,
+  seasonId:   number,
+  season:     BriefSeason,
+  divisionId: number,
+  division:   BriefDivision,
+  leagueId:   number,
+} & Activatable & Archivable;
+
+export type BriefGameData = Omit<BriefGame, "id" | "season" | "division">;
+
+export type UpdateGameDto = Omit<Game, "id" | "teamLogs">; /* to be removed */
