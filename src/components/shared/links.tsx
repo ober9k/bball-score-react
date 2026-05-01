@@ -150,7 +150,7 @@ export function PlayerLink({ player, withNumber }: PlayerLinkProps) {
    * @todo: this is a place holder due to compilation complaints for `params` types
    */
   const buildPlayerViewLink = (player: Player): string => {
-    return leaguePaths.Teams.View.replace("$playerId", player.id.toString());
+    return leaguePaths.Players.View.replace("$playerId", player.id.toString());
   };
 
   return (
