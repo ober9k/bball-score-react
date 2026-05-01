@@ -1,8 +1,6 @@
 import { GameLink, TeamLink } from "@/components/shared/links.tsx";
-import { leaguePaths } from "@/routes/league/routes.ts";
 import { Card, CardContent, CardFooter } from "@/shared/components/ui/card.tsx";
 import type { Game } from "@/types/game.ts";
-import { Link } from "@tanstack/react-router";
 import { Fragment } from "react";
 
 type Props = {
@@ -12,6 +10,10 @@ type Props = {
 export default function GameCard({ game }: Props) {
   /* this should later check the actual flag */
   const [ awayTeamLog, homeTeamLog ] = game.teamLogs;
+
+  if (game.teamLogs.length === 0) {
+    return undefined; /* no data, don't show anything */
+  }
 
   return (
     <Fragment>
