@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+.titleColumn,
+.labelColumn,
+.valueColumn,
+.totalValueColumn {
+  @apply px-0.5;
+  @apply text-[13px];
+}
+
+.titleColumn,
+.valueColumn,
+.totalValueColumn {
+  @apply text-center; /* custom size, figuring out best sizing */
+}
+
+.titleColumn {
+  @apply w-[32px];
+}
+
+.labelColumn,
+.totalValueColumn {
+  @apply font-medium;
+}

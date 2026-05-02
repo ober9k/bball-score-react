@@ -1,3 +1,4 @@
+import { GameScore } from "@/components/games/game-score.tsx";
 import { GameLink, TeamLink } from "@/components/shared/links.tsx";
 import { Card, CardContent, CardFooter } from "@/shared/components/ui/card.tsx";
 import type { Game } from "@/types/game.ts";
@@ -38,6 +39,9 @@ export default function GameCard({ game }: Props) {
                 <TeamLink team={homeTeamLog.team} />
               </div>
             </div>
+          </div>
+          <div>
+            <GameScore game={game} />
           </div>
         </CardContent>
         <CardFooter className="border-t-gray-200 flex justify-center gap-2">

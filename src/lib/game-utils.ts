@@ -18,3 +18,19 @@ export function mapPhase(position: string): PhaseType {
       throw Error("Unexpected `phase` provided.");
   }
 }
+
+/**
+ * This will later factor in working with quarters, halves, etc.
+ */
+export function generateScoreTitles(periods: number): string[] {
+  const otTitles = [];
+
+  if (periods === 5) otTitles.push("OT");
+  if (periods > 5) {
+    for (let i = 5; i < periods; i++) {
+      otTitles.push(`OT${i-4}`);
+    }
+  }
+
+  return ["1Q", "2Q", "3Q", "4Q", ...otTitles];
+}
