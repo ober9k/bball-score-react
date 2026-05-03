@@ -1,4 +1,5 @@
 import { Phase, type PhaseType, Side, type SideType } from "@/types/game.ts";
+import type { Stats } from "@/types/stats.ts";
 
 export function mapSide(side: string): SideType {
   switch (side) {
@@ -33,4 +34,11 @@ export function generateScoreTitles(periods: number): string[] {
   }
 
   return ["1Q", "2Q", "3Q", "4Q", ...otTitles];
+}
+
+/**
+ * Add common stats for picking the game leaders for each team.
+ */
+export function calcLeaderScore(stats: Stats): number {
+  return stats.points + stats.rebounds + stats.assists;
 }

@@ -1,3 +1,4 @@
+import { GameLeaders } from "@/components/games/game-leaders.tsx";
 import { GameScore } from "@/components/games/game-score.tsx";
 import { GameLink, TeamLink } from "@/components/shared/links.tsx";
 import { Card, CardContent, CardFooter } from "@/shared/components/ui/card.tsx";
@@ -42,6 +43,7 @@ export default function GameCard({ game }: Props) {
           </div>
           <div>
             <GameScore game={game} />
+            <GameLeaders game={game} />
           </div>
         </CardContent>
         <CardFooter className="border-t-gray-200 flex justify-center gap-2">
