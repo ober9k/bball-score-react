@@ -63,6 +63,6 @@ export type BriefGame = {
   leagueId:   number,
 } & Activatable & Archivable;
 
-export type BriefGameData = Omit<BriefGame, "id" | "season" | "division">;
+export type BriefGameData = Omit<BriefGame, "id" | "season" | "division" | "leagueId">;
 
 export type UpdateGameDto = Omit<Game, "id" | "teamLogs">; /* to be removed */

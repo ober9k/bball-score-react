@@ -18,6 +18,6 @@ export type BriefDivision = {
   leagueId: number,
 } & Activatable & Archivable;
 
-export type BriefDivisionData = Omit<BriefDivision, "id" | "season">;
+export type BriefDivisionData = Omit<BriefDivision, "id" | "season" | "leagueId">;
 
 export type UpdateDivisionDto = Omit<Division, "id">; /* to be removed */

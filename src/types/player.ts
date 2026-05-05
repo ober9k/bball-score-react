@@ -30,6 +30,6 @@ export type BriefPlayer = {
   leagueId: number,
 } & Activatable & Archivable;
 
-export type BriefPlayerData = Omit<BriefPlayer, "id">;
+export type BriefPlayerData = Omit<BriefPlayer, "id" | "leagueId">;
 
 export type UpdatePlayerDto = Omit<Player, "id">; /* to be removed */
