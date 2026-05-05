@@ -14,6 +14,7 @@ export function toSeason(season: any): Season {
     name:     season.name,
     active:   season.active,
     archived: season.archived,
+    leagueId: season.leagueId,
   };
 }
 
@@ -24,6 +25,7 @@ export function toDivision(division: any): Division {
     active:   division.active,
     archived: division.archived,
     seasonId: division.seasonId,
+    leagueId: division.leagueId,
   };
 }
 
@@ -35,6 +37,7 @@ export function toTeam(team: any): Team {
     active:     team.active,
     archived:   team.archived,
     divisionId: team.divisionId,
+    leagueId:   team.leagueId,
   };
 }
 
@@ -47,6 +50,7 @@ export function toPlayer(player: any): Player {
     height:   player.height,
     active:   player.active,
     archived: player.archived,
+    leagueId: player.leagueId,
   };
 }
 
@@ -61,6 +65,7 @@ export function toGame(game: any): Game {
     active:     game.active,
     archived:   game.archived,
     teamLogs:   game.teamLogs.map(toTeamLog),
+    leagueId:   game.leagueId,
   };
 }
 

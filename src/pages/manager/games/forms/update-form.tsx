@@ -12,7 +12,7 @@ import { formatYMD } from "@/lib/date-utils.ts";
 import { mapPhase } from "@/lib/game-utils.ts";
 import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
 import { Separator } from "@/shared/components/ui/separator.tsx";
-import { type BriefGame, Phase } from "@/types/game.ts";
+import { type BriefGame, Phase, type PhaseType } from "@/types/game.ts";
 import type { Option } from "@/types/option.ts";
 import { useQuery } from "@tanstack/react-query";
 import { Fragment, useEffect, useState } from "react";
@@ -21,7 +21,7 @@ export type FormState = {
   formErrors: string[],
   fieldValues: {
     date: Date,
-    phase: string,
+    phase: PhaseType,
     round: string,
     seasonId: string,
     divisionId: string,
@@ -47,7 +47,7 @@ export function buildInitialState(game?: BriefGame): FormState {
     ? {
       date:       game.date,
       phase:      mapPhase(game.phase),
-      round:      game.round,
+      round:      game.round.toString(),
       seasonId:   game.seasonId.toString(),   /* handled within select */
       divisionId: game.divisionId.toString(), /* handled within select */
       activated:  game.activated,

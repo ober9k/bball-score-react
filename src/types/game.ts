@@ -49,6 +49,7 @@ export type Game = {
   active:     boolean,
   archived:   boolean,
   teamLogs:   TeamLog[],
+  leagueId:   number,
 };
 
 export type BriefGame = {

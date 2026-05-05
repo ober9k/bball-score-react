@@ -14,7 +14,7 @@ export function GameLeaders(props: GameLeadersProps) {
       return (acc && calcLeaderScore(acc.stats) > calcLeaderScore(cur.stats))
         ? acc
         : cur;
-    }, undefined);
+    }, {} as PlayerLog);
   };
 
   const awayLeader = getLeader(props.game.teamLogs[0]);

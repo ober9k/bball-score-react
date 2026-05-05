@@ -24,7 +24,7 @@ export function mapPhase(position: string): PhaseType {
  * This will later factor in working with quarters, halves, etc.
  */
 export function generateScoreTitles(periods: number): string[] {
-  const otTitles = [];
+  const otTitles: string[] = [];
 
   if (periods === 5) otTitles.push("OT");
   if (periods > 5) {
