@@ -1,21 +1,21 @@
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { managerPaths } from "@/routes/manager/routes.ts";
-import type { Division } from "@/types/division.ts";
-import type { Game } from "@/types/game.ts";
-import type { Player } from "@/types/player.ts";
-import type { Season } from "@/types/season.ts";
-import type { Team } from "@/types/team.ts";
+import type { BriefDivision, Division } from "@/types/division.ts";
+import type { BriefGame, Game } from "@/types/game.ts";
+import type { BriefPlayer, Player } from "@/types/player.ts";
+import type { BriefSeason, Season } from "@/types/season.ts";
+import type { BriefTeam, Team } from "@/types/team.ts";
 import { Link } from "@tanstack/react-router"
 
 type GameUpdateLinkProps = {
-  game: Game,
+  game: Game | BriefGame,
 };
 
 export function GameUpdateLink({ game }: GameUpdateLinkProps) {
   /**
    * @todo: this is a place holder due to compilation complaints for `params` types
    */
-  const buildLink = (game: Game): string => {
+  const buildLink = (game: Game | BriefGame): string => {
     return managerPaths.Games.Update.replace("$gameId", game.id.toString());
   };
 
@@ -27,14 +27,14 @@ export function GameUpdateLink({ game }: GameUpdateLinkProps) {
 }
 
 type DivisionUpdateLinkProps = {
-  division: Division,
+  division: Division | BriefDivision,
 };
 
 export function DivisionUpdateLink({ division }: DivisionUpdateLinkProps) {
   /**
    * @todo: this is a place holder due to compilation complaints for `params` types
    */
-  const buildLink = (division: Division): string => {
+  const buildLink = (division: Division | BriefDivision): string => {
     return managerPaths.Divisions.Update.replace("$divisionId", division.id.toString());
   };
 
@@ -46,14 +46,14 @@ export function DivisionUpdateLink({ division }: DivisionUpdateLinkProps) {
 }
 
 type PlayerUpdateLinkProps = {
-  player: Player,
+  player: Player | BriefPlayer,
 };
 
 export function PlayerUpdateLink({ player }: PlayerUpdateLinkProps) {
   /**
    * @todo: this is a place holder due to compilation complaints for `params` types
    */
-  const buildLink = (player: Player): string => {
+  const buildLink = (player: Player | BriefPlayer): string => {
     return managerPaths.Players.Update.replace("$playerId", player.id.toString());
   };
   
@@ -65,14 +65,14 @@ export function PlayerUpdateLink({ player }: PlayerUpdateLinkProps) {
 }
 
 type TeamUpdateLinkProps = {
-  team: Team,
+  team: Team | BriefTeam,
 };
 
 export function TeamUpdateLink({ team }: TeamUpdateLinkProps) {
   /**
    * @todo: this is a place holder due to compilation complaints for `params` types
    */
-  const buildLink = (team: Team): string => {
+  const buildLink = (team: Team | BriefTeam): string => {
     return managerPaths.Teams.Update.replace("$teamId", team.id.toString());
   };
 
@@ -84,14 +84,14 @@ export function TeamUpdateLink({ team }: TeamUpdateLinkProps) {
 }
 
 type SeasonUpdateLinkProps = {
-  season: Season,
+  season: Season | BriefSeason,
 };
 
 export function SeasonUpdateLink({ season }: SeasonUpdateLinkProps) {
   /**
    * @todo: this is a place holder due to compilation complaints for `params` types
    */
-  const buildLink = (season: Season): string => {
+  const buildLink = (season: Season | BriefSeason): string => {
     return managerPaths.Seasons.Update.replace("$seasonId", season.id.toString());
   };
 
@@ -103,14 +103,14 @@ export function SeasonUpdateLink({ season }: SeasonUpdateLinkProps) {
 }
 
 type DivisionLinkProps = {
-  division: Division,
+  division: Division | BriefDivision,
 };
 
 export function DivisionLink({ division }: DivisionLinkProps) {
   /**
    * @todo: this is a place holder due to compilation complaints for `params` types
    */
-  const buildDivisionViewLink = (division: Division): string => {
+  const buildDivisionViewLink = (division: Division | BriefDivision): string => {
     return leaguePaths.Divisions.View.replace("$divisionId", division.id.toString());
   };
 
@@ -122,14 +122,14 @@ export function DivisionLink({ division }: DivisionLinkProps) {
 }
 
 type GameLinkProps = {
-  game: Game,
+  game: Game | BriefGame,
 };
 
 export function GameLink({ game }: GameLinkProps) {
   /**
    * @todo: this is a place holder due to compilation complaints for `params` types
    */
-  const buildGameViewLink = (game: Game): string => {
+  const buildGameViewLink = (game: Game | BriefGame): string => {
     return leaguePaths.Games.View.replace("$gameId", game.id.toString());
   };
 
@@ -141,7 +141,7 @@ export function GameLink({ game }: GameLinkProps) {
 }
 
 type PlayerLinkProps = {
-  player: Player,
+  player: Player | BriefPlayer,
   withNumber?: boolean,
 };
 
@@ -149,7 +149,7 @@ export function PlayerLink({ player, withNumber }: PlayerLinkProps) {
   /**
    * @todo: this is a place holder due to compilation complaints for `params` types
    */
-  const buildPlayerViewLink = (player: Player): string => {
+  const buildPlayerViewLink = (player: Player | BriefPlayer): string => {
     return leaguePaths.Players.View.replace("$playerId", player.id.toString());
   };
 
@@ -164,14 +164,14 @@ export function PlayerLink({ player, withNumber }: PlayerLinkProps) {
 }
 
 type TeamLinkProps = {
-  team: Team,
+  team: Team | BriefTeam,
 };
 
 export function TeamLink({ team }: TeamLinkProps) {
   /**
    * @todo: this is a place holder due to compilation complaints for `params` types
    */
-  const buildTeamViewLink = (team: Team): string => {
+  const buildTeamViewLink = (team: Team | BriefTeam): string => {
     return leaguePaths.Teams.View.replace("$teamId", team.id.toString());
   };
 
@@ -183,14 +183,14 @@ export function TeamLink({ team }: TeamLinkProps) {
 }
 
 type SeasonLinkProps = {
-  season: Season,
+  season: Season | BriefSeason,
 };
 
 export function SeasonLink({ season }: SeasonLinkProps) {
   /**
    * @todo: this is a place holder due to compilation complaints for `params` types
    */
-  const buildSeasonViewLink = (season: Season): string => {
+  const buildSeasonViewLink = (season: Season | BriefSeason): string => {
     return leaguePaths.Seasons.View.replace("$seasonId", season.id.toString());
   };
 
