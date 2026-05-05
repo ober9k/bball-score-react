@@ -17,6 +17,7 @@ import { DivisionsIndexPage } from "@/pages/manager/divisions/index-page.tsx";
 import { DivisionsUpdatePage } from "@/pages/manager/divisions/update-page.tsx";
 import { GamesCreatePage } from "@/pages/manager/games/create-page.tsx";
 import { GamesIndexPage } from "@/pages/manager/games/index-page.tsx";
+import { GamesTeamsPage } from "@/pages/manager/games/teams-page.tsx";
 import { GamesUpdatePage } from "@/pages/manager/games/update-page.tsx";
 import { PlayersCreatePage } from "@/pages/manager/players/create-page.tsx";
 import { PlayersIndexPage } from "@/pages/manager/players/index-page.tsx";
@@ -54,6 +55,7 @@ const paths = {
     Index:  "/manager/games",
     Create: "/manager/games/create",
     Update: "/manager/games/$gameId/update",
+    Teams:  "/manager/games/$gameId/teams",
   },
 };
 
@@ -144,6 +146,12 @@ const routes = [{
 },{
   path: paths.Games.Update,
   component: GamesUpdatePage,
+  notFoundComponent: NotFoundPage,
+  loader: manageGamesByIdLoader,
+  ...defaultOptions,
+},{
+  path: paths.Games.Teams,
+  component: GamesTeamsPage,
   notFoundComponent: NotFoundPage,
   loader: manageGamesByIdLoader,
   ...defaultOptions,
