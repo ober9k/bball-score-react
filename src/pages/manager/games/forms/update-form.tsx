@@ -9,9 +9,10 @@ import InputField from "@/components/forms/input-field.tsx";
 import type { SelectFieldState } from "@/components/forms/select-field.tsx";
 import SelectField from "@/components/forms/select-field.tsx";
 import { formatYMD } from "@/lib/date-utils.ts";
+import { mapPhase } from "@/lib/game-utils.ts";
 import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
 import { Separator } from "@/shared/components/ui/separator.tsx";
-import { Phase } from "@/types/game.ts";
+import { type BriefGame, Phase } from "@/types/game.ts";
 import type { Option } from "@/types/option.ts";
 import { useQuery } from "@tanstack/react-query";
 import { Fragment, useEffect, useState } from "react";
@@ -37,6 +38,34 @@ export type FormState = {
     archived?: string[],
   },
 };
+
+/**
+ * Prepare based off loaded game if provided.
+ */
+export function buildInitialState(game?: BriefGame): FormState {
+  const fieldValues = (game)
+    ? {
+      date:       game.date,
+      phase:      mapPhase(game.phase),
+      round:      game.round,
+      seasonId:   game.seasonId.toString(),   /* handled within select */
+      divisionId: game.divisionId.toString(), /* handled within select */
+      activated:  game.activated,
+      archived:   game.archived,
+    } : {
+      date:       new Date(),
+      phase:      "",
+      round:      "",
+      seasonId:   "",
+      divisionId: "",
+      active:     false,
+      archived:   false,
+    }
+
+  return {
+    fieldValues, fieldErrors: {}, formErrors: []
+  };
+}
 
 type GameFormProps = {
   formAction: (payload: FormData) => void,

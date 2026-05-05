@@ -6,6 +6,7 @@ import type { InputFieldState } from "@/components/forms/input-field.tsx";
 import InputField from "@/components/forms/input-field.tsx";
 import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
 import { Separator } from "@/shared/components/ui/separator.tsx";
+import type { BriefSeason } from "@/types/season.ts";
 import { Fragment } from "react";
 
 export type FormState = {
@@ -21,6 +22,26 @@ export type FormState = {
     archived?: string[],
   },
 };
+
+/**
+ * Prepare based off loaded season if provided.
+ */
+export function buildInitialState(season?: BriefSeason): FormState {
+  const fieldValues = (season)
+    ? {
+      name:      season.name,
+      activated: season.activated,
+      archived:  season.archived,
+    } : {
+      name:      "",
+      activated: false,
+      archived:  false,
+    }
+
+  return {
+    fieldValues, fieldErrors: {}, formErrors: []
+  };
+}
 
 type SeasonFormProps = {
   formAction: (payload: FormData) => void,

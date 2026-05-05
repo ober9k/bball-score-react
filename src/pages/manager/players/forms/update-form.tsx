@@ -6,10 +6,11 @@ import InputField from "@/components/forms/input-field.tsx";
 import type { SelectFieldState } from "@/components/forms/select-field.tsx";
 import SelectField from "@/components/forms/select-field.tsx";
 import { i18n } from "@/lib/phrases.ts";
+import { mapPosition } from "@/lib/player-utils.ts";
 import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
 import { Separator } from "@/shared/components/ui/separator.tsx";
 import type { Option } from "@/types/option.ts";
-import { Position } from "@/types/player.ts";
+import { type BriefPlayer, Position } from "@/types/player.ts";
 import { Fragment } from "react";
 
 export type FormState = {
@@ -32,7 +33,33 @@ export type FormState = {
   },
 };
 
-type TeamFormProps = {
+/**
+ * Prepare based off loaded player if provided.
+ */
+export function buildInitialState(player?: BriefPlayer): FormState {
+  const fieldValues = (player)
+    ? {
+      name:      player.name,
+      position:  mapPosition(player.position),
+      number:    player.number,
+      height:    player.height,
+      activated: player.activated,
+      archived:  player.archived,
+    } : {
+      name:      "",
+      position:  "",
+      number:    "",
+      height:    "",
+      activated: false,
+      archived:  false,
+    }
+
+  return {
+    fieldValues, fieldErrors: {}, formErrors: []
+  };
+}
+
+type PlayerFormProps = {
   formAction: (payload: FormData) => void,
   formState: FormState,
   formMode: "create" | "update", /* todo: make into type */
@@ -48,7 +75,7 @@ const positionsOptions: Option[] = [
   { value: Position.Center,        label: i18n("position.type.label.center") },
 ] as const;
 
-export default function UpdateForm({ formAction, formState, formMode, isPending, onCancel }: TeamFormProps) {
+export default function UpdateForm({ formAction, formState, formMode, isPending, onCancel }: PlayerFormProps) {
   const { formErrors, fieldValues, fieldErrors } = formState;
 
   const nameFieldState: InputFieldState = {

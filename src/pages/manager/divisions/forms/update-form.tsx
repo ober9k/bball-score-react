@@ -10,6 +10,7 @@ import type { SelectFieldState } from "@/components/forms/select-field.tsx";
 import SelectField from "@/components/forms/select-field.tsx";
 import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
 import { Separator } from "@/shared/components/ui/separator.tsx";
+import type { BriefDivision } from "@/types/division.ts";
 import type { Option } from "@/types/option.ts";
 import type { Season } from "@/types/season.ts";
 import { useQuery } from "@tanstack/react-query";
@@ -30,6 +31,28 @@ export type FormState = {
     archived?: string[],
   },
 };
+
+/**
+ * Prepare based off loaded division if provided.
+ */
+export function buildInitialState(division?: BriefDivision): FormState {
+  const fieldValues = (division)
+    ? {
+      name:      division.name,
+      seasonId:  division.seasonId.toString(), /* handled within select */
+      activated: division.activated,
+      archived:  division.archived,
+    } : {
+      name:      "",
+      seasonId:  "",
+      activated: false,
+      archived:  false,
+    }
+
+  return {
+    fieldValues, fieldErrors: {}, formErrors: []
+  };
+}
 
 type DivisionFormProps = {
   formAction: (payload: FormData) => void,

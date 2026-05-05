@@ -1,24 +1,13 @@
-import type { ManageDivisionsByIdLoaderProps } from "@/apis/manage/types/loader-props.ts";
 import { buildDivisionsMutationFn } from "@/apis/manage/mutation-functions.ts";
+import type { ManageDivisionsByIdLoaderProps } from "@/apis/manage/types/loader-props.ts";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { buildFormAction } from "@/pages/manager/divisions/forms/actions.tsx";
-import UpdateForm, { type FormState } from "@/pages/manager/divisions/forms/update-form.tsx";
+import UpdateForm, { buildInitialState } from "@/pages/manager/divisions/forms/update-form.tsx";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { managerPaths } from "@/routes/manager/routes.ts";
 import { useMutation } from "@tanstack/react-query";
 import { getRouteApi, useRouter } from "@tanstack/react-router";
 import { Fragment, useActionState } from "react";
-
-const initialFormState: FormState = {
-  fieldValues: {
-    name: "",
-    seasonId: "",
-    activated: false,
-    archived: false,
-  },
-  fieldErrors: {},
-  formErrors:  [],
-};
 
 export function UpdatePage() {
   const { division }: ManageDivisionsByIdLoaderProps = getRouteApi(managerPaths.Divisions.Update).useLoaderData();
@@ -31,11 +20,6 @@ export function UpdatePage() {
     { title: "Update Division" },
   ]);
 
-  initialFormState.fieldValues.name = division.name;
-  initialFormState.fieldValues.seasonId = division.seasonId.toString();
-  initialFormState.fieldValues.activated = division.activated;
-  initialFormState.fieldValues.archived = division.archived;
-
   const mutation = useMutation({
     mutationFn: buildDivisionsMutationFn(division.id),
     onSuccess: async () => {
@@ -46,7 +30,7 @@ export function UpdatePage() {
     },
   });
 
-  const [ formState, formAction, isPending ] = useActionState(buildFormAction(mutation), initialFormState);
+  const [ formState, formAction, isPending ] = useActionState(buildFormAction(mutation), buildInitialState(division));
 
   const onCancel = () => {
     router.navigate({

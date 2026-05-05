@@ -12,6 +12,7 @@ import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/co
 import { Separator } from "@/shared/components/ui/separator.tsx";
 import type { Division } from "@/types/division.ts";
 import type { Option } from "@/types/option.ts";
+import type { BriefTeam } from "@/types/team.ts";
 import { useQuery } from "@tanstack/react-query";
 import { Fragment, useEffect, useState } from "react";
 
@@ -33,7 +34,31 @@ export type FormState = {
   },
 };
 
-type DivisionFormProps = {
+/**
+ * Prepare based off loaded team if provided.
+ */
+export function buildInitialState(team?: BriefTeam): FormState {
+  const fieldValues = (team)
+    ? {
+      name:       team.name,
+      shortName:  team.shortName,
+      divisionId: team.divisionId.toString(), /* handled within select */
+      activated:  team.activated,
+      archived:   team.archived,
+    } : {
+      name:       "",
+      shortName:  "",
+      divisionId: "",
+      activated:  false,
+      archived:   false,
+    }
+
+  return {
+    fieldValues, fieldErrors: {}, formErrors: []
+  };
+}
+
+type TeamFormProps = {
   formAction: (payload: FormData) => void,
   formState: FormState,
   formMode: "create" | "update", /* todo: make into type */
@@ -41,7 +66,7 @@ type DivisionFormProps = {
   onCancel: () => void,
 };
 
-export default function UpdateForm({ formAction, formState, formMode, isPending, onCancel }: DivisionFormProps) {
+export default function UpdateForm({ formAction, formState, formMode, isPending, onCancel }: TeamFormProps) {
   const { formErrors, fieldValues, fieldErrors } = formState;
   const [ divisionsOptions, setDivisionsOptions ] = useState<Option[]>([]);
   const { data } = useQuery(buildOptionsQueryOptions(queryKeys.Divisions));
