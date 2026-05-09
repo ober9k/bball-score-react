@@ -3,7 +3,7 @@
 .statsLabelCell,
 .statsValueCell {
   @apply px-0.5;
-  @apply text-[13px] text-center; /* custom size, figuring out best sizing */
+  @apply text-[13px] text-center align-top; /* custom size, figuring out best sizing */
   @apply font-light;
 }
 

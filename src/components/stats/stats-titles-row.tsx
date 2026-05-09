@@ -9,12 +9,16 @@ import { type Dispatch, Fragment, type SetStateAction } from "react";
 const WidenedColumns: StatsKeyType[] = [
   StatsKey.FieldGoals,
   StatsKey.FieldGoalsPercentage,
+  StatsKey.FieldGoalsWithPercentage,
   StatsKey.TwoPointFieldGoals,
   StatsKey.TwoPointFieldGoalsPercentage,
+  StatsKey.TwoPointFieldGoalsWithPercentage,
   StatsKey.ThreePointFieldGoals,
   StatsKey.ThreePointFieldGoalsPercentage,
+  StatsKey.ThreePointFieldGoalsWithPercentage,
   StatsKey.FreeThrows,
   StatsKey.FreeThrowsPercentage,
+  StatsKey.FreeThrowsWithPercentage,
 ] as const;
 
 const SortableColumns: StatsKeyType[] = [

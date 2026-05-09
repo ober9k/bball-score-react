@@ -24,9 +24,13 @@ const statsTitles = new Map<StatsKeyType, string>()
   .set(StatsKey.Points, "PTS")
   /* special percentage cases */
   .set(StatsKey.FieldGoalsPercentage, "FG%")
+  .set(StatsKey.FieldGoalsWithPercentage, "FG/%")
   .set(StatsKey.TwoPointFieldGoalsPercentage, "2P%")
+  .set(StatsKey.TwoPointFieldGoalsWithPercentage, "2P/%")
   .set(StatsKey.ThreePointFieldGoalsPercentage, "3P%")
-  .set(StatsKey.FreeThrowsPercentage,  "FT%")
+  .set(StatsKey.ThreePointFieldGoalsWithPercentage, "3P/%")
+  .set(StatsKey.FreeThrowsPercentage, "FT%")
+  .set(StatsKey.FreeThrowsWithPercentage, "FT/%")
 
 export function getStatsTitle(statsKey: StatsKeyType): string {
   return statsTitles.get(statsKey)!; /* todo: revisit strict/null checks for statsTitles */
@@ -92,23 +96,27 @@ function isPercentageStatsKey(statsKey: StatsKeyType): boolean {
 /**
  * Format respective stats value based on provided key.
  */
-export function formatValue(stats: Stats, statsKey: StatsKeyType, precision = 0): string {
-  const asPercentage = isPercentageStatsKey(statsKey);
+export function formatValue(stats: Stats, statsKey: StatsKeyType, precision = 0, byPercentage = false): string {
+  const asPercentage = byPercentage || isPercentageStatsKey(statsKey);
 
   switch (statsKey) {
     case StatsKey.Minutes:
       return formatMinutes(stats.seconds);
     case StatsKey.FieldGoals:
     case StatsKey.FieldGoalsPercentage:
+    case StatsKey.FieldGoalsWithPercentage:
       return getPoints(stats.fgMade, stats.fgAttempted, precision, asPercentage);
     case StatsKey.TwoPointFieldGoals:
     case StatsKey.TwoPointFieldGoalsPercentage:
+    case StatsKey.TwoPointFieldGoalsWithPercentage:
       return getPoints(stats.fgMade - stats.fg3Made, stats.fgAttempted - stats.fg3Attempted, precision, asPercentage);
     case StatsKey.ThreePointFieldGoals:
     case StatsKey.ThreePointFieldGoalsPercentage:
+    case StatsKey.ThreePointFieldGoalsWithPercentage:
       return getPoints(stats.fg3Made, stats.fg3Attempted, precision, asPercentage);
     case StatsKey.FreeThrows:
     case StatsKey.FreeThrowsPercentage:
+    case StatsKey.FreeThrowsWithPercentage:
       return getPoints(stats.ftMade, stats.ftAttempted, precision, asPercentage);
     default:
       /* standard value handling */
@@ -194,12 +202,9 @@ const ExtendedColumns: StatsKeyType[] = [
 
 const CompleteColumns: StatsKeyType[] = [
   StatsKey.Minutes,
-  StatsKey.FieldGoals,
-  StatsKey.FieldGoalsPercentage,
-  StatsKey.ThreePointFieldGoals,
-  StatsKey.ThreePointFieldGoalsPercentage,
-  StatsKey.FreeThrows,
-  StatsKey.FreeThrowsPercentage,
+  StatsKey.FieldGoalsWithPercentage,
+  StatsKey.ThreePointFieldGoalsWithPercentage,
+  StatsKey.FreeThrowsWithPercentage,
   StatsKey.Rebounds,
   StatsKey.Assists,
   StatsKey.Steals,

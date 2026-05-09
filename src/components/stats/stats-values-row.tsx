@@ -25,13 +25,31 @@ export function StatsValueCell(props: StatsValueCellProps) {
     ? styles.statsLabelCell
     : styles.statsValueCell;
 
+  const withPercentageKeys: StatsKeyType[] = [
+    StatsKey.FieldGoalsWithPercentage,
+    StatsKey.TwoPointFieldGoalsWithPercentage,
+    StatsKey.ThreePointFieldGoalsWithPercentage,
+    StatsKey.FreeThrowsWithPercentage,
+  ];
+
   const cellValue = (averages)
     ? formatValue(stats, statsKey, 1) /* 1 decimal point for averages */
     : formatValue(stats, statsKey);
 
+  let cellExtraValue;
+
+  if (withPercentageKeys.includes(statsKey)) {
+    cellExtraValue = `(${formatValue(stats, statsKey, 1, true)})`; /* needs better handling */
+  }
+
   return (
     <Fragment>
-      <TableCell className={cellClass}>{cellValue}</TableCell>
+      <TableCell className={cellClass}>
+        {cellValue}
+        {cellExtraValue && (
+          <span className="block text-[10px]">{cellExtraValue}</span>
+        )}
+      </TableCell>
     </Fragment>
   );
 }
