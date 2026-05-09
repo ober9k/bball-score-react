@@ -40,5 +40,7 @@ export function generateScoreTitles(periods: number): string[] {
  * Add common stats for picking the game leaders for each team.
  */
 export function calcLeaderScore(stats: Stats): number {
-  return stats.points + stats.rebounds + stats.assists;
+  return (stats)
+    ? stats.points + stats.rebounds + stats.assists
+    : 0; /* initial run */
 }
