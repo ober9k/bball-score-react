@@ -1,4 +1,4 @@
-import { Phase, type PhaseType, Side, type SideType } from "@/types/game.ts";
+import { Outcome, type OutcomeType, Phase, type PhaseType, Side, type SideType } from "@/types/game.ts";
 import type { Stats } from "@/types/stats.ts";
 
 export function mapSide(side: string): SideType {
@@ -43,4 +43,24 @@ export function calcLeaderScore(stats: Stats): number {
   return (stats)
     ? stats.points + stats.rebounds + stats.assists
     : 0; /* initial run */
+}
+
+export function deriveOutcome(teamScore: number, opposingTeamScore: number): string {
+  switch (true) {
+    case teamScore > opposingTeamScore: return Outcome.WIN;
+    case teamScore < opposingTeamScore: return Outcome.LOSE;
+    default: return Outcome.DRAW;
+  }
+}
+
+export function mapOutcomeAbbreviation(outcome: string): string {
+  switch (outcome) {
+    case Outcome.WIN:     return "W";
+    case Outcome.LOSE:    return "L";
+    case Outcome.DRAW:    return "D";
+    case Outcome.FORFEIT: return "F";
+    case Outcome.BYE:     return "B";
+    default:
+      throw Error("Unexpected `outcome` provided.");
+  }
 }

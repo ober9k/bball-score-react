@@ -67,3 +67,13 @@ export type BriefGame = {
 export type BriefGameData = Omit<BriefGame, "id" | "season" | "division" | "leagueId">;
 
 export type UpdateGameDto = Omit<Game, "id" | "teamLogs">; /* to be removed */
+
+export const Outcome = {
+  WIN:     "WIN",
+  LOSE:    "LOSE",
+  DRAW:    "DRAW",
+  FORFEIT: "FORFEIT",
+  BYE:     "BYE",
+} as const;
+
+export type OutcomeType = typeof Outcome[keyof typeof Outcome];
