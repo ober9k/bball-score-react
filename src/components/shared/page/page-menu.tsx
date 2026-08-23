@@ -17,9 +17,9 @@ export function PageMenu(props: Props) {
 
   return (
     <Fragment>
-      <div className="flex gap-2 justify-end pb-2">
+      <div className="flex justify-end pb-2">
         <NavigationMenu>
-          <NavigationMenuList>
+          <NavigationMenuList className="gap-1">
             {links.map((link, index) => (
               <NavigationMenuItem key={index}>
                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()} data-active={isActive(link)}>
