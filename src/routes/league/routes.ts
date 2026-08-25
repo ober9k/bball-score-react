@@ -27,8 +27,8 @@ import {
   GamesIndexPage,
   GamesViewPage,
   LeagueIndexPage,
-  LeagueStandingsPage,
-  LeagueStatisticsPage,
+  Standings,
+  Statistics,
   PlayersIndexPage,
   PlayersViewPage,
   SeasonsIndexPage,
@@ -76,10 +76,10 @@ const routes = [{
 },{
   path: paths.League.Standings,
   loader: standingsLoader,
-  component: LeagueStandingsPage,
+  component: Standings,
 },{
   path: paths.League.Statistics,
-  component: LeagueStatisticsPage,
+  component: Statistics,
   loader: statisticsLoader,
   loaderDeps: ({ search: { mode } }) => ({ mode }),
 },{

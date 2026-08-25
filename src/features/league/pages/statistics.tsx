@@ -4,7 +4,7 @@ import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { getRouteApi } from "@tanstack/react-router";
 
-export function StatisticsPage() {
+export function Statistics() {
   const { statisticsLogs }: StatisticsLoaderProps = getRouteApi(leaguePaths.League.Statistics).useLoaderData();
 
   useTitle("Statistics");
@@ -20,4 +20,4 @@ export function StatisticsPage() {
   );
 }
 
-export { StatisticsPage as LeagueStatisticsPage };
+export default Statistics;

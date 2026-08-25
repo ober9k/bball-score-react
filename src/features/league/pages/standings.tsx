@@ -6,7 +6,7 @@ import { leaguePaths } from "@/routes/league/routes.ts";
 import type { StandingsLog } from "@/types/standings-log.ts";
 import { getRouteApi } from "@tanstack/react-router";
 
-export function StandingsPage() {
+export function Standings() {
   const { standingsLogs }: StandingsLoaderProps = getRouteApi(leaguePaths.League.Standings).useLoaderData();
 
   useTitle("Standings");
@@ -31,4 +31,4 @@ export function StandingsPage() {
   );
 }
 
-export { StandingsPage as LeagueStandingsPage };
+export default Standings;
