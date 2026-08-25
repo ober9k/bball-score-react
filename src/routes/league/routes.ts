@@ -26,7 +26,6 @@ import {
   DivisionsViewPage,
   GamesIndexPage,
   GamesViewPage,
-  LeagueIndexPage,
   Standings,
   Statistics,
   PlayersIndexPage,
@@ -34,13 +33,15 @@ import {
   SeasonsIndexPage,
   SeasonsViewPage,
   TeamsIndexPage,
-  TeamsViewPage
+  TeamsViewPage,
+  Home
 } from "@/routes/league/pages.ts";
 import { mapRoute } from "@/routes/route.ts";
 
 const paths = {
   League: {
     Index:      "/league",
+    Home:       "/league/home",
     Standings:  "/league/standings",
     Statistics: "/league/statistics",
   },
@@ -71,8 +72,8 @@ const paths = {
 };
 
 const routes = [{
-  path: paths.League.Index,
-  component: LeagueIndexPage,
+  path: paths.League.Home,
+  component: Home,
 },{
   path: paths.League.Standings,
   loader: standingsLoader,

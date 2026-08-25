@@ -11,7 +11,7 @@ type Link = {
 }
 
 const links: Link[] = [
-  { title: "League",     to: leaguePaths.League.Index, },
+  { title: "League",     to: leaguePaths.League.Home, },
   { title: "Games",      to: leaguePaths.Games.Index, },
   { title: "Players",    to: leaguePaths.Players.Index, },
   { title: "Teams",      to: leaguePaths.Teams.Index, },
