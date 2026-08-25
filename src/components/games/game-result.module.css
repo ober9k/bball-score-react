@@ -8,13 +8,12 @@
 
 .scores {
   @apply border-r border-r-gray-200;
-  @apply basis-4/5;
+  @apply grow;
   @apply p-0 pr-3;
 }
 
 .status {
   @apply flex items-center justify-center;
-  @apply basis-1/5;
   @apply p-0 pl-3;
 }
 
@@ -23,6 +22,15 @@
 .winningScoreRow {
   @apply flex justify-between;
   @apply py-0.5;
+}
+
+.titleRow {
+  @apply text-[10px] text-gray-500 uppercase;
+  @apply pb-0.75;
+}
+
+.scoreRow,
+.winningScoreRow {
   @apply text-sm font-medium uppercase;
   @apply text-gray-500;
 }
@@ -33,13 +41,8 @@
 
   > span::after {
     @apply content-[''];
-    @apply absolute top-1.75 -right-3.25 w-0 h-0;
+    @apply absolute top-1.5 -right-3 w-0 h-0;
     @apply inline-block;
-    @apply border-5 border-transparent border-r-blue-500;
+    @apply border-6 border-transparent border-r-blue-500;
   }
-}
-
-.titleRow {
-  @apply text-xs text-gray-500 font-normal;
-  @apply py-0.5 pb-1.5;
 }
