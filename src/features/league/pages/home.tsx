@@ -1,70 +1,45 @@
 import { useAuthContext } from "@/auth.tsx";
-import usePageContext from "@/hooks/use-page-context.ts";
+import { useBreadcrumbs, useTitle } from "@/hooks/page";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { managerPaths } from "@/routes/manager/routes.ts";
 import { Button } from "@/shared/components/ui/button.tsx";
 import { useRouter } from "@tanstack/react-router";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
+
+type HomeButtonProps = {
+  title: string;
+  to: string;
+};
+
+function HomeButton(props: HomeButtonProps) {
+  const router = useRouter();
+  const { title, to } = props;
+
+  return (
+    <>
+      <Button onClick={() => router.navigate({ to })}>{title}</Button>
+    </>
+  );
+}
 
 export function Home() {
-  const { setPageHeader } = usePageContext();
   const { user, isAuthenticated } = useAuthContext();
-  const router = useRouter();
+  
+  useTitle("League");
+  useBreadcrumbs([]);
 
-  useEffect(() => {
-    setPageHeader("League", "", [
-      { title: "League" },
-    ]);
-  }, []);
+  const manageButtons = [
+    { title: "Seasons",   to: managerPaths.Seasons.Index },
+    { title: "Divisions", to: managerPaths.Divisions.Index },
+    { title: "Teams",     to: managerPaths.Teams.Index },
+    { title: "Players",   to: managerPaths.Players.Index },
+    { title: "Games",     to: managerPaths.Games.Index },
+  ];
 
-  const gotoSeasons = () => {
-    router.navigate({
-      to: managerPaths.Seasons.Index,
-      replace: true,
-    });
-  };
-
-  const gotoDivisions = () => {
-    router.navigate({
-      to: managerPaths.Divisions.Index,
-      replace: true,
-    });
-  };
-
-  const gotoTeams = () => {
-    router.navigate({
-      to: managerPaths.Teams.Index,
-      replace: true,
-    });
-  };
-
-  const gotoPlayers = () => {
-    router.navigate({
-      to: managerPaths.Players.Index,
-      replace: true,
-    });
-  };
-
-  const gotoGames = () => {
-    router.navigate({
-      to: managerPaths.Games.Index,
-      replace: true,
-    });
-  };
-
-  const gotoLeagueSeasons = () => {
-    router.navigate({
-      to: leaguePaths.Seasons.Index,
-      replace: true,
-    });
-  };
-
-  const gotoLeagueDivisions = () => {
-    router.navigate({
-      to: leaguePaths.Divisions.Index,
-      replace: true,
-    });
-  };
+  const leagueButtons = [
+    { title: "Seasons",   to: leaguePaths.Seasons.Index },
+    { title: "Divisions", to: leaguePaths.Divisions.Index },
+  ];
 
   return (
     <>
@@ -72,11 +47,9 @@ export function Home() {
         <Fragment>
           <h2 className="p-2 font-medium">Manage League</h2>
           <p className="p-2 text-sm flex gap-1">
-            <Button onClick={() => gotoSeasons()}>Seasons</Button>
-            <Button onClick={() => gotoDivisions()}>Divisions</Button>
-            <Button onClick={() => gotoTeams()}>Teams</Button>
-            <Button onClick={() => gotoPlayers()}>Players</Button>
-            <Button onClick={() => gotoGames()}>Games</Button>
+            {manageButtons.map((button, key) => (
+              <HomeButton key={key} title={button.title} to={button.to} />
+            ))}
           </p>
         </Fragment>
       )}
@@ -86,8 +59,9 @@ export function Home() {
       </p>
       <h2 className="p-2 font-medium">Miscellaneous</h2>
       <p className="p-2 text-sm flex gap-1">
-        <Button onClick={() => gotoLeagueSeasons()}>Seasons</Button>
-        <Button onClick={() => gotoLeagueDivisions()}>Divisions</Button>
+        {leagueButtons.map((button, key) => (
+          <HomeButton key={key} title={button.title} to={button.to} />
+        ))}
       </p>
     </>
   );
