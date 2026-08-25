@@ -4,7 +4,7 @@ import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { getRouteApi } from "@tanstack/react-router";
 
-export default function IndexPage() {
+function GamesList() {
   const { games }: GamesLoaderProps = getRouteApi(leaguePaths.Games.Index).useLoaderData();
 
   useTitle("Games");
@@ -24,4 +24,4 @@ export default function IndexPage() {
   );
 }
 
-export { IndexPage as GamesIndexPage };
+export default GamesList;

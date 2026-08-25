@@ -24,8 +24,8 @@ import { TeamStatisticsPage } from "@/pages/league/teams/statistics-page.tsx";
 import {
   DivisionsIndexPage,
   DivisionsViewPage,
-  GamesIndexPage,
-  GamesViewPage,
+  GamesList,
+  GameDetails,
   Standings,
   Statistics,
   PlayersIndexPage,
@@ -141,11 +141,11 @@ const routes = [{
   loader: playerStatisticsLoader,
 },{
   path: paths.Games.Index,
-  component: GamesIndexPage,
+  component: GamesList,
   loader: gamesLoader,
 }, {
   path: paths.Games.View,
-  component: GamesViewPage,
+  component: GameDetails,
   notFoundComponent: NotFoundPage,
   loader: gameLoader,
 }];

@@ -10,7 +10,7 @@ import type { Game, TeamLogWithTotals } from "@/types/game.ts";
 import { getRouteApi } from "@tanstack/react-router";
 import { Fragment } from "react";
 
-export default function ViewPage() {
+function GameDetails() {
   const { game }: GameLoaderProps = getRouteApi(leaguePaths.Games.View).useLoaderData();
 
   useTitle("Game", `#${game.id}`); /* gameId for now */
@@ -51,4 +51,4 @@ export default function ViewPage() {
   );
 }
 
-export { ViewPage as GamesViewPage };
+export default GameDetails;
