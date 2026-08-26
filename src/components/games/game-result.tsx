@@ -4,6 +4,7 @@ import { Button } from "@/shared/components/ui/button";
 import { TeamLink } from "@/components/shared/links";
 import { useRouter } from "@tanstack/react-router";
 import { leaguePaths } from "@/routes/league/routes";
+import TeamLogo from "@/components/teams/team-logo";
 
 type Props = {
   game: Game,
@@ -38,12 +39,13 @@ function GameResult(props: Props) {
       <article className={styles.result}>
         <div className={styles.scores}>
           <div className={styles.titleRow}>
-            <h3>Final</h3>
-            <span>Score</span>
+            <h3>Round {game.round}</h3>
+            <span>Final</span>
           </div>
           {results.map((result, key) => (
             <div key={key} className={getScoreRowClass(result.score)}>
               <h3>
+                <TeamLogo team={result.team} />
                 <TeamLink team={result.team} />
               </h3>
               <span>
