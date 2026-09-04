@@ -1,4 +1,5 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/shared/components/ui/breadcrumb.tsx";
+import { Link } from "@tanstack/react-router";
 import { Fragment } from "react"
 
 export type Link = {
@@ -20,8 +21,8 @@ function BreadcrumbForLink(props: LinkProps) {
 
   return (
     <BreadcrumbItem>
-      <BreadcrumbLink href={link.to}>
-        {link.title}
+      <BreadcrumbLink>
+        <Link to={link.to}>{link.title}</Link>
       </BreadcrumbLink>
     </BreadcrumbItem>
   );
