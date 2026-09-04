@@ -2,7 +2,8 @@ import {
   manageDivisionsAllLoader,
   manageDivisionsByIdLoader,
   manageGamesAllLoader,
-  manageGamesByIdLoader,
+  manageGamesByIdLoader, 
+  manageGamesTeamsByIdLoader,
   managePlayersAllLoader,
   managePlayersByIdLoader,
   manageSeasonsAllLoader,
@@ -153,7 +154,7 @@ const routes = [{
   path: paths.Games.Teams,
   component: GamesTeamsPage,
   notFoundComponent: NotFoundPage,
-  loader: manageGamesByIdLoader,
+  loader: manageGamesTeamsByIdLoader,
   ...defaultOptions,
 }];
 

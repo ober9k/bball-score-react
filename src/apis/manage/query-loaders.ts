@@ -16,6 +16,7 @@ import type {
   ManageDivisionsByIdLoaderProps,
   ManageGamesAllLoaderProps,
   ManageGamesByIdLoaderProps,
+  ManageGamesTeamsByIdLoaderProps,
   ManagePlayersAllLoaderProps,
   ManagePlayersByIdLoaderProps,
   ManageSeasonsAllLoaderProps,
@@ -23,8 +24,9 @@ import type {
   ManageTeamsAllLoaderProps,
   ManageTeamsByIdLoaderProps
 } from "@/apis/manage/types/loader-props.ts";
+import { buildGamesQueryOptions } from "@/apis/query-options.ts";
 import type { BriefDivision } from "@/types/division.ts";
-import type { BriefGame } from "@/types/game.ts";
+import type { BriefGame, Game } from "@/types/game.ts";
 import type { BriefPlayer } from "@/types/player.ts";
 import type { BriefSeason } from "@/types/season.ts";
 import type { BriefTeam } from "@/types/team.ts";
@@ -86,5 +88,12 @@ export async function manageGamesAllLoader({ context }): Promise<ManageGamesAllL
 export async function manageGamesByIdLoader({ context, params }): Promise<ManageGamesByIdLoaderProps> {
   return {
     game: await fetchById<BriefGame>(context.queryClient, buildManageGamesByIdOptions(+params.gameId)),
+  };
+}
+
+export async function manageGamesTeamsByIdLoader({ context, params }): Promise<ManageGamesTeamsByIdLoaderProps> {
+  return {
+    game: await fetchById<BriefGame>(context.queryClient, buildManageGamesByIdOptions(+params.gameId)),
+    fullGame: await fetchById<Game>(context.queryClient, buildGamesQueryOptions(+params.gameId)),
   };
 }

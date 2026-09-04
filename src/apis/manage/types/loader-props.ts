@@ -1,5 +1,5 @@
 import type { BriefDivision } from "@/types/division.ts";
-import type { BriefGame } from "@/types/game.ts";
+import type { BriefGame, Game } from "@/types/game.ts";
 import type { BriefPlayer } from "@/types/player.ts";
 import type { BriefSeason } from "@/types/season.ts";
 import type { BriefTeam } from "@/types/team.ts";
@@ -42,4 +42,9 @@ export type ManageGamesAllLoaderProps = {
 
 export type ManageGamesByIdLoaderProps = {
   game: BriefGame,
+};
+
+export type ManageGamesTeamsByIdLoaderProps = {
+  game: BriefGame,
+  fullGame: Game, /* temp */
 };

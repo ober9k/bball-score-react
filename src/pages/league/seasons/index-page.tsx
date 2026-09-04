@@ -2,7 +2,7 @@ import type { SeasonsLoaderProps } from "@/apis/loaders/types.ts";
 import { SeasonLink } from "@/components/shared/links.tsx";
 import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
 import { leaguePaths } from "@/routes/league/routes.ts";
-import { getRouteApi, Link } from "@tanstack/react-router";
+import { getRouteApi } from "@tanstack/react-router";
 
 export function IndexPage() {
   const { seasons }: SeasonsLoaderProps = getRouteApi(leaguePaths.Seasons.Index).useLoaderData();
