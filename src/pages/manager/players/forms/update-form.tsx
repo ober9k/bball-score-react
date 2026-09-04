@@ -6,7 +6,7 @@ import InputField from "@/components/forms/input-field.tsx";
 import type { SelectFieldState } from "@/components/forms/select-field.tsx";
 import SelectField from "@/components/forms/select-field.tsx";
 import { i18n } from "@/lib/phrases.ts";
-import { mapPosition } from "@/lib/player-utils.ts";
+import { asPositionType } from "@/lib/player-utils.ts";
 import { FieldDescription, FieldGroup, FieldLegend, FieldSet } from "@/shared/components/ui/field";
 import { Separator } from "@/shared/components/ui/separator.tsx";
 import type { Option } from "@/types/option.ts";
@@ -40,7 +40,7 @@ export function buildInitialState(player?: BriefPlayer): FormState {
   const fieldValues = (player)
     ? {
       name:      player.name,
-      position:  mapPosition(player.position),
+      position:  asPositionType(player.position),
       number:    player.number,
       height:    player.height,
       activated: player.activated,
