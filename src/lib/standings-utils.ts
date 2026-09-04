@@ -17,8 +17,11 @@ export function formatPointsDiff(pointsFor: number, pointsAgainst: number, playe
   return `${prefix}${diffValue}`;
 }
 
-export function formatPoints(wins: number, losses: number, draws: number, byes: number): number {
-  return (wins * 3) + (losses) + (draws * 2) + (byes);
+/**
+ * Calculate team's total points for their standings based on wins, losses and draws.
+ */
+export function calculatePoints(log: StandingsLog): number {
+  return (log.wins * 3) + (log.losses) + (log.draws * 2) + (log.byes);
 }
 
 /**
@@ -50,7 +53,7 @@ export function formatValue(log: StandingsLog, standingsKey: StandingsKeyType): 
     case StandingsKey.PointsDiff:
       return formatPointsDiff(log.pointsFor, log.pointsAgainst, log.played);
     case StandingsKey.Points:
-      return formatPoints(log.wins, log.losses, log.draws, log.byes).toString();
+      return calculatePoints(log).toString();
     default:
       /* standard value handling */
       return log[standingsKey].toString();

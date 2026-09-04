@@ -1,9 +1,9 @@
-import type { StandingsLoaderProps } from "@/apis/loaders/types.ts";
-import { StandingsTable } from "@/components/standings/standings-table.tsx";
-import { useBreadcrumbs, useTitle } from "@/hooks/page.ts";
-import { formatPoints } from "@/lib/standings-utils.ts";
-import { leaguePaths } from "@/routes/league/routes.ts";
-import type { StandingsLog } from "@/types/standings-log.ts";
+import type { StandingsLoaderProps } from "@/apis/loaders/types";
+import { StandingsTable } from "@/components/standings/standings-table";
+import { useBreadcrumbs, useTitle } from "@/hooks/page";
+import { calculatePoints } from "@/lib/standings-utils";
+import { leaguePaths } from "@/routes/league/routes";
+import type { StandingsLog } from "@/types/standings-log";
 import { getRouteApi } from "@tanstack/react-router";
 
 export function Standings() {
@@ -16,12 +16,15 @@ export function Standings() {
   ]);
 
   const sortedStandingsLogs = standingsLogs.sort((logA: StandingsLog, logB: StandingsLog) => {
-    const pointsA = formatPoints(logA.wins, logA.losses, logA.draws, logA.byes);
-    const pointsB = formatPoints(logB.wins, logB.losses, logB.draws, logB.byes);
+    const pointsA = calculatePoints(logA);
+    const pointsB = calculatePoints(logB);
 
+    /* raw initial sort by points */
     if (pointsA < pointsB) return  1;
     if (pointsA > pointsB) return -1;
-    return 0;
+
+    /* secondary sort by points difference */
+    return (logB.pointsFor - logB.pointsAgainst) - (logA.pointsFor - logA.pointsAgainst);
   });
 
   return (
