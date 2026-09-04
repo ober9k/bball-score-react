@@ -21,7 +21,7 @@ function GamesList() {
       <div className="grid grid-cols-1 gap-3 -my-2 -mx-3 text-sm uppercase">
         {rounds.map((round) => (
           <section key={round.title}>
-            <h2>{round.title}</h2>
+            <h2 className="px-2 pb-1">{round.title}</h2>
             {round.games.map((game) => (
               <GameResult key={game.id} game={game} />
               /* <GameCard key={game.id} game={game} /> */

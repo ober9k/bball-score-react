@@ -4,6 +4,14 @@
   @apply flex;
   @apply p-3;
   @apply border border-gray-200 rounded;
+
+  &:has(+ .result) {
+    @apply rounded-b-none;
+  }
+
+  & + .result {
+    @apply border-t-0 rounded-t-none;
+  }
 }
 
 .scores {
@@ -25,8 +33,16 @@
 }
 
 .titleRow {
-  @apply text-[10px] text-gray-500 uppercase;
+  @apply text-[10px] text-gray-500 capitalize;
   @apply pb-0.75;
+
+  > h3 {
+    @apply font-medium;
+  }
+
+  > span {
+    @apply uppercase;
+  }
 }
 
 .scoreRow,

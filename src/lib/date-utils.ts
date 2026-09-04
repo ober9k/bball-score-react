@@ -7,3 +7,7 @@ export function formatYMD(date: Date): string {
 export function formatYM(date: Date): string {
   return format(date, "yyyy-MM");
 }
+
+export function formatHM(date: Date): string {
+  return format(date, "HH:mmaaa");
+}

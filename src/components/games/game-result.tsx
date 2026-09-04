@@ -5,6 +5,7 @@ import { TeamLink } from "@/components/shared/links";
 import { useRouter } from "@tanstack/react-router";
 import { leaguePaths } from "@/routes/league/routes";
 import TeamLogo from "@/components/teams/team-logo";
+import { formatHM, formatYMD } from "@/lib/date-utils";
 
 type Props = {
   game: Game,
@@ -39,7 +40,7 @@ function GameResult(props: Props) {
       <article className={styles.result}>
         <div className={styles.scores}>
           <div className={styles.titleRow}>
-            <h3>Round {game.round}</h3>
+            <h3>{formatYMD(game.date)} @ {formatHM(game.date)}</h3>
             <span>Final</span>
           </div>
           {results.map((result, key) => (
