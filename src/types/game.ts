@@ -77,3 +77,10 @@ export const Outcome = {
 } as const;
 
 export type OutcomeType = typeof Outcome[keyof typeof Outcome];
+
+export type Round = {
+  title: string,
+  round: number,
+  phase: PhaseType,
+  games: Game[],
+};

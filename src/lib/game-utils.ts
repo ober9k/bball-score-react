@@ -1,4 +1,4 @@
-import { Outcome, type OutcomeType, Phase, type PhaseType, Side, type SideType } from "@/types/game.ts";
+import { type Game, Outcome, type OutcomeType, Phase, type PhaseType, type Round, Side, type SideType } from "@/types/game.ts";
 import type { Stats } from "@/types/stats.ts";
 
 export function mapSide(side: string): SideType {
@@ -63,4 +63,31 @@ export function mapOutcomeAbbreviation(outcome: string): string {
     default:
       throw Error("Unexpected `outcome` provided.");
   }
+}
+
+function buildRound(game: Game): Round {
+  const title = `Round ${game.round}`;
+  const { round, phase } = game;
+
+  return {
+    title,
+    round,
+    phase,
+    games: [game],
+  }
+}
+
+export function groupByRound(games: Game[]): Array<Round> {
+  return games.reduce<Round[]>((rounds, game) => {
+    const round = rounds.find(({ round }) => round === game.round);
+
+    if (round) {
+      round.games.push(game);
+    } 
+    else {
+      rounds.push(buildRound(game));
+    }
+
+    return rounds;
+  }, []);
 }
