@@ -21,7 +21,7 @@ function BreadcrumbForLink(props: LinkProps) {
 
   return (
     <BreadcrumbItem>
-      <BreadcrumbLink>
+      <BreadcrumbLink asChild={true}>
         <Link to={link.to}>{link.title}</Link>
       </BreadcrumbLink>
     </BreadcrumbItem>
