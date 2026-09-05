@@ -1,22 +1,45 @@
 @import "tailwindcss";
 
-.statsLabelColumn,
-.statsTitleColumn,
-.statsValueColumn {
-  @apply px-0.5;
-  @apply text-[13px]; /* custom size, figuring out best sizing */
+.headerRow,
+.bodyRow {
+  @apply border-t border-gray-300;
 }
 
-.statsTitleColumn,
-.statsTitleWidenedColumn,
-.statsValueColumn {
-  @apply text-center; /* custom size, figuring out best sizing */
+.headerRow {
+  @apply bg-gray-200;
 }
 
-.statsLabelColumn {
-  @apply font-medium;
+.bodyRow {
+  @apply border-t-gray-200;
 }
 
-.statsTitleColumn {
-  @apply w-[40px];
+.headerColumn,
+.bodyColumn {
+  @apply w-10;
+  @apply text-xs text-center;
+}
+
+.headerTitleColumn,
+.bodyTitleColumn {
+  @apply text-xs font-medium;
+}
+
+.headerTitleColumn {
+  @apply uppercase;
+}
+
+.headerTitleColumn,
+.bodyTitleColumn,
+.headerColumnBorder,
+.bodyColumnBorder {
+  @apply border-r border-gray-200;
+
+  &:last-child {
+    @apply border-r-0;
+  }
+}
+
+.headerTitleColumn,
+.headerColumnBorder {
+  @apply border-r border-gray-300;
 }

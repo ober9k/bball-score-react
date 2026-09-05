@@ -18,7 +18,7 @@ export function Standings() {
 
   return (
     <>
-      <StandingsTable standingsLogs={sortedStandingsLogs} />
+      <StandingsTable logs={sortedStandingsLogs} />
     </>
   );
 }
