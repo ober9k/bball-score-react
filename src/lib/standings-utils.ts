@@ -9,8 +9,8 @@ export function formatWinPercent(wins: number, played: number): string {
     .toFixed(WinPercentPrecision);
 }
 
-export function formatPointsDiff(pointsFor: number, pointsAgainst: number, played: number): string {
-  const diff = ((pointsFor - pointsAgainst) / played);
+export function formatPointsDiff(differential: number, played: number): string {
+  const diff = (differential / played);
   const prefix = (diff > 0) ? "+" : "";
   const diffValue = diff.toFixed(PointsDiffPrecision);
 
@@ -51,7 +51,7 @@ export function formatValue(log: StandingsLog, standingsKey: StandingsKeyType): 
     case StandingsKey.WinPercent:
       return formatWinPercent(log.wins, log.played);
     case StandingsKey.PointsDiff:
-      return formatPointsDiff(log.pointsFor, log.pointsAgainst, log.played);
+      return formatPointsDiff(log.differential, log.played);
     case StandingsKey.Points:
       return calculatePoints(log).toString();
     default:
@@ -88,13 +88,10 @@ export const ColumnsMap = new Map<ColumnsType, Array<StandingsKeyType>>()
   .set("complete", CompleteColumns);
 
 export function sortByPoints(logA: StandingsLog, logB: StandingsLog): number {
-  const pointsA = calculatePoints(logA);
-  const pointsB = calculatePoints(logB);
-
   /* raw initial sort by points */
-  if (pointsA < pointsB) return  1;
-  if (pointsA > pointsB) return -1;
+  if (logA.points < logB.points) return  1;
+  if (logA.points > logB.points) return -1;
 
   /* secondary sort by points difference */
-  return (logB.pointsFor - logB.pointsAgainst) - (logA.pointsFor - logA.pointsAgainst);
+  return logB.differential - logA.differential;
 }
