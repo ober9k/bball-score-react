@@ -3,6 +3,7 @@ import {
   divisionsLoader,
   gameLoader,
   gamesLoader,
+  homeLoader,
   playerGamesLoader,
   playerLoader,
   playersLoader,
@@ -74,6 +75,7 @@ const paths = {
 const routes = [{
   path: paths.League.Home,
   component: Home,
+  loader: homeLoader,
 },{
   path: paths.League.Standings,
   loader: standingsLoader,

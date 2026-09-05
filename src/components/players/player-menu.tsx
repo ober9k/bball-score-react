@@ -17,12 +17,12 @@ export function PlayerMenu(props: Props) {
   };
 
   const links: PageLink[] = [
-    { title: "Team Home",  to: applyPlayerId(leaguePaths.Players.View) },
-    { title: "Game Log",   to: applyPlayerId(leaguePaths.Players.Games) },
+    { title: "Profile",    to: applyPlayerId(leaguePaths.Players.View) },
+    { title: "Game Logs",  to: applyPlayerId(leaguePaths.Players.Games) },
     { title: "Statistics", to: applyPlayerId(leaguePaths.Players.Statistics) },
   ];
 
-  const isActive = useCallback((link) => {
+  const isActive = useCallback((link: PageLink) => {
     return (latestLocation.href === link.to.replace("$playerId", player.id.toString()));
   }, [player.id]);
 

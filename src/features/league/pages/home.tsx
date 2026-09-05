@@ -1,9 +1,11 @@
+import type { HomeLoaderProps } from "@/apis/loaders/types";
 import { useAuthContext } from "@/auth.tsx";
+import StandingsWidget from "@/components/widgets/standings-widget";
 import { useBreadcrumbs, useTitle } from "@/hooks/page";
 import { leaguePaths } from "@/routes/league/routes.ts";
 import { managerPaths } from "@/routes/manager/routes.ts";
 import { Button } from "@/shared/components/ui/button.tsx";
-import { useRouter } from "@tanstack/react-router";
+import { getRouteApi, useRouter } from "@tanstack/react-router";
 import { Fragment } from "react";
 
 type HomeButtonProps = {
@@ -24,6 +26,7 @@ function HomeButton(props: HomeButtonProps) {
 
 export function Home() {
   const { user, isAuthenticated } = useAuthContext();
+  const { standingsLogs }: HomeLoaderProps = getRouteApi(leaguePaths.League.Home).useLoaderData();
   
   useTitle("League");
   useBreadcrumbs([]);
@@ -63,6 +66,7 @@ export function Home() {
           <HomeButton key={key} title={button.title} to={button.to} />
         ))}
       </p>
+      <StandingsWidget logs={standingsLogs} />
     </>
   );
 }

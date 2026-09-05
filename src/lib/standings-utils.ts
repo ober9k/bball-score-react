@@ -86,3 +86,15 @@ const CompleteColumns: StandingsKeyType[] = [
 export const ColumnsMap = new Map<ColumnsType, Array<StandingsKeyType>>()
   .set("basic",    BasicColumns)
   .set("complete", CompleteColumns);
+
+export function sortByPoints(logA: StandingsLog, logB: StandingsLog): number {
+  const pointsA = calculatePoints(logA);
+  const pointsB = calculatePoints(logB);
+
+  /* raw initial sort by points */
+  if (pointsA < pointsB) return  1;
+  if (pointsA > pointsB) return -1;
+
+  /* secondary sort by points difference */
+  return (logB.pointsFor - logB.pointsAgainst) - (logA.pointsFor - logA.pointsAgainst);
+}

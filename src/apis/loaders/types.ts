@@ -70,6 +70,10 @@ export type GameLoaderProps = {
   game: Game,
 };
 
+export type HomeLoaderProps = {
+  standingsLogs: StandingsLog[],
+};
+
 export type StandingsLoaderProps = {
   standingsLogs: StandingsLog[],
 };
